@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Patrocina el CD Enrique Soler | Melilla</title>
+  <meta name="description" content="Patrocina el CD Enrique Soler de Melilla. 4 planes desde 300€/temporada. Visibilidad ante 1.000+ familias, 18 equipos y 29 temporadas de historia." />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#FF6B2B" />
+  <link rel="canonical" href="https://cdenriquesoler.com/patrocinadores.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="CD Enrique Soler" />
+  <meta property="og:title" content="Patrocina el CD Enrique Soler | Invierte en el deporte de Melilla" />
+  <meta property="og:description" content="4 planes de patrocinio desde 300€/temporada. Visibilidad ante 1.000+ familias melillenses. Únete a nuestros partners." />
+  <meta property="og:image" content="https://cdenriquesoler.com/tienda/chandal-poster.jpg" />
+  <meta property="og:url" content="https://cdenriquesoler.com/patrocinadores.html" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Patrocina el CD Enrique Soler | Melilla" />
+  <meta name="twitter:description" content="Invierte en el deporte de tu ciudad. Planes desde 300€/temporada." />
+  <meta name="twitter:image" content="https://cdenriquesoler.com/tienda/chandal-poster.jpg" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <style>
+    :root{
+      --o:#FF6B2B;--o2:#E85000;--o3:#FF9A6C;
+      --b:#0A2463;--b2:#1A3A8F;
+      --dark:#080400;--dark2:#100800;--card:#150900;
+      --gold:#F59E0B;--silver:#94A3B8;--bronze:#CD7F32;
+    }
+    *{margin:0;padding:0;box-sizing:border-box;}
+    html{scroll-behavior:smooth;}
+    body{background:var(--dark);color:#fff;font-family:'Inter',sans-serif;overflow-x:hidden;}
+    a{text-decoration:none;color:inherit;}
+
+    /* NAV */
+    nav{position:fixed;top:0;left:0;width:100%;z-index:500;display:flex;align-items:center;justify-content:space-between;padding:0 5%;height:68px;transition:background .4s,backdrop-filter .4s;}
+    nav.scrolled{background:rgba(8,4,0,.93);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,107,43,.12);}
+    .nav-logo{display:flex;align-items:center;gap:10px;}
+    .nav-logo img{height:44px;mix-blend-mode:lighten;filter:drop-shadow(0 0 8px rgba(255,107,43,.3));}
+    .nav-logo span{font-family:'Bebas Neue';font-size:17px;line-height:1.1;}
+    .nav-logo span em{color:var(--o);font-style:normal;display:block;font-size:10px;letter-spacing:.18em;}
+        .nav-links{display:flex;gap:4px;list-style:none;align-items:center;}
+    .nav-links>li>a{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.6);transition:color .2s;position:relative;padding:6px 12px;border-radius:6px;display:flex;align-items:center;gap:5px;}
+    .nav-links>li>a:hover{color:#fff;background:rgba(255,255,255,.05);}
+    .nav-links>li>a.active{color:#fff;}
+    .has-dd{position:relative;}
+    .caret{font-size:7px;opacity:.4;transition:transform .25s,opacity .25s;line-height:1;}
+    .has-dd:hover .caret{transform:rotate(180deg);opacity:1;color:var(--o);}
+    .dd-menu{position:absolute;top:100%;left:50%;transform:translateX(-50%) translateY(-4px);background:rgba(10,5,0,.97);backdrop-filter:blur(24px);border:1px solid rgba(255,107,43,.14);border-radius:12px;padding:12px 6px 6px;min-width:196px;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;z-index:600;}
+    .has-dd:hover .dd-menu{opacity:1;pointer-events:all;transform:translateX(-50%) translateY(0);}
+    .dd-menu a{display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:7px;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.5);transition:all .15s;white-space:nowrap;}
+    .dd-menu a:hover{background:rgba(255,107,43,.1);color:#fff;}
+    .dd-menu .di{font-size:14px;width:20px;text-align:center;flex-shrink:0;}
+    .nav-cta{background:var(--o);color:#fff;padding:8px 20px;border-radius:2px;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;transition:opacity .2s;margin-left:8px;}
+    .nav-cta:hover{opacity:.85;}
+    .nav-burger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;}
+    .nav-burger span{width:22px;height:2px;background:#fff;border-radius:2px;transition:all .3s;}
+    .nav-burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+    .nav-burger.open span:nth-child(2){opacity:0;}
+    .nav-burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+    .mob-nav{display:none;position:fixed;top:68px;left:0;width:100%;background:rgba(8,4,0,.98);backdrop-filter:blur(20px);padding:16px 5% 28px;z-index:499;border-bottom:1px solid rgba(255,107,43,.12);max-height:calc(100vh - 68px);overflow-y:auto;}
+    .mob-nav.open{display:flex;flex-direction:column;}
+    .mob-label{font-size:9px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,107,43,.5);padding:14px 0 4px;margin-top:8px;border-top:1px solid rgba(255,255,255,.05);}
+    .mob-label:first-child{margin-top:0;border-top:none;padding-top:0;}
+    .mob-nav a{font-size:13px;font-weight:600;color:rgba(255,255,255,.55);padding:11px 8px;border-radius:6px;display:flex;align-items:center;gap:10px;transition:all .15s;}
+    .mob-nav a:hover,.mob-nav a.active{color:#fff;background:rgba(255,255,255,.04);}
+    .mob-cta{background:var(--o)!important;color:#fff!important;text-align:center;justify-content:center;padding:14px 8px!important;border-radius:4px;margin-top:12px;font-weight:700!important;letter-spacing:.1em;}
+
+    /* HERO */
+    .sp-hero{position:relative;min-height:100vh;display:flex;align-items:center;padding:100px 8% 80px;overflow:hidden;}
+    .sp-hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 60% 40%,rgba(255,107,43,.12) 0%,transparent 70%),linear-gradient(160deg,var(--dark2) 0%,#0A0300 60%,rgba(10,36,99,.15) 100%);}
+    .sp-hero-bg::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(255,107,43,.08) 1px,transparent 1px);background-size:32px 32px;}
+    .sp-hero-bg::after{content:'PARTNER';position:absolute;right:-3%;bottom:-15%;font-family:'Bebas Neue';font-size:22vw;color:rgba(255,107,43,.03);pointer-events:none;white-space:nowrap;}
+    .sp-hero-inner{position:relative;z-index:1;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;width:100%;}
+    .sp-hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(255,107,43,.12);border:1px solid rgba(255,107,43,.25);border-radius:20px;padding:6px 16px;font-size:11px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--o);margin-bottom:24px;}
+    .sp-hero h1{font-family:'Bebas Neue';font-size:clamp(52px,6vw,88px);line-height:.95;margin-bottom:24px;}
+    .sp-hero h1 em{color:var(--o);font-style:normal;}
+    .sp-hero p{font-size:17px;color:rgba(255,255,255,.6);line-height:1.75;margin-bottom:36px;max-width:480px;}
+    .sp-hero-actions{display:flex;gap:14px;flex-wrap:wrap;}
+    .btn-hero-primary{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg,var(--o2),var(--o));color:#fff;border-radius:8px;padding:16px 32px;font-family:'Bebas Neue';font-size:20px;letter-spacing:.06em;transition:all .3s;box-shadow:0 8px 32px rgba(255,107,43,.3);}
+    .btn-hero-primary:hover{transform:translateY(-3px);box-shadow:0 16px 40px rgba(255,107,43,.4);}
+    .btn-hero-secondary{display:inline-flex;align-items:center;gap:10px;background:transparent;color:#fff;border:1px solid rgba(255,255,255,.2);border-radius:8px;padding:16px 32px;font-family:'Bebas Neue';font-size:20px;letter-spacing:.06em;transition:all .3s;}
+    .btn-hero-secondary:hover{border-color:var(--o);color:var(--o);}
+    .sp-hero-right{display:flex;flex-direction:column;gap:16px;}
+    .reach-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:20px;padding:24px 28px;display:flex;align-items:center;gap:20px;transition:all .3s;}
+    .reach-card:hover{border-color:rgba(255,107,43,.25);background:rgba(255,107,43,.04);}
+    .reach-icon{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0;}
+    .reach-icon.orange{background:rgba(255,107,43,.15);}
+    .reach-icon.blue{background:rgba(10,36,99,.4);}
+    .reach-icon.green{background:rgba(74,222,128,.1);}
+    .reach-icon.gold{background:rgba(245,158,11,.1);}
+    .reach-n{font-family:'Bebas Neue';font-size:36px;color:var(--o);line-height:1;}
+    .reach-l{font-size:12px;color:rgba(255,255,255,.5);line-height:1.4;}
+
+    /* IMPACT STRIP */
+    .impact-strip{background:linear-gradient(135deg,rgba(255,107,43,.1),rgba(232,80,0,.06));border-top:1px solid rgba(255,107,43,.15);border-bottom:1px solid rgba(255,107,43,.15);padding:40px 8%;display:grid;grid-template-columns:repeat(5,1fr);gap:0;}
+    .impact-item{text-align:center;padding:0 20px;border-right:1px solid rgba(255,107,43,.12);}
+    .impact-item:last-child{border-right:none;}
+    .impact-n{font-family:'Bebas Neue';font-size:56px;color:var(--o);line-height:1;}
+    .impact-l{font-size:11px;color:rgba(255,255,255,.45);text-transform:uppercase;letter-spacing:.1em;margin-top:4px;}
+
+    /* WHY */
+    .why-section{padding:90px 8%;}
+    .section-eyebrow{display:flex;align-items:center;gap:12px;margin-bottom:16px;}
+    .section-eyebrow span{font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--o);display:flex;align-items:center;gap:8px;}
+    .section-eyebrow span::before{content:'';display:block;width:28px;height:2px;background:var(--o);}
+    .section-title{font-family:'Bebas Neue';font-size:clamp(40px,4.5vw,64px);margin-bottom:16px;line-height:1;}
+    .section-title em{color:var(--o);font-style:normal;}
+    .section-sub{color:rgba(255,255,255,.5);font-size:15px;max-width:600px;line-height:1.7;margin-bottom:56px;}
+    .why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+    .why-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:20px;padding:32px;position:relative;overflow:hidden;transition:all .35s;}
+    .why-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--o2),var(--o));opacity:0;transition:opacity .3s;}
+    .why-card:hover{border-color:rgba(255,107,43,.2);background:rgba(255,255,255,.05);}
+    .why-card:hover::before{opacity:1;}
+    .why-emoji{font-size:36px;margin-bottom:16px;display:block;}
+    .why-title{font-family:'Bebas Neue';font-size:26px;margin-bottom:10px;}
+    .why-desc{font-size:13px;color:rgba(255,255,255,.55);line-height:1.7;}
+    .why-metric{margin-top:16px;display:inline-flex;align-items:center;gap:6px;background:rgba(255,107,43,.1);border-radius:6px;padding:5px 12px;font-size:12px;font-weight:700;color:var(--o3);}
+
+    /* VISIBILITY */
+    .visibility-section{padding:0 8% 90px;}
+    .vis-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+    .vis-block{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:20px;padding:36px;overflow:hidden;position:relative;}
+    .vis-block.featured{background:linear-gradient(135deg,rgba(255,107,43,.1),rgba(255,107,43,.04));border-color:rgba(255,107,43,.2);}
+    .vis-title{font-family:'Bebas Neue';font-size:28px;margin-bottom:20px;display:flex;align-items:center;gap:12px;}
+    .vis-list{display:flex;flex-direction:column;gap:10px;}
+    .vis-item{display:flex;align-items:center;gap:12px;font-size:14px;color:rgba(255,255,255,.7);}
+    .vis-dot{width:8px;height:8px;border-radius:50%;background:var(--o);flex-shrink:0;}
+    .vis-item strong{color:#fff;}
+    .vis-item .tag{font-size:10px;font-weight:700;background:rgba(255,107,43,.15);color:var(--o3);border-radius:4px;padding:2px 7px;margin-left:auto;white-space:nowrap;}
+
+    /* PLANS */
+    .plans-section{padding:0 8% 90px;}
+    .plans-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:0;}
+    .plan-card{border-radius:24px;overflow:hidden;position:relative;transition:transform .35s;}
+    .plan-card:hover{transform:translateY(-8px);}
+    .plan-header{padding:28px 24px 20px;}
+    .plan-tier{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.15em;margin-bottom:12px;display:flex;align-items:center;gap:8px;}
+    .plan-name{font-family:'Bebas Neue';font-size:32px;line-height:1;margin-bottom:6px;}
+    .plan-price{font-family:'Bebas Neue';font-size:52px;line-height:1;margin-bottom:4px;}
+    .plan-price sup{font-size:22px;vertical-align:super;}
+    .plan-period{font-size:12px;color:rgba(255,255,255,.5);}
+    .plan-body{padding:24px;border-top:1px solid rgba(255,255,255,.08);}
+    .plan-features{display:flex;flex-direction:column;gap:10px;margin-bottom:24px;}
+    .pf{display:flex;align-items:flex-start;gap:10px;font-size:13px;color:rgba(255,255,255,.75);}
+    .pf-icon{color:var(--o);flex-shrink:0;font-size:14px;margin-top:1px;}
+    .pf.dim{color:rgba(255,255,255,.25);}
+    .pf.dim .pf-icon{color:rgba(255,255,255,.15);}
+    .plan-cta{display:block;width:100%;text-align:center;padding:13px;border-radius:10px;font-family:'Bebas Neue';font-size:18px;letter-spacing:.06em;transition:all .3s;cursor:pointer;border:none;}
+
+    /* Diamante */
+    .plan-diamante{background:linear-gradient(160deg,#1A0600 0%,#2D0A00 50%,#1A0600 100%);border:1px solid rgba(255,107,43,.4);}
+    .plan-diamante .plan-header{background:linear-gradient(135deg,rgba(255,107,43,.2),rgba(232,80,0,.1));}
+    .plan-diamante .plan-tier{color:var(--o);}
+    .plan-diamante .plan-price{color:var(--o);}
+    .plan-diamante .plan-cta{background:linear-gradient(135deg,var(--o2),var(--o));color:#fff;}
+    .plan-diamante .plan-cta:hover{opacity:.9;}
+    .plan-popular{position:absolute;top:16px;right:16px;background:var(--o);color:#fff;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;padding:4px 10px;border-radius:4px;}
+
+    /* Oro */
+    .plan-oro{background:linear-gradient(160deg,#130E00,#1E1600,#130E00);border:1px solid rgba(245,158,11,.35);}
+    .plan-oro .plan-header{background:linear-gradient(135deg,rgba(245,158,11,.15),rgba(245,158,11,.05));}
+    .plan-oro .plan-tier{color:var(--gold);}
+    .plan-oro .plan-price{color:var(--gold);}
+    .plan-oro .plan-cta{background:var(--gold);color:#000;}
+    .plan-oro .plan-cta:hover{opacity:.9;}
+    .plan-oro .pf-icon{color:var(--gold);}
+
+    /* Plata */
+    .plan-plata{background:linear-gradient(160deg,#0E1218,#141B24,#0E1218);border:1px solid rgba(148,163,184,.3);}
+    .plan-plata .plan-header{background:linear-gradient(135deg,rgba(148,163,184,.12),rgba(148,163,184,.04));}
+    .plan-plata .plan-tier{color:var(--silver);}
+    .plan-plata .plan-price{color:var(--silver);}
+    .plan-plata .plan-cta{background:rgba(148,163,184,.15);color:var(--silver);border:1px solid rgba(148,163,184,.3);}
+    .plan-plata .plan-cta:hover{background:rgba(148,163,184,.25);}
+    .plan-plata .pf-icon{color:var(--silver);}
+
+    /* Colaborador */
+    .plan-colaborador{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.1);}
+    .plan-colaborador .plan-header{background:rgba(255,255,255,.03);}
+    .plan-colaborador .plan-tier{color:rgba(255,255,255,.5);}
+    .plan-colaborador .plan-price{color:rgba(255,255,255,.8);}
+    .plan-colaborador .plan-cta{background:transparent;color:rgba(255,255,255,.6);border:1px solid rgba(255,255,255,.15);}
+    .plan-colaborador .plan-cta:hover{border-color:rgba(255,255,255,.35);color:#fff;}
+
+    /* Plan comparison callout */
+    .plans-note{margin-top:20px;text-align:center;font-size:13px;color:rgba(255,255,255,.35);}
+    .plans-note strong{color:rgba(255,255,255,.6);}
+
+    /* CURRENT SPONSORS */
+    .sponsors-section{padding:0 8% 90px;}
+    .sponsors-strip{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:24px;padding:48px;overflow:hidden;}
+    .sponsors-strip-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:40px;}
+    .sponsors-strip-header h3{font-family:'Bebas Neue';font-size:36px;}
+    .sponsors-strip-header p{font-size:13px;color:rgba(255,255,255,.4);}
+    .sponsors-tiers{display:flex;flex-direction:column;gap:32px;}
+    .sponsors-tier-row{display:flex;flex-direction:column;gap:16px;}
+    .tier-label{display:flex;align-items:center;gap:10px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.15em;color:rgba(255,255,255,.3);}
+    .tier-label span{display:block;height:1px;flex:1;background:rgba(255,255,255,.07);}
+    .sponsors-logos{display:flex;flex-wrap:wrap;gap:12px;align-items:center;}
+    .sponsor-logo-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:18px 28px;display:flex;align-items:center;justify-content:center;min-width:120px;height:64px;transition:all .25s;font-weight:700;font-size:13px;color:rgba(255,255,255,.5);}
+    .sponsor-logo-card:hover{border-color:rgba(255,107,43,.25);background:rgba(255,107,43,.06);color:rgba(255,255,255,.8);}
+    .sponsor-logo-card.placeholder{border-style:dashed;cursor:pointer;color:rgba(255,107,43,.5);font-size:11px;font-weight:700;letter-spacing:.08em;}
+    .sponsor-logo-card.placeholder:hover{background:rgba(255,107,43,.08);}
+    .tier-d .sponsor-logo-card{min-width:180px;height:80px;font-size:15px;}
+    .tier-o .sponsor-logo-card{min-width:150px;height:72px;}
+
+    /* TESTIMONIAL */
+    .testi-section{padding:0 8% 90px;}
+    .testi-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;}
+    .testi-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:20px;padding:32px;position:relative;}
+    .testi-card::before{content:'"';position:absolute;top:20px;right:24px;font-family:'Bebas Neue';font-size:80px;color:rgba(255,107,43,.08);line-height:1;}
+    .testi-quote{font-size:14px;color:rgba(255,255,255,.65);line-height:1.75;margin-bottom:20px;font-style:italic;}
+    .testi-author{display:flex;align-items:center;gap:12px;}
+    .testi-avatar{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--o2),var(--o));display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue';font-size:18px;flex-shrink:0;}
+    .testi-name{font-weight:700;font-size:14px;}
+    .testi-role{font-size:12px;color:rgba(255,255,255,.4);}
+    .testi-stars{color:var(--gold);font-size:12px;margin-top:2px;letter-spacing:2px;}
+
+    /* CONTACT */
+    .contact-section{padding:0 8% 100px;}
+    .contact-inner{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;}
+    .contact-left h2{font-family:'Bebas Neue';font-size:clamp(40px,4vw,60px);margin-bottom:16px;line-height:1;}
+    .contact-left h2 em{color:var(--o);font-style:normal;}
+    .contact-left p{font-size:15px;color:rgba(255,255,255,.55);line-height:1.75;margin-bottom:32px;}
+    .contact-data{display:flex;flex-direction:column;gap:16px;}
+    .cd-item{display:flex;align-items:center;gap:14px;font-size:14px;color:rgba(255,255,255,.6);}
+    .cd-icon{width:40px;height:40px;background:rgba(255,107,43,.1);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
+    .contact-form{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:24px;padding:40px;}
+    .form-title{font-family:'Bebas Neue';font-size:28px;margin-bottom:8px;}
+    .form-sub{font-size:13px;color:rgba(255,255,255,.45);margin-bottom:28px;line-height:1.6;}
+    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;}
+    .form-group{display:flex;flex-direction:column;gap:6px;margin-bottom:14px;}
+    .form-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.4);}
+    .form-input,.form-select,.form-textarea{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:13px 16px;color:#fff;font-family:'Inter';font-size:14px;width:100%;transition:border-color .2s;outline:none;-webkit-appearance:none;}
+    .form-input:focus,.form-select:focus,.form-textarea:focus{border-color:rgba(255,107,43,.5);background:rgba(255,255,255,.08);}
+    .form-input::placeholder,.form-textarea::placeholder{color:rgba(255,255,255,.25);}
+    .form-select option{background:#1a0800;color:#fff;}
+    .form-textarea{resize:none;min-height:100px;}
+    .form-privacy{font-size:11px;color:rgba(255,255,255,.3);margin-bottom:20px;line-height:1.5;}
+    .form-privacy a{color:rgba(255,107,43,.6);}
+    .btn-submit{width:100%;background:linear-gradient(135deg,var(--o2),var(--o));color:#fff;border:none;border-radius:10px;padding:16px;font-family:'Bebas Neue';font-size:20px;letter-spacing:.08em;cursor:pointer;transition:all .3s;box-shadow:0 8px 24px rgba(255,107,43,.25);}
+    .btn-submit:hover{opacity:.9;transform:translateY(-2px);box-shadow:0 12px 32px rgba(255,107,43,.35);}
+    .form-or{text-align:center;color:rgba(255,255,255,.25);font-size:12px;margin:16px 0;}
+    .btn-wa-form{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;background:rgba(37,211,102,.12);border:1px solid rgba(37,211,102,.3);color:#25D366;border-radius:10px;padding:13px;font-family:'Bebas Neue';font-size:18px;letter-spacing:.06em;transition:all .3s;}
+    .btn-wa-form:hover{background:rgba(37,211,102,.2);}
+
+    /* FOOTER */
+    .sp-footer{background:#050200;border-top:1px solid rgba(255,255,255,.04);padding:40px 8%;text-align:center;}
+    .sp-footer p{font-size:12px;color:rgba(255,255,255,.25);}
+    .sp-footer a{color:rgba(255,107,43,.6);}
+
+    /* FLOATING WA */
+    .wa-float{position:fixed;bottom:28px;right:28px;z-index:400;width:58px;height:58px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 24px rgba(37,211,102,.35);transition:transform .3s;}
+    .wa-float:hover{transform:scale(1.1);}
+    .wa-float svg{width:28px;height:28px;fill:#fff;}
+
+    /* RESPONSIVE */
+    @media(max-width:1100px){
+      .plans-grid{grid-template-columns:1fr 1fr;}
+      .why-grid{grid-template-columns:1fr 1fr;}
+    }
+    @media(max-width:1024px){
+      .sp-hero-inner{grid-template-columns:1fr;gap:48px;}
+      .sp-hero-right{display:grid;grid-template-columns:1fr 1fr;}
+      .impact-strip{grid-template-columns:repeat(3,1fr);}
+      .impact-item:nth-child(4),.impact-item:nth-child(5){border-top:1px solid rgba(255,107,43,.12);}
+      .vis-grid,.contact-inner{grid-template-columns:1fr;}
+      .testi-grid{grid-template-columns:1fr 1fr;}
+    }
+    @media(max-width:768px){
+      .nav-links,.nav-cta{display:none;}
+      .nav-burger{display:flex;}
+      .sp-hero{padding:100px 6% 60px;min-height:auto;}
+      .sp-hero-right{grid-template-columns:1fr;}
+      .impact-strip{grid-template-columns:repeat(2,1fr);padding:32px 6%;}
+      .impact-item:nth-child(odd){border-right:1px solid rgba(255,107,43,.12);}
+      .impact-item:nth-child(even){border-right:none;}
+      .why-section,.sponsors-section,.plans-section,.testi-section,.contact-section,.visibility-section{padding-left:6%;padding-right:6%;}
+      .why-grid{grid-template-columns:1fr;}
+      .plans-grid{grid-template-columns:1fr;}
+      .testi-grid{grid-template-columns:1fr;}
+      .form-row{grid-template-columns:1fr;}
+      .sponsors-strip{padding:28px 20px;}
+      .section-title{font-size:clamp(36px,8vw,56px);}
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="index.html" class="nav-logo">
+    <img src="logo.png" alt="Enrique Soler"/>
+    <span>Enrique Soler<em>Melilla Ciudad del Deporte</em></span>
+  </a>
+    <ul class="nav-links">
+    <li class="has-dd">
+      <a href="index.html#about">El Club <span class="caret">▾</span></a>
+      <div class="dd-menu">
+        <a href="index.html#about"><span class="di">🏛️</span>Historia</a>
+        <a href="index.html#teams"><span class="di">🏀</span>Equipos</a>
+        <a href="index.html#noticias"><span class="di">📰</span>Noticias</a>
+        <a href="index.html#pabellon"><span class="di">🏟️</span>Pabellón</a>
+        <a href="galeria.html"><span class="di">📷</span>Galería</a>
+      </div>
+    </li>
+    <li class="has-dd">
+      <a href="primer-equipo.html">Primer Equipo <span class="caret">▾</span></a>
+      <div class="dd-menu">
+        <a href="primer-equipo.html"><span class="di">🏆</span>Primer Equipo</a>
+        <a href="primer-equipo.html#squad"><span class="di">👥</span>Plantilla</a>
+        <a href="primer-equipo.html#noticias"><span class="di">📰</span>Noticias</a>
+        <a href="primer-equipo.html#resultados"><span class="di">📅</span>Resultados</a>
+      </div>
+    </li>
+    <li class="has-dd">
+      <a href="calendario.html">Cantera <span class="caret">▾</span></a>
+      <div class="dd-menu">
+        <a href="calendario.html"><span class="di">📅</span>Calendario</a>
+        <a href="estadisticas.html"><span class="di">📊</span>Estadísticas</a>
+        <a href="inscripciones.html"><span class="di">📋</span>Inscripciones</a>
+      </div>
+    </li>
+    <li><a href="index.html#tienda">Tienda</a></li>
+    <li><a href="patrocinadores.html" class="active">Partners</a></li>
+  </ul>
+  <a href="#contacto" class="nav-cta">Ser partner</a>
+  <div class="nav-burger" id="navBurger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+</nav>
+
+<!-- MOBILE NAV -->
+<div class="mob-nav" id="mobNav">
+  <div class="mob-label">El Club</div>
+  <a href="index.html#about">🏛️ Historia</a>
+  <a href="index.html#teams">🏀 Equipos</a>
+  <a href="index.html#noticias">📰 Noticias</a>
+  <a href="index.html#pabellon">🏟️ Pabellón</a>
+  <a href="galeria.html">📷 Galería</a>
+  <div class="mob-label">Primer Equipo</div>
+  <a href="primer-equipo.html">🏆 Inicio Primer Equipo</a>
+  <a href="primer-equipo.html#squad">👥 Plantilla</a>
+  <a href="primer-equipo.html#noticias">📰 Noticias</a>
+  <a href="primer-equipo.html#resultados">📅 Resultados</a>
+  <div class="mob-label">Cantera</div>
+  <a href="calendario.html">📅 Calendario</a>
+  <a href="estadisticas.html">📊 Estadísticas</a>
+  <a href="inscripciones.html">📋 Inscripciones</a>
+  <div class="mob-label">Club</div>
+  <a href="index.html#tienda">🛍️ Tienda</a>
+  <a href="patrocinadores.html" class="active">💼 Partners</a>
+  <a href="#contacto" class="mob-cta">Ser partner →</a>
+</div>
+
+<!-- HERO -->
+<section class="sp-hero">
+  <div class="sp-hero-bg"></div>
+  <div class="sp-hero-inner">
+    <div>
+      <div class="sp-hero-badge">💼 Oportunidad de inversión · Melilla</div>
+      <h1>Invierte en el<br>deporte de<br><em>tu ciudad</em></h1>
+      <p>El CD Enrique Soler lleva 29 años siendo el referente del baloncesto en Melilla. Más de 1.000 familias, 18 equipos y una comunidad apasionada que consume marcas locales. Tu empresa frente a toda la ciudad.</p>
+      <div class="sp-hero-actions">
+        <a href="#contacto" class="btn-hero-primary">💼 Quiero ser partner</a>
+        <a href="#planes" class="btn-hero-secondary">Ver planes →</a>
+      </div>
+    </div>
+    <div class="sp-hero-right">
+      <div class="reach-card">
+        <div class="reach-icon orange">🏀</div>
+        <div>
+          <div class="reach-n">1.000+</div>
+          <div class="reach-l">Familias impactadas<br>directamente cada temporada</div>
+        </div>
+      </div>
+      <div class="reach-card">
+        <div class="reach-icon blue">🏟️</div>
+        <div>
+          <div class="reach-n">18</div>
+          <div class="reach-l">Equipos activos en competición<br>oficial FMB</div>
+        </div>
+      </div>
+      <div class="reach-card">
+        <div class="reach-icon green">📅</div>
+        <div>
+          <div class="reach-n">200+</div>
+          <div class="reach-l">Partidos oficiales por temporada<br>en Melilla y desplazamientos</div>
+        </div>
+      </div>
+      <div class="reach-card">
+        <div class="reach-icon gold">⭐</div>
+        <div>
+          <div class="reach-n">29</div>
+          <div class="reach-l">Temporadas de historia,<br>confianza y arraigo en Melilla</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- IMPACT STRIP -->
+<div class="impact-strip">
+  <div class="impact-item">
+    <div class="impact-n">186+</div>
+    <div class="impact-l">Jugadores activos</div>
+  </div>
+  <div class="impact-item">
+    <div class="impact-n">1.000+</div>
+    <div class="impact-l">Familias en la comunidad</div>
+  </div>
+  <div class="impact-item">
+    <div class="impact-n">200+</div>
+    <div class="impact-l">Partidos / temporada</div>
+  </div>
+  <div class="impact-item">
+    <div class="impact-n">8</div>
+    <div class="impact-l">Categorías formativas</div>
+  </div>
+  <div class="impact-item">
+    <div class="impact-n">29</div>
+    <div class="impact-l">Años de historia</div>
+  </div>
+</div>
+
+<!-- WHY -->
+<section class="why-section">
+  <div class="section-eyebrow"><span>Por qué invertir</span></div>
+  <h2 class="section-title">Tu marca donde<br><em>vive Melilla</em></h2>
+  <p class="section-sub">El deporte es el mejor canal de comunicación local. No hay anuncio que conecte más que ver tu empresa en la camiseta de los hijos de tus clientes.</p>
+
+  <div class="why-grid">
+    <div class="why-card">
+      <span class="why-emoji">👨‍👩‍👧‍👦</span>
+      <div class="why-title">Audiencia local masiva</div>
+      <div class="why-desc">Más de 1.000 familias melillenses con poder adquisitivo. Padres, madres y familiares que acuden a los entrenamientos y partidos cada semana — y que eligen negocios locales.</div>
+      <div class="why-metric">~3.500 impactos directos / semana</div>
+    </div>
+    <div class="why-card">
+      <span class="why-emoji">👕</span>
+      <div class="why-title">Visibilidad de alto impacto</div>
+      <div class="why-desc">Tu logo en las camisetas de 186 jugadores, en el pabellón, en la web, en redes sociales y en todos los materiales del club. Presencia 365 días al año en toda Melilla.</div>
+      <div class="why-metric">365 días de exposición activa</div>
+    </div>
+    <div class="why-card">
+      <span class="why-emoji">🤝</span>
+      <div class="why-title">Reputación y confianza</div>
+      <div class="why-desc">Asociar tu empresa a valores como esfuerzo, equipo y ciudad genera una conexión emocional que ningún anuncio puede comprar. El club es una institución de Melilla desde 1996.</div>
+      <div class="why-metric">29 años de credibilidad</div>
+    </div>
+    <div class="why-card">
+      <span class="why-emoji">📱</span>
+      <div class="why-title">Amplificación digital</div>
+      <div class="why-desc">Menciones en redes sociales del club, aparición en coberturas de partidos, prensa local (El Faro de Melilla, Melilla Hoy) y en esta web con miles de visitas por temporada.</div>
+      <div class="why-metric">Prensa local + redes sociales</div>
+    </div>
+    <div class="why-card">
+      <span class="why-emoji">💰</span>
+      <div class="why-title">El patrocinio más rentable</div>
+      <div class="why-desc">Comparado con publicidad exterior, radio o digital, el patrocinio deportivo local ofrece el mejor coste por impacto cualificado. Tu audiencia ya está en Melilla y te conoce.</div>
+      <div class="why-metric">Mejor ROI que publicidad tradicional</div>
+    </div>
+    <div class="why-card">
+      <span class="why-emoji">🏅</span>
+      <div class="why-title">Responsabilidad social</div>
+      <div class="why-desc">Apoyar el deporte base es también una apuesta por los jóvenes de Melilla. Un compromiso social que los clientes valoran y que diferencia a tu empresa de la competencia.</div>
+      <div class="why-metric">Impacto social medible</div>
+    </div>
+  </div>
+</section>
+
+<!-- VISIBILITY -->
+<section class="visibility-section">
+  <div class="section-eyebrow"><span>Qué incluye</span></div>
+  <h2 class="section-title">Dónde aparece<br><em>tu marca</em></h2>
+  <p class="section-sub">Dependiendo del plan elegido, tu empresa tendrá presencia en estos canales. Cada impresión es un potencial cliente.</p>
+  <div class="vis-grid">
+    <div class="vis-block featured">
+      <div class="vis-title">🏟️ Presencia física</div>
+      <div class="vis-list">
+        <div class="vis-item"><div class="vis-dot"></div><strong>Camiseta oficial del equipo</strong> — frente o espalda<span class="tag">Oro · Diamante</span></div>
+        <div class="vis-item"><div class="vis-dot"></div>Equipación completa del club — chándal, warm-up<span class="tag">Diamante</span></div>
+        <div class="vis-item"><div class="vis-dot"></div>Banner o lona en el pabellón durante los partidos<span class="tag">Plata+</span></div>
+        <div class="vis-item"><div class="vis-dot"></div>Materiales impresos del club (lonas, programas)<span class="tag">Oro+</span></div>
+        <div class="vis-item"><div class="vis-dot"></div>Mención en actos y torneos oficiales del club<span class="tag">Plata+</span></div>
+        <div class="vis-item"><div class="vis-dot"></div>Logo en mochilas y material deportivo<span class="tag">Diamante</span></div>
+      </div>
+    </div>
+    <div class="vis-block">
+      <div class="vis-title">💻 Presencia digital</div>
+      <div class="vis-list">
+        <div class="vis-item"><div class="vis-dot" style="background:var(--gold)"></div><strong>Logo destacado en web del club</strong> — sección Partners<span class="tag">Todos</span></div>
+        <div class="vis-item"><div class="vis-dot" style="background:var(--gold)"></div>Publicaciones en redes sociales del club<span class="tag">Plata+</span></div>
+        <div class="vis-item"><div class="vis-dot" style="background:var(--gold)"></div>Banner en newsletter / comunicaciones de temporada<span class="tag">Oro+</span></div>
+        <div class="vis-item"><div class="vis-dot" style="background:var(--gold)"></div>Cobertura especial en inicio de temporada<span class="tag">Diamante</span></div>
+        <div class="vis-item"><div class="vis-dot" style="background:var(--gold)"></div>Enlace a tu web desde la página de partners<span class="tag">Plata+</span></div>
+        <div class="vis-item"><div class="vis-dot" style="background:var(--gold)"></div>Story dedicada por cada logro del equipo<span class="tag">Oro+</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PLANES -->
+<section class="plans-section" id="planes">
+  <div class="section-eyebrow"><span>Planes de patrocinio</span></div>
+  <h2 class="section-title">Elige tu nivel<br>de <em>compromiso</em></h2>
+  <p class="section-sub">Cuatro planes pensados para todos los tipos de empresa. Desde el apoyo puntual hasta el patrocinio principal del club.</p>
+
+  <div class="plans-grid">
+
+    <!-- COLABORADOR -->
+    <div class="plan-card plan-colaborador">
+      <div class="plan-header">
+        <div class="plan-tier">🤝 Colaborador</div>
+        <div class="plan-name">Colaborador</div>
+        <div class="plan-price"><sup>€</sup>300</div>
+        <div class="plan-period">por temporada · desde</div>
+      </div>
+      <div class="plan-body">
+        <div class="plan-features">
+          <div class="pf"><span class="pf-icon">✓</span>Logo en web del club (sección partners)</div>
+          <div class="pf"><span class="pf-icon">✓</span>Mención en redes sociales del club</div>
+          <div class="pf"><span class="pf-icon">✓</span>Certificado oficial de colaboración</div>
+          <div class="pf"><span class="pf-icon">✓</span>Invitaciones a eventos del club</div>
+          <div class="pf dim"><span class="pf-icon">–</span>Logo en camiseta</div>
+          <div class="pf dim"><span class="pf-icon">–</span>Banner en pabellón</div>
+          <div class="pf dim"><span class="pf-icon">–</span>Posts dedicados</div>
+        </div>
+        <a href="#contacto" class="plan-cta">Empezar →</a>
+      </div>
+    </div>
+
+    <!-- PLATA -->
+    <div class="plan-card plan-plata">
+      <div class="plan-header">
+        <div class="plan-tier">🥈 Patrocinador</div>
+        <div class="plan-name">Plata</div>
+        <div class="plan-price"><sup>€</sup>600</div>
+        <div class="plan-period">por temporada · desde</div>
+      </div>
+      <div class="plan-body">
+        <div class="plan-features">
+          <div class="pf"><span class="pf-icon">✓</span>Todo lo del plan Colaborador</div>
+          <div class="pf"><span class="pf-icon">✓</span>Logo destacado en web (tamaño mayor)</div>
+          <div class="pf"><span class="pf-icon">✓</span>Banner en pabellón durante partidos</div>
+          <div class="pf"><span class="pf-icon">✓</span>2 posts mensuales en redes sociales</div>
+          <div class="pf"><span class="pf-icon">✓</span>Enlace a tu web desde la nuestra</div>
+          <div class="pf dim"><span class="pf-icon">–</span>Logo en camiseta oficial</div>
+          <div class="pf dim"><span class="pf-icon">–</span>Story por cada victoria</div>
+        </div>
+        <a href="#contacto" class="plan-cta">Empezar →</a>
+      </div>
+    </div>
+
+    <!-- ORO -->
+    <div class="plan-card plan-oro">
+      <div class="plan-popular">⭐ Popular</div>
+      <div class="plan-header">
+        <div class="plan-tier">🥇 Patrocinador</div>
+        <div class="plan-name">Oro</div>
+        <div class="plan-price"><sup>€</sup>1.500</div>
+        <div class="plan-period">por temporada · desde</div>
+      </div>
+      <div class="plan-body">
+        <div class="plan-features">
+          <div class="pf"><span class="pf-icon">✓</span>Todo lo del plan Plata</div>
+          <div class="pf"><span class="pf-icon">✓</span><strong>Logo en camiseta oficial</strong> (manga/espalda)</div>
+          <div class="pf"><span class="pf-icon">✓</span>Story dedicada en cada victoria</div>
+          <div class="pf"><span class="pf-icon">✓</span>Post de inicio y fin de temporada</div>
+          <div class="pf"><span class="pf-icon">✓</span>Presencia en equipaciones de viaje</div>
+          <div class="pf"><span class="pf-icon">✓</span>Invitaciones VIP a partidos clave</div>
+          <div class="pf"><span class="pf-icon">✓</span>Newsletter del club (500+ familias)</div>
+        </div>
+        <a href="#contacto" class="plan-cta">Empezar →</a>
+      </div>
+    </div>
+
+    <!-- DIAMANTE -->
+    <div class="plan-card plan-diamante">
+      <div class="plan-popular" style="background:linear-gradient(90deg,var(--o2),var(--o));">💎 Premium</div>
+      <div class="plan-header">
+        <div class="plan-tier">💎 Main Sponsor</div>
+        <div class="plan-name">Diamante</div>
+        <div class="plan-price"><sup>€</sup>3.000</div>
+        <div class="plan-period">por temporada · desde</div>
+      </div>
+      <div class="plan-body">
+        <div class="plan-features">
+          <div class="pf"><span class="pf-icon">✓</span>Todo lo del plan Oro</div>
+          <div class="pf"><span class="pf-icon">✓</span><strong>Logo frontal en camiseta</strong> (máxima visibilidad)</div>
+          <div class="pf"><span class="pf-icon">✓</span>Logo en toda la equipación del club</div>
+          <div class="pf"><span class="pf-icon">✓</span>Lona grande exclusiva en pabellón</div>
+          <div class="pf"><span class="pf-icon">✓</span>Co-branding en web y redes (<em>con</em> el club)</div>
+          <div class="pf"><span class="pf-icon">✓</span>Acto de presentación con tu empresa</div>
+          <div class="pf"><span class="pf-icon">✓</span>Rueda de prensa de inicio de temporada</div>
+        </div>
+        <a href="#contacto" class="plan-cta">Contactar →</a>
+      </div>
+    </div>
+
+  </div>
+  <p class="plans-note">Todos los precios son orientativos. <strong>Cada patrocinio es personalizado</strong> según las necesidades de tu empresa. Escríbenos y diseñamos juntos tu plan ideal.</p>
+</section>
+
+<!-- CURRENT SPONSORS -->
+<section class="sponsors-section" id="actuales">
+  <div class="section-eyebrow"><span>Partners actuales</span></div>
+  <h2 class="section-title">Empresas que ya<br><em>apuestan por Melilla</em></h2>
+  <p class="section-sub">Estas empresas confían en el CD Enrique Soler para conectar con la comunidad melillense. ¿Tu empresa también?</p>
+
+  <div class="sponsors-strip">
+    <div class="sponsors-tiers">
+
+      <!-- PRINCIPAL -->
+      <div class="sponsors-tier-row">
+        <div class="tier-label"><span style="color:var(--o);">⭐ Patrocinador Principal</span><span></span></div>
+        <div class="sponsors-logos tier-d">
+          <div class="sponsor-logo-card" style="min-width:200px;border-color:rgba(255,107,43,.2);color:rgba(255,255,255,.85);font-size:11px;text-align:center;line-height:1.4;">🏛️<br><strong>Ciudad Autónoma de Melilla</strong><br><span style="font-size:10px;color:var(--o);letter-spacing:.06em;">CONSEJERÍA DE DEPORTES</span></div>
+          <div class="sponsor-logo-card" style="min-width:160px;color:rgba(255,255,255,.75);font-size:13px;text-align:center;line-height:1.4;"><strong>CO.MA.MEL</strong><br><span style="font-size:10px;opacity:.55;letter-spacing:.04em;">Cooperativa Maestros Melilla</span></div>
+          <div class="sponsor-logo-card" style="min-width:180px;color:rgba(255,107,43,.85);font-size:13px;text-align:center;line-height:1.4;font-weight:800;">MELILLA<br><span style="font-size:10px;opacity:.7;letter-spacing:.06em;">CIUDAD DEL DEPORTE</span></div>
+        </div>
+      </div>
+
+      <!-- OFICIALES -->
+      <div class="sponsors-tier-row">
+        <div class="tier-label"><span style="color:var(--gold);">🥇 Patrocinadores Oficiales</span><span></span></div>
+        <div class="sponsors-logos tier-o">
+          <div class="sponsor-logo-card">SIM</div>
+          <div class="sponsor-logo-card">CRD<br><span style="font-size:9px;opacity:.5;">Inmo · Gestión</span></div>
+          <div class="sponsor-logo-card">Altius Sport</div>
+          <div class="sponsor-logo-card" style="font-size:11px;text-align:center;line-height:1.3;">Montero&Moreno<br><span style="font-size:9px;opacity:.5;">Arquitectos</span></div>
+          <div class="sponsor-logo-card">Pepi Modas</div>
+          <div class="sponsor-logo-card">Cash Brico</div>
+          <div class="sponsor-logo-card" style="font-size:11px;text-align:center;line-height:1.3;">Televisión<br>Melilla</div>
+          <div class="sponsor-logo-card">Vitaldent</div>
+          <div class="sponsor-logo-card">Balearia</div>
+          <div class="sponsor-logo-card" style="font-size:11px;text-align:center;line-height:1.3;">C&L<br><span style="font-size:9px;opacity:.5;">Fisioterapeutas</span></div>
+          <div class="sponsor-logo-card">Suma</div>
+          <div class="sponsor-logo-card" style="font-size:11px;">Comercial ATI</div>
+          <div class="sponsor-logo-card placeholder" onclick="document.getElementById('contacto').scrollIntoView({behavior:'smooth'})">+ Tu empresa aquí</div>
+        </div>
+      </div>
+
+      <!-- COLABORADORES -->
+      <div class="sponsors-tier-row">
+        <div class="tier-label"><span style="color:var(--silver);">🤝 Colaboradores</span><span></span></div>
+        <div class="sponsors-logos">
+          <div class="sponsor-logo-card placeholder" onclick="document.getElementById('contacto').scrollIntoView({behavior:'smooth'})">+ Únete</div>
+          <div class="sponsor-logo-card placeholder" onclick="document.getElementById('contacto').scrollIntoView({behavior:'smooth'})">+ Únete</div>
+          <div class="sponsor-logo-card placeholder" onclick="document.getElementById('contacto').scrollIntoView({behavior:'smooth'})">+ Únete</div>
+          <div class="sponsor-logo-card placeholder" onclick="document.getElementById('contacto').scrollIntoView({behavior:'smooth'})">+ Únete</div>
+          <div class="sponsor-logo-card placeholder" onclick="document.getElementById('contacto').scrollIntoView({behavior:'smooth'})">+ Únete</div>
+          <div class="sponsor-logo-card placeholder" onclick="document.getElementById('contacto').scrollIntoView({behavior:'smooth'})">+ Únete</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testi-section">
+  <div class="section-eyebrow"><span>Testimonios</span></div>
+  <h2 class="section-title">Lo que dicen<br><em>nuestros partners</em></h2>
+  <p class="section-sub">Las empresas que ya confían en nosotros comparten su experiencia</p>
+  <div class="testi-grid">
+    <div class="testi-card">
+      <div class="testi-quote">"Llevar el logo de nuestra empresa en la camiseta de los chavales ha sido la mejor decisión de marketing local que hemos tomado. La gente de Melilla nos identifica con el club y eso tiene un valor incalculable."</div>
+      <div class="testi-author">
+        <div class="testi-avatar">JM</div>
+        <div>
+          <div class="testi-name">Empresa local · Melilla</div>
+          <div class="testi-role">Partner Oro · 3ª temporada</div>
+          <div class="testi-stars">★★★★★</div>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-quote">"No esperábamos tan buen resultado. Nuestros clientes nos preguntan por el club, nos felicitan por apoyar el deporte local. Ha generado conversación y visibilidad que ninguna campaña publicitaria nos había dado."</div>
+      <div class="testi-author">
+        <div class="testi-avatar">AR</div>
+        <div>
+          <div class="testi-name">Empresa local · Melilla</div>
+          <div class="testi-role">Partner Plata · 2ª temporada</div>
+          <div class="testi-stars">★★★★★</div>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-quote">"Apostar por el Enrique Soler es apostar por Melilla. Nuestros empleados tienen hijos en el club, nuestros clientes van a los partidos. Es una inversión en comunidad que se devuelve multiplicada."</div>
+      <div class="testi-author">
+        <div class="testi-avatar">MG</div>
+        <div>
+          <div class="testi-name">Empresa local · Melilla</div>
+          <div class="testi-role">Colaborador · 1ª temporada</div>
+          <div class="testi-stars">★★★★★</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contacto">
+  <div class="contact-inner">
+    <div class="contact-left">
+      <h2>Hablemos de<br><em>tu propuesta</em></h2>
+      <p>Cuéntanos qué tipo de empresa eres, qué buscas y nosotros te diseñamos un plan a medida. Sin compromisos, sin formularios complicados.</p>
+      <div class="contact-data">
+        <div class="cd-item">
+          <div class="cd-icon">📍</div>
+          Pabellón Deportivo · Av. Azucena s/n, Melilla
+        </div>
+        <div class="cd-item">
+          <div class="cd-icon">📱</div>
+          <a href="https://wa.me/34952699700" style="color:inherit;">+34 952 699 700</a>
+        </div>
+        <div class="cd-item">
+          <div class="cd-icon">📧</div>
+          secretaria@cdenriquesoler.es
+        </div>
+        <div class="cd-item">
+          <div class="cd-icon">🕐</div>
+          Lu–Vi 17:00–21:00 · Sábados 10:00–13:00
+        </div>
+      </div>
+      <div style="margin-top:32px;padding:24px;background:rgba(255,107,43,.06);border:1px solid rgba(255,107,43,.12);border-radius:16px;">
+        <div style="font-family:'Bebas Neue';font-size:20px;margin-bottom:8px;color:var(--o);">📄 ¿Necesitas un dosier?</div>
+        <p style="font-size:13px;color:rgba(255,255,255,.55);line-height:1.6;">Podemos enviarte un dosier de patrocinio personalizado con toda la información detallada para presentar a tu dirección o junta. Escríbenos por WhatsApp y te lo preparamos.</p>
+        <a href="https://wa.me/34952699700?text=Hola%2C%20me%20interesa%20recibir%20el%20dosier%20de%20patrocinio%20del%20CD%20Enrique%20Soler." target="_blank" style="display:inline-flex;align-items:center;gap:8px;margin-top:14px;font-size:12px;font-weight:700;color:var(--o);text-transform:uppercase;letter-spacing:.1em;">
+          💬 Pedir dosier por WhatsApp →
+        </a>
+      </div>
+    </div>
+
+    <div class="contact-form">
+      <div class="form-title">Contacta con nosotros</div>
+      <div class="form-sub">Rellena el formulario y te contactamos en menos de 24h para hablar de tu propuesta.</div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Tu nombre</label>
+          <input class="form-input" type="text" placeholder="Nombre y apellidos"/>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Empresa</label>
+          <input class="form-input" type="text" placeholder="Nombre de tu empresa"/>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Teléfono / WhatsApp</label>
+          <input class="form-input" type="tel" placeholder="+34 6XX XXX XXX"/>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Email</label>
+          <input class="form-input" type="email" placeholder="email@tuempresa.es"/>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Plan de interés</label>
+        <select class="form-select">
+          <option value="">Selecciona un plan (orientativo)</option>
+          <option>💎 Diamante — desde 3.000 €/temporada</option>
+          <option>🥇 Oro — desde 1.500 €/temporada</option>
+          <option>🥈 Plata — desde 600 €/temporada</option>
+          <option>🤝 Colaborador — desde 300 €/temporada</option>
+          <option>💬 Quiero que me asesores</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Cuéntanos algo sobre tu empresa y qué buscas</label>
+        <textarea class="form-textarea" placeholder="Sector de actividad, objetivos de visibilidad, ideas que tengas…"></textarea>
+      </div>
+
+      <div class="form-privacy">He leído y acepto la <a href="mailto:info@cdenriquesoler.es?subject=Política de privacidad" style="color:var(--o)">política de privacidad</a>. Los datos serán tratados exclusivamente para contactar contigo sobre el patrocinio del CD Enrique Soler.</div>
+
+      <button class="btn-submit" onclick="sendForm()">💼 Enviar solicitud de patrocinio</button>
+      <div class="form-or">— o contacta directamente —</div>
+      <a href="https://wa.me/34952699700?text=Hola%2C%20estoy%20interesado%20en%20patrocinar%20al%20CD%20Enrique%20Soler.%20%C2%BFPodemos%20hablar%3F" target="_blank" class="btn-wa-form">
+        💬 WhatsApp directo
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<div class="sp-footer">
+  <p>© 2025 Club Deportivo Enrique Soler · Melilla Ciudad del Deporte · <a href="index.html">Volver al inicio</a> · <a href="patrocinadores.html">Partners</a></p>
+</div>
+
+<!-- FLOATING WA -->
+<a href="https://wa.me/34952699700?text=Hola%2C%20me%20interesa%20patrocinar%20al%20CD%20Enrique%20Soler." target="_blank" class="wa-float">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<script>
+gsap.registerPlugin(ScrollTrigger);
+
+// Nav scroll
+window.addEventListener('scroll', () =>
+  document.getElementById('nav').classList.toggle('scrolled', scrollY > 40));
+
+// Hero
+gsap.from('.sp-hero-badge', {y:20,opacity:0,duration:.5,delay:.2});
+gsap.from('.sp-hero h1', {y:40,opacity:0,duration:.7,delay:.3,ease:'power2.out'});
+gsap.from('.sp-hero p', {y:30,opacity:0,duration:.6,delay:.5});
+gsap.from('.sp-hero-actions', {y:20,opacity:0,duration:.5,delay:.7});
+gsap.from('.reach-card', {x:40,opacity:0,duration:.5,stagger:.1,delay:.4,ease:'power2.out'});
+
+// Impact strip
+ScrollTrigger.batch('.impact-item', {
+  onEnter: els => gsap.from(els, {y:30,opacity:0,duration:.5,stagger:.08}),
+  once:true
+});
+
+// Why cards
+ScrollTrigger.batch('.why-card', {
+  onEnter: els => gsap.from(els, {y:30,opacity:0,duration:.5,stagger:.08,ease:'power2.out'}),
+  once:true
+});
+
+// Plan cards
+ScrollTrigger.batch('.plan-card', {
+  onEnter: els => gsap.from(els, {y:40,opacity:0,duration:.5,stagger:.1,ease:'power2.out'}),
+  once:true
+});
+
+// Sponsor cards
+ScrollTrigger.batch('.sponsor-logo-card', {
+  onEnter: els => gsap.from(els, {scale:.9,opacity:0,duration:.4,stagger:.05}),
+  once:true
+});
+
+// Testimonials
+ScrollTrigger.batch('.testi-card', {
+  onEnter: els => gsap.from(els, {y:30,opacity:0,duration:.5,stagger:.1}),
+  once:true
+});
+
+// Form submit
+function sendForm() {
+  const nombre = document.querySelector('.form-input[type="text"]').value;
+  const empresa = document.querySelectorAll('.form-input[type="text"]')[1]?.value;
+  const tel = document.querySelector('.form-input[type="tel"]').value;
+  const plan = document.querySelector('.form-select').value;
+  const msg = document.querySelector('.form-textarea').value;
+
+  if (!nombre || !tel) {
+    alert('Por favor rellena al menos tu nombre y teléfono.');
+    return;
+  }
+
+  const text = encodeURIComponent(
+    `Hola, me interesa patrocinar al CD Enrique Soler.\n\n` +
+    `👤 ${nombre}\n🏢 ${empresa || 'No indicado'}\n📱 ${tel}\n` +
+    `💼 Plan: ${plan || 'Por determinar'}\n\n${msg || ''}`
+  );
+  window.open(`https://wa.me/34952699700?text=${text}`, '_blank');
+}
+
+function toggleMenu(){
+  const nav=document.getElementById('mobNav');
+  const burger=document.getElementById('navBurger');
+  nav.classList.toggle('open');
+  burger.classList.toggle('open');
+}
+function closeMenu(){
+  document.getElementById('mobNav').classList.remove('open');
+  document.getElementById('navBurger').classList.remove('open');
+}
+</script>
+</body>
+</html>

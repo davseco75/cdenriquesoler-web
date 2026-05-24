@@ -1,0 +1,19 @@
+{
+  "name": "MCD Enrique Soler",
+  "short_name": "E. Soler",
+  "description": "App oficial del MCD Enrique Soler · Baloncesto Melilla · Tercera FEB",
+  "start_url": "/app.html",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#080400",
+  "theme_color": "#FF6B2B",
+  "lang": "es",
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" },
+    { "src": "apple-touch-icon.png", "sizes": "139x180", "type": "image/png" }
+  ],
+  "screenshots": [],
+  "categories": ["sports"]
+}

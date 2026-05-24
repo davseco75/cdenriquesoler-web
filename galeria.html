@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Galería · CD Enrique Soler | XIII Torneo Sin Insultos 2026</title>
+  <meta name="description" content="Galería de fotos del XIII Torneo Sin Insultos 2026 y la temporada del Club Deportivo Enrique Soler de Melilla." />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#FF6B2B" />
+  <link rel="canonical" href="https://cdenriquesoler.com/galeria.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="CD Enrique Soler" />
+  <meta property="og:title" content="Galería · XIII Torneo Sin Insultos 2026" />
+  <meta property="og:description" content="44 fotos del XIII Torneo Sin Insultos y la temporada 2026-27 del CD Enrique Soler." />
+  <meta property="og:image" content="https://cdenriquesoler.com/galeria/foto-016.jpg" />
+  <meta property="og:url" content="https://cdenriquesoler.com/galeria.html" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Galería · CD Enrique Soler" />
+  <meta name="twitter:image" content="https://cdenriquesoler.com/galeria/foto-016.jpg" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    :root{
+      --o:#FF6B2B;--o2:#E85000;--o3:#FF9A6C;
+      --b:#0A2463;--b2:#1A3A8F;
+      --dark:#080400;--dark2:#100800;
+      --card:#150900;
+    }
+    html{scroll-behavior:smooth;}
+    body{font-family:'Inter',sans-serif;background:var(--dark);color:#fff;overflow-x:hidden;cursor:none;}
+    a{text-decoration:none;color:inherit;}
+    img{display:block;}
+
+    /* CURSOR */
+    #cur{position:fixed;z-index:9999;pointer-events:none;width:36px;height:36px;border:2px solid var(--o);border-radius:50%;transform:translate(-50%,-50%);transition:width .2s,height .2s,opacity .2s;}
+    #cur.h{width:56px;height:56px;background:rgba(255,107,43,.1);}
+    #dot{position:fixed;z-index:9999;pointer-events:none;width:5px;height:5px;background:var(--o);border-radius:50%;transform:translate(-50%,-50%);}
+    @media(max-width:768px){#cur,#dot{display:none;}}
+
+    /* NAV */
+    nav{position:fixed;top:0;left:0;width:100%;z-index:500;display:flex;align-items:center;justify-content:space-between;padding:0 5%;height:68px;background:rgba(8,4,0,.95);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,107,43,.12);}
+    .nav-logo{display:flex;align-items:center;gap:10px;}
+    .nav-logo img{height:44px;mix-blend-mode:lighten;filter:drop-shadow(0 0 8px rgba(255,107,43,.3));}
+    .nav-logo span{font-family:'Bebas Neue';font-size:17px;line-height:1.1;}
+    .nav-logo span em{color:var(--o);font-style:normal;display:block;font-size:10px;letter-spacing:.18em;}
+    .nav-links{display:flex;gap:4px;list-style:none;align-items:center;}
+    .nav-links>li>a{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.6);transition:color .2s;position:relative;padding:6px 12px;border-radius:6px;display:flex;align-items:center;gap:5px;}
+    .nav-links>li>a:hover,.nav-links>li>a.active{color:#fff;background:rgba(255,255,255,.05);}
+    .has-dd{position:relative;}
+    .caret{font-size:7px;opacity:.4;transition:transform .25s,opacity .25s;line-height:1;}
+    .has-dd:hover .caret{transform:rotate(180deg);opacity:1;color:var(--o);}
+    .dd-menu{position:absolute;top:100%;left:50%;transform:translateX(-50%) translateY(-4px);background:rgba(10,5,0,.97);backdrop-filter:blur(24px);border:1px solid rgba(255,107,43,.14);border-radius:12px;padding:12px 6px 6px;min-width:196px;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;z-index:600;}
+    .dd-menu a{display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:8px;font-size:12px;font-weight:600;letter-spacing:.04em;color:rgba(255,255,255,.6);transition:all .15s;text-transform:none;}
+    .dd-menu a:hover{color:#fff;background:rgba(255,107,43,.1);}
+    .di{font-size:14px;line-height:1;}
+    .has-dd:hover .dd-menu{opacity:1;pointer-events:all;transform:translateX(-50%) translateY(0);}
+    .nav-cta{background:var(--o);color:#fff;padding:8px 20px;border-radius:2px;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;transition:opacity .2s;}
+    .nav-cta:hover{opacity:.85;}
+    .nav-burger{display:none;flex-direction:column;gap:5px;cursor:pointer;}
+    .nav-burger span{width:22px;height:2px;background:#fff;border-radius:2px;}
+    .mob-nav{display:none;position:fixed;top:68px;left:0;width:100%;background:rgba(8,4,0,.98);backdrop-filter:blur(20px);padding:16px 5% 28px;z-index:499;border-bottom:1px solid rgba(255,107,43,.12);max-height:calc(100vh - 68px);overflow-y:auto;}
+    .mob-nav.open{display:flex;flex-direction:column;}
+    .mob-nav a{font-size:14px;font-weight:600;color:rgba(255,255,255,.7);padding:10px 0;border-bottom:1px solid rgba(255,255,255,.04);}
+    .mob-nav a.active{color:var(--o);}
+    .mob-label{font-size:9px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,107,43,.5);padding:14px 0 4px;margin-top:8px;border-top:1px solid rgba(255,255,255,.05);}
+    .mob-cta{background:var(--o)!important;color:#fff!important;text-align:center;justify-content:center;padding:14px 8px!important;border-radius:4px;margin-top:12px;font-weight:700!important;letter-spacing:.1em;}
+    @media(max-width:900px){
+      .nav-links,.nav-cta{display:none;}
+      .nav-burger{display:flex;}
+    }
+    .nav-burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+    .nav-burger.open span:nth-child(2){opacity:0;}
+    .nav-burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+    .nav-burger span{transition:transform .25s,opacity .2s;}
+
+    /* HERO */
+    .gallery-hero{padding:110px 8% 52px;background:var(--dark2);border-bottom:1px solid rgba(255,107,43,.1);position:relative;overflow:hidden;}
+    .gallery-hero::after{content:'📷';position:absolute;right:5%;bottom:-30px;font-size:220px;opacity:.04;pointer-events:none;}
+    .hero-eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--o);margin-bottom:16px;}
+    .hero-eyebrow::before,.hero-eyebrow::after{content:'';width:28px;height:2px;background:var(--o);}
+    .gallery-hero h1{font-family:'Bebas Neue';font-size:clamp(52px,7vw,96px);line-height:.88;margin-bottom:16px;}
+    .gallery-hero h1 em{color:var(--o);font-style:normal;}
+    .gallery-hero p{font-size:16px;color:rgba(255,255,255,.4);max-width:520px;line-height:1.6;margin-bottom:28px;}
+    .hero-badges{display:flex;gap:10px;flex-wrap:wrap;}
+    .hero-badge{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border-radius:20px;font-size:11px;font-weight:700;letter-spacing:.06em;}
+    .badge-o{background:rgba(255,107,43,.08);border:1px solid rgba(255,107,43,.2);color:var(--o);}
+    .badge-w{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.5);}
+
+    /* GALLERY */
+    .gallery-wrap{padding:40px 4% 80px;}
+    .gallery-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fill,minmax(240px,1fr));
+      gap:6px;
+    }
+    .gi{
+      aspect-ratio:1;
+      overflow:hidden;
+      cursor:pointer;
+      position:relative;
+      border-radius:4px;
+      background:rgba(255,255,255,.03);
+    }
+    .gi img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      transition:transform .4s cubic-bezier(.25,.46,.45,.94),filter .3s;
+      filter:brightness(.95);
+    }
+    .gi:hover img{transform:scale(1.07);filter:brightness(1.05);}
+    .gi-num{
+      position:absolute;bottom:8px;right:10px;
+      font-size:10px;font-weight:700;letter-spacing:.08em;
+      color:rgba(255,255,255,.4);
+      opacity:0;transition:opacity .2s;
+      background:rgba(0,0,0,.4);padding:2px 6px;border-radius:3px;
+    }
+    .gi:hover .gi-num{opacity:1;}
+
+    /* LIGHTBOX */
+    .lb{
+      position:fixed;inset:0;
+      background:rgba(0,0,0,.96);
+      z-index:2000;
+      display:none;
+      align-items:center;
+      justify-content:center;
+      flex-direction:column;
+    }
+    .lb.open{display:flex;}
+    .lb-img-wrap{position:relative;display:flex;align-items:center;justify-content:center;width:100%;flex:1;padding:60px 80px;}
+    .lb img{
+      max-width:100%;
+      max-height:calc(100vh - 140px);
+      object-fit:contain;
+      border-radius:4px;
+      box-shadow:0 40px 80px rgba(0,0,0,.8);
+    }
+    .lb-close{
+      position:absolute;top:16px;right:20px;
+      width:40px;height:40px;border-radius:50%;
+      background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);
+      font-size:18px;cursor:pointer;color:#fff;
+      display:flex;align-items:center;justify-content:center;
+      transition:background .2s;
+    }
+    .lb-close:hover{background:rgba(255,107,43,.3);}
+    .lb-prev,.lb-next{
+      position:absolute;top:50%;transform:translateY(-50%);
+      font-size:36px;cursor:pointer;color:rgba(255,255,255,.5);
+      width:52px;height:52px;border-radius:50%;
+      background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);
+      display:flex;align-items:center;justify-content:center;
+      transition:all .2s;
+      font-weight:300;
+    }
+    .lb-prev:hover,.lb-next:hover{background:rgba(255,107,43,.25);color:#fff;border-color:rgba(255,107,43,.4);}
+    .lb-prev{left:16px;}
+    .lb-next{right:16px;}
+    .lb-counter{
+      font-size:12px;font-weight:600;letter-spacing:.1em;
+      color:rgba(255,255,255,.35);
+      padding-bottom:16px;
+    }
+    @media(max-width:600px){
+      .gallery-grid{grid-template-columns:repeat(2,1fr);gap:4px;}
+      .lb-prev{left:6px;font-size:24px;width:40px;height:40px;}
+      .lb-next{right:6px;font-size:24px;width:40px;height:40px;}
+      .lb-img-wrap{padding:50px 52px 40px;}
+    }
+  </style>
+</head>
+<body>
+
+<div id="cur"></div>
+<div id="dot"></div>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">
+    <img src="logo.png" alt="CD Enrique Soler" />
+    <span>ENRIQUE SOLER<em>MELILLA CIUDAD DEL DEPORTE</em></span>
+  </a>
+  <ul class="nav-links">
+    <li class="has-dd">
+      <a href="index.html#about" class="active">El Club <span class="caret">▾</span></a>
+      <div class="dd-menu">
+        <a href="index.html#about"><span class="di">🏛️</span>Historia</a>
+        <a href="index.html#teams"><span class="di">🏀</span>Equipos</a>
+        <a href="index.html#noticias"><span class="di">📰</span>Noticias</a>
+        <a href="index.html#pabellon"><span class="di">🏟️</span>Pabellón</a>
+        <a href="galeria.html" style="color:#fff;background:rgba(255,107,43,.08)"><span class="di">📷</span>Galería</a>
+      </div>
+    </li>
+    <li class="has-dd">
+      <a href="primer-equipo.html">Primer Equipo <span class="caret">▾</span></a>
+      <div class="dd-menu">
+        <a href="primer-equipo.html"><span class="di">🏆</span>Primer Equipo</a>
+        <a href="primer-equipo.html#squad"><span class="di">👥</span>Plantilla</a>
+        <a href="primer-equipo.html#noticias"><span class="di">📰</span>Noticias</a>
+        <a href="primer-equipo.html#resultados"><span class="di">📅</span>Resultados</a>
+      </div>
+    </li>
+    <li class="has-dd">
+      <a href="calendario.html">Cantera <span class="caret">▾</span></a>
+      <div class="dd-menu">
+        <a href="calendario.html"><span class="di">📅</span>Calendario</a>
+        <a href="estadisticas.html"><span class="di">📊</span>Estadísticas</a>
+        <a href="inscripciones.html"><span class="di">📋</span>Inscripciones</a>
+      </div>
+    </li>
+    <li><a href="index.html#tienda">Tienda</a></li>
+    <li><a href="patrocinadores.html">Partners</a></li>
+  </ul>
+  <a href="inscripciones.html" class="nav-cta">Únete</a>
+  <div class="nav-burger" id="navBurger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+</nav>
+
+<!-- MOBILE NAV -->
+<div class="mob-nav" id="mobNav">
+  <div class="mob-label">El Club</div>
+  <a href="index.html#about">🏛️ Historia</a>
+  <a href="index.html#teams">🏀 Equipos</a>
+  <a href="index.html#noticias">📰 Noticias</a>
+  <a href="index.html#pabellon">🏟️ Pabellón</a>
+  <a href="galeria.html" class="active">📷 Galería</a>
+  <div class="mob-label">Primer Equipo</div>
+  <a href="primer-equipo.html">🏆 Inicio Primer Equipo</a>
+  <a href="primer-equipo.html#squad">👥 Plantilla</a>
+  <a href="primer-equipo.html#noticias">📰 Noticias</a>
+  <a href="primer-equipo.html#resultados">📅 Resultados</a>
+  <div class="mob-label">Cantera</div>
+  <a href="calendario.html">📅 Calendario</a>
+  <a href="estadisticas.html">📊 Estadísticas</a>
+  <a href="inscripciones.html">📋 Inscripciones</a>
+  <div class="mob-label">Club</div>
+  <a href="index.html#tienda">🛍️ Tienda</a>
+  <a href="patrocinadores.html">💼 Partners</a>
+  <a href="inscripciones.html" class="mob-cta">Únete al club →</a>
+</div>
+
+<!-- HERO -->
+<section class="gallery-hero">
+  <div class="hero-eyebrow">Temporada 2026-27</div>
+  <h1>GALERÍA<br><em>DE FOTOS</em></h1>
+  <p>Momentos del XIII Torneo Sin Insultos y la temporada 2026-27 de la Escuela de Baloncesto CD Enrique Soler.</p>
+  <div class="hero-badges">
+    <span class="hero-badge badge-o">📷 XIII Torneo Sin Insultos</span>
+    <span class="hero-badge badge-w">50 FOTOS · MAYO 2026</span>
+    <span class="hero-badge badge-w">MELILLA</span>
+  </div>
+</section>
+
+<!-- GALLERY GRID (rendered by JS) -->
+<div class="gallery-wrap">
+  <div class="gallery-grid" id="galleryGrid"></div>
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lb" id="lightbox">
+  <button class="lb-close" onclick="closeLb()" title="Cerrar (ESC)">✕</button>
+  <div class="lb-img-wrap">
+    <button class="lb-prev" onclick="prevLb()" title="Anterior (←)">‹</button>
+    <img id="lbImg" src="" alt="" />
+    <button class="lb-next" onclick="nextLb()" title="Siguiente (→)">›</button>
+  </div>
+  <div class="lb-counter" id="lbCounter"></div>
+</div>
+
+<footer style="background:var(--dark2);border-top:1px solid rgba(255,107,43,.1);padding:24px 8%;text-align:center;font-size:12px;color:rgba(255,255,255,.3);">
+  <p>© 2026 CD Enrique Soler · <a href="index.html" style="color:var(--o)">Inicio</a> · <a href="estadisticas.html" style="color:var(--o)">Estadísticas</a> · <a href="calendario.html" style="color:var(--o)">Calendario</a> · <a href="inscripciones.html" style="color:var(--o)">Inscripciones</a> · <a href="patrocinadores.html" style="color:var(--o)">Partners</a> · <a href="https://wa.me/34952699700" target="_blank" rel="noopener" style="color:#25D366">WhatsApp</a></p>
+</footer>
+
+<a href="https://wa.me/34952699700" target="_blank" rel="noopener"
+   style="position:fixed;bottom:24px;right:24px;width:52px;height:52px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:26px;box-shadow:0 4px 20px rgba(37,211,102,.4);z-index:400;transition:transform .2s;"
+   onmouseenter="this.style.transform='scale(1.1)'" onmouseleave="this.style.transform='scale(1)'">💬</a>
+
+<script>
+gsap.registerPlugin(ScrollTrigger);
+
+/* CURSOR */
+const cur=document.getElementById('cur'),dot=document.getElementById('dot');
+let mx=0,my=0,dx=0,dy=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;});
+(function loop(){dx+=(mx-dx)*.1;dy+=(my-dy)*.1;cur.style.left=mx+'px';cur.style.top=my+'px';dot.style.left=dx+'px';dot.style.top=dy+'px';requestAnimationFrame(loop);})();
+
+/* NAV */
+function toggleMenu(){
+  const nav=document.getElementById('mobNav');
+  const burger=document.getElementById('navBurger');
+  nav.classList.toggle('open');
+  burger.classList.toggle('open');
+}
+function closeMenu(){
+  document.getElementById('mobNav').classList.remove('open');
+  document.getElementById('navBurger').classList.remove('open');
+}
+
+/* GALLERY */
+const TOTAL = 50;
+const PHOTOS = Array.from({length: TOTAL}, (_, i) =>
+  `galeria/foto-${String(i+1).padStart(3,'0')}.jpg`
+);
+
+const grid = document.getElementById('galleryGrid');
+PHOTOS.forEach((src, i) => {
+  const div = document.createElement('div');
+  div.className = 'gi';
+  div.innerHTML = `<img src="${src}" loading="lazy" alt="Foto ${i+1} · XIII Torneo Sin Insultos CD Enrique Soler">
+    <span class="gi-num">${i+1}/${TOTAL}</span>`;
+  div.addEventListener('click', () => openLb(i));
+  grid.appendChild(div);
+});
+
+/* Animate in on scroll */
+gsap.from('.gi', {
+  opacity: 0, scale: .96,
+  stagger: 0.03, duration: .5, ease: 'power2.out',
+  scrollTrigger: { trigger: '.gallery-grid', start: 'top 85%' }
+});
+
+/* LIGHTBOX */
+let current = 0;
+const lb      = document.getElementById('lightbox');
+const lbImg   = document.getElementById('lbImg');
+const lbCntr  = document.getElementById('lbCounter');
+
+function openLb(i) {
+  current = i;
+  lbImg.src = PHOTOS[i];
+  lbCntr.textContent = `${i + 1} / ${TOTAL}`;
+  lb.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeLb() {
+  lb.classList.remove('open');
+  document.body.style.overflow = '';
+  lbImg.src = '';
+}
+function prevLb() { openLb((current - 1 + TOTAL) % TOTAL); }
+function nextLb() { openLb((current + 1) % TOTAL); }
+
+/* Close on backdrop click */
+lb.addEventListener('click', e => { if (e.target === lb) closeLb(); });
+
+/* Keyboard */
+document.addEventListener('keydown', e => {
+  if (!lb.classList.contains('open')) return;
+  if (e.key === 'Escape')      closeLb();
+  if (e.key === 'ArrowLeft')   prevLb();
+  if (e.key === 'ArrowRight')  nextLb();
+});
+
+/* Touch swipe */
+let tx = 0;
+lb.addEventListener('touchstart', e => { tx = e.touches[0].clientX; });
+lb.addEventListener('touchend', e => {
+  const dx = e.changedTouches[0].clientX - tx;
+  if (Math.abs(dx) > 50) dx < 0 ? nextLb() : prevLb();
+});
+
+/* GSAP hero */
+gsap.from('.gallery-hero h1', {opacity:0, y:40, duration:.9, ease:'power3.out', delay:.2});
+gsap.from('.gallery-hero p',  {opacity:0, y:20, duration:.7, ease:'power3.out', delay:.45});
+gsap.from('.hero-badges',     {opacity:0, y:16, duration:.6, ease:'power3.out', delay:.6});
+</script>
+</body>
+</html>

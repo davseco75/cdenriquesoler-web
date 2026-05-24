@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<meta name="theme-color" content="#FF6B2B">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="E. Soler">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<title>Enrique Soler</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+/* ════════════════════════════════════════
+   RESET & ROOT
+════════════════════════════════════════ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --o:#FF6B2B; --o2:#E85000; --o3:rgba(255,107,43,0.15);
+  --dark:#080400; --card:#150900; --card2:#1e0e00;
+  --txt:#fff; --muted:rgba(255,255,255,0.42);
+  --border:rgba(255,255,255,0.07);
+  --green:#4ade80; --green2:rgba(74,222,128,0.15);
+  --red:rgba(239,68,68,0.8); --red2:rgba(239,68,68,0.12);
+  --nav-h:62px;
+  --st:env(safe-area-inset-top,0px);
+  --sb:env(safe-area-inset-bottom,0px);
+}
+html,body{height:100%;overflow:hidden;background:var(--dark);color:var(--txt);
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+  -webkit-font-smoothing:antialiased}
+
+/* ════════════════════════════════════════
+   SHELL
+════════════════════════════════════════ */
+#app{
+  position:fixed;inset:0;display:flex;flex-direction:column;
+  padding-top:var(--st);
+  padding-bottom:calc(var(--nav-h) + var(--sb));
+}
+.tab-panel{display:none;flex:1;overflow-y:auto;overflow-x:hidden;
+  -webkit-overflow-scrolling:touch}
+.tab-panel.active{display:block}
+
+/* ════════════════════════════════════════
+   BOTTOM NAV
+════════════════════════════════════════ */
+.bnav{
+  position:fixed;bottom:0;left:0;right:0;
+  height:calc(var(--nav-h) + var(--sb));
+  padding-bottom:var(--sb);
+  background:rgba(8,4,0,0.96);
+  backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);
+  border-top:1px solid var(--border);
+  display:flex;z-index:200;
+}
+.nb{
+  flex:1;display:flex;flex-direction:column;align-items:center;
+  justify-content:center;gap:3px;background:none;border:none;
+  color:var(--muted);cursor:pointer;padding:6px 4px;
+  -webkit-tap-highlight-color:transparent;transition:color .18s;
+  position:relative;
+}
+.nb.active{color:var(--o)}
+.nb.active::before{
+  content:'';position:absolute;top:0;left:25%;right:25%;height:2px;
+  background:var(--o);border-radius:0 0 2px 2px;
+}
+.nb svg{width:22px;height:22px;fill:currentColor;transition:transform .18s}
+.nb.active svg{transform:scale(1.1)}
+.nb span{font-size:10px;font-weight:600;letter-spacing:.04em;text-transform:uppercase}
+
+/* ════════════════════════════════════════
+   SHARED COMPONENTS
+════════════════════════════════════════ */
+.page-hdr{
+  padding:14px 18px 12px;
+  display:flex;align-items:center;gap:12px;
+  border-bottom:1px solid var(--border);
+  position:sticky;top:0;background:rgba(8,4,0,0.95);
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);z-index:10;
+}
+.page-hdr img{width:30px;height:auto}
+.hdr-t{flex:1}
+.hdr-title{font-family:'Bebas Neue',sans-serif;font-size:17px;letter-spacing:.06em;line-height:1}
+.hdr-sub{font-size:10px;color:var(--muted);font-weight:600;letter-spacing:.1em;text-transform:uppercase}
+
+.badge-v{display:inline-flex;align-items:center;gap:3px;background:var(--green2);
+  color:var(--green);border:1px solid rgba(74,222,128,.2);border-radius:5px;
+  padding:2px 7px;font-size:10px;font-weight:700}
+.badge-d{display:inline-flex;align-items:center;gap:3px;background:var(--red2);
+  color:var(--red);border:1px solid rgba(239,68,68,.18);border-radius:5px;
+  padding:2px 7px;font-size:10px;font-weight:700}
+
+.chips{display:flex;gap:7px;overflow-x:auto;padding:10px 18px 12px;
+  scrollbar-width:none;-ms-overflow-style:none}
+.chips::-webkit-scrollbar{display:none}
+.chip{flex-shrink:0;padding:5px 14px;border-radius:20px;background:var(--card);
+  border:1px solid var(--border);color:var(--muted);font-size:11px;font-weight:600;
+  cursor:pointer;-webkit-tap-highlight-color:transparent;transition:all .15s}
+.chip.active{background:var(--o);color:#fff;border-color:var(--o)}
+
+.section-lbl{font-size:10px;font-weight:700;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+
+/* ════════════════════════════════════════
+   TAB INICIO
+════════════════════════════════════════ */
+.hero{
+  padding:20px 18px 16px;
+  background:linear-gradient(180deg,rgba(255,107,43,.1) 0%,transparent 100%);
+  display:flex;align-items:center;gap:14px;
+}
+.hero img{width:52px;filter:drop-shadow(0 4px 16px rgba(255,107,43,.45))}
+.hero-text h1{font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:.05em;line-height:1}
+.hero-text p{font-size:10px;color:var(--muted);font-weight:600;letter-spacing:.12em;text-transform:uppercase;margin-top:2px}
+.season-pill{display:inline-block;background:linear-gradient(135deg,var(--o2),var(--o));
+  color:#fff;font-size:9px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;
+  padding:3px 10px;border-radius:20px;margin-top:6px}
+
+.stats-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;padding:0 18px 18px}
+.ss-pill{background:var(--card);border:1px solid var(--border);border-radius:12px;
+  padding:10px 6px;text-align:center}
+.ss-val{font-family:'Bebas Neue',sans-serif;font-size:22px;line-height:1}
+.ss-lbl{font-size:9px;font-weight:700;color:var(--muted);letter-spacing:.07em;text-transform:uppercase;margin-top:2px}
+
+.last-res{
+  margin:0 18px 18px;
+  background:linear-gradient(135deg,#1e0800,#2a1200);
+  border:1px solid rgba(255,107,43,.25);
+  border-radius:16px;padding:18px;position:relative;overflow:hidden;
+}
+.last-res::after{
+  content:'';position:absolute;top:-40px;right:-40px;width:130px;height:130px;
+  background:radial-gradient(circle,rgba(255,107,43,.18) 0%,transparent 70%);
+  pointer-events:none;
+}
+.lr-tag{font-size:10px;font-weight:700;letter-spacing:.1em;color:var(--o);
+  text-transform:uppercase;margin-bottom:8px}
+.lr-teams{font-size:14px;font-weight:700;margin-bottom:10px;line-height:1.3}
+.lr-teams .us{color:var(--o)}
+.lr-score{display:flex;align-items:baseline;gap:8px;margin-bottom:12px}
+.lrs-us{font-family:'Bebas Neue',sans-serif;font-size:52px;line-height:1;color:#fff}
+.lrs-sep{font-family:'Bebas Neue',sans-serif;font-size:26px;color:var(--muted)}
+.lrs-them{font-family:'Bebas Neue',sans-serif;font-size:38px;line-height:1;color:rgba(255,255,255,.35)}
+.lr-meta{font-size:11px;color:var(--muted)}
+
+.form-row{display:flex;gap:6px;align-items:center;padding:0 18px 18px}
+.fd{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;
+  justify-content:center;font-size:11px;font-weight:800}
+.fd.w{background:var(--green2);color:var(--green);border:1px solid rgba(74,222,128,.25)}
+.fd.l{background:var(--red2);color:var(--red);border:1px solid rgba(239,68,68,.2)}
+
+.mini-tbl{padding:0 18px 24px}
+.mtr{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:10px}
+.mtr.us{background:rgba(255,107,43,.1);border:1px solid rgba(255,107,43,.2)}
+.mtr:not(.us){border-bottom:1px solid var(--border)}
+.mtr-pos{font-family:'Bebas Neue',sans-serif;font-size:16px;width:18px;text-align:center;color:var(--muted)}
+.mtr-pos.g1{color:#ffd700}.mtr-pos.g2{color:#c0c0c0}.mtr-pos.g3{color:#cd7f32}
+.mtr-name{flex:1;font-size:13px;font-weight:600}
+.mtr-wl{font-size:10px;color:var(--muted);width:46px;text-align:right}
+.mtr-pts{font-family:'Bebas Neue',sans-serif;font-size:17px;color:var(--o);width:28px;text-align:right}
+
+.install-banner{
+  margin:0 18px 18px;
+  background:linear-gradient(135deg,rgba(255,107,43,.12),rgba(232,80,0,.08));
+  border:1px solid rgba(255,107,43,.28);border-radius:14px;
+  padding:14px 14px;display:flex;align-items:center;gap:12px;
+}
+.ib-icon{font-size:26px;flex-shrink:0}
+.ib-text{flex:1}
+.ib-title{font-size:13px;font-weight:700;margin-bottom:2px}
+.ib-sub{font-size:11px;color:var(--muted);line-height:1.4}
+.ib-close{background:none;border:none;color:var(--muted);font-size:20px;
+  cursor:pointer;padding:4px;-webkit-tap-highlight-color:transparent;flex-shrink:0}
+
+/* ════════════════════════════════════════
+   TAB PARTIDOS
+════════════════════════════════════════ */
+.match-item{
+  display:flex;align-items:center;gap:12px;
+  padding:13px 18px;border-bottom:1px solid var(--border);
+  -webkit-tap-highlight-color:transparent;
+}
+.mi-date{text-align:center;min-width:36px}
+.mi-day{font-family:'Bebas Neue',sans-serif;font-size:20px;line-height:1}
+.mi-mon{font-size:9px;font-weight:700;color:var(--muted);letter-spacing:.07em;text-transform:uppercase}
+.mi-body{flex:1;min-width:0}
+.mi-j{font-size:9px;font-weight:700;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-bottom:2px}
+.mi-teams{font-size:13px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mi-teams .us{color:var(--o)}
+.mi-venue{font-size:10px;color:var(--muted);margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mi-right{text-align:right;flex-shrink:0;min-width:48px}
+.mi-score{font-family:'Bebas Neue',sans-serif;font-size:18px;line-height:1;margin-bottom:4px}
+.mi-score .hi{color:#fff}.mi-score .lo{color:rgba(255,255,255,.3)}
+
+/* ════════════════════════════════════════
+   TAB PLANTILLA
+════════════════════════════════════════ */
+.player-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:0 14px 20px}
+.pc{background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden}
+.pc-band{height:54px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.pc-ghost{font-family:'Bebas Neue',sans-serif;font-size:72px;opacity:.07;position:absolute;line-height:1;pointer-events:none}
+.pc-badge{font-family:'Bebas Neue',sans-serif;font-size:20px;width:37px;height:37px;
+  border-radius:50%;background:rgba(0,0,0,.4);border:1px solid rgba(255,255,255,.15);
+  display:flex;align-items:center;justify-content:center;position:relative;z-index:1}
+.pc-info{padding:10px 10px 12px}
+.pc-name{font-size:12px;font-weight:700;line-height:1.2;margin-bottom:4px}
+.pc-cap{font-size:9px;color:var(--o);font-weight:700;margin-bottom:3px}
+.pc-pos{display:inline-block;font-size:9px;font-weight:700;letter-spacing:.05em;
+  padding:2px 7px;border-radius:4px;text-transform:uppercase;margin-bottom:8px}
+.pc-stats{display:flex;border-top:1px solid var(--border);padding-top:8px;margin-top:2px}
+.pcs{flex:1;text-align:center}
+.pcs+.pcs{border-left:1px solid var(--border)}
+.pcs-v{font-family:'Bebas Neue',sans-serif;font-size:15px;line-height:1}
+.pcs-l{font-size:7px;font-weight:700;color:var(--muted);letter-spacing:.07em;text-transform:uppercase;margin-top:1px}
+
+.staff-card{display:flex;align-items:center;gap:12px;padding:12px 0;
+  border-bottom:1px solid var(--border)}
+.staff-card:last-child{border-bottom:none}
+
+/* ════════════════════════════════════════
+   TAB STATS
+════════════════════════════════════════ */
+.stats-wrap{padding:18px}
+.sc{background:var(--card);border:1px solid var(--border);border-radius:16px;
+  padding:16px;margin-bottom:14px}
+.sc-title{font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:.04em;margin-bottom:2px}
+.sc-sub{font-size:10px;color:var(--muted);font-weight:600;letter-spacing:.08em;
+  text-transform:uppercase;margin-bottom:14px}
+
+.rec-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.rec{background:var(--card2);border-radius:12px;padding:14px;text-align:center}
+.rec-lbl{font-size:10px;font-weight:700;color:var(--muted);letter-spacing:.09em;
+  text-transform:uppercase;margin-bottom:8px}
+.rec-big{font-family:'Bebas Neue',sans-serif;font-size:34px;line-height:1}
+.rec-detail{font-size:11px;color:var(--muted);margin-top:3px}
+
+.slr{display:flex;align-items:center;gap:10px;padding:8px 0;
+  border-bottom:1px solid var(--border)}
+.slr:last-child{border-bottom:none}
+.slr-rk{font-family:'Bebas Neue',sans-serif;font-size:15px;width:22px;color:var(--muted)}
+.slr-rk.g{color:#ffd700}
+.slr-nm{flex:1;font-size:13px;font-weight:600}
+.slr-val{font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--o)}
+.slr-lbl{font-size:9px;color:var(--muted);font-weight:700;margin-top:-2px}
+</style>
+</head>
+<body>
+<div id="app">
+
+<!-- ══════════════════════════════
+     TAB: INICIO
+══════════════════════════════ -->
+<div class="tab-panel active" id="tab-inicio">
+  <div class="page-hdr">
+    <img src="logo.png" alt="">
+    <div class="hdr-t">
+      <div class="hdr-title">Enrique Soler</div>
+      <div class="hdr-sub">Melilla Ciudad del Deporte</div>
+    </div>
+    <span class="season-pill">25/26</span>
+  </div>
+
+  <!-- Stats strip -->
+  <div class="stats-strip" style="padding-top:16px">
+    <div class="ss-pill">
+      <div class="ss-val" style="color:#ffd700">5º</div>
+      <div class="ss-lbl">Clasif.</div>
+    </div>
+    <div class="ss-pill">
+      <div class="ss-val" style="color:var(--green)">17</div>
+      <div class="ss-lbl">Victorias</div>
+    </div>
+    <div class="ss-pill">
+      <div class="ss-val" style="color:var(--red)">9</div>
+      <div class="ss-lbl">Derrotas</div>
+    </div>
+    <div class="ss-pill">
+      <div class="ss-val">88</div>
+      <div class="ss-lbl">Pts/P</div>
+    </div>
+  </div>
+
+  <!-- Último partido -->
+  <div class="last-res">
+    <div class="lr-tag">⟵ Último partido · J26 · 18 Abr 2026</div>
+    <div class="lr-teams"><span class="us">MCD Enrique Soler</span> vs Byspania Tíjola</div>
+    <div class="lr-score">
+      <div class="lrs-us">87</div>
+      <div class="lrs-sep">—</div>
+      <div class="lrs-them">67</div>
+    </div>
+    <div style="display:flex;align-items:center;gap:10px">
+      <span class="badge-v">✓ Victoria</span>
+      <span class="lr-meta">Pab. Guillermo García Pezzi</span>
+    </div>
+  </div>
+
+  <!-- Forma reciente -->
+  <div style="padding:0 18px 16px">
+    <div class="section-lbl">Últimos 5 resultados</div>
+    <div class="form-row" style="padding:0" id="formStrip"></div>
+  </div>
+
+  <!-- Banner instalación iOS -->
+  <div class="install-banner" id="iosBanner" style="display:none">
+    <div class="ib-icon">📲</div>
+    <div class="ib-text">
+      <div class="ib-title">Instalar en tu móvil</div>
+      <div class="ib-sub">Toca <strong>Compartir</strong> → <strong>Añadir a pantalla de inicio</strong></div>
+    </div>
+    <button class="ib-close" onclick="closeBanner()">✕</button>
+  </div>
+
+  <!-- Clasificación top 7 -->
+  <div style="padding:0 18px 8px"><div class="section-lbl">Clasificación · Grupo DA</div></div>
+  <div class="mini-tbl" id="miniTable"></div>
+</div>
+
+<!-- ══════════════════════════════
+     TAB: PARTIDOS
+══════════════════════════════ -->
+<div class="tab-panel" id="tab-partidos">
+  <div class="page-hdr">
+    <div class="hdr-t">
+      <div class="hdr-title">Partidos</div>
+      <div class="hdr-sub">Temporada 2025/26 · 26 jornadas</div>
+    </div>
+  </div>
+  <div class="chips" id="matchChips">
+    <div class="chip active" data-f="all">Todos</div>
+    <div class="chip" data-f="casa">🏠 Casa</div>
+    <div class="chip" data-f="fuera">✈️ Fuera</div>
+    <div class="chip" data-f="v">✓ Victorias</div>
+    <div class="chip" data-f="d">✗ Derrotas</div>
+  </div>
+  <div id="matchList"></div>
+  <div style="height:16px"></div>
+</div>
+
+<!-- ══════════════════════════════
+     TAB: PLANTILLA
+══════════════════════════════ -->
+<div class="tab-panel" id="tab-plantilla">
+  <div class="page-hdr">
+    <div class="hdr-t">
+      <div class="hdr-title">Plantilla</div>
+      <div class="hdr-sub">Temporada 2025/26 · 12 jugadores</div>
+    </div>
+  </div>
+  <div class="chips" id="posChips">
+    <div class="chip active" data-p="all">Todos</div>
+    <div class="chip" data-p="Base">Base</div>
+    <div class="chip" data-p="Escolta">Escolta</div>
+    <div class="chip" data-p="Alero">Alero</div>
+    <div class="chip" data-p="Ala-Pívot">Ala-Pívot</div>
+    <div class="chip" data-p="Pívot">Pívot</div>
+  </div>
+  <div class="player-grid" id="playerGrid"></div>
+  <div style="padding:0 18px 24px">
+    <div class="section-lbl">Cuerpo Técnico</div>
+    <div id="staffList"></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════
+     TAB: ESTADÍSTICAS
+══════════════════════════════ -->
+<div class="tab-panel" id="tab-stats">
+  <div class="page-hdr">
+    <div class="hdr-t">
+      <div class="hdr-title">Estadísticas</div>
+      <div class="hdr-sub">Temporada 2025/26</div>
+    </div>
+  </div>
+  <div class="stats-wrap">
+
+    <!-- Balance casa/fuera -->
+    <div class="sc">
+      <div class="sc-title">Balance Casa / Fuera</div>
+      <div class="sc-sub">13 partidos en cada condición</div>
+      <div class="rec-grid">
+        <div class="rec">
+          <div class="rec-lbl">🏠 Casa</div>
+          <div class="rec-big" style="color:var(--green)">8</div>
+          <div class="rec-detail">victorias · 5 derrotas</div>
+        </div>
+        <div class="rec">
+          <div class="rec-lbl">✈️ Fuera</div>
+          <div class="rec-big" style="color:var(--green)">9</div>
+          <div class="rec-detail">victorias · 4 derrotas</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Evolución temporada -->
+    <div class="sc">
+      <div class="sc-title">Evolución de la temporada</div>
+      <div class="sc-sub">Victorias acumuladas jornada a jornada</div>
+      <div style="position:relative;height:150px">
+        <canvas id="chartEvo"></canvas>
+      </div>
+    </div>
+
+    <!-- Top anotadores -->
+    <div class="sc">
+      <div class="sc-title">Top Anotadores</div>
+      <div class="sc-sub">Puntos por partido · Media temporada</div>
+      <div id="topScorers"></div>
+    </div>
+
+    <!-- Top reboteadores -->
+    <div class="sc">
+      <div class="sc-title">Top Reboteadores</div>
+      <div class="sc-sub">Rebotes por partido · Media temporada</div>
+      <div id="topRebounders"></div>
+    </div>
+
+    <!-- Ataque vs Defensa -->
+    <div class="sc">
+      <div class="sc-title">Ataque vs Defensa</div>
+      <div class="sc-sub">Promedio de puntos por partido</div>
+      <div style="position:relative;height:120px">
+        <canvas id="chartAD"></canvas>
+      </div>
+    </div>
+
+  </div>
+  <div style="height:12px"></div>
+</div>
+
+<!-- ══════════════════════════════
+     BOTTOM NAV
+══════════════════════════════ -->
+<nav class="bnav">
+  <button class="nb active" data-tab="inicio">
+    <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+    <span>Inicio</span>
+  </button>
+  <button class="nb" data-tab="partidos">
+    <svg viewBox="0 0 24 24"><path d="M19 3h-1V1h-2v2H8V1H6v2H5C3.9 4 3 4.9 3 6v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z"/></svg>
+    <span>Partidos</span>
+  </button>
+  <button class="nb" data-tab="plantilla">
+    <svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+    <span>Plantilla</span>
+  </button>
+  <button class="nb" data-tab="stats">
+    <svg viewBox="0 0 24 24"><path d="M5 9.2h3V19H5V9.2zM10.6 5h2.8v14h-2.8V5zm5.6 8H19v6h-2.8v-6z"/></svg>
+    <span>Stats</span>
+  </button>
+</nav>
+
+</div><!-- #app -->
+
+<script>
+/* ════════════════════════════════════════
+   DATA
+════════════════════════════════════════ */
+var PARTIDOS = [
+  {id:1, j:1, fecha:'04/10/2025', hora:'19:30', local:'MCD Enrique Soler',          vis:'Surseeds B. Murgi',          pab:'Pab. Guillermo García Pezzi · Melilla',           res:{l:78,  v:76}},
+  {id:2, j:2, fecha:'11/10/2025', hora:'18:30', local:'CB Novaschool Rincón',        vis:'MCD Enrique Soler',          pab:'Pab. Novaschool Añoreta · Rincón de la Victoria', res:{l:73,  v:67}},
+  {id:3, j:3, fecha:'18/10/2025', hora:'17:30', local:'MCD Enrique Soler',           vis:'CB Costa Motril',            pab:'Pab. Guillermo García Pezzi · Melilla',           res:{l:90,  v:77}},
+  {id:4, j:4, fecha:'25/10/2025', hora:'17:30', local:'Hospital Ochoa CB Marbella',  vis:'MCD Enrique Soler',          pab:'Pol. Bello Horizonte "Carlos Cabezas" · Marbella',res:{l:77,  v:82}},
+  {id:5, j:5, fecha:'01/11/2025', hora:'18:00', local:'MCD Enrique Soler',           vis:'Oh!tels ULB',                pab:'Pab. Guillermo García Pezzi · Melilla',           res:{l:80,  v:82}},
+  {id:6, j:6, fecha:'08/11/2025', hora:'19:30', local:'CB Almería',                  vis:'MCD Enrique Soler',          pab:'Pabellón Moisés Ruiz · Almería',                  res:{l:88,  v:105}},
+  {id:7, j:7, fecha:'15/11/2025', hora:'19:00', local:'MCD Enrique Soler',           vis:'Damex CB Algeciras',         pab:'Pab. Guillermo García Pezzi · Melilla',           res:{l:77,  v:79}},
+  {id:8, j:8, fecha:'22/11/2025', hora:'19:00', local:'El Pinar',                    vis:'MCD Enrique Soler',          pab:'Colegio El Pinar · Alhaurín de la Torre',         res:{l:72,  v:74}},
+  {id:9, j:9, fecha:'30/11/2025', hora:'18:00', local:'MCD Enrique Soler',           vis:'Jaén Paraíso Interior FS',   pab:'Pab. Guillermo García Pezzi · Melilla',           res:{l:91,  v:97}},
+  {id:10,j:10,fecha:'06/12/2025', hora:'17:30', local:'CB Salliver Fuengirola',       vis:'MCD Enrique Soler',          pab:'Pabellón Juan Gómez Juanito · Fuengirola',        res:{l:80,  v:102}},
+  {id:11,j:11,fecha:'13/12/2025', hora:'19:30', local:'Tu Super CB La Zubia',         vis:'MCD Enrique Soler',          pab:'Pabellón 11 de Marzo · La Zubia',                 res:{l:90,  v:91}},
+  {id:12,j:12,fecha:'20/12/2025', hora:'18:00', local:'MCD Enrique Soler',            vis:'Jaén Paraíso – Ska Lo',      pab:'Pab. Guillermo García Pezzi · Melilla',           res:{l:95,  v:79}},
+  {id:13,j:13,fecha:'10/01/2026', hora:'19:00', local:'Byspania Tíjola',              vis:'MCD Enrique Soler',          pab:'Pabellón Municipal · Tíjola',                     res:{l:87,  v:82}},
+  {id:14,j:14,fecha:'18/01/2026', hora:'12:00', local:'Surseeds B. Murgi',            vis:'MCD Enrique Soler',          pab:'Pab. Mun. Deportes El Ejido · El Ejido',          res:{l:80,  v:101}},
+  {id:15,j:15,fecha:'24/01/2026', hora:'18:00', local:'MCD Enrique Soler',            vis:'CB Novaschool Rincón',       pab:'Pab. Guillermo García Pezzi · Melilla',           res:{l:99,  v:92}},
+  {id:16,j:16,fecha:'31/01/2026', hora:'18:00', local:'CB Costa Motril',              vis:'MCD Enrique Soler',          pab:'Pabellón Municipal · Motril',                     res:{l:71,  v:99}},
+  {id:17,j:17,fecha:'03/03/2026', hora:'19:00', local:'MCD Enrique Soler',            vis:'Hospital Ochoa CB Marbella', pab:'Pab. Guillermo García Pezzi · Melilla',           res:{l:78,  v:108}},
+  {id:18,j:18,fecha:'25/02/2026', hora:'21:00', local:'Oh!tels ULB',                  vis:'MCD Enrique Soler',          pab:'Pab. Municipal · La Línea de la Concepción',      res:{l:76,  v:79}},
+  {id:19,j:19,fecha:'21/02/2026', hora:'18:00', local:'MCD Enrique Soler',            vis:'CB Almería',                 pab:'Pab. Guillermo García Pezzi · Melilla',           res:{l:93,  v:76}},
+  {id:20,j:20,fecha:'27/02/2026', hora:'19:15', local:'Damex CB Algeciras',           vis:'MCD Enrique Soler',          pab:'Pab. Dr. Juan Carlos Mateo · Algeciras',          res:{l:99,  v:85}},
+  {id:21,j:21,fecha:'07/03/2026', hora:'19:30', local:'MCD Enrique Soler',            vis:'El Pinar',                   pab:'Pab. Guillermo García Pezzi · Melilla',           res:{l:70,  v:80}},
+  {id:22,j:22,fecha:'15/03/2026', hora:'12:00', local:'Jaén Paraíso Interior FS',     vis:'MCD Enrique Soler',          pab:'Pab. Municipal La Salobreja · Jaén',              res:{l:123, v:72}},
+  {id:23,j:23,fecha:'21/03/2026', hora:'17:30', local:'MCD Enrique Soler',            vis:'CB Salliver Fuengirola',     pab:'Pab. Guillermo García Pezzi · Melilla',           res:{l:104, v:54}},
+  {id:24,j:24,fecha:'28/03/2026', hora:'18:00', local:'MCD Enrique Soler',            vis:'Tu Super CB La Zubia',       pab:'Pab. Guillermo García Pezzi · Melilla',           res:{l:109, v:81}},
+  {id:25,j:25,fecha:'11/04/2026', hora:'19:00', local:'Jaén Paraíso – Ska Lo',        vis:'MCD Enrique Soler',          pab:'Polideportivo Municipal · Andújar',               res:{l:79,  v:94}},
+  {id:26,j:26,fecha:'18/04/2026', hora:'19:00', local:'MCD Enrique Soler',            vis:'Byspania Tíjola',            pab:'Pab. Guillermo García Pezzi · Melilla',           res:{l:87,  v:67}},
+];
+
+var PLANTILLA = [
+  {num:1,  nombre:'Farid Chekri',       pos:'Base',      cap:false, s:{pj:26,ppg:8.4, rpg:2.8,apg:4.6}},
+  {num:55, nombre:'Mario Gámez',        pos:'Base',      cap:false, s:{pj:26,ppg:8.1, rpg:2.0,apg:4.3}},
+  {num:29, nombre:'Daniel Malavé',      pos:'Base',      cap:false, s:{pj:16,ppg:2.8, rpg:0.9,apg:0.1}},
+  {num:11, nombre:'Álvaro Martín',      pos:'Base',      cap:false, s:{pj:9, ppg:1.1, rpg:0.2,apg:0.6}},
+  {num:9,  nombre:'Wasim El Otmani',    pos:'Escolta',   cap:true,  s:{pj:24,ppg:13.0,rpg:2.8,apg:1.1}},
+  {num:10, nombre:'Sergio Curbelo',     pos:'Alero',     cap:false, s:{pj:26,ppg:10.7,rpg:2.7,apg:1.2}},
+  {num:13, nombre:'Javier Vicente',     pos:'Alero',     cap:false, s:{pj:26,ppg:6.7, rpg:3.4,apg:1.2}},
+  {num:12, nombre:'Tomás Liberatore',   pos:'Alero',     cap:false, s:{pj:18,ppg:2.7, rpg:1.4,apg:0.8}},
+  {num:7,  nombre:'Faris Chekri',       pos:'Ala-Pívot', cap:false, s:{pj:26,ppg:5.5, rpg:4.7,apg:1.3}},
+  {num:4,  nombre:'Jesús Cerisuelo',    pos:'Ala-Pívot', cap:false, s:{pj:23,ppg:10.1,rpg:6.0,apg:1.1}},
+  {num:15, nombre:'Cristian Palomares', pos:'Pívot',     cap:false, s:{pj:26,ppg:16.4,rpg:10.9,apg:1.8}},
+  {num:25, nombre:'Demba Sheriff',      pos:'Pívot',     cap:false, s:{pj:23,ppg:8.1, rpg:5.0,apg:0.5}},
+];
+
+var STAFF = [
+  {nombre:'Daniel Terrón García', rol:'Entrenador Principal', icon:'🏀'},
+  {nombre:'J.A. López Álvarez',   rol:'Entrenador Ayudante',  icon:'📋'},
+];
+
+var CLASIFICACION = [
+  {pos:1, eq:'Damex CB Algeciras',         g:24,p:2, pts:50, zona:'ascenso'},
+  {pos:2, eq:'Jaén Paraíso Interior FS',   g:24,p:2, pts:50, zona:'ascenso'},
+  {pos:3, eq:'El Pinar',                   g:18,p:8, pts:44, zona:'playoff'},
+  {pos:4, eq:'Byspania Tíjola',            g:18,p:8, pts:44, zona:'playoff'},
+  {pos:5, eq:'MCD Enrique Soler',          g:17,p:9, pts:43, zona:'playoff', us:true},
+  {pos:6, eq:'Hospital Ochoa CB Marbella', g:16,p:10,pts:42, zona:'normal'},
+  {pos:7, eq:'CB Novaschool Rincón',       g:13,p:13,pts:39, zona:'normal'},
+];
+
+var MESES = ['ENE','FEB','MAR','ABR','MAY','JUN','JUL','AGO','SEP','OCT','NOV','DIC'];
+
+var POS = {
+  'Base':      {bg:'linear-gradient(135deg,#0A2463,#1a3a8f)', badge:'#1a3a8f33', txt:'rgba(100,140,255,.9)'},
+  'Escolta':   {bg:'linear-gradient(135deg,#1A3A8F,#2450b5)', badge:'#2450b533', txt:'rgba(120,160,255,.9)'},
+  'Alero':     {bg:'linear-gradient(135deg,#0d3d2a,#1a6040)', badge:'#1a604033', txt:'rgba(74,222,128,.85)'},
+  'Ala-Pívot': {bg:'linear-gradient(135deg,#E85000,#FF6B2B)', badge:'#FF6B2B33', txt:'rgba(255,220,180,.95)'},
+  'Pívot':     {bg:'linear-gradient(135deg,#5a0000,#8B0000)', badge:'#8B000033', txt:'rgba(255,130,130,.9)'},
+};
+
+/* ════════════════════════════════════════
+   HELPERS
+════════════════════════════════════════ */
+function us(n){return n.toLowerCase().includes('enrique soler')}
+function solerPts(p){return us(p.local)?p.res.l:p.res.v}
+function rivalPts(p){return us(p.local)?p.res.v:p.res.l}
+function rival(p){return us(p.local)?p.vis:p.local}
+function isCasa(p){return us(p.local)}
+function isWin(p){return solerPts(p)>rivalPts(p)}
+
+/* ════════════════════════════════════════
+   INICIO
+════════════════════════════════════════ */
+function renderInicio(){
+  // Forma últimos 5
+  var last5 = PARTIDOS.slice(-5);
+  document.getElementById('formStrip').innerHTML =
+    last5.map(function(p){
+      var w=isWin(p);
+      return '<div class="fd '+(w?'w':'l')+'">'+(w?'V':'D')+'</div>';
+    }).join('')+
+    '<span style="font-size:10px;color:rgba(255,255,255,.25);margin-left:6px">últimos 5</span>';
+
+  // Mini tabla
+  document.getElementById('miniTable').innerHTML = CLASIFICACION.map(function(e){
+    var pc = e.pos===1?'g1':e.pos===2?'g2':e.pos===3?'g3':'';
+    var zonaColor = e.zona==='ascenso'?'#ffd700':e.zona==='playoff'?'var(--o)':'';
+    return '<div class="mtr'+(e.us?' us':'')+'">'+
+      '<span class="mtr-pos '+pc+'">'+e.pos+'</span>'+
+      '<span class="mtr-name" style="'+(e.us?'font-weight:800':'')+(zonaColor?';color:'+zonaColor:'')+'">'+e.eq+'</span>'+
+      '<span class="mtr-wl" style="color:rgba(255,255,255,.3)">'+e.g+'V-'+e.p+'D</span>'+
+      '<span class="mtr-pts">'+e.pts+'</span>'+
+    '</div>';
+  }).join('');
+
+  // Banner iOS
+  var ios = /iphone|ipad|ipod/i.test(navigator.userAgent) && !window.navigator.standalone;
+  if(ios && !localStorage.getItem('iosBannerClosed')){
+    document.getElementById('iosBanner').style.display='flex';
+  }
+}
+
+function closeBanner(){
+  document.getElementById('iosBanner').style.display='none';
+  localStorage.setItem('iosBannerClosed','1');
+}
+
+/* ════════════════════════════════════════
+   PARTIDOS
+════════════════════════════════════════ */
+function renderPartidos(filter){
+  var list = PARTIDOS.filter(function(p){
+    if(filter==='casa') return isCasa(p);
+    if(filter==='fuera') return !isCasa(p);
+    if(filter==='v') return isWin(p);
+    if(filter==='d') return !isWin(p);
+    return true;
+  });
+
+  if(!list.length){
+    document.getElementById('matchList').innerHTML=
+      '<div style="padding:48px 20px;text-align:center;color:var(--muted);font-size:14px">Sin partidos</div>';
+    return;
+  }
+
+  document.getElementById('matchList').innerHTML = list.map(function(p){
+    var pts = p.fecha.split('/');
+    var day=pts[0], mon=MESES[parseInt(pts[1])-1];
+    var sp=solerPts(p), rp=rivalPts(p), win=sp>rp;
+    var r=rival(p), casa=isCasa(p);
+    return '<div class="match-item">'+
+      '<div class="mi-date"><div class="mi-day">'+day+'</div><div class="mi-mon">'+mon+'</div></div>'+
+      '<div class="mi-body">'+
+        '<div class="mi-j">J'+p.j+' · '+p.hora+'h · '+(casa?'Casa':'Fuera')+'</div>'+
+        '<div class="mi-teams"><span class="us">E. Soler</span> – '+r+'</div>'+
+        '<div class="mi-venue">📍 '+p.pab+'</div>'+
+      '</div>'+
+      '<div class="mi-right">'+
+        '<div class="mi-score">'+
+          '<span class="'+(win?'hi':'lo')+'">'+sp+'</span>'+
+          '<span style="color:rgba(255,255,255,.18);font-size:11px"> - </span>'+
+          '<span class="'+(win?'lo':'hi')+'">'+rp+'</span>'+
+        '</div>'+
+        '<span class="'+(win?'badge-v':'badge-d')+'">'+(win?'V':'D')+'</span>'+
+      '</div>'+
+    '</div>';
+  }).join('');
+}
+
+/* ════════════════════════════════════════
+   PLANTILLA
+════════════════════════════════════════ */
+function renderPlantilla(posFilter){
+  var list = posFilter==='all'?PLANTILLA:PLANTILLA.filter(function(p){return p.pos===posFilter});
+  document.getElementById('playerGrid').innerHTML = list.map(function(p){
+    var st = POS[p.pos]||POS['Base'];
+    return '<div class="pc">'+
+      '<div class="pc-band" style="background:'+st.bg+'">'+
+        '<span class="pc-ghost">'+p.num+'</span>'+
+        '<span class="pc-badge">'+p.num+'</span>'+
+      '</div>'+
+      '<div class="pc-info">'+
+        '<div class="pc-name">'+p.nombre+'</div>'+
+        (p.cap?'<div class="pc-cap">★ Capitán</div>':'')+
+        '<span class="pc-pos" style="background:'+st.badge+';color:'+st.txt+'">'+p.pos+'</span>'+
+        '<div class="pc-stats">'+
+          '<div class="pcs"><div class="pcs-v">'+p.s.ppg+'</div><div class="pcs-l">PTS</div></div>'+
+          '<div class="pcs"><div class="pcs-v">'+p.s.rpg+'</div><div class="pcs-l">REB</div></div>'+
+          '<div class="pcs"><div class="pcs-v">'+p.s.apg+'</div><div class="pcs-l">AST</div></div>'+
+        '</div>'+
+      '</div>'+
+    '</div>';
+  }).join('');
+
+  document.getElementById('staffList').innerHTML = STAFF.map(function(s){
+    return '<div class="staff-card">'+
+      '<span style="font-size:24px">'+s.icon+'</span>'+
+      '<div>'+
+        '<div style="font-size:13px;font-weight:700">'+s.nombre+'</div>'+
+        '<div style="font-size:11px;color:var(--muted)">'+s.rol+'</div>'+
+      '</div>'+
+    '</div>';
+  }).join('');
+}
+
+/* ════════════════════════════════════════
+   ESTADÍSTICAS
+════════════════════════════════════════ */
+var statsBuilt = false;
+function renderStats(){
+  if(statsBuilt) return;
+  statsBuilt = true;
+
+  // Top anotadores
+  var scorers = PLANTILLA.slice().sort(function(a,b){return b.s.ppg-a.s.ppg}).slice(0,5);
+  document.getElementById('topScorers').innerHTML = scorers.map(function(p,i){
+    return '<div class="slr">'+
+      '<span class="slr-rk'+(i===0?' g':'')+'">'+( i===0?'🥇':(i+1)+'º' )+'</span>'+
+      '<span class="slr-nm">'+p.nombre+'</span>'+
+      '<div style="text-align:right"><div class="slr-val">'+p.s.ppg+'</div><div class="slr-lbl">pts/p</div></div>'+
+    '</div>';
+  }).join('');
+
+  // Top reboteadores
+  var reb = PLANTILLA.slice().sort(function(a,b){return b.s.rpg-a.s.rpg}).slice(0,5);
+  document.getElementById('topRebounders').innerHTML = reb.map(function(p,i){
+    return '<div class="slr">'+
+      '<span class="slr-rk'+(i===0?' g':'')+'">'+( i===0?'🥇':(i+1)+'º' )+'</span>'+
+      '<span class="slr-nm">'+p.nombre+'</span>'+
+      '<div style="text-align:right"><div class="slr-val">'+p.s.rpg+'</div><div class="slr-lbl">reb/p</div></div>'+
+    '</div>';
+  }).join('');
+
+  // Chart evolución victorias
+  var wins=0, wData=[], labels=[];
+  PARTIDOS.forEach(function(p,i){
+    if(isWin(p)) wins++;
+    wData.push(wins);
+    labels.push(i%4===0?'J'+(i+1):'');
+  });
+  new Chart(document.getElementById('chartEvo'),{
+    type:'line',
+    data:{
+      labels:labels,
+      datasets:[
+        {label:'Victorias',data:wData,borderColor:'#FF6B2B',
+         backgroundColor:'rgba(255,107,43,0.1)',fill:true,
+         tension:0.35,pointRadius:0,borderWidth:2.5},
+        {label:'Partidos',data:PARTIDOS.map(function(_,i){return i+1}),
+         borderColor:'rgba(255,255,255,0.12)',fill:false,
+         tension:0,pointRadius:0,borderWidth:1,borderDash:[4,4]},
+      ]
+    },
+    options:{
+      responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{display:false}},
+      scales:{
+        x:{grid:{color:'rgba(255,255,255,0.04)'},ticks:{color:'rgba(255,255,255,0.3)',font:{size:9}}},
+        y:{grid:{color:'rgba(255,255,255,0.04)'},ticks:{color:'rgba(255,255,255,0.3)',font:{size:9},stepSize:4},min:0,max:18}
+      }
+    }
+  });
+
+  // Chart ataque vs defensa
+  var ts=0, tr=0;
+  PARTIDOS.forEach(function(p){ts+=solerPts(p);tr+=rivalPts(p)});
+  var as=(ts/26).toFixed(1), ar=(tr/26).toFixed(1);
+  new Chart(document.getElementById('chartAD'),{
+    type:'bar',
+    data:{
+      labels:['Enrique Soler','Rivales'],
+      datasets:[{
+        data:[parseFloat(as),parseFloat(ar)],
+        backgroundColor:['rgba(255,107,43,0.85)','rgba(255,255,255,0.12)'],
+        borderColor:['#FF6B2B','rgba(255,255,255,0.08)'],
+        borderWidth:1,borderRadius:8,
+      }]
+    },
+    options:{
+      indexAxis:'y',responsive:true,maintainAspectRatio:false,
+      plugins:{
+        legend:{display:false},
+        tooltip:{callbacks:{label:function(c){return ' '+c.raw+' pts/partido'}}}
+      },
+      scales:{
+        x:{grid:{color:'rgba(255,255,255,0.04)'},ticks:{color:'rgba(255,255,255,0.3)',font:{size:9}},min:70,max:95},
+        y:{grid:{display:false},ticks:{color:'rgba(255,255,255,0.55)',font:{size:11,weight:'600'}}}
+      }
+    }
+  });
+}
+
+/* ════════════════════════════════════════
+   NAVEGACIÓN
+════════════════════════════════════════ */
+var activeTab = 'inicio';
+
+document.querySelectorAll('.nb').forEach(function(btn){
+  btn.addEventListener('click', function(){
+    var tab = this.dataset.tab;
+    if(tab===activeTab) return;
+    activeTab = tab;
+    document.querySelectorAll('.nb').forEach(function(b){b.classList.remove('active')});
+    this.classList.add('active');
+    document.querySelectorAll('.tab-panel').forEach(function(p){p.classList.remove('active')});
+    document.getElementById('tab-'+tab).classList.add('active');
+    if(tab==='stats') renderStats();
+  });
+});
+
+// Filtros partidos
+document.querySelectorAll('#matchChips .chip').forEach(function(c){
+  c.addEventListener('click',function(){
+    document.querySelectorAll('#matchChips .chip').forEach(function(x){x.classList.remove('active')});
+    this.classList.add('active');
+    renderPartidos(this.dataset.f);
+  });
+});
+
+// Filtros plantilla
+document.querySelectorAll('#posChips .chip').forEach(function(c){
+  c.addEventListener('click',function(){
+    document.querySelectorAll('#posChips .chip').forEach(function(x){x.classList.remove('active')});
+    this.classList.add('active');
+    renderPlantilla(this.dataset.p);
+  });
+});
+
+/* ════════════════════════════════════════
+   INIT
+════════════════════════════════════════ */
+renderInicio();
+renderPartidos('all');
+renderPlantilla('all');
+
+// Service Worker
+if('serviceWorker' in navigator){
+  navigator.serviceWorker.register('/sw.js').catch(function(){});
+}
+</script>
+</body>
+</html>

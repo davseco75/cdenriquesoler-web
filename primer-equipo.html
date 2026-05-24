@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Primer Equipo · Tercera FEB | CD Enrique Soler Melilla</title>
+  <meta name="description" content="Plantilla, resultados, clasificación y noticias del primer equipo del CD Enrique Soler en la Tercera FEB Grupo DA. Melilla." />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#FF6B2B" />
+  <link rel="canonical" href="https://cdenriquesoler.com/primer-equipo.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="CD Enrique Soler" />
+  <meta property="og:title" content="Primer Equipo · Tercera FEB | CD Enrique Soler" />
+  <meta property="og:url" content="https://cdenriquesoler.com/primer-equipo.html" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png"/>
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png"/>
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    :root{
+      --o:#FF6B2B;--o2:#E85000;--o3:#FF9A6C;
+      --b:#0A2463;--b2:#1A3A8F;
+      --dark:#080400;--dark2:#100800;--card:#150900;
+    }
+    html{scroll-behavior:smooth;}
+    body{font-family:'Inter',sans-serif;background:var(--dark);color:#fff;overflow-x:hidden;}
+    h1,h2,h3,h4,h5{font-family:'Bebas Neue',sans-serif;letter-spacing:.03em;}
+    a{text-decoration:none;color:inherit;}
+    ::-webkit-scrollbar{width:3px;}
+    ::-webkit-scrollbar-thumb{background:var(--o);}
+
+    /* ── NAV ── */
+    nav{position:fixed;top:0;left:0;width:100%;z-index:500;display:flex;align-items:center;justify-content:space-between;padding:0 5%;height:68px;background:rgba(8,4,0,.95);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,107,43,.12);}
+    .nav-logo{display:flex;align-items:center;gap:10px;}
+    .nav-logo img{height:44px;mix-blend-mode:lighten;filter:drop-shadow(0 0 8px rgba(255,107,43,.3));}
+    .nav-logo span{font-family:'Bebas Neue';font-size:17px;line-height:1.1;}
+    .nav-logo span em{color:var(--o);font-style:normal;display:block;font-size:10px;letter-spacing:.18em;}
+    .nav-links{display:flex;gap:4px;list-style:none;align-items:center;}
+    .nav-links>li>a{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.6);transition:color .2s;padding:6px 12px;border-radius:6px;display:flex;align-items:center;gap:5px;}
+    .nav-links>li>a:hover{color:#fff;background:rgba(255,255,255,.05);}
+    .nav-links>li>a.active{color:#fff;}
+    .has-dd{position:relative;}
+    .caret{font-size:7px;opacity:.4;transition:transform .25s;line-height:1;}
+    .has-dd:hover .caret{transform:rotate(180deg);opacity:1;color:var(--o);}
+    .dd-menu{position:absolute;top:100%;left:50%;transform:translateX(-50%) translateY(-4px);background:rgba(10,5,0,.97);backdrop-filter:blur(24px);border:1px solid rgba(255,107,43,.14);border-radius:12px;padding:12px 6px 6px;min-width:200px;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;z-index:600;}
+    .has-dd:hover .dd-menu{opacity:1;pointer-events:all;transform:translateX(-50%) translateY(0);}
+    .dd-menu a{display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:7px;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.5);transition:all .15s;white-space:nowrap;}
+    .dd-menu a:hover{background:rgba(255,107,43,.1);color:#fff;}
+    .dd-menu .di{font-size:14px;width:20px;text-align:center;flex-shrink:0;}
+    .nav-cta{background:var(--o);color:#fff;padding:8px 20px;border-radius:2px;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;transition:opacity .2s;margin-left:8px;}
+    .nav-cta:hover{opacity:.85;}
+    .nav-burger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;}
+    .nav-burger span{width:22px;height:2px;background:#fff;border-radius:2px;transition:all .3s;}
+    .nav-burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+    .nav-burger.open span:nth-child(2){opacity:0;}
+    .nav-burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+    .mob-nav{display:none;position:fixed;top:68px;left:0;width:100%;background:rgba(8,4,0,.98);backdrop-filter:blur(20px);padding:16px 5% 28px;z-index:499;border-bottom:1px solid rgba(255,107,43,.12);max-height:calc(100vh - 68px);overflow-y:auto;}
+    .mob-nav.open{display:flex;flex-direction:column;}
+    .mob-label{font-size:9px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,107,43,.5);padding:14px 0 4px;margin-top:8px;border-top:1px solid rgba(255,255,255,.05);}
+    .mob-label:first-child{margin-top:0;border-top:none;padding-top:0;}
+    .mob-nav a{font-size:13px;font-weight:600;color:rgba(255,255,255,.55);padding:11px 8px;border-radius:6px;display:flex;align-items:center;gap:10px;transition:all .15s;}
+    .mob-nav a:hover,.mob-nav a.active{color:#fff;background:rgba(255,255,255,.04);}
+    .mob-cta{background:var(--o)!important;color:#fff!important;text-align:center;justify-content:center;padding:14px 8px!important;border-radius:4px;margin-top:12px;font-weight:700!important;letter-spacing:.1em;}
+
+    /* ── HERO ── */
+    .pe-hero{padding:110px 8% 56px;background:var(--dark2);position:relative;overflow:hidden;border-bottom:1px solid rgba(255,107,43,.1);}
+    .pe-hero::after{content:'PRIMER EQUIPO';position:absolute;right:-1%;bottom:-8%;font-family:'Bebas Neue';font-size:16vw;color:rgba(255,107,43,.04);white-space:nowrap;pointer-events:none;line-height:1;}
+    .pe-eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--o);margin-bottom:14px;}
+    .pe-eyebrow::before,.pe-eyebrow::after{content:'';width:24px;height:2px;background:var(--o);}
+    .pe-title{font-size:clamp(52px,7vw,88px);line-height:.9;margin-bottom:14px;}
+    .pe-title em{color:var(--o);font-style:normal;}
+    .pe-sub{font-size:15px;color:rgba(255,255,255,.4);max-width:500px;line-height:1.6;margin-bottom:24px;}
+    .pe-badges{display:flex;flex-wrap:wrap;gap:10px;}
+    .pe-badge{display:inline-flex;align-items:center;gap:7px;background:rgba(255,107,43,.08);border:1px solid rgba(255,107,43,.18);border-radius:20px;padding:6px 14px;font-size:11px;font-weight:700;color:var(--o);letter-spacing:.06em;}
+
+    /* ── REF BANNER ── */
+    .ref-banner{background:rgba(255,200,50,.05);border-top:1px solid rgba(255,200,50,.15);border-bottom:1px solid rgba(255,200,50,.15);padding:12px 8%;display:flex;align-items:center;gap:14px;}
+    .ref-banner strong{font-size:12px;color:rgba(255,200,50,.8);font-weight:700;}
+    .ref-banner span{font-size:11px;color:rgba(255,255,255,.35);}
+    .ref-banner a{margin-left:auto;background:rgba(37,211,102,.1);border:1px solid rgba(37,211,102,.25);color:#25D366;padding:6px 14px;border-radius:16px;font-size:11px;font-weight:700;white-space:nowrap;transition:background .2s;flex-shrink:0;}
+    .ref-banner a:hover{background:rgba(37,211,102,.2);}
+
+    /* ── RECORD STRIP ── */
+    .pe-record{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,.05);}
+    .pe-rec-item{background:var(--dark);padding:22px 16px;text-align:center;}
+    .pe-rec-num{font-family:'Bebas Neue';font-size:42px;color:var(--o);line-height:1;}
+    .pe-rec-num.gold{color:#FFD166;}
+    .pe-rec-label{font-size:10px;color:rgba(255,255,255,.3);text-transform:uppercase;letter-spacing:.1em;margin-top:3px;}
+
+    /* ── QUICK NAV ── */
+    .pe-quicknav{position:sticky;top:68px;z-index:100;background:rgba(8,4,0,.95);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,.05);display:flex;gap:0;overflow-x:auto;-webkit-overflow-scrolling:touch;}
+    .pe-quicknav::-webkit-scrollbar{display:none;}
+    .pe-qn-link{display:flex;align-items:center;gap:6px;padding:14px 20px;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.35);white-space:nowrap;border-bottom:2px solid transparent;transition:all .2s;}
+    .pe-qn-link:hover{color:rgba(255,255,255,.7);}
+    .pe-qn-link.active{color:#fff;border-bottom-color:var(--o);}
+
+    /* ── SECTION ── */
+    .pe-section{padding:56px 8%;}
+    .pe-section-alt{padding:56px 8%;background:var(--dark2);}
+    .pe-sec-head{display:flex;align-items:center;gap:16px;margin-bottom:36px;}
+    .pe-sec-head h2{font-family:'Bebas Neue';font-size:36px;}
+    .pe-sec-head-sub{font-size:12px;color:rgba(255,255,255,.3);letter-spacing:.08em;text-transform:uppercase;}
+    .pe-sec-line{flex:1;height:1px;background:rgba(255,255,255,.06);}
+
+    /* ── ÚLTIMO RESULTADO + PRÓXIMA TEMPORADA ── */
+    .pe-highlights{display:grid;grid-template-columns:1fr 1fr;gap:16px;padding:0 8%;margin-bottom:0;}
+    .pe-highlight-card{background:var(--card);border:1px solid rgba(255,255,255,.07);border-radius:20px;padding:28px 32px;position:relative;overflow:hidden;}
+    .pe-highlight-card.orange{border-color:rgba(255,107,43,.25);background:linear-gradient(135deg,rgba(255,107,43,.1),rgba(8,4,0,.8));}
+    .pe-hl-label{font-size:10px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:16px;display:flex;align-items:center;gap:8px;}
+    .pe-hl-label::before{content:'';width:20px;height:2px;background:var(--o);}
+    .pe-hl-teams{display:flex;align-items:center;gap:16px;margin-bottom:8px;}
+    .pe-hl-team{font-family:'Bebas Neue';font-size:20px;color:rgba(255,255,255,.5);}
+    .pe-hl-team.us{color:#fff;font-size:22px;}
+    .pe-hl-score{font-family:'Bebas Neue';font-size:48px;color:var(--o);line-height:1;letter-spacing:.04em;}
+    .pe-hl-meta{font-size:12px;color:rgba(255,255,255,.3);margin-top:8px;}
+    .pe-hl-title{font-family:'Bebas Neue';font-size:28px;line-height:1.1;margin-bottom:8px;}
+    .pe-hl-title em{color:var(--o);font-style:normal;}
+    .pe-hl-text{font-size:13px;color:rgba(255,255,255,.4);line-height:1.6;margin-bottom:20px;}
+    .pe-hl-btn{display:inline-flex;align-items:center;gap:8px;background:var(--o);color:#fff;border:none;border-radius:8px;padding:10px 22px;font-family:'Bebas Neue';font-size:16px;letter-spacing:.06em;cursor:pointer;transition:opacity .2s;}
+    .pe-hl-btn:hover{opacity:.85;}
+    .pe-hl-btn.outline{background:transparent;border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.6);}
+    .pe-hl-btn.outline:hover{border-color:var(--o);color:var(--o);}
+
+    /* ── PLANTILLA ── */
+    .player-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;}
+    .player-card{background:var(--card);border:1px solid rgba(255,255,255,.06);border-radius:14px;overflow:hidden;cursor:default;transition:all .3s;}
+    .player-card:hover{transform:translateY(-5px);border-color:rgba(255,107,43,.3);box-shadow:0 20px 40px rgba(0,0,0,.5);}
+    .player-num-bg{height:100px;display:flex;align-items:center;justify-content:center;position:relative;}
+    .player-num-ghost{font-family:'Bebas Neue';font-size:80px;color:rgba(255,255,255,.08);line-height:1;position:absolute;}
+    .player-num-badge{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue';font-size:16px;color:#fff;position:relative;z-index:1;}
+    .player-info{padding:14px 12px;}
+    .player-name{font-family:'Bebas Neue';font-size:16px;line-height:1.1;margin-bottom:6px;}
+    .player-pos{display:inline-block;font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:3px 8px;border-radius:8px;}
+    .player-cap{font-size:10px;color:rgba(255,200,50,.7);margin-top:4px;font-weight:600;}
+    .player-stats{display:flex;gap:0;margin-top:10px;border-top:1px solid rgba(255,255,255,.06);padding-top:10px;}
+    .player-stat{flex:1;text-align:center;}
+    .player-stat-val{font-family:'Bebas Neue';font-size:17px;line-height:1;color:#fff;}
+    .player-stat-lbl{font-size:8px;font-weight:700;letter-spacing:.1em;color:rgba(255,255,255,.3);text-transform:uppercase;margin-top:2px;}
+    .player-stat + .player-stat{border-left:1px solid rgba(255,255,255,.06);}
+    .player-pj{font-size:9px;color:rgba(255,255,255,.25);margin-top:6px;font-weight:600;letter-spacing:.05em;}
+
+    /* ── STAFF ── */
+    .staff-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:32px;}
+    .staff-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:14px;padding:20px 24px;display:flex;align-items:center;gap:16px;}
+    .staff-icon{width:48px;height:48px;background:rgba(255,107,43,.12);border:1px solid rgba(255,107,43,.2);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;}
+    .staff-name{font-family:'Bebas Neue';font-size:18px;line-height:1.1;margin-bottom:3px;}
+    .staff-rol{font-size:11px;color:rgba(255,255,255,.35);text-transform:uppercase;letter-spacing:.08em;font-weight:700;}
+
+    /* ── NOTICIAS ── */
+    .news-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+    .news-card{background:var(--card);border:1px solid rgba(255,255,255,.06);border-radius:16px;padding:24px 28px;display:flex;flex-direction:column;gap:12px;transition:all .3s;cursor:pointer;position:relative;overflow:hidden;}
+    .news-card::before{content:'';position:absolute;left:0;top:0;width:3px;height:100%;background:var(--tag-color);}
+    .news-card:hover{border-color:rgba(255,107,43,.2);transform:translateY(-3px);box-shadow:0 16px 40px rgba(0,0,0,.4);}
+    .news-top{display:flex;align-items:center;gap:10px;}
+    .news-tag{font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:3px 10px;border-radius:8px;background:var(--tag-bg);color:var(--tag-color);}
+    .news-date{font-size:11px;color:rgba(255,255,255,.25);}
+    .news-title{font-family:'Bebas Neue';font-size:20px;line-height:1.15;color:#fff;}
+    .news-excerpt{font-size:13px;color:rgba(255,255,255,.45);line-height:1.6;}
+    .news-link{font-size:11px;font-weight:700;color:var(--o);letter-spacing:.06em;text-transform:uppercase;margin-top:auto;display:flex;align-items:center;gap:5px;}
+
+    /* ── RESULTADOS + CLASIFICACIÓN (2 cols) ── */
+    .pe-results-wrap{display:grid;grid-template-columns:1fr 380px;gap:40px;align-items:start;}
+
+    /* FILTER */
+    .match-filter{display:flex;gap:8px;margin-bottom:24px;}
+    .mf-btn{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:7px 16px;border-radius:20px;border:1px solid rgba(255,255,255,.1);background:transparent;color:rgba(255,255,255,.4);cursor:pointer;transition:all .2s;}
+    .mf-btn.active{background:var(--o);border-color:var(--o);color:#fff;}
+    .mf-btn:hover{border-color:rgba(255,107,43,.3);color:rgba(255,255,255,.7);}
+
+    /* MATCH CARDS */
+    .matches-list{display:flex;flex-direction:column;gap:10px;}
+    .match-card{background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.06);border-radius:12px;padding:16px 20px;display:grid;grid-template-columns:72px 1fr auto;align-items:center;gap:16px;transition:all .25s;}
+    .match-card:hover{background:rgba(255,255,255,.04);border-color:rgba(255,107,43,.15);}
+    .match-card.win{border-left:3px solid rgba(74,222,128,.4);}
+    .match-card.loss{border-left:3px solid rgba(239,68,68,.3);}
+    .match-date{text-align:center;}
+    .match-day{font-family:'Bebas Neue';font-size:28px;line-height:1;}
+    .match-month{font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.3);}
+    .match-time{font-size:10px;font-weight:600;color:var(--o);margin-top:2px;}
+    .match-teams{display:flex;flex-direction:column;gap:3px;}
+    .match-jornada{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.2);margin-bottom:2px;}
+    .match-vs{display:flex;align-items:center;gap:8px;}
+    .match-team{font-size:13px;font-weight:600;color:rgba(255,255,255,.7);}
+    .match-team.us{color:#fff;font-weight:700;}
+    .match-sep{font-size:10px;color:rgba(255,255,255,.2);}
+    .match-venue{font-size:10px;color:rgba(255,255,255,.25);margin-top:3px;}
+    .match-right{text-align:right;}
+    .match-result{font-family:'Bebas Neue';font-size:22px;line-height:1;margin-bottom:3px;}
+    .match-result .w{color:#4ade80;}
+    .match-result .l{color:rgba(255,255,255,.3);}
+    .match-badge{font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:3px 8px;border-radius:8px;}
+    .bw{background:rgba(74,222,128,.1);color:#4ade80;}
+    .bl{background:rgba(239,68,68,.08);color:rgba(255,130,130,.6);}
+    .bp{background:rgba(255,255,255,.06);color:rgba(255,255,255,.3);}
+
+    /* STANDINGS */
+    .standings-box{background:var(--card);border:1px solid rgba(255,255,255,.07);border-radius:16px;overflow:hidden;position:sticky;top:140px;}
+    .standings-head{padding:18px 20px 14px;border-bottom:1px solid rgba(255,255,255,.06);}
+    .standings-head h3{font-family:'Bebas Neue';font-size:24px;margin-bottom:2px;}
+    .standings-head p{font-size:11px;color:rgba(255,255,255,.3);letter-spacing:.06em;text-transform:uppercase;}
+    .standings-table{width:100%;border-collapse:collapse;}
+    .standings-table th{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.2);padding:10px 10px 8px;text-align:center;}
+    .standings-table th:nth-child(2){text-align:left;}
+    .standings-table td{padding:9px 10px;font-size:12px;color:rgba(255,255,255,.5);text-align:center;border-top:1px solid rgba(255,255,255,.04);}
+    .standings-table td:nth-child(2){text-align:left;font-weight:600;color:rgba(255,255,255,.75);white-space:nowrap;font-size:12px;}
+    .standings-table tr.us td{background:rgba(255,107,43,.07);}
+    .standings-table tr.us td:nth-child(2){color:var(--o3);}
+    .pos-n{font-family:'Bebas Neue';font-size:15px;color:rgba(255,255,255,.2);}
+    .pos-n.t{color:#FFD166;}
+    .pts-n{font-family:'Bebas Neue';font-size:15px;color:#fff;}
+    .standings-table tr.us .pts-n{color:var(--o);}
+    .zone-dot{display:inline-block;width:6px;height:6px;border-radius:2px;margin-right:5px;vertical-align:middle;}
+    .standings-legend{display:flex;flex-wrap:wrap;gap:10px;padding:12px 20px;border-top:1px solid rgba(255,255,255,.05);}
+    .leg-i{display:flex;align-items:center;gap:5px;font-size:10px;color:rgba(255,255,255,.25);}
+    .leg-dot{width:7px;height:7px;border-radius:2px;}
+
+    /* ── FAN ZONE ── */
+    .pe-fanzone{padding:70px 8%;background:linear-gradient(135deg,rgba(255,107,43,.1) 0%,rgba(8,4,0,.9) 60%);border-top:1px solid rgba(255,107,43,.15);border-bottom:1px solid rgba(255,107,43,.15);text-align:center;}
+    .pe-fanzone h2{font-size:clamp(40px,5vw,72px);margin-bottom:12px;}
+    .pe-fanzone h2 em{color:var(--o);font-style:normal;}
+    .pe-fanzone p{font-size:15px;color:rgba(255,255,255,.45);max-width:500px;margin:0 auto 16px;}
+    .pe-fanzone-meta{font-size:13px;color:rgba(255,255,255,.35);margin-bottom:32px;display:flex;justify-content:center;align-items:center;gap:20px;flex-wrap:wrap;}
+    .pe-fanzone-meta span{display:flex;align-items:center;gap:6px;}
+    .pe-fanzone-btns{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;}
+    .btn-wa{display:inline-flex;align-items:center;gap:10px;background:#25D366;color:#fff;border-radius:8px;padding:14px 32px;font-family:'Bebas Neue';font-size:20px;letter-spacing:.06em;transition:opacity .2s;}
+    .btn-wa:hover{opacity:.85;}
+    .btn-cal{display:inline-flex;align-items:center;gap:10px;background:transparent;border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.6);border-radius:8px;padding:14px 32px;font-family:'Bebas Neue';font-size:20px;letter-spacing:.06em;transition:all .2s;}
+    .btn-cal:hover{border-color:var(--o);color:var(--o);}
+
+    /* ── FOOTER ── */
+    footer{background:#040200;border-top:1px solid rgba(255,255,255,.04);padding:36px 8% 20px;text-align:center;}
+    footer p{font-size:12px;color:rgba(255,255,255,.2);}
+    footer a{color:var(--o);}
+
+    /* ── WA FLOAT ── */
+    .wa-float{position:fixed;bottom:28px;right:28px;z-index:400;width:56px;height:56px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:26px;box-shadow:0 8px 32px rgba(37,211,102,.35);transition:transform .2s;}
+    .wa-float:hover{transform:scale(1.1);}
+
+    /* ── RESPONSIVE ── */
+    @media(max-width:1200px){ .player-grid{grid-template-columns:repeat(4,1fr);} }
+    @media(max-width:1024px){
+      .pe-results-wrap{grid-template-columns:1fr;}
+      .standings-box{position:static;}
+      .news-grid{grid-template-columns:1fr;}
+      .pe-highlights{grid-template-columns:1fr;}
+    }
+    @media(max-width:768px){
+      .nav-links,.nav-cta{display:none;}
+      .nav-burger{display:flex;}
+      .pe-hero,.pe-section,.pe-section-alt,.pe-fanzone{padding-left:5%;padding-right:5%;}
+      .pe-highlights{padding:0 5%;}
+      .ref-banner{padding:12px 5%;}
+      .player-grid{grid-template-columns:repeat(3,1fr);gap:8px;}
+      .staff-grid{grid-template-columns:1fr;}
+      .match-card{grid-template-columns:56px 1fr;}
+      .match-right{display:none;}
+    }
+    @media(max-width:480px){
+      .player-grid{grid-template-columns:repeat(2,1fr);}
+      .pe-highlights{grid-template-columns:1fr;}
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">
+    <img src="logo.png" alt="CD Enrique Soler"/>
+    <span>ENRIQUE SOLER<em>MELILLA CIUDAD DEL DEPORTE</em></span>
+  </a>
+  <ul class="nav-links">
+    <li class="has-dd">
+      <a href="index.html#about">El Club <span class="caret">▾</span></a>
+      <div class="dd-menu">
+        <a href="index.html#about"><span class="di">🏛️</span>Historia</a>
+        <a href="index.html#teams"><span class="di">🏀</span>Equipos</a>
+        <a href="index.html#noticias"><span class="di">📰</span>Noticias</a>
+        <a href="galeria.html"><span class="di">📷</span>Galería</a>
+      </div>
+    </li>
+    <li class="has-dd">
+      <a href="primer-equipo.html" class="active">Primer Equipo <span class="caret">▾</span></a>
+      <div class="dd-menu">
+        <a href="primer-equipo.html" style="color:#fff;background:rgba(255,107,43,.08)"><span class="di">🏆</span>Primer Equipo</a>
+        <a href="primer-equipo.html#squad"><span class="di">👥</span>Plantilla</a>
+        <a href="primer-equipo.html#noticias"><span class="di">📰</span>Noticias</a>
+        <a href="primer-equipo.html#resultados"><span class="di">📅</span>Resultados</a>
+      </div>
+    </li>
+    <li class="has-dd">
+      <a href="calendario.html">Cantera <span class="caret">▾</span></a>
+      <div class="dd-menu">
+        <a href="calendario.html"><span class="di">📅</span>Calendario</a>
+        <a href="estadisticas.html"><span class="di">📊</span>Estadísticas</a>
+        <a href="inscripciones.html"><span class="di">📋</span>Inscripciones</a>
+      </div>
+    </li>
+    <li><a href="index.html#tienda">Tienda</a></li>
+    <li><a href="patrocinadores.html">Partners</a></li>
+  </ul>
+  <a href="inscripciones.html" class="nav-cta">Únete</a>
+  <div class="nav-burger" id="navBurger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+</nav>
+
+<!-- MOBILE NAV -->
+<div class="mob-nav" id="mobNav">
+  <div class="mob-label">Primer Equipo</div>
+  <a href="primer-equipo.html" class="active">🏆 Inicio Primer Equipo</a>
+  <a href="primer-equipo.html#squad">👥 Plantilla</a>
+  <a href="primer-equipo.html#noticias">📰 Noticias</a>
+  <a href="primer-equipo.html#resultados">📅 Resultados</a>
+  <div class="mob-label">Cantera</div>
+  <a href="calendario.html">📅 Calendario</a>
+  <a href="estadisticas.html">📊 Estadísticas</a>
+  <a href="inscripciones.html">📋 Inscripciones</a>
+  <div class="mob-label">Club</div>
+  <a href="index.html#about">🏛️ El Club</a>
+  <a href="galeria.html">📷 Galería</a>
+  <a href="patrocinadores.html">💼 Partners</a>
+  <a href="inscripciones.html" class="mob-cta">Únete al club →</a>
+</div>
+
+<!-- HERO -->
+<section class="pe-hero">
+  <div class="pe-eyebrow">Tercera FEB · Grupo DA</div>
+  <h1 class="pe-title">PRIMER<br><em>EQUIPO</em></h1>
+  <p class="pe-sub">El primer equipo del CD Enrique Soler compite en la Tercera División de la Federación Española de Baloncesto. Melilla, desde 1996.</p>
+  <div class="pe-badges">
+    <div class="pe-badge">🏆 TERCERA FEB</div>
+    <div class="pe-badge">📍 GRUPO DA</div>
+    <div class="pe-badge">🏟️ MELILLA</div>
+  </div>
+</section>
+
+<!-- REF BANNER -->
+<div class="ref-banner">
+  <span>✅</span>
+  <strong>Estadísticas oficiales FEB · Temporada 2025-26</strong>
+  <span>— El calendario 2026-27 se publicará en agosto</span>
+  <a href="https://wa.me/34952699700?text=Hola!%20Quiero%20recibir%20aviso%20cuando%20salga%20el%20calendario%202026-27%20del%20primer%20equipo." target="_blank">📲 Avisarme</a>
+</div>
+
+<!-- RECORD STRIP -->
+<div class="pe-record">
+  <div class="pe-rec-item">
+    <div class="pe-rec-num gold">5º</div>
+    <div class="pe-rec-label">Clasificación final</div>
+  </div>
+  <div class="pe-rec-item">
+    <div class="pe-rec-num">26</div>
+    <div class="pe-rec-label">Partidos jugados</div>
+  </div>
+  <div class="pe-rec-item">
+    <div class="pe-rec-num" style="color:#4ade80">17</div>
+    <div class="pe-rec-label">Victorias</div>
+  </div>
+  <div class="pe-rec-item">
+    <div class="pe-rec-num" style="color:rgba(239,68,68,.7)">9</div>
+    <div class="pe-rec-label">Derrotas</div>
+  </div>
+</div>
+
+<!-- QUICK NAV -->
+<nav class="pe-quicknav" aria-label="Navegación de sección">
+  <a href="#squad"        class="pe-qn-link">👥 Plantilla</a>
+  <a href="#noticias"     class="pe-qn-link">📰 Noticias</a>
+  <a href="#resultados"   class="pe-qn-link">📅 Resultados</a>
+  <a href="#clasificacion" class="pe-qn-link">📊 Clasificación</a>
+  <a href="#fanzone"      class="pe-qn-link">🎟️ Ven al partido</a>
+</nav>
+
+<!-- HIGHLIGHTS: ÚLTIMO RESULTADO + PRÓXIMA TEMPORADA -->
+<div class="pe-highlights" style="padding:40px 8%;">
+  <div class="pe-highlight-card">
+    <div class="pe-hl-label">Último resultado · Jornada 14</div>
+    <div class="pe-hl-teams">
+      <span class="pe-hl-team us">CD Enrique Soler</span>
+      <span class="pe-hl-score">91 – 74</span>
+      <span class="pe-hl-team">CB Huércal-Overa</span>
+    </div>
+    <div class="pe-hl-meta">📍 Pabellón Municipal "Enrique Soler" · 1 Feb 2026 · 12:00</div>
+  </div>
+  <div class="pe-highlight-card orange">
+    <div class="pe-hl-label">Próxima temporada</div>
+    <div class="pe-hl-title">TEMPORADA<br><em>2026 – 27</em></div>
+    <div class="pe-hl-text">El calendario oficial de la Tercera FEB Grupo DA se publicará en agosto. Únete a nuestro grupo de WhatsApp para recibir todos los avisos.</div>
+    <a href="https://wa.me/34952699700?text=Hola!%20Quiero%20recibir%20avisos%20del%20primer%20equipo%20temporada%202026-27." target="_blank" class="pe-hl-btn">💬 Recibir avisos</a>
+  </div>
+</div>
+
+<!-- PLANTILLA -->
+<section class="pe-section" id="squad">
+  <div class="pe-sec-head">
+    <h2>Plantilla</h2>
+    <div class="pe-sec-line"></div>
+    <span class="pe-sec-head-sub">Temporada 2025-26 (referencia)</span>
+  </div>
+  <div class="player-grid" id="playerGrid"></div>
+
+  <!-- CUERPO TÉCNICO -->
+  <div style="margin-top:40px;">
+    <div style="font-family:'Bebas Neue';font-size:22px;margin-bottom:16px;color:rgba(255,255,255,.5);">Cuerpo Técnico</div>
+    <div class="staff-grid" id="staffGrid"></div>
+  </div>
+</section>
+
+<!-- NOTICIAS -->
+<section class="pe-section-alt" id="noticias">
+  <div class="pe-sec-head">
+    <h2>Noticias del equipo</h2>
+    <div class="pe-sec-line"></div>
+    <span class="pe-sec-head-sub">Fichajes · Crónicas · Desplazamientos</span>
+  </div>
+  <div class="news-grid" id="newsGrid"></div>
+</section>
+
+<!-- RESULTADOS + CLASIFICACIÓN -->
+<section class="pe-section" id="resultados">
+  <div class="pe-sec-head">
+    <h2>Resultados</h2>
+    <div class="pe-sec-line"></div>
+    <span class="pe-sec-head-sub">Temporada 2025-26 · Resultados destacados</span>
+  </div>
+
+  <div class="pe-results-wrap">
+    <!-- Matches -->
+    <div>
+      <div class="match-filter">
+        <button class="mf-btn active" onclick="filterMatches('all',this)">Todos</button>
+        <button class="mf-btn" onclick="filterMatches('casa',this)">Casa</button>
+        <button class="mf-btn" onclick="filterMatches('fuera',this)">Fuera</button>
+      </div>
+      <div class="matches-list" id="matchesList"></div>
+    </div>
+
+    <!-- Standings -->
+    <div id="clasificacion">
+      <div class="standings-box">
+        <div class="standings-head">
+          <h3>Clasificación</h3>
+          <p>Grupo DA · Temporada 2025-26 · 14 equipos</p>
+        </div>
+        <table class="standings-table">
+          <thead>
+            <tr>
+              <th>#</th><th>Equipo</th><th>PJ</th><th>V</th><th>D</th><th>Pts</th>
+            </tr>
+          </thead>
+          <tbody id="standingsBody"></tbody>
+        </table>
+        <div class="standings-legend">
+          <div class="leg-i"><div class="leg-dot" style="background:#4ade80"></div>Ascenso</div>
+          <div class="leg-i"><div class="leg-dot" style="background:#FFD166"></div>Playoff</div>
+          <div class="leg-i"><div class="leg-dot" style="background:rgba(239,68,68,.6)"></div>Descenso</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAN ZONE -->
+<div class="pe-fanzone" id="fanzone">
+  <h2>VEN AL <em>PARTIDO</em></h2>
+  <p>El equipo te necesita en la pista. Cada aficionado en la grada marca la diferencia.</p>
+  <div class="pe-fanzone-meta">
+    <span>🏟️ Pabellón Deportivo Municipal</span>
+    <span>📍 Av. Azucena s/n, Melilla</span>
+    <span>🏀 Tercera FEB · Grupo DA</span>
+  </div>
+  <div class="pe-fanzone-btns">
+    <a href="https://wa.me/34952699700?text=Hola!%20Quiero%20estar%20al%20tanto%20de%20los%20partidos%20del%20primer%20equipo." target="_blank" class="btn-wa">💬 Grupo de aficionados</a>
+    <a href="#resultados" class="btn-cal">📅 Ver calendario</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 CD Enrique Soler · <a href="index.html">Inicio</a> · <a href="primer-equipo.html">Primer Equipo</a> · <a href="calendario.html">Cantera</a> · <a href="inscripciones.html">Inscripciones</a> · <a href="patrocinadores.html">Partners</a> · <a href="https://wa.me/34952699700" target="_blank" style="color:#25D366">WhatsApp</a></p>
+</footer>
+
+<a href="https://wa.me/34952699700" target="_blank" class="wa-float">💬</a>
+
+<script>
+gsap.registerPlugin(ScrollTrigger);
+
+/* ── NAV ── */
+function toggleMenu(){
+  document.getElementById('mobNav').classList.toggle('open');
+  document.getElementById('navBurger').classList.toggle('open');
+}
+
+/* =====================================================================
+   PLANTILLA — TEMPORADA 2025-26 (REFERENCIA)
+   Sustituir con datos reales de la temporada 2026-27
+===================================================================== */
+/* Fuente: Actas FEB + baloncestoenvivo.feb.es — Temporada 2025/26 */
+var PLANTILLA = [
+  /* Bases */
+  { num:1,  nombre:'Farid Chekri',      pos:'Base',      cap:false, stats:{pj:26, ppg:8.4,  rpg:2.8,  apg:4.6} },
+  { num:55, nombre:'Mario Gámez',       pos:'Base',      cap:false, stats:{pj:26, ppg:8.1,  rpg:2.0,  apg:4.3} },
+  { num:29, nombre:'Daniel Malavé',     pos:'Base',      cap:false, stats:{pj:16, ppg:2.8,  rpg:0.9,  apg:0.1} },
+  { num:11, nombre:'Álvaro Martín',     pos:'Base',      cap:false, stats:{pj:9,  ppg:1.1,  rpg:0.2,  apg:0.6} },
+  /* Escolta */
+  { num:9,  nombre:'Wasim El Otmani',   pos:'Escolta',   cap:true,  stats:{pj:24, ppg:13.0, rpg:2.8,  apg:1.1} },
+  /* Aleros */
+  { num:10, nombre:'Sergio Curbelo',    pos:'Alero',     cap:false, stats:{pj:26, ppg:10.7, rpg:2.7,  apg:1.2} },
+  { num:13, nombre:'Javier Vicente',    pos:'Alero',     cap:false, stats:{pj:26, ppg:6.7,  rpg:3.4,  apg:1.2} },
+  { num:12, nombre:'Tomás Liberatore',  pos:'Alero',     cap:false, stats:{pj:18, ppg:2.7,  rpg:1.4,  apg:0.8} },
+  /* Ala-Pívots */
+  { num:7,  nombre:'Faris Chekri',      pos:'Ala-Pívot', cap:false, stats:{pj:26, ppg:5.5,  rpg:4.7,  apg:1.3} },
+  { num:4,  nombre:'Jesús Cerisuelo',   pos:'Ala-Pívot', cap:false, stats:{pj:23, ppg:10.1, rpg:6.0,  apg:1.1} },
+  /* Pívots */
+  { num:15, nombre:'Cristian Palomares',pos:'Pívot',     cap:false, stats:{pj:26, ppg:16.4, rpg:10.9, apg:1.8} },
+  { num:25, nombre:'Demba Sheriff',     pos:'Pívot',     cap:false, stats:{pj:23, ppg:8.1,  rpg:5.0,  apg:0.5} },
+];
+
+var STAFF = [
+  { nombre:'Daniel Terrón García',  rol:'Entrenador Principal', icon:'🏀' },
+  { nombre:'J.A. López Álvarez',    rol:'Entrenador Ayudante',  icon:'📋' },
+];
+
+/* =====================================================================
+   NOTICIAS — Sustituir con noticias reales de la temporada 2026-27
+===================================================================== */
+var NOTICIAS = [
+  { tag:'FICHAJE',       color:'#4ade80', bg:'rgba(74,222,128,.1)',
+    fecha:'Junio 2026',
+    titulo:'El club confirma la renovación de Javier Navarro para el 2026-27',
+    texto:'El pívot melillense continúa un año más con el equipo naranja. Con él se cierra el bloque del equipo para la nueva temporada.' },
+  { tag:'CRÓNICA',       color:' var(--o3)', bg:'rgba(255,107,43,.1)',
+    fecha:'1 Feb 2026',
+    titulo:'Victoria ante CB Huércal-Overa (91-74) en la última jornada en casa',
+    texto:'El equipo cerró la primera vuelta con una contundente victoria que lo sitúa en tercera posición del Grupo DA.' },
+  { tag:'DESPLAZAMIENTO', color:'#60a5fa', bg:'rgba(96,165,250,.1)',
+    fecha:'8 Ene 2026',
+    titulo:'El equipo viaja a Nerja para la jornada 11 del Grupo DA',
+    texto:'El primer equipo parte el viernes por la tarde hacia Nerja. Más de 20 aficionados se unen al viaje en el desplazamiento organizado.' },
+  { tag:'PREVIA',        color:'#FFD166', bg:'rgba(255,209,102,.1)',
+    fecha:'3 Oct 2025',
+    titulo:'Arranca la temporada: el equipo debuta en casa ante CB Motril',
+    texto:'El Pabellón Municipal acoge el primer partido de la temporada 2025-26 este domingo a las 12:00. Ven a apoyar al equipo naranja.' },
+];
+
+/* =====================================================================
+   PARTIDOS — TEMPORADA 2025-26 (REFERENCIA)
+===================================================================== */
+var PARTIDOS = [
+  /* Resultados 100% reales — Fuente: Actas Oficiales FEB Tercera FEB Temporada 2025-26 */
+  /* Grupo DA · 26 jornadas */
+  { id:1,  jornada:1,  fecha:'04/10/2025', hora:'19:30', local:'MCD Enrique Soler',          visitante:'Surseeds B. Murgi',          pabellon:'Pab. Guillermo García Pezzi · Melilla',             resultado:{local:78,  visitante:76},  estado:'jugado' },
+  { id:2,  jornada:2,  fecha:'11/10/2025', hora:'18:30', local:'CB Novaschool Rincón',        visitante:'MCD Enrique Soler',          pabellon:'Pab. Novaschool Añoreta · Rincón de la Victoria',   resultado:{local:73,  visitante:67},  estado:'jugado' },
+  { id:3,  jornada:3,  fecha:'18/10/2025', hora:'17:30', local:'MCD Enrique Soler',           visitante:'CB Costa Motril',            pabellon:'Pab. Guillermo García Pezzi · Melilla',             resultado:{local:90,  visitante:77},  estado:'jugado' },
+  { id:4,  jornada:4,  fecha:'25/10/2025', hora:'17:30', local:'Hospital Ochoa CB Marbella',  visitante:'MCD Enrique Soler',          pabellon:'Pol. Bello Horizonte "Carlos Cabezas" · Marbella',  resultado:{local:77,  visitante:82},  estado:'jugado' },
+  { id:5,  jornada:5,  fecha:'01/11/2025', hora:'18:00', local:'MCD Enrique Soler',           visitante:'Oh!tels ULB',                pabellon:'Pab. Guillermo García Pezzi · Melilla',             resultado:{local:80,  visitante:82},  estado:'jugado' },
+  { id:6,  jornada:6,  fecha:'08/11/2025', hora:'19:30', local:'CB Almería',                  visitante:'MCD Enrique Soler',          pabellon:'Pabellón Moisés Ruiz · Almería',                    resultado:{local:88,  visitante:105}, estado:'jugado' },
+  { id:7,  jornada:7,  fecha:'15/11/2025', hora:'19:00', local:'MCD Enrique Soler',           visitante:'Damex CB Algeciras',         pabellon:'Pab. Guillermo García Pezzi · Melilla',             resultado:{local:77,  visitante:79},  estado:'jugado' },
+  { id:8,  jornada:8,  fecha:'22/11/2025', hora:'19:00', local:'El Pinar',                    visitante:'MCD Enrique Soler',          pabellon:'Colegio El Pinar · Alhaurín de la Torre',           resultado:{local:72,  visitante:74},  estado:'jugado' },
+  { id:9,  jornada:9,  fecha:'30/11/2025', hora:'18:00', local:'MCD Enrique Soler',           visitante:'Jaén Paraíso Interior FS',   pabellon:'Pab. Guillermo García Pezzi · Melilla',             resultado:{local:91,  visitante:97},  estado:'jugado' },
+  { id:10, jornada:10, fecha:'06/12/2025', hora:'17:30', local:'CB Salliver Fuengirola',       visitante:'MCD Enrique Soler',          pabellon:'Pabellón Juan Gómez Juanito · Fuengirola',          resultado:{local:80,  visitante:102}, estado:'jugado' },
+  { id:11, jornada:11, fecha:'13/12/2025', hora:'19:30', local:'Tu Super CB La Zubia',         visitante:'MCD Enrique Soler',          pabellon:'Pabellón 11 de Marzo · La Zubia',                   resultado:{local:90,  visitante:91},  estado:'jugado' },
+  { id:12, jornada:12, fecha:'20/12/2025', hora:'18:00', local:'MCD Enrique Soler',            visitante:'Jaén Paraíso – Ska Lo',      pabellon:'Pab. Guillermo García Pezzi · Melilla',             resultado:{local:95,  visitante:79},  estado:'jugado' },
+  { id:13, jornada:13, fecha:'10/01/2026', hora:'19:00', local:'Byspania Tíjola',              visitante:'MCD Enrique Soler',          pabellon:'Pabellón Municipal · Tíjola',                       resultado:{local:87,  visitante:82},  estado:'jugado' },
+  { id:14, jornada:14, fecha:'18/01/2026', hora:'12:00', local:'Surseeds B. Murgi',            visitante:'MCD Enrique Soler',          pabellon:'Pab. Mun. Deportes El Ejido · El Ejido',            resultado:{local:80,  visitante:101}, estado:'jugado' },
+  { id:15, jornada:15, fecha:'24/01/2026', hora:'18:00', local:'MCD Enrique Soler',            visitante:'CB Novaschool Rincón',       pabellon:'Pab. Guillermo García Pezzi · Melilla',             resultado:{local:99,  visitante:92},  estado:'jugado' },
+  { id:16, jornada:16, fecha:'31/01/2026', hora:'18:00', local:'CB Costa Motril',              visitante:'MCD Enrique Soler',          pabellon:'Pabellón Municipal · Motril',                       resultado:{local:71,  visitante:99},  estado:'jugado' },
+  { id:17, jornada:17, fecha:'03/03/2026', hora:'19:00', local:'MCD Enrique Soler',            visitante:'Hospital Ochoa CB Marbella', pabellon:'Pab. Guillermo García Pezzi · Melilla',             resultado:{local:78,  visitante:108}, estado:'jugado' },
+  { id:18, jornada:18, fecha:'25/02/2026', hora:'21:00', local:'Oh!tels ULB',                  visitante:'MCD Enrique Soler',          pabellon:'Pab. Municipal · La Línea de la Concepción',        resultado:{local:76,  visitante:79},  estado:'jugado' },
+  { id:19, jornada:19, fecha:'21/02/2026', hora:'18:00', local:'MCD Enrique Soler',            visitante:'CB Almería',                 pabellon:'Pab. Guillermo García Pezzi · Melilla',             resultado:{local:93,  visitante:76},  estado:'jugado' },
+  { id:20, jornada:20, fecha:'27/02/2026', hora:'19:15', local:'Damex CB Algeciras',           visitante:'MCD Enrique Soler',          pabellon:'Pab. Dr. Juan Carlos Mateo · Algeciras',            resultado:{local:99,  visitante:85},  estado:'jugado' },
+  { id:21, jornada:21, fecha:'07/03/2026', hora:'19:30', local:'MCD Enrique Soler',            visitante:'El Pinar',                   pabellon:'Pab. Guillermo García Pezzi · Melilla',             resultado:{local:70,  visitante:80},  estado:'jugado' },
+  { id:22, jornada:22, fecha:'15/03/2026', hora:'12:00', local:'Jaén Paraíso Interior FS',     visitante:'MCD Enrique Soler',          pabellon:'Pab. Municipal La Salobreja · Jaén',                resultado:{local:123, visitante:72},  estado:'jugado' },
+  { id:23, jornada:23, fecha:'21/03/2026', hora:'17:30', local:'MCD Enrique Soler',            visitante:'CB Salliver Fuengirola',     pabellon:'Pab. Guillermo García Pezzi · Melilla',             resultado:{local:104, visitante:54},  estado:'jugado' },
+  { id:24, jornada:24, fecha:'28/03/2026', hora:'18:00', local:'MCD Enrique Soler',            visitante:'Tu Super CB La Zubia',       pabellon:'Pab. Guillermo García Pezzi · Melilla',             resultado:{local:109, visitante:81},  estado:'jugado' },
+  { id:25, jornada:25, fecha:'11/04/2026', hora:'19:00', local:'Jaén Paraíso – Ska Lo',        visitante:'MCD Enrique Soler',          pabellon:'Polideportivo Municipal · Andújar',                 resultado:{local:79,  visitante:94},  estado:'jugado' },
+  { id:26, jornada:26, fecha:'18/04/2026', hora:'19:00', local:'MCD Enrique Soler',            visitante:'Byspania Tíjola',            pabellon:'Pab. Guillermo García Pezzi · Melilla',             resultado:{local:87,  visitante:67},  estado:'jugado' },
+];
+
+/* =====================================================================
+   CLASIFICACIÓN — GRUPO DA 2025-26 (DATOS REALES FEB)
+===================================================================== */
+var CLASIFICACION = [
+  { pos:1,  equipo:'Damex CB Algeciras',         pj:26, g:24, p:2,  zona:'ascenso' },
+  { pos:2,  equipo:'Jaén Paraíso Interior FS',   pj:26, g:24, p:2,  zona:'ascenso' },
+  { pos:3,  equipo:'El Pinar',                   pj:26, g:18, p:8,  zona:'playoff' },
+  { pos:4,  equipo:'Byspania Tíjola',            pj:26, g:18, p:8,  zona:'playoff' },
+  { pos:5,  equipo:'MCD Enrique Soler',          pj:26, g:17, p:9,  zona:'playoff', local:true },
+  { pos:6,  equipo:'Hospital Ochoa CB Marbella', pj:26, g:16, p:10, zona:'normal' },
+  { pos:7,  equipo:'CB Novaschool Rincón',       pj:26, g:13, p:13, zona:'normal' },
+  { pos:8,  equipo:'Surseeds B. Murgi',          pj:26, g:11, p:15, zona:'normal' },
+  { pos:9,  equipo:'Tu Super CB La Zubia',       pj:26, g:11, p:15, zona:'normal' },
+  { pos:10, equipo:'CB Costa Motril',            pj:26, g:9,  p:17, zona:'normal' },
+  { pos:11, equipo:'Oh!tels ULB',                pj:26, g:8,  p:18, zona:'normal' },
+  { pos:12, equipo:'CB Salliver Fuengirola',     pj:26, g:6,  p:20, zona:'descenso' },
+  { pos:13, equipo:'CB Almería',                 pj:26, g:4,  p:22, zona:'descenso' },
+  { pos:14, equipo:'Jaén Paraíso – Ska Lo',      pj:26, g:3,  p:23, zona:'descenso' },
+];
+
+/* ── POSITION STYLES ──────────────────────────────────────── */
+var POS = {
+  'Base':      { bg:'linear-gradient(135deg,#0A2463,#1a3a8f)', badge:'#0A2463', text:'rgba(100,140,255,.8)' },
+  'Escolta':   { bg:'linear-gradient(135deg,#1A3A8F,#2450b5)', badge:'#1A3A8F', text:'rgba(120,160,255,.8)' },
+  'Alero':     { bg:'linear-gradient(135deg,#0d3d2a,#1a6040)', badge:'#0d3d2a', text:'rgba(74,222,128,.7)'  },
+  'Ala-Pívot': { bg:'linear-gradient(135deg,#E85000,#FF6B2B)', badge:'#E85000', text:'rgba(255,200,150,.9)' },
+  'Pívot':     { bg:'linear-gradient(135deg,#5a0000,#8B0000)', badge:'#5a0000', text:'rgba(255,130,130,.8)' },
+};
+
+/* ── MESES ── */
+var MESES = ['ENE','FEB','MAR','ABR','MAY','JUN','JUL','AGO','SEP','OCT','NOV','DIC'];
+
+function isUs(n){ return n.toLowerCase().includes('enrique soler'); }
+
+/* ── RENDER PLANTILLA ─────────────────────────────────────── */
+function renderPlantilla(){
+  var html = PLANTILLA.map(function(p){
+    var style = POS[p.pos] || POS['Base'];
+    var dorsal = p.num !== undefined ? p.num : '—';
+    var s = p.stats || {};
+    var statsHtml = (s.pj !== undefined)
+      ? '<div class="player-stats">'
+          +'<div class="player-stat"><div class="player-stat-val">'+s.ppg+'</div><div class="player-stat-lbl">PTS</div></div>'
+          +'<div class="player-stat"><div class="player-stat-val">'+s.rpg+'</div><div class="player-stat-lbl">REB</div></div>'
+          +'<div class="player-stat"><div class="player-stat-val">'+s.apg+'</div><div class="player-stat-lbl">AST</div></div>'
+        +'</div>'
+        +'<div class="player-pj">'+s.pj+' partidos · Media por partido</div>'
+      : '';
+    return '<div class="player-card">'
+      +'<div class="player-num-bg" style="background:'+style.bg+'">'
+        +'<span class="player-num-ghost">'+dorsal+'</span>'
+        +'<div class="player-num-badge" style="background:rgba(0,0,0,.4);border:1px solid rgba(255,255,255,.15);font-family:\'Bebas Neue\';font-size:18px;color:#fff;width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;">'+dorsal+'</div>'
+      +'</div>'
+      +'<div class="player-info">'
+        +'<div class="player-name">'+p.nombre+'</div>'
+        +'<span class="player-pos" style="background:'+style.badge+'33;color:'+style.text+'">'+p.pos+'</span>'
+        +(p.cap?'<div class="player-cap">★ Capitán</div>':'')
+        +statsHtml
+      +'</div>'
+    +'</div>';
+  }).join('');
+  document.getElementById('playerGrid').innerHTML = html;
+}
+
+/* ── RENDER STAFF ─────────────────────────────────────────── */
+function renderStaff(){
+  var html = STAFF.map(function(s){
+    return '<div class="staff-card">'
+      +'<div class="staff-icon">'+s.icon+'</div>'
+      +'<div><div class="staff-name">'+s.nombre+'</div><div class="staff-rol">'+s.rol+'</div></div>'
+    +'</div>';
+  }).join('');
+  document.getElementById('staffGrid').innerHTML = html;
+}
+
+/* ── RENDER NOTICIAS ──────────────────────────────────────── */
+function renderNoticias(){
+  var html = NOTICIAS.map(function(n){
+    return '<div class="news-card" style="--tag-color:'+n.color+';--tag-bg:'+n.bg+'">'
+      +'<div class="news-top">'
+        +'<span class="news-tag">'+n.tag+'</span>'
+        +'<span class="news-date">'+n.fecha+'</span>'
+      +'</div>'
+      +'<div class="news-title">'+n.titulo+'</div>'
+      +'<div class="news-excerpt">'+n.texto+'</div>'
+      +'<span class="news-link">Leer más <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>'
+    +'</div>';
+  }).join('');
+  document.getElementById('newsGrid').innerHTML = html;
+}
+
+/* ── RENDER PARTIDOS ──────────────────────────────────────── */
+function buildMatchCard(p){
+  var us = isUs(p.local) ? 'local' : isUs(p.visitante) ? 'visitante' : null;
+  var validFecha = p.fecha && p.fecha !== '—';
+  var parts = validFecha ? p.fecha.split('/') : null;
+  var dateBlock = parts
+    ? '<div class="match-day">'+parts[0]+'</div><div class="match-month">'+MESES[parseInt(parts[1])-1]+'</div>'+(p.hora && p.hora!=='—'?'<div class="match-time">'+p.hora+'</div>':'')
+    : '<div style="font-size:11px;color:rgba(255,255,255,.2);text-align:center">TBD</div>';
+
+  var win = null;
+  if(p.resultado){
+    win = us==='local' ? p.resultado.local>p.resultado.visitante : p.resultado.visitante>p.resultado.local;
+  }
+  var cls = 'match-card'+(win===true?' win':win===false?' loss':'');
+  var tipo = us==='local' ? 'casa' : 'fuera';
+
+  var result = '';
+  if(p.estado==='jugado' && p.resultado){
+    var wc = win ? 'w' : 'l';
+    result = '<div class="match-result"><span class="'+wc+'">'+p.resultado.local+'</span><span style="color:rgba(255,255,255,.2);font-size:14px"> - </span>'+p.resultado.visitante+'</div>';
+    result += '<div class="match-badge '+(win?'bw':'bl')+'">'+(win?'Victoria':'Derrota')+'</div>';
+  } else if(p.estado==='jugado' && !p.resultado){
+    result = '<div class="match-badge" style="background:rgba(255,255,255,.06);color:rgba(255,255,255,.3)">Jugado</div>';
+  } else {
+    result = '<div class="match-badge bp">Pendiente</div>';
+  }
+
+  return '<div class="'+cls+'" data-tipo="'+tipo+'">'
+    +'<div class="match-date">'+dateBlock+'</div>'
+    +'<div class="match-teams">'
+      +'<div class="match-jornada">Jornada '+p.jornada+'</div>'
+      +'<div class="match-vs">'
+        +'<span class="match-team'+(isUs(p.local)?' us':'')+'">'+p.local+'</span>'
+        +'<span class="match-sep">vs</span>'
+        +'<span class="match-team'+(isUs(p.visitante)?' us':'')+'">'+p.visitante+'</span>'
+      +'</div>'
+      +(p.pabellon?'<div class="match-venue">📍 '+p.pabellon+'</div>':'')
+    +'</div>'
+    +'<div class="match-right">'+result+'</div>'
+  +'</div>';
+}
+
+function renderPartidos(){
+  document.getElementById('matchesList').innerHTML = PARTIDOS.map(buildMatchCard).join('');
+}
+
+function filterMatches(tipo, btn){
+  document.querySelectorAll('.mf-btn').forEach(function(b){ b.classList.remove('active'); });
+  if(btn) btn.classList.add('active');
+  document.querySelectorAll('.match-card').forEach(function(c){
+    c.style.display = (tipo==='all'||c.dataset.tipo===tipo)?'':'none';
+  });
+}
+
+/* ── RENDER CLASIFICACIÓN ─────────────────────────────────── */
+function renderClasificacion(){
+  var zColors = { ascenso:'#4ade80', playoff:'#FFD166', normal:'transparent', descenso:'rgba(239,68,68,.6)' };
+  var html = CLASIFICACION.map(function(t){
+    var pts = t.g*2+t.p;
+    return '<tr'+(t.local?' class="us"':'')+'>'
+      +'<td><span class="pos-n'+(t.pos<=2?' t':'')+'">'+t.pos+'</span></td>'
+      +'<td><span style="display:inline-block;width:5px;height:14px;border-radius:2px;background:'+zColors[t.zona]+';margin-right:6px;vertical-align:middle"></span>'+t.equipo+'</td>'
+      +'<td>'+t.pj+'</td>'
+      +'<td style="color:rgba(74,222,128,.7)">'+t.g+'</td>'
+      +'<td style="color:rgba(239,68,68,.5)">'+t.p+'</td>'
+      +'<td><span class="pts-n">'+pts+'</span></td>'
+    +'</tr>';
+  }).join('');
+  document.getElementById('standingsBody').innerHTML = html;
+}
+
+/* ── QUICK NAV ACTIVE ─────────────────────────────────────── */
+function updateQuickNav(){
+  var sections = ['squad','noticias','resultados','clasificacion','fanzone'];
+  var links = document.querySelectorAll('.pe-qn-link');
+  var top = window.scrollY + 140;
+  var active = null;
+  sections.forEach(function(id){
+    var el = document.getElementById(id);
+    if(el && el.offsetTop <= top) active = id;
+  });
+  links.forEach(function(l){
+    l.classList.toggle('active', l.getAttribute('href')==='#'+active);
+  });
+}
+window.addEventListener('scroll', updateQuickNav, {passive:true});
+
+/* ── INIT ─────────────────────────────────────────────────── */
+renderPlantilla();
+renderStaff();
+renderNoticias();
+renderPartidos();
+renderClasificacion();
+
+ScrollTrigger.batch('.player-card', {
+  onEnter:function(els){ gsap.from(els,{opacity:0,y:20,duration:.4,stagger:.04,ease:'power2.out'}); },
+  once:true
+});
+ScrollTrigger.batch('.news-card', {
+  onEnter:function(els){ gsap.from(els,{opacity:0,y:16,duration:.4,stagger:.08,ease:'power2.out'}); },
+  once:true
+});
+ScrollTrigger.batch('.match-card', {
+  onEnter:function(els){ gsap.from(els,{opacity:0,y:12,duration:.35,stagger:.03,ease:'power2.out'}); },
+  once:true
+});
+</script>
+</body>
+</html>

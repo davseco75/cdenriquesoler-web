@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calendario 2026-27 | CD Enrique Soler</title>
+  <!-- SEO -->
+  <meta name="description" content="Calendario de partidos 2026-27 del CD Enrique Soler. Horarios, jornadas y resultados de todas las categorías de la FMB en Melilla." />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#FF6B2B" />
+  <link rel="canonical" href="https://cdenriquesoler.com/calendario.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="CD Enrique Soler" />
+  <meta property="og:title" content="Calendario 2026-27 | CD Enrique Soler Melilla" />
+  <meta property="og:description" content="Consulta todos los partidos, horarios y resultados de las 8 categorías del CD Enrique Soler en la FMB temporada 2026-27." />
+  <meta property="og:image" content="https://cdenriquesoler.com/tienda/chandal-poster.jpg" />
+  <meta property="og:url" content="https://cdenriquesoler.com/calendario.html" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Calendario 2026-27 | CD Enrique Soler" />
+  <meta name="twitter:description" content="Todos los partidos de las 8 categorías del CD Enrique Soler en Melilla." />
+  <meta name="twitter:image" content="https://cdenriquesoler.com/tienda/chandal-poster.jpg" />
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    :root{
+      --o:#FF6B2B; --o2:#E85000; --o3:#FF9A6C;
+      --b:#0A2463; --b2:#1A3A8F;
+      --dark:#080400; --dark2:#100800;
+      --card:#150900;
+      --w:#fff; --g:rgba(255,255,255,0.45);
+    }
+    html{scroll-behavior:smooth;}
+    body{font-family:'Inter',sans-serif;background:var(--dark);color:var(--w);overflow-x:hidden;cursor:none;}
+    h1,h2,h3,h4,h5{font-family:'Bebas Neue',sans-serif;letter-spacing:.03em;}
+    a{text-decoration:none;color:inherit;}
+    img{max-width:100%;display:block;}
+    ::-webkit-scrollbar{width:3px;}
+    ::-webkit-scrollbar-thumb{background:var(--o);}
+    @media(max-width:768px){body{cursor:auto;}}
+
+    /* CURSOR */
+    #cur{position:fixed;z-index:9999;pointer-events:none;width:36px;height:36px;border:2px solid var(--o);border-radius:50%;transform:translate(-50%,-50%);transition:width .2s,height .2s,opacity .2s;}
+    #cur.h{width:56px;height:56px;background:rgba(255,107,43,.1);}
+    #dot{position:fixed;z-index:9999;pointer-events:none;width:5px;height:5px;background:var(--o);border-radius:50%;transform:translate(-50%,-50%);}
+    @media(max-width:768px){#cur,#dot{display:none;}}
+
+    /* NAV */
+    nav{position:fixed;top:0;left:0;width:100%;z-index:500;display:flex;align-items:center;justify-content:space-between;padding:0 5%;height:68px;transition:background .4s,backdrop-filter .4s;background:rgba(8,4,0,.95);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,107,43,.12);}
+    .nav-logo{display:flex;align-items:center;gap:10px;}
+    .nav-logo img{height:44px;mix-blend-mode:lighten;filter:drop-shadow(0 0 8px rgba(255,107,43,.3));}
+    .nav-logo span{font-family:'Bebas Neue';font-size:17px;line-height:1.1;}
+    .nav-logo span em{color:var(--o);font-style:normal;display:block;font-size:10px;letter-spacing:.18em;}
+        .nav-links{display:flex;gap:4px;list-style:none;align-items:center;}
+    .nav-links>li>a{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.6);transition:color .2s;position:relative;padding:6px 12px;border-radius:6px;display:flex;align-items:center;gap:5px;}
+    .nav-links>li>a:hover{color:#fff;background:rgba(255,255,255,.05);}
+    .nav-links>li>a.active{color:#fff;}
+    .has-dd{position:relative;}
+    .caret{font-size:7px;opacity:.4;transition:transform .25s,opacity .25s;line-height:1;}
+    .has-dd:hover .caret{transform:rotate(180deg);opacity:1;color:var(--o);}
+    .dd-menu{position:absolute;top:100%;left:50%;transform:translateX(-50%) translateY(-4px);background:rgba(10,5,0,.97);backdrop-filter:blur(24px);border:1px solid rgba(255,107,43,.14);border-radius:12px;padding:12px 6px 6px;min-width:196px;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;z-index:600;}
+    .has-dd:hover .dd-menu{opacity:1;pointer-events:all;transform:translateX(-50%) translateY(0);}
+    .dd-menu a{display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:7px;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.5);transition:all .15s;white-space:nowrap;}
+    .dd-menu a:hover{background:rgba(255,107,43,.1);color:#fff;}
+    .dd-menu .di{font-size:14px;width:20px;text-align:center;flex-shrink:0;}
+    .nav-cta{background:var(--o);color:#fff;padding:8px 20px;border-radius:2px;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;transition:opacity .2s;margin-left:8px;}
+    .nav-cta:hover{opacity:.85;}
+    .nav-burger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;}
+    .nav-burger span{width:22px;height:2px;background:#fff;border-radius:2px;transition:all .3s;}
+    .nav-burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+    .nav-burger.open span:nth-child(2){opacity:0;}
+    .nav-burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+    .mob-nav{display:none;position:fixed;top:68px;left:0;width:100%;background:rgba(8,4,0,.98);backdrop-filter:blur(20px);padding:16px 5% 28px;z-index:499;border-bottom:1px solid rgba(255,107,43,.12);max-height:calc(100vh - 68px);overflow-y:auto;}
+    .mob-nav.open{display:flex;flex-direction:column;}
+    .mob-label{font-size:9px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,107,43,.5);padding:14px 0 4px;margin-top:8px;border-top:1px solid rgba(255,255,255,.05);}
+    .mob-label:first-child{margin-top:0;border-top:none;padding-top:0;}
+    .mob-nav a{font-size:13px;font-weight:600;color:rgba(255,255,255,.55);padding:11px 8px;border-radius:6px;display:flex;align-items:center;gap:10px;transition:all .15s;}
+    .mob-nav a:hover,.mob-nav a.active{color:#fff;background:rgba(255,255,255,.04);}
+    .mob-cta{background:var(--o)!important;color:#fff!important;text-align:center;justify-content:center;padding:14px 8px!important;border-radius:4px;margin-top:12px;font-weight:700!important;letter-spacing:.1em;}
+
+    /* HERO */
+    .cal-hero{padding:120px 8% 60px;background:var(--dark2);position:relative;overflow:hidden;border-bottom:1px solid rgba(255,107,43,.1);}
+    .cal-hero::before{content:'';position:absolute;top:-200px;right:-100px;width:600px;height:600px;background:radial-gradient(circle,rgba(255,107,43,.06) 0%,transparent 70%);pointer-events:none;}
+    .cal-hero-inner{max-width:900px;}
+    .cal-eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--o);margin-bottom:16px;}
+    .cal-eyebrow::before,.cal-eyebrow::after{content:'';width:28px;height:2px;background:var(--o);}
+    .cal-title{font-size:clamp(52px,7vw,96px);line-height:.88;margin-bottom:16px;}
+    .cal-title em{color:var(--o);font-style:normal;}
+    .cal-sub{font-size:16px;color:rgba(255,255,255,.45);max-width:540px;line-height:1.6;margin-bottom:32px;}
+    .cal-season-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(255,107,43,.08);border:1px solid rgba(255,107,43,.2);border-radius:24px;padding:8px 18px;font-size:12px;font-weight:700;color:var(--o);letter-spacing:.08em;}
+    .cal-season-badge span{width:8px;height:8px;background:var(--o);border-radius:50%;animation:blink 2s ease-in-out infinite;}
+    @keyframes blink{0%,100%{opacity:1;}50%{opacity:.3;}}
+
+    /* PENDING BANNER */
+    .pending-banner{background:linear-gradient(135deg,rgba(255,107,43,.08),rgba(10,36,99,.1));border:1px solid rgba(255,107,43,.2);border-radius:12px;padding:16px 24px;display:flex;align-items:center;gap:16px;margin:0 8% 0;margin-top:-1px;position:relative;z-index:2;}
+    .pending-banner-icon{font-size:28px;flex-shrink:0;}
+    .pending-banner-text strong{font-size:14px;font-weight:700;color:#fff;display:block;margin-bottom:2px;}
+    .pending-banner-text span{font-size:12px;color:rgba(255,255,255,.45);}
+    .pending-banner-cta{margin-left:auto;background:rgba(37,211,102,.12);border:1px solid rgba(37,211,102,.25);color:#25D366;padding:8px 16px;border-radius:20px;font-size:11px;font-weight:700;letter-spacing:.06em;white-space:nowrap;transition:all .2s;flex-shrink:0;}
+    .pending-banner-cta:hover{background:rgba(37,211,102,.2);}
+
+    /* MAIN CONTENT */
+    .cal-main{padding:48px 8% 80px;}
+
+    /* FILTER BAR */
+    .filter-bar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:40px;position:sticky;top:68px;z-index:100;background:var(--dark);padding:16px 0;border-bottom:1px solid rgba(255,255,255,.04);}
+    .filter-pill{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:8px 16px;border-radius:20px;border:1px solid rgba(255,255,255,.1);background:transparent;color:rgba(255,255,255,.4);cursor:pointer;transition:all .2s;white-space:nowrap;}
+    .filter-pill:hover{border-color:rgba(255,107,43,.3);color:rgba(255,255,255,.7);}
+    .filter-pill.active{background:var(--o);border-color:var(--o);color:#fff;}
+
+    /* CATEGORY BLOCK */
+    .cat-block{margin-bottom:48px;display:none;}
+    .cat-block.visible{display:block;}
+    .cat-header{display:flex;align-items:center;gap:16px;margin-bottom:20px;padding-bottom:16px;border-bottom:1px solid rgba(255,255,255,.06);}
+    .cat-dot{width:12px;height:12px;border-radius:50%;flex-shrink:0;}
+    .cat-name{font-family:'Bebas Neue';font-size:28px;letter-spacing:.04em;}
+    .cat-meta{font-size:12px;color:rgba(255,255,255,.35);font-weight:500;}
+    .cat-count{margin-left:auto;font-size:11px;font-weight:700;color:rgba(255,255,255,.25);letter-spacing:.06em;text-transform:uppercase;}
+
+    /* MATCH CARDS */
+    .matches-list{display:flex;flex-direction:column;gap:10px;}
+    .match-card{background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.06);border-radius:12px;padding:16px 20px;display:grid;grid-template-columns:80px 1fr auto;align-items:center;gap:16px;transition:all .25s;}
+    .match-card:hover{background:rgba(255,255,255,.04);border-color:rgba(255,107,43,.15);}
+    .match-card.jugado{border-color:rgba(255,255,255,.04);}
+    .match-card.jugado:hover{border-color:rgba(255,255,255,.08);}
+    /* Date block */
+    .match-date{text-align:center;}
+    .match-day{font-family:'Bebas Neue';font-size:32px;line-height:1;color:#fff;}
+    .match-month{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.35);}
+    .match-time{font-size:11px;font-weight:600;color:var(--o);margin-top:2px;}
+    /* TBD date */
+    .match-tbd{font-family:'Bebas Neue';font-size:13px;color:rgba(255,255,255,.2);text-align:center;line-height:1.3;letter-spacing:.08em;}
+    /* Teams */
+    .match-teams{display:flex;flex-direction:column;gap:4px;}
+    .match-jornada{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.25);margin-bottom:2px;}
+    .match-vs{display:flex;align-items:center;gap:10px;}
+    .match-team{font-size:14px;font-weight:600;color:rgba(255,255,255,.8);}
+    .match-team.home{color:#fff;}
+    .match-separator{font-size:11px;font-weight:700;color:rgba(255,255,255,.2);}
+    .match-venue{font-size:11px;color:rgba(255,255,255,.3);margin-top:4px;display:flex;align-items:center;gap:4px;}
+    /* Result / Status */
+    .match-right{text-align:right;}
+    .match-result{font-family:'Bebas Neue';font-size:22px;letter-spacing:.04em;color:#fff;}
+    .match-result .local-score{color:var(--o);}
+    .match-status{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:4px 10px;border-radius:12px;}
+    .status-pendiente{background:rgba(255,255,255,.06);color:rgba(255,255,255,.3);}
+    .status-hoy{background:rgba(255,107,43,.15);color:var(--o);animation:pulse-badge 2s ease-in-out infinite;}
+    @keyframes pulse-badge{0%,100%{opacity:1;}50%{opacity:.6;}}
+    .status-jugado{background:rgba(255,255,255,.04);color:rgba(255,255,255,.2);}
+    .status-aplazado{background:rgba(255,200,0,.08);color:rgba(255,200,0,.6);}
+
+    /* EMPTY STATE */
+    .empty-state{text-align:center;padding:48px 24px;background:rgba(255,255,255,.015);border:1px dashed rgba(255,255,255,.06);border-radius:14px;}
+    .empty-icon{font-size:40px;margin-bottom:16px;opacity:.4;}
+    .empty-title{font-family:'Bebas Neue';font-size:22px;color:rgba(255,255,255,.3);margin-bottom:8px;letter-spacing:.04em;}
+    .empty-text{font-size:13px;color:rgba(255,255,255,.2);max-width:380px;margin:0 auto;line-height:1.6;}
+
+    /* STATS ROW */
+    .cal-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,.05);border-radius:12px;overflow:hidden;margin-bottom:40px;}
+    .cal-stat{background:var(--dark);padding:20px;text-align:center;}
+    .cal-stat-num{font-family:'Bebas Neue';font-size:36px;color:var(--o);line-height:1;}
+    .cal-stat-label{font-size:11px;color:rgba(255,255,255,.3);text-transform:uppercase;letter-spacing:.1em;margin-top:4px;}
+
+    /* WHATSAPP FLOAT */
+    .wa-float{position:fixed;bottom:28px;right:28px;z-index:400;width:56px;height:56px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:26px;box-shadow:0 8px 32px rgba(37,211,102,.35);transition:transform .2s,box-shadow .2s;}
+    .wa-float:hover{transform:scale(1.1);box-shadow:0 12px 40px rgba(37,211,102,.5);}
+
+    /* FOOTER */
+    footer{background:#040200;border-top:1px solid rgba(255,255,255,.04);padding:40px 8% 24px;text-align:center;}
+    footer p{font-size:12px;color:rgba(255,255,255,.2);}
+    footer a{color:var(--o);}
+
+    /* RESPONSIVE */
+    @media(max-width:768px){
+      .nav-links,.nav-cta{display:none;}
+      .nav-burger{display:flex;}
+      .cal-hero,.cal-main{padding-left:5%;padding-right:5%;}
+      .pending-banner{margin:0 5%;flex-wrap:wrap;gap:12px;}
+      .pending-banner-cta{margin-left:0;}
+      .match-card{grid-template-columns:64px 1fr;}
+      .match-right{display:none;}
+      .cal-stats{grid-template-columns:1fr 1fr;}
+      .filter-bar{gap:6px;}
+      .filter-pill{font-size:10px;padding:6px 12px;}
+    }
+
+    /* MOBILE NAV */
+    .nav-mobile{display:none;position:fixed;top:68px;left:0;width:100%;background:rgba(8,4,0,.98);backdrop-filter:blur(20px);padding:24px 5%;z-index:499;border-bottom:1px solid rgba(255,107,43,.1);}
+    .nav-mobile.open{display:flex;flex-direction:column;gap:16px;}
+    .nav-mobile a{font-size:14px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.7);padding:8px 0;border-bottom:1px solid rgba(255,255,255,.05);}
+    .nav-mobile a.active{color:var(--o);}
+    .nav-mobile .nav-cta-m{background:var(--o);color:#fff;text-align:center;padding:12px;border-radius:4px;margin-top:8px;border:none;}
+  </style>
+</head>
+<body>
+
+<div id="cur"></div>
+<div id="dot"></div>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">
+    <img src="logo.png" alt="CD Enrique Soler" />
+    <span>ENRIQUE SOLER<em>MELILLA CIUDAD DEL DEPORTE</em></span>
+  </a>
+    <ul class="nav-links">
+    <li class="has-dd">
+      <a href="index.html#about">El Club <span class="caret">▾</span></a>
+      <div class="dd-menu">
+        <a href="index.html#about"><span class="di">🏛️</span>Historia</a>
+        <a href="index.html#teams"><span class="di">🏀</span>Equipos</a>
+        <a href="index.html#noticias"><span class="di">📰</span>Noticias</a>
+        <a href="index.html#pabellon"><span class="di">🏟️</span>Pabellón</a>
+        <a href="galeria.html"><span class="di">📷</span>Galería</a>
+      </div>
+    </li>
+    <li class="has-dd">
+      <a href="primer-equipo.html">Primer Equipo <span class="caret">▾</span></a>
+      <div class="dd-menu">
+        <a href="primer-equipo.html"><span class="di">🏆</span>Primer Equipo</a>
+        <a href="primer-equipo.html#squad"><span class="di">👥</span>Plantilla</a>
+        <a href="primer-equipo.html#noticias"><span class="di">📰</span>Noticias</a>
+        <a href="primer-equipo.html#resultados"><span class="di">📅</span>Resultados</a>
+      </div>
+    </li>
+    <li class="has-dd">
+      <a href="calendario.html" class="active">Cantera <span class="caret">▾</span></a>
+      <div class="dd-menu">
+        <a href="calendario.html" style="color:#fff;background:rgba(255,107,43,.08)"><span class="di">📅</span>Calendario</a>
+        <a href="estadisticas.html"><span class="di">📊</span>Estadísticas</a>
+        <a href="inscripciones.html"><span class="di">📋</span>Inscripciones</a>
+      </div>
+    </li>
+    <li><a href="index.html#tienda">Tienda</a></li>
+    <li><a href="patrocinadores.html">Partners</a></li>
+  </ul>
+  <a href="inscripciones.html" class="nav-cta">Únete</a>
+  <div class="nav-burger" id="navBurger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+</nav>
+
+<!-- MOBILE NAV -->
+<div class="mob-nav" id="mobNav">
+  <div class="mob-label">El Club</div>
+  <a href="index.html#about">🏛️ Historia</a>
+  <a href="index.html#teams">🏀 Equipos</a>
+  <a href="index.html#noticias">📰 Noticias</a>
+  <a href="index.html#pabellon">🏟️ Pabellón</a>
+  <a href="galeria.html">📷 Galería</a>
+  <div class="mob-label">Primer Equipo</div>
+  <a href="primer-equipo.html">🏆 Inicio Primer Equipo</a>
+  <a href="primer-equipo.html#squad">👥 Plantilla</a>
+  <a href="primer-equipo.html#noticias">📰 Noticias</a>
+  <a href="primer-equipo.html#resultados">📅 Resultados</a>
+  <div class="mob-label">Cantera</div>
+  <a href="calendario.html" class="active">📅 Calendario</a>
+  <a href="estadisticas.html">📊 Estadísticas</a>
+  <a href="inscripciones.html">📋 Inscripciones</a>
+  <div class="mob-label">Club</div>
+  <a href="index.html#tienda">🛍️ Tienda</a>
+  <a href="patrocinadores.html">💼 Partners</a>
+  <a href="inscripciones.html" class="mob-cta">Únete al club →</a>
+</div>
+
+
+
+<!-- HERO -->
+<section class="cal-hero">
+  <div class="cal-hero-inner">
+    <div class="cal-eyebrow">Temporada 2026-27</div>
+    <h1 class="cal-title">CALENDARIO<br><em>DE PARTIDOS</em></h1>
+    <p class="cal-sub">Todos los partidos de nuestras categorías en un solo lugar. Consulta jornadas, horarios y resultados.</p>
+    <div class="cal-season-badge">
+      <span></span>
+      TEMPORADA 2026-27 · 8 CATEGORÍAS · 18 EQUIPOS
+    </div>
+  </div>
+</section>
+
+<!-- PENDING BANNER -->
+<div class="pending-banner" id="pendingBanner">
+  <div class="pending-banner-icon">🗓️</div>
+  <div class="pending-banner-text">
+    <strong>Calendarios pendientes de publicación</strong>
+    <span>Los horarios se publicarán aquí en cuanto la FMB confirme las jornadas de la temporada 2026-27</span>
+  </div>
+  <a href="https://wa.me/34952699700?text=Hola!%20Quisiera%20recibir%20aviso%20cuando%20salga%20el%20calendario%202026-27" target="_blank" class="pending-banner-cta">📲 Avisarme por WhatsApp</a>
+</div>
+
+<!-- MAIN -->
+<main class="cal-main">
+
+  <!-- STATS -->
+  <div class="cal-stats" id="calStats">
+    <div class="cal-stat">
+      <div class="cal-stat-num" id="statTotal">—</div>
+      <div class="cal-stat-label">Partidos</div>
+    </div>
+    <div class="cal-stat">
+      <div class="cal-stat-num" id="statJugados">—</div>
+      <div class="cal-stat-label">Jugados</div>
+    </div>
+    <div class="cal-stat">
+      <div class="cal-stat-num" id="statPendientes">—</div>
+      <div class="cal-stat-label">Pendientes</div>
+    </div>
+    <div class="cal-stat">
+      <div class="cal-stat-num" id="statCategorias">8</div>
+      <div class="cal-stat-label">Categorías</div>
+    </div>
+  </div>
+
+  <!-- FILTER -->
+  <div class="filter-bar" id="filterBar">
+    <button class="filter-pill active" data-cat="all" onclick="filterCat('all',this)">Todas</button>
+    <button class="filter-pill" data-cat="premini" onclick="filterCat('premini',this)">PreMini</button>
+    <button class="filter-pill" data-cat="mini" onclick="filterCat('mini',this)">Mini</button>
+    <button class="filter-pill" data-cat="prebenjamin" onclick="filterCat('prebenjamin',this)">Prebenjamín</button>
+    <button class="filter-pill" data-cat="benjamin" onclick="filterCat('benjamin',this)">Benjamín</button>
+    <button class="filter-pill" data-cat="alevin" onclick="filterCat('alevin',this)">Alevín</button>
+    <button class="filter-pill" data-cat="infantil" onclick="filterCat('infantil',this)">Infantil</button>
+    <button class="filter-pill" data-cat="cadete" onclick="filterCat('cadete',this)">Cadete</button>
+    <button class="filter-pill" data-cat="junior" onclick="filterCat('junior',this)">Junior</button>
+  </div>
+
+  <!-- CATEGORY BLOCKS — generated by JS -->
+  <div id="calContainer"></div>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 CD Enrique Soler · <a href="index.html">Inicio</a> · <a href="galeria.html">Galería</a> · <a href="estadisticas.html">Estadísticas</a> · <a href="inscripciones.html">Inscripciones</a> · <a href="patrocinadores.html">Partners</a> · <a href="https://wa.me/34952699700" target="_blank" rel="noopener" style="color:#25D366">WhatsApp</a></p>
+</footer>
+
+<!-- WHATSAPP -->
+<a href="https://wa.me/34952699700" target="_blank" class="wa-float" title="WhatsApp">💬</a>
+
+<script>
+gsap.registerPlugin(ScrollTrigger);
+
+/* =====================================================================
+   CURSOR
+===================================================================== */
+const cur=document.getElementById('cur'),dot=document.getElementById('dot');
+let mx=0,my=0,dx=0,dy=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;});
+(function loop(){dx+=(mx-dx)*.1;dy+=(my-dy)*.1;cur.style.left=mx+'px';cur.style.top=my+'px';dot.style.left=dx+'px';dot.style.top=dy+'px';requestAnimationFrame(loop);})();
+
+/* =====================================================================
+   MOBILE NAV
+===================================================================== */
+function toggleMenu(){
+  const nav=document.getElementById('mobNav');
+  const burger=document.getElementById('navBurger');
+  nav.classList.toggle('open');
+  burger.classList.toggle('open');
+}
+function closeMenu(){
+  document.getElementById('mobNav').classList.remove('open');
+  document.getElementById('navBurger').classList.remove('open');
+}
+
+/* =====================================================================
+   ██████████████████████████████████████████████████
+   ██                                              ██
+   ██   AÑADE LOS PARTIDOS AQUÍ                   ██
+   ██                                              ██
+   ██   Cuando llegue el calendario de la FMB,    ██
+   ██   rellena los datos en este array.          ██
+   ██                                              ██
+   ██   CAMPOS:                                   ██
+   ██   cat       → 'premini' | 'mini' |          ██
+   ██               'prebenjamin' | 'benjamin' |  ██
+   ██               'alevin' | 'infantil' |       ██
+   ██               'cadete' | 'junior'           ██
+   ██   jornada   → número de jornada (1, 2...)   ██
+   ██   fecha     → 'DD/MM/YYYY' o null           ██
+   ██   hora      → 'HH:MM' o null                ██
+   ██   local     → nombre equipo local           ██
+   ██   visitante → nombre equipo visitante       ██
+   ██   pabellon  → nombre del pabellón           ██
+   ██   resultado → '72-68' o null si no jugado   ██
+   ██   estado    → 'pendiente' | 'jugado' |      ██
+   ██               'hoy' | 'aplazado'            ██
+   ██                                              ██
+   ██████████████████████████████████████████████████
+
+   EJEMPLO DE PARTIDO (descomenta y modifica):
+
+   {
+     id: 1,
+     cat: 'benjamin',
+     jornada: 1,
+     fecha: '18/10/2026',
+     hora: '10:30',
+     local: 'CD Enrique Soler',
+     visitante: 'CB Melilla',
+     pabellon: 'Pabellón Municipal Enrique Soler',
+     resultado: null,
+     estado: 'pendiente'
+   },
+
+   PARTIDO YA JUGADO CON RESULTADO:
+   {
+     id: 2,
+     cat: 'benjamin',
+     jornada: 1,
+     fecha: '18/10/2026',
+     hora: '10:30',
+     local: 'CD Enrique Soler',
+     visitante: 'CB Melilla',
+     pabellon: 'Pabellón Municipal Enrique Soler',
+     resultado: { local: 72, visitante: 68 },
+     estado: 'jugado'
+   },
+
+===================================================================== */
+const PARTIDOS = [
+
+  /* ── PREMINI ──────────────────────────────────────── */
+  /* Añade partidos de PreMini aquí */
+
+  /* ── MINI ─────────────────────────────────────────── */
+  /* Añade partidos de Mini aquí */
+
+  /* ── PREBENJAMÍN ──────────────────────────────────── */
+  /* Añade partidos de Prebenjamín aquí */
+
+  /* ── BENJAMÍN ─────────────────────────────────────── */
+  /* Añade partidos de Benjamín aquí */
+
+  /* ── ALEVÍN ───────────────────────────────────────── */
+  /* Añade partidos de Alevín aquí */
+
+  /* ── INFANTIL ─────────────────────────────────────── */
+  /* Añade partidos de Infantil aquí */
+
+  /* ── CADETE ───────────────────────────────────────── */
+  /* Añade partidos de Cadete aquí */
+
+  /* ── JUNIOR ───────────────────────────────────────── */
+  /* Añade partidos de Junior aquí */
+
+];
+/* =====================================================================
+   FIN DEL ARRAY DE PARTIDOS
+===================================================================== */
+
+/* Categorías */
+const CATS = {
+  premini:     { label: 'PreMini',     edad: '5-7 años',   color: '#FF6B2B' },
+  mini:        { label: 'Mini',        edad: '8-9 años',   color: '#FF8040' },
+  prebenjamin: { label: 'Prebenjamín', edad: '10-11 años', color: '#E85000' },
+  benjamin:    { label: 'Benjamín',    edad: '12-13 años', color: '#CC4400' },
+  alevin:      { label: 'Alevín',      edad: '14-15 años', color: '#1A3A8F' },
+  infantil:    { label: 'Infantil',    edad: '16-17 años', color: '#0A2463' },
+  cadete:      { label: 'Cadete',      edad: '18-19 años', color: '#2450B5' },
+  junior:      { label: 'Junior',      edad: '20-21 años', color: '#3060D0' },
+};
+
+const MESES = ['ENE','FEB','MAR','ABR','MAY','JUN','JUL','AGO','SEP','OCT','NOV','DIC'];
+
+function formatDate(fechaStr) {
+  if (!fechaStr) return null;
+  const [d, m, y] = fechaStr.split('/');
+  return { day: d, month: MESES[parseInt(m)-1], year: y };
+}
+
+function buildMatchCard(p) {
+  const fecha = formatDate(p.fecha);
+  const isHome = p.local.toLowerCase().includes('enrique soler') || p.local.toLowerCase().includes('cdenriquesoler');
+  let dateHTML = fecha
+    ? `<div class="match-day">${fecha.day}</div>
+       <div class="match-month">${fecha.month}</div>
+       ${p.hora ? `<div class="match-time">${p.hora}</div>` : '<div class="match-time" style="color:rgba(255,255,255,.2)">--:--</div>'}`
+    : `<div class="match-tbd">FECHA<br>POR<br>CONF.</div>`;
+
+  let resultHTML = '';
+  if (p.estado === 'jugado' && p.resultado) {
+    const winLocal = p.resultado.local > p.resultado.visitante;
+    const localColor = isHome ? (winLocal ? 'var(--o)' : 'rgba(255,255,255,.5)') : 'rgba(255,255,255,.5)';
+    resultHTML = `<div class="match-result" style="color:${localColor}">${p.resultado.local}<span style="color:rgba(255,255,255,.2);font-size:16px;"> - </span>${p.resultado.visitante}</div>`;
+  }
+  const statusLabels = {
+    pendiente: 'Pendiente',
+    jugado:    'Finalizado',
+    hoy:       '🔴 Hoy',
+    aplazado:  '⚠️ Aplazado'
+  };
+
+  return `
+    <div class="match-card ${p.estado}" data-cat="${p.cat}">
+      <div class="match-date">${dateHTML}</div>
+      <div class="match-teams">
+        <div class="match-jornada">Jornada ${p.jornada}</div>
+        <div class="match-vs">
+          <span class="match-team ${isHome ? 'home' : ''}">${p.local}</span>
+          <span class="match-separator">vs</span>
+          <span class="match-team">${p.visitante}</span>
+        </div>
+        ${p.pabellon ? `<div class="match-venue">📍 ${p.pabellon}</div>` : ''}
+      </div>
+      <div class="match-right">
+        ${resultHTML}
+        <div class="match-status status-${p.estado}">${statusLabels[p.estado] || p.estado}</div>
+      </div>
+    </div>`;
+}
+
+function buildCalendar() {
+  const container = document.getElementById('calContainer');
+  let html = '';
+  let totalPartidos = 0, jugados = 0;
+
+  Object.entries(CATS).forEach(([key, cat]) => {
+    const partidos = PARTIDOS.filter(p => p.cat === key);
+    const count = partidos.length;
+    totalPartidos += count;
+    jugados += partidos.filter(p => p.estado === 'jugado').length;
+
+    const matchesHTML = count > 0
+      ? `<div class="matches-list">${partidos.map(buildMatchCard).join('')}</div>`
+      : `<div class="empty-state">
+           <div class="empty-icon">🗓️</div>
+           <div class="empty-title">Calendario pendiente</div>
+           <div class="empty-text">Los horarios de ${cat.label} se publicarán en cuanto la FMB confirme las jornadas de la temporada 2026-27.</div>
+         </div>`;
+
+    html += `
+      <div class="cat-block visible" data-cat="${key}" id="cat-${key}">
+        <div class="cat-header">
+          <div class="cat-dot" style="background:${cat.color}"></div>
+          <span class="cat-name">${cat.label}</span>
+          <span class="cat-meta">${cat.edad}</span>
+          <span class="cat-count">${count > 0 ? count + ' partido' + (count !== 1 ? 's' : '') : 'Pendiente'}</span>
+        </div>
+        ${matchesHTML}
+      </div>`;
+  });
+
+  container.innerHTML = html;
+
+  // Update stats
+  document.getElementById('statTotal').textContent = totalPartidos > 0 ? totalPartidos : '—';
+  document.getElementById('statJugados').textContent = jugados > 0 ? jugados : '—';
+  document.getElementById('statPendientes').textContent = totalPartidos > 0 ? (totalPartidos - jugados) : '—';
+
+  // Show/hide pending banner
+  if (totalPartidos > 0) {
+    document.getElementById('pendingBanner').style.display = 'none';
+  }
+
+  // Animate cards
+  gsap.from('.cat-block', {
+    opacity: 0, y: 24, duration: .5, stagger: .08,
+    scrollTrigger: { trigger: '#calContainer', start: 'top 85%' }
+  });
+
+  // Cursor hover
+  document.querySelectorAll('a,button,.match-card,.wa-float').forEach(el => {
+    el.addEventListener('mouseenter', () => cur.classList.add('h'));
+    el.addEventListener('mouseleave', () => cur.classList.remove('h'));
+  });
+}
+
+function filterCat(cat, btn) {
+  // Update pills
+  document.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+
+  // Show/hide blocks
+  document.querySelectorAll('.cat-block').forEach(block => {
+    if (cat === 'all' || block.dataset.cat === cat) {
+      block.classList.add('visible');
+    } else {
+      block.classList.remove('visible');
+    }
+  });
+
+  // Scroll to first visible block
+  const first = document.querySelector('.cat-block.visible');
+  if (first) first.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+// Init
+buildCalendar();
+</script>
+</body>
+</html>
