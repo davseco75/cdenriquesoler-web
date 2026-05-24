@@ -1,0 +1,114 @@
+{
+  "items": [
+    {
+      "nombre": "Sudadera Oversize Premium",
+      "descripcion": "Algodón 320g/m². Corte oversize. Bordado frontal + etiqueta tejida. La prenda estrella del club.",
+      "precio": 55,
+      "imagen": "tienda/modelo-sudadera-naranja.jpg",
+      "chip": "⭐ Más vendido",
+      "tallas": ["XS", "S", "M", "L", "XL", "XXL"],
+      "colores": ["🟧 Naranja", "🟦 Azul Navy"],
+      "destacado": true,
+      "disponible": true
+    },
+    {
+      "nombre": "Camiseta Warm-Up NBA Style",
+      "descripcion": "Microfibra ligera. Transpirable · Secado rápido. Disponible en azul navy y naranja.",
+      "precio": 45,
+      "imagen": "tienda/catalogo-azul.jpg",
+      "chip": "Diseño exclusivo",
+      "tallas": ["S", "M", "L", "XL", "XXL"],
+      "colores": ["🟦 Azul Navy", "🟧 Naranja"],
+      "destacado": false,
+      "disponible": true
+    },
+    {
+      "nombre": "Mochila Oficial",
+      "descripcion": "Poliéster 600D resistente al agua. Bolsillo principal + frontal. 48×32×18 cm.",
+      "precio": 38,
+      "imagen": "tienda/catalogo-naranja.jpg",
+      "chip": "",
+      "tallas": [],
+      "colores": ["🟧 Naranja", "🟦 Azul Navy"],
+      "destacado": false,
+      "disponible": true
+    },
+    {
+      "nombre": "Gorra Lifestyle",
+      "descripcion": "Algodón premium. Bordado 3D frontal. Cierre trasero regulable. Talla única.",
+      "precio": 22,
+      "imagen": "tienda/catalogo-azul.jpg",
+      "chip": "",
+      "tallas": ["Talla única"],
+      "colores": ["🟦 Azul Navy", "🟧 Naranja"],
+      "destacado": false,
+      "disponible": true
+    },
+    {
+      "nombre": "Calcetines Oficiales",
+      "descripcion": "Transpirables. Amortiguación en talón y puntera. Compresión en arco.",
+      "precio": 12,
+      "imagen": "tienda/equipo-calcetines.jpg",
+      "chip": "3 colores",
+      "tallas": ["S (35-38)", "M (39-42)", "L (43-46)", "XL (47-50)"],
+      "colores": ["🟧 Naranja", "🟦 Azul Navy", "⬜ Blanco"],
+      "destacado": false,
+      "disponible": true
+    },
+    {
+      "nombre": "Chándal Completo Oficial 2026",
+      "descripcion": "100% poliéster. Cortavientos, cremallera completa con tirador personalizado. Bolsillos invisibles.",
+      "precio": 75,
+      "imagen": "tienda/chandal-poster.jpg",
+      "chip": "Nuevo 2026",
+      "tallas": ["XS", "S", "M", "L", "XL", "2XL", "3XL"],
+      "colores": ["🟧 Naranja", "🟦 Azul Navy"],
+      "destacado": false,
+      "disponible": true
+    },
+    {
+      "nombre": "Jogger Premium Lifestyle",
+      "descripcion": "92% poliéster · 8% elastano. Bolsillos con cremallera. Corte slim moderno. 260g/m².",
+      "precio": 42,
+      "imagen": "tienda/coleccion-poster.jpg",
+      "chip": "",
+      "tallas": ["XS", "S", "M", "L", "XL", "2XL"],
+      "colores": ["🟧 Naranja", "🟦 Azul Navy"],
+      "destacado": false,
+      "disponible": true
+    },
+    {
+      "nombre": "Equipación Oficial 2026 · 6 Diseños",
+      "descripcion": "Tejido técnico DRY-FIT premium. 6 opciones de diseño exclusivo. Parche siliconado. Tallas desde 4XS hasta 3XL.",
+      "precio": 45,
+      "imagen": "tienda/equipacion-oficial.jpg",
+      "chip": "Equipación oficial",
+      "tallas": ["4XS", "3XS", "2XS", "XS", "S", "M", "L", "XL", "2XL", "3XL"],
+      "colores": ["🟧 Naranja"],
+      "destacado": true,
+      "disponible": true
+    },
+    {
+      "nombre": "Equipación Suplente 2026",
+      "descripcion": "Azul marino · Naranja. Logo bordado premium. Laterales con contraste. DRY-FIT.",
+      "precio": 45,
+      "imagen": "tienda/equipacion-suplente.jpg",
+      "chip": "",
+      "tallas": ["XS", "S", "M", "L", "XL", "2XL"],
+      "colores": ["🟦 Azul Navy"],
+      "destacado": false,
+      "disponible": true
+    },
+    {
+      "nombre": "Training Coach Collection",
+      "descripcion": "Colección exclusiva para entrenadores y staff. Polo técnico + chaqueta + pantalón. Azul marino · Naranja. 150g/m².",
+      "precio": 65,
+      "imagen": "tienda/entrenadores-promo.jpg",
+      "chip": "Staff Técnico",
+      "tallas": ["XS", "S", "M", "L", "XL", "2XL", "3XL"],
+      "colores": ["🟦 Azul Navy", "🟧 Naranja"],
+      "destacado": false,
+      "disponible": true
+    }
+  ]
+}

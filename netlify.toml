@@ -1,4 +1,26 @@
+# ================================================================
+#  Netlify config — CD Enrique Soler
+# ================================================================
+
+[build]
+  publish = "."
+
+# ── Headers ──────────────────────────────────────────────────────
 [[headers]]
   for = "/*"
   [headers.values]
     Cache-Control = "no-cache, no-store, must-revalidate"
+
+# Los JSON del CMS deben ser accesibles con CORS para fetch()
+[[headers]]
+  for = "/data/*.json"
+  [headers.values]
+    Access-Control-Allow-Origin = "*"
+    Cache-Control = "public, max-age=60"
+    Content-Type = "application/json; charset=utf-8"
+
+# El panel /admin no debe estar indexado
+[[headers]]
+  for = "/admin/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"

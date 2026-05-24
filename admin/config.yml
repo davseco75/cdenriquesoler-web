@@ -1,0 +1,346 @@
+# ================================================================
+#  Decap CMS — CD Enrique Soler
+#  Panel: https://cdenriquesoler.com/admin
+# ================================================================
+
+backend:
+  name: git-gateway
+  branch: main
+  commit_messages:
+    create:  'CMS: nueva {{collection}} "{{slug}}"'
+    update:  'CMS: actualiza {{collection}} "{{slug}}"'
+    delete:  'CMS: elimina {{collection}} "{{slug}}"'
+    uploadMedia: 'CMS: sube imagen {{path}}'
+
+# Idioma del panel
+locale: es
+
+# Subida de imágenes
+media_folder: "assets/uploads"
+public_folder: "/assets/uploads"
+
+# ================================================================
+#  COLECCIONES
+# ================================================================
+collections:
+
+  # ── NOTICIAS ─────────────────────────────────────────────────
+  - name: "noticias"
+    label: "📰 Noticias"
+    description: "Noticias del club (portada) y del primer equipo"
+    files:
+      - name: "noticias"
+        label: "Gestionar noticias"
+        file: "data/noticias.json"
+        fields:
+          - label: "Noticias"
+            name: "items"
+            widget: "list"
+            summary: "[{{fields.seccion}}] {{fields.titulo}} — {{fields.fecha}}"
+            fields:
+              - label: "Sección"
+                name: "seccion"
+                widget: "select"
+                options:
+                  - { label: "Portada (index)", value: "general" }
+                  - { label: "Primer Equipo",   value: "equipo" }
+              - label: "Tipo"
+                name: "tipo"
+                widget: "select"
+                options:
+                  - { label: "Artículo principal (grande)",  value: "principal" }
+                  - { label: "Foto con pie",                 value: "foto" }
+                  - { label: "Noticia pequeña (card)",       value: "small" }
+                  - { label: "Noticia primer equipo (card)", value: "card" }
+              - label: "Título"
+                name: "titulo"
+                widget: "string"
+              - label: "Tag / Categoría"
+                name: "tag"
+                widget: "string"
+                required: false
+                hint: "Ej: FICHAJE, CRÓNICA, Resultados, Escuela …"
+              - label: "Texto / Resumen"
+                name: "texto"
+                widget: "text"
+                required: false
+              - label: "Imagen"
+                name: "imagen"
+                widget: "image"
+                required: false
+                media_folder: "/"
+                public_folder: "/"
+              - label: "Fecha"
+                name: "fecha"
+                widget: "string"
+                required: false
+                hint: "Ej: 22 Mayo 2026"
+              - label: "Autor"
+                name: "autor"
+                widget: "string"
+                required: false
+              - label: "Enlace (URL)"
+                name: "link"
+                widget: "string"
+                required: false
+                hint: "Dejar vacío si no hay enlace"
+              - label: "Emoji decorativo"
+                name: "emoji"
+                widget: "string"
+                required: false
+                hint: "Solo para tipo 'small'. Ej: 👥"
+              - label: "Gradiente de fondo"
+                name: "gradiente"
+                widget: "string"
+                required: false
+                hint: "Solo para tipo 'small'. Ej: linear-gradient(135deg,#3D1500,#FF6B2B)"
+              - label: "Color del tag"
+                name: "color"
+                widget: "string"
+                required: false
+                hint: "Solo para noticias de equipo. Ej: #4ade80"
+              - label: "Fondo del tag"
+                name: "bg"
+                widget: "string"
+                required: false
+                hint: "Solo para noticias de equipo. Ej: rgba(74,222,128,.1)"
+
+  # ── PLANTILLA ────────────────────────────────────────────────
+  - name: "plantilla"
+    label: "👥 Plantilla"
+    description: "Jugadores y cuerpo técnico del primer equipo"
+    files:
+      - name: "plantilla"
+        label: "Gestionar plantilla"
+        file: "data/plantilla.json"
+        fields:
+          - label: "Jugadores"
+            name: "items"
+            widget: "list"
+            summary: "#{{fields.num}} {{fields.nombre}} — {{fields.pos}}"
+            fields:
+              - label: "Dorsal"
+                name: "num"
+                widget: "number"
+                value_type: "int"
+                min: 0
+                max: 99
+              - label: "Nombre completo"
+                name: "nombre"
+                widget: "string"
+              - label: "Posición"
+                name: "pos"
+                widget: "select"
+                options: ["Base", "Escolta", "Alero", "Ala-Pívot", "Pívot"]
+              - label: "Capitán"
+                name: "cap"
+                widget: "boolean"
+                default: false
+              - label: "Partidos jugados"
+                name: "pj"
+                widget: "number"
+                value_type: "int"
+                default: 0
+              - label: "Puntos por partido"
+                name: "ppg"
+                widget: "number"
+                value_type: "float"
+                step: 0.1
+                default: 0
+              - label: "Rebotes por partido"
+                name: "rpg"
+                widget: "number"
+                value_type: "float"
+                step: 0.1
+                default: 0
+              - label: "Asistencias por partido"
+                name: "apg"
+                widget: "number"
+                value_type: "float"
+                step: 0.1
+                default: 0
+          - label: "Cuerpo técnico"
+            name: "staff"
+            widget: "list"
+            summary: "{{fields.nombre}} — {{fields.rol}}"
+            fields:
+              - label: "Nombre"
+                name: "nombre"
+                widget: "string"
+              - label: "Cargo"
+                name: "rol"
+                widget: "string"
+              - label: "Icono (emoji)"
+                name: "icon"
+                widget: "string"
+                default: "🏀"
+
+  # ── PARTIDOS & CLASIFICACIÓN ──────────────────────────────────
+  - name: "temporada"
+    label: "📅 Partidos & Clasificación"
+    description: "Resultados de la temporada y tabla clasificatoria"
+    files:
+      - name: "temporada"
+        label: "Temporada 2025/26"
+        file: "data/partidos.json"
+        fields:
+          - label: "Temporada"
+            name: "temporada"
+            widget: "string"
+            default: "2025/26"
+          - label: "Grupo / Competición"
+            name: "grupo"
+            widget: "string"
+          - label: "Partidos"
+            name: "partidos"
+            widget: "list"
+            summary: "J{{fields.jornada}} · {{fields.fecha}} · {{fields.local}} vs {{fields.visitante}}"
+            fields:
+              - label: "Nº"
+                name: "id"
+                widget: "number"
+                value_type: "int"
+              - label: "Jornada"
+                name: "jornada"
+                widget: "number"
+                value_type: "int"
+              - label: "Fecha (DD/MM/AAAA)"
+                name: "fecha"
+                widget: "string"
+              - label: "Hora"
+                name: "hora"
+                widget: "string"
+                hint: "Ej: 19:30"
+              - label: "Equipo local"
+                name: "local"
+                widget: "string"
+              - label: "Equipo visitante"
+                name: "visitante"
+                widget: "string"
+              - label: "Pabellón"
+                name: "pabellon"
+                widget: "string"
+              - label: "Estado"
+                name: "estado"
+                widget: "select"
+                options:
+                  - { label: "Jugado",     value: "jugado" }
+                  - { label: "Programado", value: "programado" }
+                  - { label: "Aplazado",   value: "aplazado" }
+              - label: "Resultado"
+                name: "resultado"
+                widget: "object"
+                required: false
+                fields:
+                  - label: "Puntos equipo local"
+                    name: "local"
+                    widget: "number"
+                    value_type: "int"
+                    required: false
+                  - label: "Puntos equipo visitante"
+                    name: "visitante"
+                    widget: "number"
+                    value_type: "int"
+                    required: false
+          - label: "Clasificación"
+            name: "clasificacion"
+            widget: "list"
+            summary: "{{fields.pos}}º {{fields.equipo}} — {{fields.pts}} pts"
+            fields:
+              - label: "Posición"
+                name: "pos"
+                widget: "number"
+                value_type: "int"
+              - label: "Equipo"
+                name: "equipo"
+                widget: "string"
+              - label: "Partidos jugados"
+                name: "pj"
+                widget: "number"
+                value_type: "int"
+              - label: "Victorias"
+                name: "g"
+                widget: "number"
+                value_type: "int"
+              - label: "Derrotas"
+                name: "p"
+                widget: "number"
+                value_type: "int"
+              - label: "Puntos"
+                name: "pts"
+                widget: "number"
+                value_type: "int"
+              - label: "Zona"
+                name: "zona"
+                widget: "select"
+                options:
+                  - { label: "Ascenso",  value: "ascenso" }
+                  - { label: "Playoff",  value: "playoff" }
+                  - { label: "Normal",   value: "normal" }
+                  - { label: "Descenso", value: "descenso" }
+              - label: "¿Es nuestro equipo?"
+                name: "local"
+                widget: "boolean"
+                default: false
+
+  # ── TIENDA ────────────────────────────────────────────────────
+  - name: "tienda"
+    label: "🛍️ Tienda"
+    description: "Productos de la tienda oficial del club"
+    files:
+      - name: "tienda"
+        label: "Gestionar productos"
+        file: "data/tienda.json"
+        fields:
+          - label: "Productos"
+            name: "items"
+            widget: "list"
+            summary: "{{fields.nombre}} — €{{fields.precio}}"
+            fields:
+              - label: "Nombre del producto"
+                name: "nombre"
+                widget: "string"
+              - label: "Descripción"
+                name: "descripcion"
+                widget: "text"
+              - label: "Precio (€)"
+                name: "precio"
+                widget: "number"
+                value_type: "float"
+                step: 0.5
+              - label: "Imagen"
+                name: "imagen"
+                widget: "image"
+                required: false
+                media_folder: "/tienda"
+                public_folder: "/tienda"
+              - label: "Etiqueta / Chip"
+                name: "chip"
+                widget: "string"
+                required: false
+                hint: "Ej: ⭐ Más vendido, Nuevo 2026, Diseño exclusivo …"
+              - label: "Tallas disponibles"
+                name: "tallas"
+                widget: "list"
+                field:
+                  label: "Talla"
+                  name: "talla"
+                  widget: "string"
+                required: false
+              - label: "Colores disponibles"
+                name: "colores"
+                widget: "list"
+                field:
+                  label: "Color"
+                  name: "color"
+                  widget: "string"
+                required: false
+              - label: "Producto destacado"
+                name: "destacado"
+                widget: "boolean"
+                default: false
+                hint: "Los destacados aparecen con tarjeta grande"
+              - label: "Disponible"
+                name: "disponible"
+                widget: "boolean"
+                default: true

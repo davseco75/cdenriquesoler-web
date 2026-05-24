@@ -1,0 +1,98 @@
+{
+  "items": [
+    {
+      "seccion": "general",
+      "tipo": "principal",
+      "titulo": "150 niños viajan al Torneo \"Sin Insultos\"",
+      "tag": "🏆 Torneo · Valores en el deporte",
+      "texto": "Una jornada histórica: 150 jóvenes jugadores cruzaron el estrecho en barco para participar en el encuentro nacional que pone el respeto por encima del resultado.",
+      "imagen": "galeria/foto-005.jpg",
+      "fecha": "22 Mayo 2026",
+      "autor": "José Ángel González",
+      "stats": [
+        { "num": "136", "label": "Deportistas del club" },
+        { "num": "400+", "label": "Atletas en total" },
+        { "num": "39",   "label": "Equipos participantes" },
+        { "num": "44",   "label": "Partidos jugados" }
+      ]
+    },
+    {
+      "seccion": "general",
+      "tipo": "foto",
+      "titulo": "El equipo femenino en el hotel",
+      "imagen": "galeria/foto-015.jpg"
+    },
+    {
+      "seccion": "general",
+      "tipo": "foto",
+      "titulo": "Cena de equipo la noche antes",
+      "imagen": "galeria/foto-025.jpg"
+    },
+    {
+      "seccion": "general",
+      "tipo": "foto",
+      "titulo": "¡Llegamos al hotel! 🧡",
+      "imagen": "galeria/foto-035.jpg"
+    },
+    {
+      "seccion": "general",
+      "tipo": "small",
+      "tag": "Escuela",
+      "titulo": "Abierto el periodo de inscripción en escuela de baloncesto",
+      "fecha": "Abril 2026",
+      "link": "inscripciones.html",
+      "emoji": "👥",
+      "gradiente": "linear-gradient(135deg,#3D1500,#FF6B2B)"
+    },
+    {
+      "seccion": "general",
+      "tipo": "small",
+      "tag": "Resultados",
+      "titulo": "El equipo cadete femenino, campeón autonómico",
+      "fecha": "Marzo 2026",
+      "link": "",
+      "emoji": "🌟",
+      "gradiente": "linear-gradient(135deg,#0A2463,#1A3A8F)"
+    },
+    {
+      "seccion": "equipo",
+      "tipo": "card",
+      "tag": "FICHAJE",
+      "color": "#4ade80",
+      "bg": "rgba(74,222,128,.1)",
+      "fecha": "Junio 2026",
+      "titulo": "El club confirma la renovación de Javier Navarro para el 2026-27",
+      "texto": "El pívot melillense continúa un año más con el equipo naranja. Con él se cierra el bloque del equipo para la nueva temporada."
+    },
+    {
+      "seccion": "equipo",
+      "tipo": "card",
+      "tag": "CRÓNICA",
+      "color": "#FF9A6C",
+      "bg": "rgba(255,107,43,.1)",
+      "fecha": "1 Feb 2026",
+      "titulo": "Victoria ante CB Huércal-Overa (91-74) en la última jornada en casa",
+      "texto": "El equipo cerró la primera vuelta con una contundente victoria que lo sitúa en tercera posición del Grupo DA."
+    },
+    {
+      "seccion": "equipo",
+      "tipo": "card",
+      "tag": "DESPLAZAMIENTO",
+      "color": "#60a5fa",
+      "bg": "rgba(96,165,250,.1)",
+      "fecha": "8 Ene 2026",
+      "titulo": "El equipo viaja a Nerja para la jornada 11 del Grupo DA",
+      "texto": "El primer equipo parte el viernes por la tarde hacia Nerja. Más de 20 aficionados se unen al viaje en el desplazamiento organizado."
+    },
+    {
+      "seccion": "equipo",
+      "tipo": "card",
+      "tag": "PREVIA",
+      "color": "#FFD166",
+      "bg": "rgba(255,209,102,.1)",
+      "fecha": "3 Oct 2025",
+      "titulo": "Arranca la temporada: el equipo debuta en casa ante CB Motril",
+      "texto": "El Pabellón Municipal acoge el primer partido de la temporada 2025-26 este domingo a las 12:00. Ven a apoyar al equipo naranja."
+    }
+  ]
+}
