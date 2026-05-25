@@ -459,8 +459,13 @@
     /* PABELLÓN */
     #pabellon{padding:110px 8%;background:var(--dark);}
     .pab-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;}
-    .pab-photo{border-radius:20px;overflow:hidden;aspect-ratio:4/3;background:var(--card);display:flex;align-items:center;justify-content:center;font-size:100px;position:relative;border:1px solid rgba(255,107,43,.08);}
-    .pab-photo .pab-name{position:absolute;bottom:20px;left:20px;font-family:'Bebas Neue';font-size:18px;line-height:1.2;color:rgba(255,255,255,.65);}
+    .pab-media{border-radius:20px;overflow:hidden;border:1px solid rgba(255,107,43,.08);display:flex;flex-direction:column;}
+    .pab-photo-img{position:relative;height:280px;overflow:hidden;flex-shrink:0;}
+    .pab-photo-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s;}
+    .pab-media:hover .pab-photo-img img{transform:scale(1.03);}
+    .pab-photo-img .pab-name{position:absolute;bottom:14px;left:14px;font-family:'Bebas Neue';font-size:16px;line-height:1.2;color:#fff;background:rgba(0,0,0,.45);backdrop-filter:blur(8px);padding:5px 12px;border-radius:6px;}
+    .pab-map{height:220px;overflow:hidden;flex-shrink:0;border-top:1px solid rgba(255,107,43,.08);}
+    .pab-map iframe{width:100%;height:100%;border:0;display:block;filter:invert(90%) hue-rotate(180deg);opacity:.85;}
     .pab-tag{font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--o);margin-bottom:12px;display:flex;align-items:center;gap:10px;}
     .pab-tag::before{content:'';width:28px;height:2px;background:var(--o);}
     .pab-grid h2{font-size:clamp(40px,4.5vw,64px);line-height:.92;margin-bottom:16px;}
@@ -1318,18 +1323,37 @@
 <!-- PABELLÓN -->
 <section id="pabellon">
   <div class="pab-grid">
-    <div class="pab-photo">🏟️<div class="pab-name">Pabellón<br>Guillermo García Pezzi</div></div>
+
+    <!-- Foto + Mapa -->
+    <div class="pab-media">
+      <div class="pab-photo-img">
+        <img src="galeria/foto-pabellon.jpg" alt="Pabellón Guillermo García Pezzi · Melilla" />
+        <div class="pab-name">Pabellón Guillermo García Pezzi</div>
+      </div>
+      <div class="pab-map">
+        <iframe
+          src="https://maps.google.com/maps?q=Pabellon+Guillermo+Garcia+Pezzi+Melilla&t=&z=15&ie=UTF8&iwloc=&output=embed"
+          width="100%" height="100%" style="border:0;"
+          allowfullscreen="" loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Pabellón Guillermo García Pezzi · Melilla">
+        </iframe>
+      </div>
+    </div>
+
+    <!-- Datos -->
     <div>
       <div class="pab-tag">Instalaciones</div>
       <h2>Nuestro hogar en Melilla</h2>
-      <p>Construido en 2011. Av. Azucena, Polígono Industrial. El escenario de los momentos más emocionantes del baloncesto melillense.</p>
+      <p>El Pabellón Guillermo García Pezzi es el escenario de los momentos más emocionantes del baloncesto melillense. Sede del primer equipo y de toda la cantera del CD Enrique Soler.</p>
       <div class="pab-stats">
         <div class="ps"><div class="n">1.300</div><div class="l">Aforo</div></div>
         <div class="ps"><div class="n">2011</div><div class="l">Año de construcción</div></div>
-        <div class="ps"><div class="n">Av. Azucena</div><div class="l">Ubicación</div></div>
+        <div class="ps"><div class="n">Melilla</div><div class="l">Ubicación</div></div>
         <div class="ps"><div class="n">12+</div><div class="l">Entrenamientos semanales</div></div>
       </div>
     </div>
+
   </div>
 </section>
 
