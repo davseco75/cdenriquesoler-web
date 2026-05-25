@@ -68,8 +68,9 @@
     .mob-cta{background:var(--o)!important;color:#fff!important;text-align:center;justify-content:center;padding:14px 8px!important;border-radius:4px;margin-top:12px;font-weight:700!important;letter-spacing:.1em;}
 
     /* ── HERO ── */
-    .pe-hero{padding:110px 8% 56px;background:var(--dark2);position:relative;overflow:hidden;border-bottom:1px solid rgba(255,107,43,.1);}
+    .pe-hero{padding:110px 8% 56px;background:var(--dark2);position:relative;overflow:hidden;border-bottom:1px solid rgba(255,107,43,.1);display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:48px;}
     .pe-hero::after{content:'PRIMER EQUIPO';position:absolute;right:-1%;bottom:-8%;font-family:'Bebas Neue';font-size:16vw;color:rgba(255,107,43,.04);white-space:nowrap;pointer-events:none;line-height:1;}
+    .pe-hero-text{position:relative;z-index:1;}
     .pe-eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--o);margin-bottom:14px;}
     .pe-eyebrow::before,.pe-eyebrow::after{content:'';width:24px;height:2px;background:var(--o);}
     .pe-title{font-size:clamp(52px,7vw,88px);line-height:.9;margin-bottom:14px;}
@@ -77,6 +78,11 @@
     .pe-sub{font-size:15px;color:rgba(255,255,255,.4);max-width:500px;line-height:1.6;margin-bottom:24px;}
     .pe-badges{display:flex;flex-wrap:wrap;gap:10px;}
     .pe-badge{display:inline-flex;align-items:center;gap:7px;background:rgba(255,107,43,.08);border:1px solid rgba(255,107,43,.18);border-radius:20px;padding:6px 14px;font-size:11px;font-weight:700;color:var(--o);letter-spacing:.06em;}
+    /* hero photo */
+    .pe-hero-photo{position:relative;z-index:1;border-radius:20px;overflow:hidden;border:1px solid rgba(255,107,43,.12);box-shadow:0 32px 80px rgba(0,0,0,.6);}
+    .pe-hero-photo img{width:100%;height:380px;object-fit:cover;object-position:center top;display:block;transition:transform .6s ease;}
+    .pe-hero-photo:hover img{transform:scale(1.03);}
+    .pe-hero-photo-caption{position:absolute;bottom:0;left:0;right:0;padding:20px 20px 16px;background:linear-gradient(to top,rgba(8,4,0,.85) 0%,transparent 100%);font-family:'Bebas Neue';font-size:14px;letter-spacing:.12em;color:rgba(255,255,255,.7);}
 
     /* ── REF BANNER ── */
     .ref-banner{background:rgba(255,200,50,.05);border-top:1px solid rgba(255,200,50,.15);border-bottom:1px solid rgba(255,200,50,.15);padding:12px 8%;display:flex;align-items:center;gap:14px;}
@@ -248,11 +254,15 @@
       .standings-box{position:static;}
       .news-grid{grid-template-columns:1fr;}
       .pe-highlights{grid-template-columns:1fr;}
+      .pe-hero{grid-template-columns:1fr;gap:32px;}
+      .pe-hero-photo img{height:280px;}
     }
     @media(max-width:768px){
       .nav-links,.nav-cta{display:none;}
       .nav-burger{display:flex;}
       .pe-hero,.pe-section,.pe-section-alt,.pe-fanzone{padding-left:5%;padding-right:5%;}
+      .pe-hero{grid-template-columns:1fr;gap:24px;}
+      .pe-hero-photo img{height:220px;}
       .pe-highlights{padding:0 5%;}
       .ref-banner{padding:12px 5%;}
       .player-grid{grid-template-columns:repeat(3,1fr);gap:8px;}
@@ -329,13 +339,19 @@
 
 <!-- HERO -->
 <section class="pe-hero">
-  <div class="pe-eyebrow">Tercera FEB · Grupo DA</div>
-  <h1 class="pe-title">PRIMER<br><em>EQUIPO</em></h1>
-  <p class="pe-sub">El primer equipo del CD Enrique Soler compite en la Tercera División de la Federación Española de Baloncesto. Melilla, desde 1996.</p>
-  <div class="pe-badges">
-    <div class="pe-badge">🏆 TERCERA FEB</div>
-    <div class="pe-badge">📍 GRUPO DA</div>
-    <div class="pe-badge">🏟️ MELILLA</div>
+  <div class="pe-hero-text">
+    <div class="pe-eyebrow">Tercera FEB · Grupo DA</div>
+    <h1 class="pe-title">PRIMER<br><em>EQUIPO</em></h1>
+    <p class="pe-sub">El primer equipo del CD Enrique Soler compite en la Tercera División de la Federación Española de Baloncesto. Melilla, desde 1996.</p>
+    <div class="pe-badges">
+      <div class="pe-badge">🏆 TERCERA FEB</div>
+      <div class="pe-badge">📍 GRUPO DA</div>
+      <div class="pe-badge">🏟️ MELILLA</div>
+    </div>
+  </div>
+  <div class="pe-hero-photo">
+    <img src="galeria/foto-primer-equipo.jpg" alt="Primer equipo CD Enrique Soler — Temporada 2025-26" />
+    <div class="pe-hero-photo-caption">CD ENRIQUE SOLER · TEMPORADA 2025–26</div>
   </div>
 </section>
 
