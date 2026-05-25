@@ -3,6 +3,20 @@
     {
       "seccion": "general",
       "tipo": "principal",
+      "titulo": "¡Los Pre-Peques se coronan campeones en una final de infarto!",
+      "tag": "🏆 Campeones · Comp. Autonómica",
+      "texto": "22-21. Un solo punto separó a nuestros Pre-Peques Masculino 3º del título autonómico. Frente al CD Básico La Salle, con el marcador igualado hasta el último cuarto, los jugadores más pequeños del club demostraron temple, carácter y una madurez que muchos adultos envidiarían. Gracias a Mario Gámez y Verónica por transmitirles no solo el juego, sino la actitud de nunca rendirse.",
+      "imagen": "galeria/foto-pre-peques.jpg",
+      "fecha": "25 Mayo 2026",
+      "autor": "Pre-Peques Masculino 3º",
+      "stats": [
+        { "num": "22-21", "label": "Marcador final" },
+        { "num": "17/18", "label": "Victorias en temporada" }
+      ]
+    },
+    {
+      "seccion": "general",
+      "tipo": "principal",
       "titulo": "150 niños viajan al Torneo \"Sin Insultos\"",
       "tag": "🏆 Torneo · Valores en el deporte",
       "texto": "Una jornada histórica: 150 jóvenes jugadores cruzaron el estrecho en barco para participar en el encuentro nacional que pone el respeto por encima del resultado.",
