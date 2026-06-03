@@ -282,11 +282,17 @@
     .modal-overlay.active .modal-card{transform:scale(1) translateY(0);}
     .modal-close{position:absolute;top:16px;right:16px;width:36px;height:36px;border-radius:50%;background:rgba(255,107,43,.1);border:1px solid rgba(255,107,43,.3);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:16px;z-index:10;transition:all .2s;}
     .modal-close:hover{background:var(--o);box-shadow:0 0 12px var(--o);}
-    .modal-header-bg{height:120px;display:flex;align-items:center;padding:0 32px;position:relative;overflow:hidden;}
-    .modal-num-ghost{font-family:'Bebas Neue';font-size:120px;color:rgba(255,255,255,.05);position:absolute;right:20px;bottom:-30px;line-height:1;}
-    .modal-player-title{position:relative;z-index:1;}
+    .modal-header-bg{height:140px;display:flex;align-items:center;padding:0 32px;position:relative;overflow:visible;}
+    .modal-num-ghost{font-family:'Bebas Neue';font-size:120px;color:rgba(255,255,255,.05);position:absolute;right:160px;bottom:-30px;line-height:1;pointer-events:none;}
+    .modal-player-title{position:relative;z-index:1;flex:1;}
     .modal-player-name{font-family:'Bebas Neue';font-size:32px;line-height:1.1;color:#fff;text-shadow:0 2px 10px rgba(0,0,0,.5);}
     .modal-player-meta{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--o3);margin-top:4px;display:flex;align-items:center;gap:8px;}
+    .modal-photo-wrap{position:relative;z-index:2;flex-shrink:0;width:100px;height:120px;border-radius:14px;overflow:hidden;border:2px solid rgba(255,107,43,.45);box-shadow:0 8px 24px rgba(0,0,0,.5),0 0 16px rgba(255,107,43,.15);margin-left:20px;}
+    .modal-photo-wrap img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block;}
+    .modal-photo-placeholder{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;background:rgba(0,0,0,.25);}
+    .modal-photo-placeholder .ph-num{font-family:'Bebas Neue';font-size:40px;color:rgba(255,255,255,.25);line-height:1;}
+    .modal-photo-placeholder .ph-lbl{font-size:8px;font-weight:700;letter-spacing:.12em;color:rgba(255,255,255,.15);text-transform:uppercase;}
+    @media(max-width:768px){.modal-photo-wrap{width:80px;height:96px;}.modal-header-bg{height:130px;padding:0 24px;}}
     .modal-body{padding:32px;display:grid;grid-template-columns:1fr 1.2fr;gap:28px;}
     .modal-col-title{font-family:'Bebas Neue';font-size:18px;color:var(--o);margin-bottom:14px;border-bottom:1px solid rgba(255,107,43,.15);padding-bottom:6px;letter-spacing:.05em;}
     .ficha-list{list-style:none;display:flex;flex-direction:column;gap:12px;}
@@ -629,6 +635,13 @@ function openPlayerModal(idx) {
   document.getElementById('pct-t2').textContent = sd.tc || '—';
   document.getElementById('pct-t3').textContent = sd.t3 || '—';
   document.getElementById('pct-tl').textContent = sd.tl || '—';
+  // Foto del jugador
+  var photoWrap = document.getElementById('modalPhotoWrap');
+  if (p.foto) {
+    photoWrap.innerHTML = '<img src="'+p.foto+'" alt="'+p.nombre+'" />';
+  } else {
+    photoWrap.innerHTML = '<div class="modal-photo-placeholder"><div class="ph-num">'+dorsal+'</div><div class="ph-lbl">Sin foto</div></div>';
+  }
   var overlay = document.getElementById('playerModal');
   overlay.classList.add('active');
   gsap.killTweensOf(overlay.querySelector('.modal-card'));
@@ -767,7 +780,8 @@ Promise.all([
              stats:{ pj:p.pj, ppg:p.ppg, rpg:p.rpg, apg:p.apg },
              ficha: p.ficha || {},
              trayectoria: p.trayectoria || [],
-             statsDetalle: p.statsDetalle || {} };
+             statsDetalle: p.statsDetalle || {},
+             foto: p.foto || '' };
   });
   STAFF = pData.staff || [];
 
@@ -814,6 +828,12 @@ ScrollTrigger.batch('.match-card', {
       <div class="modal-player-title">
         <h2 class="modal-player-name" id="modalPlayerName">Nombre Jugador</h2>
         <div class="modal-player-meta" id="modalPlayerMeta">Base · CD Enrique Soler</div>
+      </div>
+      <div class="modal-photo-wrap" id="modalPhotoWrap">
+        <div class="modal-photo-placeholder">
+          <div class="ph-num" id="modalPhotoNum">—</div>
+          <div class="ph-lbl">Sin foto</div>
+        </div>
       </div>
     </div>
     <div class="modal-body">
