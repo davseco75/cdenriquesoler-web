@@ -282,17 +282,22 @@
     .modal-overlay.active .modal-card{transform:scale(1) translateY(0);}
     .modal-close{position:absolute;top:16px;right:16px;width:36px;height:36px;border-radius:50%;background:rgba(255,107,43,.1);border:1px solid rgba(255,107,43,.3);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:16px;z-index:10;transition:all .2s;}
     .modal-close:hover{background:var(--o);box-shadow:0 0 12px var(--o);}
-    .modal-header-bg{height:140px;display:flex;align-items:center;padding:0 32px;position:relative;overflow:visible;}
-    .modal-num-ghost{font-family:'Bebas Neue';font-size:120px;color:rgba(255,255,255,.05);position:absolute;right:160px;bottom:-30px;line-height:1;pointer-events:none;}
-    .modal-player-title{position:relative;z-index:1;flex:1;}
-    .modal-player-name{font-family:'Bebas Neue';font-size:32px;line-height:1.1;color:#fff;text-shadow:0 2px 10px rgba(0,0,0,.5);}
-    .modal-player-meta{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--o3);margin-top:4px;display:flex;align-items:center;gap:8px;}
-    .modal-photo-wrap{position:relative;z-index:2;flex-shrink:0;width:100px;height:120px;border-radius:14px;overflow:hidden;border:2px solid rgba(255,107,43,.45);box-shadow:0 8px 24px rgba(0,0,0,.5),0 0 16px rgba(255,107,43,.15);margin-left:20px;}
-    .modal-photo-wrap img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block;}
-    .modal-photo-placeholder{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;background:rgba(0,0,0,.25);}
-    .modal-photo-placeholder .ph-num{font-family:'Bebas Neue';font-size:40px;color:rgba(255,255,255,.25);line-height:1;}
-    .modal-photo-placeholder .ph-lbl{font-size:8px;font-weight:700;letter-spacing:.12em;color:rgba(255,255,255,.15);text-transform:uppercase;}
-    @media(max-width:768px){.modal-photo-wrap{width:80px;height:96px;}.modal-header-bg{height:130px;padding:0 24px;}}
+    /* HERO de la cabecera: foto grande tipo cromo */
+    .modal-hero{position:relative;height:320px;overflow:hidden;display:flex;align-items:flex-end;}
+    .modal-hero-photo{position:absolute;inset:0;z-index:0;}
+    .modal-hero-photo img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block;will-change:transform;}
+    .modal-hero-photo .modal-photo-placeholder{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;background:transparent;}
+    .modal-photo-placeholder .ph-num{font-family:'Bebas Neue';font-size:96px;color:rgba(255,255,255,.16);line-height:1;}
+    .modal-photo-placeholder .ph-lbl{font-size:10px;font-weight:700;letter-spacing:.16em;color:rgba(255,255,255,.16);text-transform:uppercase;}
+    /* degradado para que el texto se lea sobre la foto */
+    .modal-hero::after{content:'';position:absolute;inset:0;z-index:1;background:linear-gradient(to top,rgba(20,10,2,1) 0%,rgba(20,10,2,.45) 38%,rgba(20,10,2,.05) 70%,transparent 100%);pointer-events:none;}
+    /* destello de luz que barre la imagen al abrir */
+    .modal-hero-shine{position:absolute;top:0;left:-60%;width:55%;height:100%;z-index:2;background:linear-gradient(105deg,transparent 0%,rgba(255,255,255,.22) 50%,transparent 100%);transform:skewX(-18deg);pointer-events:none;opacity:0;}
+    .modal-num-ghost{font-family:'Bebas Neue';font-size:210px;color:rgba(255,255,255,.09);position:absolute;right:12px;top:-46px;line-height:1;z-index:1;pointer-events:none;text-shadow:0 0 40px rgba(0,0,0,.4);}
+    .modal-hero-overlay{position:relative;z-index:3;width:100%;padding:0 32px 26px;}
+    .modal-player-meta{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:#fff;background:var(--o);padding:6px 14px;border-radius:20px;margin-bottom:14px;box-shadow:0 6px 18px rgba(255,107,43,.45);}
+    .modal-player-name{font-family:'Bebas Neue';font-size:48px;line-height:.92;color:#fff;text-shadow:0 4px 24px rgba(0,0,0,.8);}
+    @media(max-width:768px){.modal-hero{height:260px;}.modal-player-name{font-size:36px;}.modal-num-ghost{font-size:150px;top:-30px;}.modal-hero-overlay{padding:0 24px 22px;}}
     .modal-body{padding:32px;display:grid;grid-template-columns:1fr 1.2fr;gap:28px;}
     .modal-col-title{font-family:'Bebas Neue';font-size:18px;color:var(--o);margin-bottom:14px;border-bottom:1px solid rgba(255,107,43,.15);padding-bottom:6px;letter-spacing:.05em;}
     .ficha-list{list-style:none;display:flex;flex-direction:column;gap:12px;}
@@ -312,7 +317,7 @@
     .stat-box-mini{background:rgba(255,107,43,.04);border:1px solid rgba(255,107,43,.1);border-radius:8px;padding:10px;text-align:center;}
     .stat-val-mini{font-family:'Bebas Neue';font-size:22px;color:var(--o);line-height:1;}
     .stat-lbl-mini{font-size:8px;font-weight:700;color:rgba(255,255,255,.3);text-transform:uppercase;margin-top:3px;}
-    @media(max-width:768px){.modal-body{grid-template-columns:1fr;gap:24px;padding:24px;}.modal-header-bg{padding:0 24px;}}
+    @media(max-width:768px){.modal-body{grid-template-columns:1fr;gap:24px;padding:24px;}}
   </style>
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
@@ -646,6 +651,17 @@ function openPlayerModal(idx) {
   overlay.classList.add('active');
   gsap.killTweensOf(overlay.querySelector('.modal-card'));
   gsap.fromTo(overlay.querySelector('.modal-card'),{scale:.9,y:30,opacity:0},{scale:1,y:0,opacity:1,duration:.4,ease:'power2.out'});
+  // Zoom lento (ken burns) sobre la foto
+  var heroImg = photoWrap.querySelector('img');
+  if (heroImg) {
+    gsap.fromTo(heroImg,{scale:1.22,opacity:.35},{scale:1,opacity:1,duration:1.3,ease:'power2.out'});
+  }
+  // Destello de luz que barre la imagen
+  var shine = document.getElementById('modalHeroShine');
+  if (shine) {
+    gsap.set(shine,{left:'-60%',opacity:0});
+    gsap.to(shine,{left:'120%',opacity:1,duration:.85,delay:.3,ease:'power1.inOut',onComplete:function(){ gsap.set(shine,{opacity:0}); }});
+  }
 }
 function closePlayerModal() {
   var overlay = document.getElementById('playerModal');
@@ -823,17 +839,18 @@ ScrollTrigger.batch('.match-card', {
 <div id="playerModal" class="modal-overlay" onclick="if(event.target===this) closePlayerModal()">
   <div class="modal-card">
     <button class="modal-close" onclick="closePlayerModal()">✕</button>
-    <div class="modal-header-bg" id="modalHeaderBg">
-      <div class="modal-num-ghost" id="modalNumGhost">--</div>
-      <div class="modal-player-title">
-        <h2 class="modal-player-name" id="modalPlayerName">Nombre Jugador</h2>
-        <div class="modal-player-meta" id="modalPlayerMeta">Base · CD Enrique Soler</div>
-      </div>
-      <div class="modal-photo-wrap" id="modalPhotoWrap">
+    <div class="modal-hero" id="modalHeaderBg">
+      <div class="modal-hero-photo" id="modalPhotoWrap">
         <div class="modal-photo-placeholder">
-          <div class="ph-num" id="modalPhotoNum">—</div>
+          <div class="ph-num">—</div>
           <div class="ph-lbl">Sin foto</div>
         </div>
+      </div>
+      <div class="modal-num-ghost" id="modalNumGhost">--</div>
+      <div class="modal-hero-shine" id="modalHeroShine"></div>
+      <div class="modal-hero-overlay">
+        <div class="modal-player-meta" id="modalPlayerMeta">Base · CD Enrique Soler</div>
+        <h2 class="modal-player-name" id="modalPlayerName">Nombre Jugador</h2>
       </div>
     </div>
     <div class="modal-body">
