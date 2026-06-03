@@ -2,7 +2,7 @@
   "name": "MCD Enrique Soler",
   "short_name": "E. Soler",
   "description": "App oficial del MCD Enrique Soler · Baloncesto Melilla · Tercera FEB",
-  "start_url": "/app.html",
+  "start_url": "/index.html",
   "scope": "/",
   "display": "standalone",
   "orientation": "portrait",

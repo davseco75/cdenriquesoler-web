@@ -2,10 +2,10 @@
    Service Worker — MCD Enrique Soler App
    Cache-first strategy para funcionamiento offline
 ================================================================ */
-const CACHE_NAME = 'es-app-v1';
+const CACHE_NAME = 'es-app-v2';
 
 const PRECACHE = [
-  '/app.html',
+  '/index.html',
   '/manifest.json',
   '/logo.png',
   '/icon-192.png',
@@ -58,7 +58,7 @@ self.addEventListener('fetch', event => {
     }).catch(() => {
       // Offline fallback
       if (event.request.destination === 'document') {
-        return caches.match('/app.html');
+        return caches.match('/index.html');
       }
     })
   );
