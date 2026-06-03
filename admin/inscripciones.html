@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Admin · Inscripciones — CD Enrique Soler</title>
+  <meta name="robots" content="noindex, nofollow"/>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet"/>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <style>
+    :root{
+      --o:#FF6B2B;--o2:#E85000;--o3:#FF9A6C;
+      --dark:#080400;--dark2:#100800;--card:#150900;
+      --green:#4ade80;--red:#f87171;--yellow:#fbbf24;--blue:#60a5fa;
+    }
+    *{margin:0;padding:0;box-sizing:border-box;}
+    html,body{height:100%;background:var(--dark);color:#fff;font-family:'Inter',sans-serif;overflow-x:hidden;}
+    a{text-decoration:none;color:inherit;}
+    button{font-family:'Inter',sans-serif;cursor:pointer;}
+
+    /* ══ LOGIN ══ */
+    #loginScreen{display:flex;align-items:center;justify-content:center;min-height:100vh;padding:24px;background:radial-gradient(ellipse at 30% 20%,rgba(255,107,43,.08),transparent 60%);}
+    .login-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,107,43,.15);border-radius:20px;padding:40px;width:100%;max-width:400px;}
+    .login-logo{display:flex;align-items:center;gap:12px;margin-bottom:28px;}
+    .login-logo img{height:48px;mix-blend-mode:lighten;filter:drop-shadow(0 0 8px rgba(255,107,43,.3));}
+    .login-logo div{font-family:'Bebas Neue';font-size:18px;line-height:1.1;}
+    .login-logo em{color:var(--o);font-style:normal;font-size:11px;letter-spacing:.18em;}
+    .login-card h2{font-family:'Bebas Neue';font-size:32px;margin-bottom:4px;}
+    .login-card p{font-size:13px;color:rgba(255,255,255,.4);margin-bottom:28px;}
+    .lf-group{margin-bottom:16px;}
+    .lf-group label{display:block;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.45);margin-bottom:6px;}
+    .lf-group input{width:100%;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:10px;color:#fff;font-size:15px;padding:13px 16px;transition:border-color .2s;}
+    .lf-group input:focus{outline:none;border-color:var(--o);}
+    .lf-group input::placeholder{color:rgba(255,255,255,.25);}
+    .btn-login{width:100%;background:var(--o);color:#fff;border:none;border-radius:10px;padding:14px;font-family:'Bebas Neue';font-size:20px;letter-spacing:.06em;transition:background .2s;margin-top:8px;}
+    .btn-login:hover{background:var(--o2);}
+    .btn-login:disabled{opacity:.5;cursor:not-allowed;}
+    .login-err{background:rgba(248,113,113,.1);border:1px solid rgba(248,113,113,.25);border-radius:8px;padding:10px 14px;font-size:13px;color:#fca5a5;margin-top:12px;display:none;}
+
+    /* ══ DASHBOARD ══ */
+    #dashboard{display:none;flex-direction:column;min-height:100vh;}
+
+    /* Header */
+    .adm-header{display:flex;align-items:center;justify-content:space-between;padding:0 24px;height:60px;background:rgba(8,4,0,.95);border-bottom:1px solid rgba(255,107,43,.12);position:sticky;top:0;z-index:200;}
+    .adm-header-left{display:flex;align-items:center;gap:14px;}
+    .adm-header-left img{height:34px;mix-blend-mode:lighten;}
+    .adm-title{font-family:'Bebas Neue';font-size:20px;line-height:1;}
+    .adm-title em{color:var(--o);font-style:normal;}
+    .adm-header-right{display:flex;align-items:center;gap:10px;}
+    .btn-sm{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.7);border-radius:8px;padding:7px 14px;font-size:12px;font-weight:600;transition:all .2s;}
+    .btn-sm:hover{background:rgba(255,255,255,.1);color:#fff;}
+    .btn-sm.danger:hover{background:rgba(248,113,113,.15);border-color:rgba(248,113,113,.3);color:#fca5a5;}
+    .btn-sm.primary{background:var(--o);border-color:var(--o);color:#fff;}
+    .btn-sm.primary:hover{background:var(--o2);}
+
+    /* Stats row */
+    .stats-row{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;padding:20px 24px 0;}
+    .stat-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:14px;padding:16px 18px;cursor:pointer;transition:all .2s;}
+    .stat-card:hover,.stat-card.active{border-color:rgba(255,107,43,.3);background:rgba(255,107,43,.06);}
+    .stat-card.active{border-color:var(--o);}
+    .stat-n{font-family:'Bebas Neue';font-size:36px;line-height:1;margin-bottom:2px;}
+    .stat-n.c-all{color:#fff;}
+    .stat-n.c-pend{color:var(--yellow);}
+    .stat-n.c-incomp{color:var(--red);}
+    .stat-n.c-rev{color:var(--blue);}
+    .stat-n.c-listo{color:var(--green);}
+    .stat-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:rgba(255,255,255,.4);}
+
+    /* Filter bar */
+    .filter-bar{display:flex;flex-wrap:wrap;align-items:center;gap:10px;padding:16px 24px;}
+    .filter-search{flex:1;min-width:200px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:8px;color:#fff;font-size:14px;padding:9px 14px;}
+    .filter-search:focus{outline:none;border-color:var(--o);}
+    .filter-search::placeholder{color:rgba(255,255,255,.3);}
+    .filter-select{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:8px;color:#fff;font-size:13px;padding:9px 12px;-webkit-appearance:none;}
+    .filter-select:focus{outline:none;border-color:var(--o);}
+    .filter-select option{background:#1a0900;}
+
+    /* Main layout */
+    .adm-main{display:flex;flex:1;overflow:hidden;}
+    .list-col{flex:1;overflow-y:auto;padding:0 24px 80px;}
+    .detail-col{width:400px;border-left:1px solid rgba(255,255,255,.06);overflow-y:auto;background:rgba(255,255,255,.015);flex-shrink:0;}
+
+    /* Registration list */
+    .reg-count{font-size:12px;color:rgba(255,255,255,.35);padding:10px 0 12px;font-weight:600;}
+    .reg-item{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:12px;padding:16px 18px;margin-bottom:8px;cursor:pointer;transition:all .2s;position:relative;}
+    .reg-item:hover{background:rgba(255,255,255,.05);border-color:rgba(255,107,43,.2);}
+    .reg-item.selected{background:rgba(255,107,43,.06);border-color:var(--o);}
+    .ri-top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:6px;}
+    .ri-name{font-weight:700;font-size:15px;}
+    .ri-cat{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--o);}
+    .ri-meta{font-size:12px;color:rgba(255,255,255,.4);display:flex;gap:14px;flex-wrap:wrap;}
+    .status-badge{display:inline-flex;align-items:center;gap:5px;border-radius:20px;padding:3px 10px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;}
+    .s-pendiente{background:rgba(251,191,36,.12);color:var(--yellow);}
+    .s-incompleto{background:rgba(248,113,113,.12);color:var(--red);}
+    .s-revisado{background:rgba(96,165,250,.12);color:var(--blue);}
+    .s-listo_federacion{background:rgba(74,222,128,.12);color:var(--green);}
+
+    /* Detail panel */
+    .det-empty{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;gap:12px;padding:40px;text-align:center;color:rgba(255,255,255,.3);}
+    .det-empty .de-icon{font-size:48px;}
+    .det-empty p{font-size:14px;line-height:1.6;}
+    .det-panel{padding:20px;}
+    .det-section{margin-bottom:24px;}
+    .det-section-title{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.14em;color:var(--o);margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid rgba(255,107,43,.12);}
+    .det-row{display:flex;justify-content:space-between;gap:10px;padding:6px 0;font-size:13px;border-bottom:1px solid rgba(255,255,255,.04);}
+    .det-row:last-child{border-bottom:none;}
+    .det-row span{color:rgba(255,255,255,.4);flex-shrink:0;}
+    .det-row strong{text-align:right;word-break:break-word;}
+
+    /* Status select */
+    .status-select{width:100%;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:8px;color:#fff;font-size:14px;font-weight:600;padding:10px 12px;margin-bottom:12px;-webkit-appearance:none;}
+    .status-select:focus{outline:none;border-color:var(--o);}
+    .status-select option{background:#1a0900;}
+
+    /* Docs */
+    .doc-item-adm{display:flex;align-items:center;justify-content:space-between;gap:10px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:8px;padding:10px 14px;margin-bottom:6px;}
+    .doc-item-adm .doc-name{font-size:13px;color:rgba(255,255,255,.7);flex:1;}
+    .btn-dl{background:rgba(255,107,43,.12);border:1px solid rgba(255,107,43,.2);color:var(--o3);border-radius:6px;padding:5px 12px;font-size:11px;font-weight:700;transition:all .2s;}
+    .btn-dl:hover{background:rgba(255,107,43,.25);}
+
+    /* Notes */
+    .notes-list{display:flex;flex-direction:column;gap:8px;margin-bottom:12px;}
+    .note-item{background:rgba(255,255,255,.04);border-left:3px solid rgba(255,107,43,.4);border-radius:0 8px 8px 0;padding:10px 14px;}
+    .note-text{font-size:13px;color:rgba(255,255,255,.75);line-height:1.5;margin-bottom:4px;}
+    .note-date{font-size:11px;color:rgba(255,255,255,.3);}
+    .notes-input{width:100%;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:8px;color:#fff;font-family:'Inter',sans-serif;font-size:13px;padding:10px 12px;resize:vertical;min-height:72px;margin-bottom:8px;}
+    .notes-input:focus{outline:none;border-color:var(--o);}
+    .notes-input::placeholder{color:rgba(255,255,255,.25);}
+
+    /* Actions */
+    .det-actions{display:flex;flex-direction:column;gap:8px;padding:16px;border-top:1px solid rgba(255,255,255,.06);}
+    .btn-action{border:none;border-radius:8px;padding:11px 16px;font-size:13px;font-weight:700;width:100%;transition:all .2s;}
+    .btn-save{background:var(--o);color:#fff;}
+    .btn-save:hover{background:var(--o2);}
+    .btn-pdf{background:rgba(96,165,250,.12);border:1px solid rgba(96,165,250,.2);color:var(--blue);}
+    .btn-pdf:hover{background:rgba(96,165,250,.2);}
+    .btn-del{background:rgba(248,113,113,.1);border:1px solid rgba(248,113,113,.2);color:var(--red);}
+    .btn-del:hover{background:rgba(248,113,113,.2);}
+
+    /* Loading */
+    .loading-row{text-align:center;padding:40px;color:rgba(255,255,255,.3);font-size:14px;}
+
+    /* Toast */
+    #toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(80px);background:rgba(20,10,0,.95);border:1px solid rgba(255,107,43,.3);border-radius:10px;padding:12px 20px;font-size:14px;font-weight:600;z-index:9999;transition:transform .3s;pointer-events:none;white-space:nowrap;}
+    #toast.show{transform:translateX(-50%) translateY(0);}
+
+    /* Responsive */
+    @media(max-width:900px){
+      .stats-row{grid-template-columns:repeat(3,1fr);}
+      .detail-col{display:none;}
+      .detail-col.mobile-open{display:flex;flex-direction:column;position:fixed;inset:60px 0 0 0;z-index:300;width:100%;border-left:none;}
+    }
+    @media(max-width:600px){
+      .stats-row{grid-template-columns:repeat(2,1fr);}
+      .adm-header{padding:0 14px;}
+      .filter-bar{padding:12px 14px;}
+      .list-col{padding:0 14px 80px;}
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══ LOGIN SCREEN ══ -->
+<div id="loginScreen">
+  <div class="login-card">
+    <div class="login-logo">
+      <img src="/logo.png" alt="Enrique Soler"/>
+      <div>
+        <div>Enrique Soler</div>
+        <em>MELILLA CIUDAD DEL DEPORTE</em>
+      </div>
+    </div>
+    <h2>Panel Administración</h2>
+    <p>Acceso restringido · Inscripciones 2026-27</p>
+    <form id="loginForm" onsubmit="doLogin(event)">
+      <div class="lf-group">
+        <label>Email</label>
+        <input type="email" id="loginEmail" required placeholder="admin@cdenriquesoler.com" autocomplete="email">
+      </div>
+      <div class="lf-group">
+        <label>Contraseña</label>
+        <input type="password" id="loginPass" required placeholder="••••••••" autocomplete="current-password">
+      </div>
+      <button type="submit" class="btn-login" id="btnLogin">Entrar</button>
+      <div class="login-err" id="loginErr"></div>
+    </form>
+  </div>
+</div>
+
+<!-- ══ DASHBOARD ══ -->
+<div id="dashboard">
+
+  <!-- Header -->
+  <header class="adm-header">
+    <div class="adm-header-left">
+      <img src="/logo.png" alt=""/>
+      <div class="adm-title">Inscripciones <em>2026-27</em></div>
+    </div>
+    <div class="adm-header-right">
+      <button class="btn-sm primary" onclick="exportCSV()">⬇ Exportar CSV</button>
+      <button class="btn-sm danger" onclick="doLogout()">Cerrar sesión</button>
+    </div>
+  </header>
+
+  <!-- Stats -->
+  <div class="stats-row">
+    <div class="stat-card active" data-filter="" onclick="setFilter('')">
+      <div class="stat-n c-all" id="sn-all">—</div>
+      <div class="stat-label">Total</div>
+    </div>
+    <div class="stat-card" data-filter="pendiente" onclick="setFilter('pendiente')">
+      <div class="stat-n c-pend" id="sn-pendiente">—</div>
+      <div class="stat-label">Pendiente</div>
+    </div>
+    <div class="stat-card" data-filter="incompleto" onclick="setFilter('incompleto')">
+      <div class="stat-n c-incomp" id="sn-incompleto">—</div>
+      <div class="stat-label">Incompleto</div>
+    </div>
+    <div class="stat-card" data-filter="revisado" onclick="setFilter('revisado')">
+      <div class="stat-n c-rev" id="sn-revisado">—</div>
+      <div class="stat-label">Revisado</div>
+    </div>
+    <div class="stat-card" data-filter="listo_federacion" onclick="setFilter('listo_federacion')">
+      <div class="stat-n c-listo" id="sn-listo_federacion">—</div>
+      <div class="stat-label">Listo federar</div>
+    </div>
+  </div>
+
+  <!-- Filter bar -->
+  <div class="filter-bar">
+    <input type="search" class="filter-search" id="searchInput" placeholder="Buscar por nombre o apellidos…" oninput="filterList()">
+    <select class="filter-select" id="catFilter" onchange="filterList()">
+      <option value="">Todas las categorías</option>
+      <option>PreMini</option><option>Mini</option><option>Benjamín</option>
+      <option>Alevín</option><option>Infantil</option><option>Cadete</option>
+      <option>Junior</option><option>Senior</option>
+    </select>
+  </div>
+
+  <!-- Main -->
+  <div class="adm-main">
+    <!-- List -->
+    <div class="list-col">
+      <div class="reg-count" id="regCount"></div>
+      <div id="regList"></div>
+    </div>
+
+    <!-- Detail panel -->
+    <div class="detail-col" id="detailCol">
+      <div class="det-empty">
+        <div class="de-icon">👆</div>
+        <p>Selecciona una inscripción de la lista para ver todos sus detalles</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Toast -->
+<div id="toast"></div>
+
+<script>
+// ═══════════════════════════════════════════════════════
+//  CONFIGURACIÓN SUPABASE
+//  Reemplaza estos valores con los de tu proyecto
+// ═══════════════════════════════════════════════════════
+const SUPABASE_URL = 'https://zhpidfscepgxrgmawzhm.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpocGlkZnNjZXBneHJnbWF3emhtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAwMDQ1OTksImV4cCI6MjA5NTU4MDU5OX0.ZJL9GnOd9pLnbdv6wqlDSQrJYKGA7FzApFVUehScOhs';
+
+const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+// ── Estado ────────────────────────────────────────────
+let allPlayers = [];
+let filteredPlayers = [];
+let activeStatus = '';
+let selectedId = null;
+
+// ── Sesión ───────────────────────────────────────────
+async function checkSession() {
+  const { data: { session } } = await sb.auth.getSession();
+  if (session) showDashboard();
+}
+
+async function doLogin(e) {
+  e.preventDefault();
+  const btn = document.getElementById('btnLogin');
+  btn.disabled = true;
+  btn.textContent = 'Entrando…';
+  const email = document.getElementById('loginEmail').value;
+  const pass  = document.getElementById('loginPass').value;
+  const { error } = await sb.auth.signInWithPassword({ email, password: pass });
+  if (error) {
+    const errEl = document.getElementById('loginErr');
+    errEl.textContent = 'Credenciales incorrectas. Verifica email y contraseña.';
+    errEl.style.display = 'block';
+    btn.disabled = false;
+    btn.textContent = 'Entrar';
+    return;
+  }
+  showDashboard();
+}
+
+async function doLogout() {
+  await sb.auth.signOut();
+  document.getElementById('dashboard').style.display = 'none';
+  document.getElementById('loginScreen').style.display = 'flex';
+}
+
+function showDashboard() {
+  document.getElementById('loginScreen').style.display = 'none';
+  document.getElementById('dashboard').style.display = 'flex';
+  loadData();
+}
+
+// ── Cargar datos ─────────────────────────────────────
+async function loadData() {
+  document.getElementById('regList').innerHTML = '<div class="loading-row">⏳ Cargando inscripciones…</div>';
+  const { data, error } = await sb
+    .from('players')
+    .select(`*, guardians(*), documents(*), consents(*), admin_notes(*)`)
+    .order('submission_date', { ascending: false });
+
+  if (error) {
+    document.getElementById('regList').innerHTML = `<div class="loading-row" style="color:#f87171">Error: ${error.message}</div>`;
+    return;
+  }
+
+  allPlayers = data || [];
+  updateStats();
+  filterList();
+}
+
+function updateStats() {
+  const counts = { pendiente: 0, incompleto: 0, revisado: 0, listo_federacion: 0 };
+  allPlayers.forEach(p => { if (counts[p.status] !== undefined) counts[p.status]++; });
+  document.getElementById('sn-all').textContent = allPlayers.length;
+  Object.entries(counts).forEach(([k,v]) => {
+    const el = document.getElementById(`sn-${k}`);
+    if (el) el.textContent = v;
+  });
+}
+
+function setFilter(status) {
+  activeStatus = status;
+  document.querySelectorAll('.stat-card').forEach(el =>
+    el.classList.toggle('active', el.dataset.filter === status));
+  filterList();
+}
+
+function filterList() {
+  const search = document.getElementById('searchInput').value.toLowerCase();
+  const cat    = document.getElementById('catFilter').value;
+
+  filteredPlayers = allPlayers.filter(p => {
+    const name = `${p.first_name} ${p.last_name}`.toLowerCase();
+    if (activeStatus && p.status !== activeStatus) return false;
+    if (cat && p.category !== cat) return false;
+    if (search && !name.includes(search)) return false;
+    return true;
+  });
+
+  renderList();
+}
+
+function renderList() {
+  const el = document.getElementById('regList');
+  document.getElementById('regCount').textContent = `${filteredPlayers.length} inscripciones`;
+
+  if (filteredPlayers.length === 0) {
+    el.innerHTML = '<div class="loading-row">Sin resultados para los filtros actuales</div>';
+    return;
+  }
+
+  el.innerHTML = filteredPlayers.map(p => {
+    const g = p.guardians?.[0] || {};
+    const date = p.submission_date ? new Date(p.submission_date).toLocaleDateString('es-ES') : '—';
+    return `
+      <div class="reg-item${selectedId === p.id ? ' selected' : ''}" onclick="selectPlayer('${p.id}')">
+        <div class="ri-top">
+          <span class="ri-name">${p.first_name} ${p.last_name}</span>
+          <span class="status-badge s-${p.status}">${statusLabel(p.status)}</span>
+        </div>
+        <div class="ri-meta">
+          <span class="ri-cat">${p.category}</span>
+          <span>📅 ${date}</span>
+          ${g.email ? `<span>✉️ ${g.email}</span>` : ''}
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+function statusLabel(s) {
+  const map = { pendiente:'Pendiente', incompleto:'Incompleto', revisado:'Revisado', listo_federacion:'Listo' };
+  return map[s] || s;
+}
+
+// ── Detail panel ─────────────────────────────────────
+async function selectPlayer(id) {
+  selectedId = id;
+  renderList();
+
+  const p = allPlayers.find(x => x.id === id);
+  if (!p) return;
+
+  const g = p.guardians?.[0] || {};
+  const docs = p.documents || [];
+  const notes = p.admin_notes || [];
+  const bdate = p.birth_date ? new Date(p.birth_date).toLocaleDateString('es-ES') : '—';
+  const created = p.submission_date ? new Date(p.submission_date).toLocaleString('es-ES') : '—';
+
+  const docTypeNames = {
+    dni_front:'DNI Cara anterior', dni_back:'DNI Cara posterior',
+    medical:'Reconocimiento médico', photo:'Fotografía carnet', signature:'Firma'
+  };
+
+  const docsHtml = docs.length === 0
+    ? '<p style="font-size:13px;color:rgba(255,255,255,.35)">Sin documentos</p>'
+    : docs.map(d => `
+        <div class="doc-item-adm">
+          <span class="doc-name">${docTypeNames[d.type] || d.type} · <span style="color:rgba(255,255,255,.35);font-size:11px">${d.original_name || ''}</span></span>
+          <button class="btn-dl" onclick="downloadDoc('${d.storage_path}','${d.original_name || d.type}')">⬇ Abrir</button>
+        </div>
+      `).join('');
+
+  const notesHtml = notes.length === 0
+    ? '<p style="font-size:13px;color:rgba(255,255,255,.35);margin-bottom:10px">Sin notas</p>'
+    : `<div class="notes-list">${notes.map(n => `
+        <div class="note-item">
+          <div class="note-text">${escHtml(n.note)}</div>
+          <div class="note-date">${new Date(n.created_at).toLocaleString('es-ES')}</div>
+        </div>`).join('')}</div>`;
+
+  const dc = document.getElementById('detailCol');
+  dc.innerHTML = `
+    <div style="position:sticky;top:0;background:rgba(8,4,0,.95);backdrop-filter:blur(10px);padding:14px 20px;border-bottom:1px solid rgba(255,255,255,.06);display:flex;align-items:center;justify-content:space-between;z-index:10;">
+      <div>
+        <div style="font-family:'Bebas Neue';font-size:20px;">${p.first_name} ${p.last_name}</div>
+        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--o)">${p.category}</div>
+      </div>
+      <button class="btn-sm" onclick="closeMobileDetail()" style="display:none" id="closeMobileBtn">✕</button>
+    </div>
+    <div class="det-panel">
+
+      <div class="det-section">
+        <div class="det-section-title">Estado de la inscripción</div>
+        <select class="status-select" id="statusSel-${p.id}">
+          <option value="pendiente"${p.status==='pendiente'?' selected':''}>⏳ Pendiente</option>
+          <option value="incompleto"${p.status==='incompleto'?' selected':''}>⚠️ Incompleto</option>
+          <option value="revisado"${p.status==='revisado'?' selected':''}>👁️ Revisado</option>
+          <option value="listo_federacion"${p.status==='listo_federacion'?' selected':''}>✅ Listo para federación</option>
+        </select>
+        <button class="btn-action btn-save" onclick="saveStatus('${p.id}')">Guardar estado</button>
+      </div>
+
+      <div class="det-section">
+        <div class="det-section-title">Datos del jugador/a</div>
+        ${detRow('Categoría', p.category)}
+        ${detRow('Nombre', `${p.first_name} ${p.last_name}`)}
+        ${detRow('Fecha nacimiento', bdate)}
+        ${detRow('DNI / NIE', p.dni || '—')}
+        ${detRow('Dirección', p.address || '—')}
+        ${detRow('Teléfono', p.phone || '—')}
+        ${detRow('Email', p.email || '—')}
+        ${detRow('Enviado el', created)}
+      </div>
+
+      ${g.first_name ? `
+      <div class="det-section">
+        <div class="det-section-title">Datos del tutor / responsable</div>
+        ${detRow('Nombre', `${g.first_name} ${g.last_name}`)}
+        ${detRow('DNI / NIE', g.dni || '—')}
+        ${detRow('Relación', g.relationship || '—')}
+        ${detRow('Teléfono', g.phone || '—')}
+        ${detRow('Email', g.email || '—')}
+      </div>` : ''}
+
+      <div class="det-section">
+        <div class="det-section-title">Documentos (${docs.length})</div>
+        ${docsHtml}
+      </div>
+
+      <div class="det-section">
+        <div class="det-section-title">Notas internas</div>
+        ${notesHtml}
+        <textarea class="notes-input" id="noteInput-${p.id}" placeholder="Añadir nota interna…"></textarea>
+        <button class="btn-action btn-pdf" onclick="saveNote('${p.id}')">Guardar nota</button>
+      </div>
+
+    </div>
+    <div class="det-actions">
+      <button class="btn-action btn-pdf" onclick="generatePDF('${p.id}')">📄 Generar PDF del jugador</button>
+      <button class="btn-action btn-del" onclick="deletePlayer('${p.id}')">🗑️ Eliminar datos (RGPD)</button>
+    </div>
+  `;
+
+  // Mobile: show panel
+  const mob = document.getElementById('closeMobileBtn');
+  if (mob) {
+    if (window.innerWidth <= 900) {
+      dc.classList.add('mobile-open');
+      mob.style.display = '';
+    }
+  }
+}
+
+function detRow(label, value) {
+  return `<div class="det-row"><span>${label}</span><strong>${escHtml(String(value))}</strong></div>`;
+}
+
+function closeMobileDetail() {
+  document.getElementById('detailCol').classList.remove('mobile-open');
+}
+
+// ── Guardar estado ────────────────────────────────────
+async function saveStatus(id) {
+  const sel = document.getElementById(`statusSel-${id}`);
+  const status = sel.value;
+  const { error } = await sb.from('players').update({ status, updated_at: new Date().toISOString() }).eq('id', id);
+  if (error) { showToast('Error al guardar: ' + error.message, true); return; }
+  const p = allPlayers.find(x => x.id === id);
+  if (p) p.status = status;
+  updateStats();
+  renderList();
+  showToast('Estado actualizado ✅');
+}
+
+// ── Guardar nota ──────────────────────────────────────
+async function saveNote(playerId) {
+  const ta = document.getElementById(`noteInput-${playerId}`);
+  const note = ta.value.trim();
+  if (!note) return;
+  const { error } = await sb.from('admin_notes').insert([{ player_id: playerId, note }]);
+  if (error) { showToast('Error: ' + error.message, true); return; }
+  const p = allPlayers.find(x => x.id === playerId);
+  if (p) {
+    if (!p.admin_notes) p.admin_notes = [];
+    p.admin_notes.push({ note, created_at: new Date().toISOString() });
+  }
+  ta.value = '';
+  selectPlayer(playerId);
+  showToast('Nota guardada ✅');
+}
+
+// ── Descargar documento ───────────────────────────────
+async function downloadDoc(path, name) {
+  const { data, error } = await sb.storage.from('inscriptions').createSignedUrl(path, 300);
+  if (error) { showToast('Error al generar enlace: ' + error.message, true); return; }
+  const a = document.createElement('a');
+  a.href = data.signedUrl;
+  a.target = '_blank';
+  a.rel = 'noopener';
+  a.download = name || 'documento';
+  a.click();
+}
+
+// ── Exportar CSV ──────────────────────────────────────
+function exportCSV() {
+  const players = filteredPlayers.length > 0 ? filteredPlayers : allPlayers;
+  if (players.length === 0) { showToast('No hay inscripciones para exportar'); return; }
+
+  const headers = ['ID','Nombre','Apellidos','Fecha_Nac','DNI_Jugador','Categoría','Dirección','Teléfono_Jugador','Email_Jugador','Estado','Fecha_Inscripción','Tutor_Nombre','Tutor_Apellidos','Tutor_DNI','Tutor_Relación','Tutor_Teléfono','Tutor_Email'];
+  const rows = players.map(p => {
+    const g = p.guardians?.[0] || {};
+    return [
+      p.id, p.first_name, p.last_name, p.birth_date || '', p.dni || '',
+      p.category, p.address || '', p.phone || '', p.email || '', p.status,
+      p.submission_date ? new Date(p.submission_date).toLocaleDateString('es-ES') : '',
+      g.first_name || '', g.last_name || '', g.dni || '', g.relationship || '',
+      g.phone || '', g.email || ''
+    ];
+  });
+
+  const csv = [headers, ...rows]
+    .map(row => row.map(c => `"${String(c).replace(/"/g,'""')}"`).join(','))
+    .join('\r\n');
+
+  const bom = '﻿';
+  const blob = new Blob([bom + csv], { type: 'text/csv;charset=utf-8;' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `inscripciones_${new Date().toISOString().slice(0,10)}.csv`;
+  a.click();
+  URL.revokeObjectURL(url);
+  showToast(`CSV exportado (${players.length} registros) ✅`);
+}
+
+// ── Generar PDF ───────────────────────────────────────
+function generatePDF(id) {
+  const p = allPlayers.find(x => x.id === id);
+  if (!p) return;
+  const g = p.guardians?.[0] || {};
+  const docs = p.documents || [];
+  const consent = p.consents?.[0] || {};
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF();
+
+  const O = [255, 107, 43];
+  let y = 20;
+
+  doc.setFillColor(...O);
+  doc.rect(0, 0, 210, 12, 'F');
+  doc.setTextColor(255, 255, 255);
+  doc.setFontSize(10);
+  doc.setFont('helvetica', 'bold');
+  doc.text('CD ENRIQUE SOLER · INSCRIPCIÓN FEDERATIVA 2026-27', 10, 8);
+
+  doc.setTextColor(0, 0, 0);
+  y = 24;
+
+  doc.setFontSize(16);
+  doc.setFont('helvetica', 'bold');
+  doc.text(`${p.first_name} ${p.last_name}`, 10, y);
+  y += 6;
+  doc.setFontSize(11);
+  doc.setTextColor(...O);
+  doc.text(`Categoría: ${p.category}  ·  Estado: ${statusLabel(p.status)}`, 10, y);
+  y += 10;
+
+  doc.setDrawColor(...O);
+  doc.setLineWidth(0.4);
+  doc.line(10, y, 200, y);
+  y += 8;
+
+  function section(title) {
+    doc.setFontSize(9);
+    doc.setFont('helvetica', 'bold');
+    doc.setTextColor(...O);
+    doc.text(title.toUpperCase(), 10, y);
+    y += 5;
+    doc.setTextColor(0);
+    doc.setFont('helvetica', 'normal');
+  }
+
+  function row(label, value) {
+    doc.setFontSize(9);
+    doc.setFont('helvetica', 'bold');
+    doc.setTextColor(80, 80, 80);
+    doc.text(label + ':', 10, y);
+    doc.setFont('helvetica', 'normal');
+    doc.setTextColor(0);
+    doc.text(String(value || '—'), 55, y);
+    y += 5.5;
+  }
+
+  section('Datos del jugador/a');
+  row('Nombre completo', `${p.first_name} ${p.last_name}`);
+  row('Fecha nacimiento', p.birth_date ? new Date(p.birth_date).toLocaleDateString('es-ES') : '—');
+  row('DNI / NIE', p.dni || '—');
+  row('Categoría', p.category);
+  row('Dirección', p.address || '—');
+  if (p.phone) row('Teléfono', p.phone);
+  if (p.email) row('Email', p.email);
+  y += 3;
+
+  if (g.first_name) {
+    section('Datos del tutor / responsable');
+    row('Nombre completo', `${g.first_name} ${g.last_name}`);
+    row('DNI / NIE', g.dni || '—');
+    row('Relación', g.relationship || '—');
+    row('Teléfono', g.phone || '—');
+    row('Email', g.email || '—');
+    y += 3;
+  }
+
+  if (docs.length > 0) {
+    section('Documentos aportados');
+    const names = { dni_front:'DNI cara anterior', dni_back:'DNI cara posterior', medical:'Reconocimiento médico', photo:'Fotografía carnet', signature:'Firma digital' };
+    docs.forEach(d => {
+      doc.setFontSize(9);
+      doc.setFont('helvetica', 'normal');
+      doc.setTextColor(0);
+      doc.text(`✓  ${names[d.type] || d.type}  (${d.original_name || ''})`, 14, y);
+      y += 5.5;
+    });
+    y += 3;
+  }
+
+  if (consent.accepted_at) {
+    section('Consentimiento');
+    row('Firmado por', consent.guardian_name || '—');
+    row('DNI firmante', consent.guardian_dni || '—');
+    row('Fecha y hora', new Date(consent.accepted_at).toLocaleString('es-ES'));
+    row('Versión', consent.consent_version || '—');
+    y += 3;
+  }
+
+  row('Fecha inscripción', p.submission_date ? new Date(p.submission_date).toLocaleString('es-ES') : '—');
+  row('ID solicitud', p.id.substring(0, 8).toUpperCase());
+
+  doc.setFontSize(8);
+  doc.setTextColor(150);
+  doc.text('Documento generado automáticamente · CD Enrique Soler · Uso interno exclusivo', 10, 285);
+
+  doc.save(`inscripcion_${p.first_name}_${p.last_name}_${p.category}.pdf`.replace(/\s/g,'_'));
+  showToast('PDF generado ✅');
+}
+
+// ── Eliminar jugador (RGPD) ───────────────────────────
+async function deletePlayer(id) {
+  const p = allPlayers.find(x => x.id === id);
+  if (!p) return;
+  const name = `${p.first_name} ${p.last_name}`;
+  if (!confirm(`⚠️ ATENCIÓN\n\nVas a eliminar PERMANENTEMENTE todos los datos y documentos de:\n${name}\n\nEsta acción no se puede deshacer.\n\n¿Confirmas?`)) return;
+
+  // Eliminar archivos del Storage
+  const docs = p.documents || [];
+  if (docs.length > 0) {
+    const paths = docs.map(d => d.storage_path);
+    const { error: storErr } = await sb.storage.from('inscriptions').remove(paths);
+    if (storErr) console.warn('Aviso al eliminar storage:', storErr.message);
+  }
+
+  // Eliminar registro (cascade elimina guardians, documents, consents, notes)
+  const { error } = await sb.from('players').delete().eq('id', id);
+  if (error) { showToast('Error al eliminar: ' + error.message, true); return; }
+
+  allPlayers = allPlayers.filter(x => x.id !== id);
+  selectedId = null;
+  updateStats();
+  filterList();
+  document.getElementById('detailCol').innerHTML = `
+    <div class="det-empty">
+      <div class="de-icon">🗑️</div>
+      <p>Datos eliminados correctamente</p>
+    </div>`;
+  showToast(`${name} eliminado ✅`);
+}
+
+// ── Utilidades ────────────────────────────────────────
+function escHtml(s) {
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+let toastTimer = null;
+function showToast(msg, isError = false) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.style.background = isError ? 'rgba(80,10,10,.97)' : 'rgba(20,10,0,.95)';
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove('show'), 3000);
+}
+
+// ── Inicializar ───────────────────────────────────────
+checkSession();
+</script>
+</body>
+</html>

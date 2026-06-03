@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Nueva Inscripción — CD Enrique Soler</title>
+  <meta name="robots" content="noindex, nofollow"/>
+  <meta name="theme-color" content="#FF6B2B"/>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png"/>
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png"/>
+  <link rel="manifest" href="/manifest.json">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet"/>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+  <style>
+    :root{
+      --o:#FF6B2B;--o2:#E85000;--o3:#FF9A6C;
+      --b:#0A2463;--b2:#1A3A8F;
+      --dark:#080400;--dark2:#100800;--card:#150900;
+      --green:#4ade80;--red:#f87171;
+    }
+    *{margin:0;padding:0;box-sizing:border-box;}
+    html{scroll-behavior:smooth;}
+    body{background:var(--dark);color:#fff;font-family:'Inter',sans-serif;overflow-x:hidden;}
+    a{text-decoration:none;color:inherit;}
+
+    /* ── NAV ── */
+    nav{position:fixed;top:0;left:0;width:100%;z-index:500;display:flex;align-items:center;justify-content:space-between;padding:0 5%;height:68px;transition:background .4s,backdrop-filter .4s;}
+    nav.scrolled{background:rgba(8,4,0,.92);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,107,43,.12);}
+    .nav-logo{display:flex;align-items:center;gap:10px;}
+    .nav-logo img{height:44px;mix-blend-mode:lighten;filter:drop-shadow(0 0 8px rgba(255,107,43,.3));}
+    .nav-logo span{font-family:'Bebas Neue';font-size:17px;line-height:1.1;}
+    .nav-logo span em{color:var(--o);font-style:normal;display:block;font-size:10px;letter-spacing:.18em;}
+    .nav-back{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.5);padding:8px 16px;border:1px solid rgba(255,255,255,.12);border-radius:6px;transition:all .2s;}
+    .nav-back:hover{color:#fff;border-color:rgba(255,107,43,.4);}
+    .nav-burger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;}
+    .nav-burger span{width:22px;height:2px;background:#fff;border-radius:2px;}
+
+    /* ── HERO ── */
+    .form-hero{position:relative;min-height:38vh;display:flex;align-items:flex-end;padding:100px 8% 48px;overflow:hidden;background:var(--dark2);}
+    .form-hero::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,var(--dark2) 0%,#1A0800 40%,rgba(255,107,43,.05) 100%);}
+    .form-hero::after{content:'INSCRIPCIÓN';position:absolute;right:-1%;bottom:-18%;font-family:'Bebas Neue';font-size:18vw;color:rgba(255,107,43,.04);pointer-events:none;white-space:nowrap;}
+    .fh-inner{position:relative;z-index:1;}
+    .ins-eyebrow{display:flex;align-items:center;gap:12px;margin-bottom:16px;}
+    .ins-eyebrow span{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--o);}
+    .ins-eyebrow span::before{content:'';display:block;width:32px;height:2px;background:var(--o);}
+    .form-hero h1{font-family:'Bebas Neue';font-size:clamp(44px,6vw,80px);line-height:.95;margin-bottom:12px;}
+    .form-hero h1 em{color:var(--o);font-style:normal;}
+    .form-hero p{font-size:15px;color:rgba(255,255,255,.55);max-width:480px;line-height:1.6;}
+
+    /* ── FORM OUTER ── */
+    .form-outer{max-width:720px;margin:0 auto;padding:40px 20px 100px;}
+
+    /* ── STEP PROGRESS ── */
+    .step-prog{display:flex;align-items:center;gap:0;margin-bottom:40px;padding:0 4px;}
+    .stp-item{display:flex;flex-direction:column;align-items:center;gap:6px;flex:1;position:relative;}
+    .stp-circle{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.06);border:2px solid rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue';font-size:17px;color:rgba(255,255,255,.4);transition:all .3s;z-index:1;}
+    .stp-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.3);transition:color .3s;text-align:center;}
+    .stp-line{flex:1;height:2px;background:rgba(255,255,255,.08);transition:background .3s;margin-bottom:22px;}
+    .stp-item.active .stp-circle{background:var(--o);border-color:var(--o);color:#fff;box-shadow:0 0 16px rgba(255,107,43,.4);}
+    .stp-item.active .stp-label{color:var(--o);}
+    .stp-item.done .stp-circle{background:rgba(74,222,128,.15);border-color:var(--green);color:var(--green);}
+    .stp-item.done .stp-label{color:var(--green);}
+    .stp-line.done{background:rgba(74,222,128,.3);}
+
+    /* ── FORM STEPS ── */
+    .form-step{animation:fadeUp .3s ease both;}
+    .form-step.hidden{display:none;}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+
+    .step-header{margin-bottom:28px;}
+    .step-lbl{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.16em;color:var(--o);margin-bottom:8px;}
+    .step-header h2{font-family:'Bebas Neue';font-size:clamp(28px,4vw,44px);line-height:1;margin-bottom:8px;}
+    .step-header h2 em{color:var(--o);font-style:normal;}
+    .step-header p{font-size:14px;color:rgba(255,255,255,.5);line-height:1.6;}
+
+    /* ── FIELDS ── */
+    .field-group{display:flex;flex-direction:column;gap:6px;margin-bottom:20px;}
+    .field-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+    label{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.55);}
+    .opt{font-weight:400;text-transform:none;letter-spacing:0;color:rgba(255,255,255,.3);font-size:11px;}
+    input[type="text"],input[type="email"],input[type="tel"],input[type="date"],select,textarea{
+      background:rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.1);
+      border-radius:10px;
+      color:#fff;
+      font-family:'Inter',sans-serif;
+      font-size:15px;
+      padding:13px 16px;
+      width:100%;
+      transition:border-color .2s,background .2s;
+      -webkit-appearance:none;
+    }
+    input:focus,select:focus,textarea:focus{outline:none;border-color:var(--o);background:rgba(255,107,43,.06);}
+    input::placeholder,textarea::placeholder{color:rgba(255,255,255,.25);}
+    select option{background:#1a0900;color:#fff;}
+    input.field-error,select.field-error{border-color:var(--red);}
+    .field-err-msg{font-size:12px;color:var(--red);margin-top:2px;}
+    .field-hint{font-size:12px;color:rgba(255,255,255,.35);line-height:1.5;margin-top:4px;}
+    .field-hint a{color:var(--o);}
+
+    /* Checkbox label */
+    .checkbox-label{display:flex;align-items:flex-start;gap:12px;cursor:pointer;padding:14px 16px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:10px;transition:border-color .2s;}
+    .checkbox-label:hover{border-color:rgba(255,107,43,.2);}
+    .checkbox-label input[type="checkbox"]{width:20px;height:20px;min-width:20px;accent-color:var(--o);cursor:pointer;margin-top:2px;}
+    .checkbox-label span{font-size:14px;color:rgba(255,255,255,.75);line-height:1.5;}
+
+    /* Info box */
+    .info-box{display:flex;gap:12px;background:rgba(10,36,99,.2);border:1px solid rgba(26,58,143,.3);border-radius:12px;padding:16px 18px;margin-bottom:20px;}
+    .info-box span{font-size:20px;flex-shrink:0;margin-top:2px;}
+    .info-box p{font-size:13px;color:rgba(255,255,255,.55);line-height:1.6;}
+    .info-box a{color:var(--o);}
+
+    /* Section divider */
+    .section-divider{display:flex;align-items:center;gap:12px;margin:24px 0 20px;}
+    .section-divider span{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--o);white-space:nowrap;}
+    .section-divider::before,.section-divider::after{content:'';flex:1;height:1px;background:rgba(255,107,43,.15);}
+
+    /* ── UPLOAD ZONES ── */
+    .upload-field{margin-bottom:24px;}
+    .upload-label{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.55);margin-bottom:8px;display:block;}
+    .upload-zone{border:2px dashed rgba(255,255,255,.12);border-radius:14px;overflow:hidden;cursor:pointer;transition:border-color .2s,background .2s;background:rgba(255,255,255,.02);}
+    .upload-zone:hover{border-color:rgba(255,107,43,.35);background:rgba(255,107,43,.04);}
+    .upload-zone.has-file{border-style:solid;border-color:rgba(74,222,128,.3);background:rgba(74,222,128,.04);}
+    .upload-zone.upload-error{border-color:rgba(248,113,113,.4);background:rgba(248,113,113,.04);}
+    .upload-zone input[type="file"]{display:none;}
+    .uz-placeholder{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding:28px 20px;text-align:center;}
+    .uz-icon{font-size:28px;}
+    .uz-text{font-size:14px;font-weight:600;color:rgba(255,255,255,.6);}
+    .uz-hint{font-size:11px;color:rgba(255,255,255,.3);}
+    .uz-preview{display:none;flex-direction:column;align-items:center;gap:10px;padding:16px;}
+    .uz-preview img{max-height:140px;max-width:100%;border-radius:8px;object-fit:contain;}
+    .uz-preview .pv-pdf{font-size:40px;}
+    .uz-preview .pv-name{font-size:12px;color:rgba(255,255,255,.5);word-break:break-all;text-align:center;}
+    .uz-preview .pv-change{font-size:11px;font-weight:700;color:var(--o);text-transform:uppercase;letter-spacing:.08em;cursor:pointer;background:rgba(255,107,43,.1);border:1px solid rgba(255,107,43,.2);border-radius:20px;padding:4px 12px;margin-top:4px;}
+
+    /* ── SIGNATURE ── */
+    .signature-area{border:2px dashed rgba(255,255,255,.12);border-radius:14px;overflow:hidden;background:rgba(255,255,255,.02);}
+    .sig-header{padding:12px 16px;border-bottom:1px solid rgba(255,255,255,.06);font-size:12px;color:rgba(255,255,255,.4);}
+    #sigCanvas{display:block;width:100%;cursor:crosshair;touch-action:none;background:#fff;}
+    .sig-footer{display:flex;align-items:center;justify-content:space-between;padding:10px 16px;border-top:1px solid rgba(255,255,255,.06);}
+    .sig-hint-text{font-size:12px;color:rgba(255,255,255,.3);}
+    .sig-btn{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:20px;color:rgba(255,255,255,.6);font-size:12px;font-weight:600;padding:6px 14px;cursor:pointer;transition:all .2s;font-family:'Inter',sans-serif;}
+    .sig-btn:hover{background:rgba(255,255,255,.1);color:#fff;}
+    .sig-area-wrap.sig-done{border-color:rgba(74,222,128,.3);}
+
+    /* ── CONSENT ── */
+    .consent-box{background:rgba(10,36,99,.15);border:1px solid rgba(26,58,143,.25);border-radius:16px;padding:24px;margin-bottom:24px;}
+    .consent-box h4{font-family:'Bebas Neue';font-size:20px;margin-bottom:10px;color:var(--o3);}
+    .consent-box p{font-size:13px;color:rgba(255,255,255,.55);line-height:1.7;margin-bottom:12px;}
+    .consent-box a{color:var(--o);}
+    .consent-check-row{display:flex;align-items:flex-start;gap:12px;padding:16px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:10px;cursor:pointer;}
+    .consent-check-row:hover{border-color:rgba(255,107,43,.2);}
+    .consent-check-row input[type="checkbox"]{width:22px;height:22px;min-width:22px;accent-color:var(--o);cursor:pointer;margin-top:2px;}
+    .consent-check-row span{font-size:14px;line-height:1.6;color:rgba(255,255,255,.85);}
+
+    /* ── SUMMARY CARD ── */
+    .summary-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:20px 24px;margin-bottom:24px;}
+    .summary-card h4{font-family:'Bebas Neue';font-size:20px;margin-bottom:14px;color:rgba(255,255,255,.7);}
+    .sum-row{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.05);font-size:14px;}
+    .sum-row:last-child{border-bottom:none;}
+    .sum-row span{color:rgba(255,255,255,.4);}
+    .sum-row strong{text-align:right;}
+
+    /* ── ERROR BANNER ── */
+    .error-banner{display:none;align-items:flex-start;gap:12px;background:rgba(248,113,113,.1);border:1px solid rgba(248,113,113,.25);border-radius:12px;padding:16px 18px;margin-bottom:20px;}
+    .error-banner span{font-size:14px;color:#fca5a5;line-height:1.6;}
+
+    /* ── SUCCESS SCREEN ── */
+    .success-screen{text-align:center;padding:40px 20px;}
+    .success-icon{font-size:64px;margin-bottom:16px;}
+    .success-screen h2{font-family:'Bebas Neue';font-size:clamp(36px,5vw,56px);margin-bottom:12px;}
+    .success-screen h2 em{color:var(--o);font-style:normal;}
+    .success-screen>p{color:rgba(255,255,255,.55);font-size:15px;line-height:1.7;max-width:480px;margin:0 auto 24px;}
+    .success-ref{background:rgba(255,107,43,.08);border:1px solid rgba(255,107,43,.2);border-radius:12px;padding:16px 24px;display:inline-block;margin-bottom:32px;}
+    .success-ref strong{font-size:13px;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.08em;}
+    .success-ref code{display:block;font-size:22px;font-family:monospace;letter-spacing:.2em;color:#fff;margin-top:4px;}
+    .success-steps{display:flex;flex-direction:column;gap:12px;margin:0 auto 32px;max-width:400px;text-align:left;}
+    .success-step{display:flex;align-items:flex-start;gap:14px;background:rgba(255,255,255,.03);border-radius:10px;padding:14px 16px;}
+    .ss-num{width:28px;height:28px;border-radius:50%;background:var(--o);color:#fff;font-family:'Bebas Neue';font-size:15px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+    .success-step p{font-size:14px;color:rgba(255,255,255,.65);line-height:1.5;padding-top:3px;}
+
+    /* ── NAV BUTTONS ── */
+    .form-nav-row{display:flex;justify-content:space-between;gap:12px;margin-top:8px;padding-top:24px;border-top:1px solid rgba(255,255,255,.05);}
+    .btn-primary{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--o);color:#fff;border:none;border-radius:10px;padding:14px 28px;font-family:'Bebas Neue';font-size:18px;letter-spacing:.06em;cursor:pointer;transition:all .3s;text-decoration:none;}
+    .btn-primary:hover{background:var(--o2);transform:translateY(-1px);}
+    .btn-primary:disabled{opacity:.5;cursor:not-allowed;transform:none;}
+    .btn-outline{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:transparent;color:#fff;border:1px solid rgba(255,255,255,.2);border-radius:10px;padding:14px 28px;font-family:'Bebas Neue';font-size:18px;letter-spacing:.06em;cursor:pointer;transition:all .3s;text-decoration:none;}
+    .btn-outline:hover{border-color:var(--o);color:var(--o);}
+    .btn-full{width:100%;}
+
+    /* ── FOOTER ── */
+    footer{background:#050200;border-top:1px solid rgba(255,255,255,.04);padding:28px 8%;text-align:center;}
+    footer p{font-size:12px;color:rgba(255,255,255,.25);}
+    footer a{color:rgba(255,107,43,.6);}
+
+    /* ── RESPONSIVE ── */
+    @media(max-width:640px){
+      .field-row{grid-template-columns:1fr;}
+      .form-hero{padding:90px 6% 36px;}
+      .form-outer{padding:28px 16px 80px;}
+      .form-nav-row{flex-wrap:wrap;}
+      .form-nav-row .btn-outline,.form-nav-row .btn-primary{flex:1;min-width:0;}
+      .step-prog{gap:0;}
+      .stp-label{display:none;}
+      .success-screen{padding:24px 0;}
+    }
+    @media(max-width:380px){
+      .stp-circle{width:30px;height:30px;font-size:14px;}
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="index.html" class="nav-logo">
+    <img src="logo.png" alt="Enrique Soler"/>
+    <span>Enrique Soler<em>Melilla Ciudad del Deporte</em></span>
+  </a>
+  <a href="inscripciones.html" class="nav-back">
+    ← Inscripciones
+  </a>
+  <div class="nav-burger" id="navBurger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+</nav>
+
+<!-- HERO -->
+<section class="form-hero">
+  <div class="fh-inner">
+    <div class="ins-eyebrow"><span>Temporada 2026 · 27</span></div>
+    <h1>Inscripción <em>Online</em></h1>
+    <p>Completa los datos del jugador/a para solicitar plaza en la Escuela de Baloncesto</p>
+  </div>
+</section>
+
+<!-- FORM OUTER -->
+<div class="form-outer">
+
+  <!-- STEP PROGRESS -->
+  <div class="step-prog" id="stepProg">
+    <div class="stp-item active" data-s="1">
+      <div class="stp-circle">1</div>
+      <div class="stp-label">Jugador</div>
+    </div>
+    <div class="stp-line" id="ln1"></div>
+    <div class="stp-item" data-s="2">
+      <div class="stp-circle">2</div>
+      <div class="stp-label">Tutor</div>
+    </div>
+    <div class="stp-line" id="ln2"></div>
+    <div class="stp-item" data-s="3">
+      <div class="stp-circle">3</div>
+      <div class="stp-label">Documentos</div>
+    </div>
+    <div class="stp-line" id="ln3"></div>
+    <div class="stp-item" data-s="4">
+      <div class="stp-circle">4</div>
+      <div class="stp-label">Confirmar</div>
+    </div>
+  </div>
+
+  <form id="inscForm" novalidate>
+
+    <!-- ══ STEP 1: JUGADOR ══ -->
+    <div class="form-step" id="s1">
+      <div class="step-header">
+        <div class="step-lbl">Paso 1 de 4</div>
+        <h2>Datos del <em>jugador/a</em></h2>
+        <p>Información personal del deportista que se va a inscribir</p>
+      </div>
+
+      <div class="field-group">
+        <label for="f-cat">Categoría *</label>
+        <select id="f-cat" name="category" required>
+          <option value="">— Selecciona categoría —</option>
+          <option value="PreMini">⭐ PreMini (5–7 años, nacidos 2018–2020)</option>
+          <option value="Mini">🌟 Mini (8–9 años, nacidos 2016–2017)</option>
+          <option value="Benjamín">🔥 Benjamín (10–11 años, nacidos 2014–2015)</option>
+          <option value="Alevín">🏀 Alevín (12–13 años, nacidos 2012–2013)</option>
+          <option value="Infantil">⚡ Infantil (14–15 años, nacidos 2010–2011)</option>
+          <option value="Cadete">🎯 Cadete (16–17 años, nacidos 2008–2009)</option>
+          <option value="Junior">💪 Junior (18–19 años, nacidos 2006–2007)</option>
+          <option value="Senior">🏆 Senior (20–21 años, nacidos 2004–2005)</option>
+        </select>
+      </div>
+
+      <div class="field-row">
+        <div class="field-group">
+          <label for="f-fname">Nombre del jugador/a *</label>
+          <input type="text" id="f-fname" name="first_name" required autocomplete="given-name" placeholder="Nombre">
+        </div>
+        <div class="field-group">
+          <label for="f-lname">Apellidos *</label>
+          <input type="text" id="f-lname" name="last_name" required autocomplete="family-name" placeholder="Apellidos">
+        </div>
+      </div>
+
+      <div class="field-row">
+        <div class="field-group">
+          <label for="f-bdate">Fecha de nacimiento *</label>
+          <input type="date" id="f-bdate" name="birth_date" required>
+        </div>
+        <div class="field-group">
+          <label for="f-dni">DNI / NIE del jugador <span class="opt">(si tiene)</span></label>
+          <input type="text" id="f-dni" name="dni" placeholder="12345678A" maxlength="12">
+        </div>
+      </div>
+
+      <div class="field-group">
+        <label for="f-addr">Dirección completa *</label>
+        <input type="text" id="f-addr" name="address" required autocomplete="street-address" placeholder="Calle, número, piso, ciudad…">
+      </div>
+
+      <div class="field-row">
+        <div class="field-group">
+          <label for="f-phone">Teléfono <span class="opt">(opcional)</span></label>
+          <input type="tel" id="f-phone" name="phone" autocomplete="tel" placeholder="600 000 000">
+        </div>
+        <div class="field-group">
+          <label for="f-email">Email del jugador <span class="opt">(opcional)</span></label>
+          <input type="email" id="f-email" name="email" autocomplete="email" placeholder="correo@ejemplo.com">
+        </div>
+      </div>
+
+      <div class="field-group">
+        <label class="checkbox-label" for="f-adult">
+          <input type="checkbox" id="f-adult" name="is_adult">
+          <span>El jugador/a es mayor de edad (18+) y firmará la inscripción por sí mismo/a</span>
+        </label>
+        <p class="field-hint" style="margin-top:8px;">Marca esta casilla solo si el jugador tiene 18 años o más. En ese caso, los datos del paso 2 serán los suyos propios.</p>
+      </div>
+    </div>
+
+    <!-- ══ STEP 2: TUTOR ══ -->
+    <div class="form-step hidden" id="s2">
+      <div class="step-header">
+        <div class="step-lbl">Paso 2 de 4</div>
+        <h2>Datos del <em>tutor/a legal</em></h2>
+        <p id="s2-desc">Información del padre, madre o tutor legal responsable del jugador/a</p>
+      </div>
+
+      <div class="field-row">
+        <div class="field-group">
+          <label for="g-fname">Nombre *</label>
+          <input type="text" id="g-fname" name="g_first_name" required autocomplete="given-name" placeholder="Nombre">
+        </div>
+        <div class="field-group">
+          <label for="g-lname">Apellidos *</label>
+          <input type="text" id="g-lname" name="g_last_name" required autocomplete="family-name" placeholder="Apellidos">
+        </div>
+      </div>
+
+      <div class="field-row">
+        <div class="field-group">
+          <label for="g-dni">DNI / NIE *</label>
+          <input type="text" id="g-dni" name="g_dni" required placeholder="12345678A" maxlength="12">
+        </div>
+        <div class="field-group">
+          <label for="g-rel">Relación con el jugador/a *</label>
+          <select id="g-rel" name="g_relationship" required>
+            <option value="">— Seleccionar —</option>
+            <option value="Padre">Padre</option>
+            <option value="Madre">Madre</option>
+            <option value="Tutor legal">Tutor legal</option>
+            <option value="El propio jugador">El propio jugador/a</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="field-row">
+        <div class="field-group">
+          <label for="g-phone">Teléfono de contacto *</label>
+          <input type="tel" id="g-phone" name="g_phone" required autocomplete="tel" placeholder="600 000 000">
+        </div>
+        <div class="field-group">
+          <label for="g-email">Email de contacto *</label>
+          <input type="email" id="g-email" name="g_email" required autocomplete="email" placeholder="correo@ejemplo.com">
+        </div>
+      </div>
+
+      <div class="info-box">
+        <span>ℹ️</span>
+        <p>El email de contacto recibirá la confirmación de la inscripción y las comunicaciones del club a lo largo de la temporada. Asegúrate de que es correcto.</p>
+      </div>
+    </div>
+
+    <!-- ══ STEP 3: DOCUMENTOS ══ -->
+    <div class="form-step hidden" id="s3">
+      <div class="step-header">
+        <div class="step-lbl">Paso 3 de 4</div>
+        <h2>Documentación <em>requerida</em></h2>
+        <p>Sube los archivos y firma la autorización. Los documentos nunca serán públicos.</p>
+      </div>
+
+      <div class="info-box">
+        <span>🔒</span>
+        <p>Todos los archivos se almacenan de forma privada y cifrada. Solo el personal autorizado del club puede acceder a ellos. Formatos aceptados: JPG, PNG o PDF. Tamaño máximo: 10 MB por archivo.</p>
+      </div>
+
+      <div class="section-divider"><span>Documentos del jugador</span></div>
+
+      <!-- DNI Front -->
+      <div class="upload-field" id="uf-dni-front">
+        <span class="upload-label">DNI / NIE del jugador — Cara anterior (anverso) *</span>
+        <div class="upload-zone" id="uz-dni-front" onclick="triggerFile('f-dni-front')">
+          <input type="file" id="f-dni-front" accept="image/*,application/pdf" onchange="handleFile(this,'dni_front')">
+          <div class="uz-placeholder" id="ph-dni-front">
+            <div class="uz-icon">🪪</div>
+            <div class="uz-text">Toca para seleccionar archivo</div>
+            <div class="uz-hint">JPG, PNG o PDF · Máx. 10 MB</div>
+          </div>
+          <div class="uz-preview" id="pv-dni-front"></div>
+        </div>
+      </div>
+
+      <!-- DNI Back -->
+      <div class="upload-field" id="uf-dni-back">
+        <span class="upload-label">DNI / NIE del jugador — Cara posterior (reverso) *</span>
+        <div class="upload-zone" id="uz-dni-back" onclick="triggerFile('f-dni-back')">
+          <input type="file" id="f-dni-back" accept="image/*,application/pdf" onchange="handleFile(this,'dni_back')">
+          <div class="uz-placeholder" id="ph-dni-back">
+            <div class="uz-icon">🪪</div>
+            <div class="uz-text">Toca para seleccionar archivo</div>
+            <div class="uz-hint">JPG, PNG o PDF · Máx. 10 MB</div>
+          </div>
+          <div class="uz-preview" id="pv-dni-back"></div>
+        </div>
+      </div>
+
+      <!-- Medical -->
+      <div class="upload-field" id="uf-medical">
+        <span class="upload-label">Reconocimiento médico deportivo *</span>
+        <div class="upload-zone" id="uz-medical" onclick="triggerFile('f-medical')">
+          <input type="file" id="f-medical" accept="image/*,application/pdf" onchange="handleFile(this,'medical')">
+          <div class="uz-placeholder" id="ph-medical">
+            <div class="uz-icon">🩺</div>
+            <div class="uz-text">Toca para seleccionar archivo</div>
+            <div class="uz-hint">JPG, PNG o PDF · Máx. 10 MB</div>
+          </div>
+          <div class="uz-preview" id="pv-medical"></div>
+        </div>
+        <p class="field-hint">Certificado médico de aptitud para practicar baloncesto. Puedes obtenerlo en <a href="https://www.medicalimbrain.com/" target="_blank">medicalimbrain.com</a></p>
+      </div>
+
+      <!-- Photo -->
+      <div class="upload-field" id="uf-photo">
+        <span class="upload-label">Fotografía tipo carnet *</span>
+        <div class="upload-zone" id="uz-photo" onclick="triggerFile('f-photo')">
+          <input type="file" id="f-photo" accept="image/*" onchange="handleFile(this,'photo')">
+          <div class="uz-placeholder" id="ph-photo">
+            <div class="uz-icon">📷</div>
+            <div class="uz-text">Toca para seleccionar foto</div>
+            <div class="uz-hint">JPG o PNG · Fondo blanco · Máx. 10 MB</div>
+          </div>
+          <div class="uz-preview" id="pv-photo"></div>
+        </div>
+        <p class="field-hint">Fondo blanco, cara visible, sin gafas de sol. Se usará para la licencia federativa.</p>
+      </div>
+
+      <div class="section-divider"><span>Firma de autorización</span></div>
+
+      <!-- Signature -->
+      <div class="upload-field">
+        <span class="upload-label">Firma del tutor legal / jugador *</span>
+        <div class="signature-area" id="sigArea">
+          <div class="sig-header">Firma en el recuadro de abajo con el dedo o el ratón</div>
+          <canvas id="sigCanvas" height="160"></canvas>
+          <div class="sig-footer">
+            <span class="sig-hint-text" id="sigHint">Sin firma todavía</span>
+            <button type="button" class="sig-btn" onclick="clearSig()">🗑️ Limpiar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ STEP 4: CONFIRMAR ══ -->
+    <div class="form-step hidden" id="s4">
+      <div class="step-header">
+        <div class="step-lbl">Paso 4 de 4</div>
+        <h2>Consentimiento y <em>envío</em></h2>
+        <p>Revisa el resumen y acepta el consentimiento para enviar la inscripción</p>
+      </div>
+
+      <div class="summary-card" id="summaryCard"></div>
+
+      <div class="consent-box">
+        <h4>Autorización y protección de datos</h4>
+        <p>Los datos personales facilitados serán tratados por el Club Deportivo Enrique Soler con la única finalidad de gestionar la inscripción deportiva y federativa del jugador/a. Los datos serán conservados durante el tiempo necesario para cumplir con las obligaciones derivadas de la inscripción y, en cualquier caso, durante el período de vigencia de la licencia federativa. Podrás ejercer tus derechos de acceso, rectificación, supresión y oposición dirigiéndote al club. Para más información, consulta nuestra <a href="/privacidad-inscripciones" target="_blank">política de privacidad</a>.</p>
+        <label class="consent-check-row" for="f-consent">
+          <input type="checkbox" id="f-consent" required>
+          <span>Confirmo que soy padre/madre/tutor legal del menor y autorizo al Club Deportivo Enrique Soler a tratar estos datos y documentos exclusivamente para la gestión de la inscripción deportiva/federativa, de acuerdo con el RGPD (UE) 2016/679 y la LOPDGDD 3/2018.</span>
+        </label>
+      </div>
+
+      <div class="error-banner" id="errorBanner">
+        <span>⚠️</span>
+        <span id="errorMsg"></span>
+      </div>
+    </div>
+
+    <!-- ══ STEP 5: CONFIRMACIÓN ══ -->
+    <div class="form-step hidden" id="s5">
+      <div class="success-screen">
+        <div class="success-icon">✅</div>
+        <h2>¡Inscripción <em>recibida!</em></h2>
+        <p>Tu solicitud ha sido registrada correctamente. El club revisará la documentación y se pondrá en contacto contigo en los próximos días hábiles.</p>
+        <div class="success-ref" id="successRef"></div>
+        <div class="success-steps">
+          <div class="success-step">
+            <div class="ss-num">1</div>
+            <p>El club revisará tu documentación y verificará que está completa</p>
+          </div>
+          <div class="success-step">
+            <div class="ss-num">2</div>
+            <p>Recibirás confirmación por email o WhatsApp con el estado de la inscripción</p>
+          </div>
+          <div class="success-step">
+            <div class="ss-num">3</div>
+            <p>El club te facilitará los documentos pendientes (horarios, normas, licencia)</p>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:12px;align-items:center;width:100%;">
+          <a href="inscripciones.html" class="btn-primary btn-full" style="max-width:320px">← Volver a inscripciones</a>
+          <a href="https://wa.me/34952699700?text=Hola%2C%20acabo%20de%20enviar%20mi%20inscripci%C3%B3n%20online%20y%20quer%C3%ADa%20confirmarlo." target="_blank" class="btn-outline btn-full" style="max-width:320px">💬 Confirmar por WhatsApp</a>
+        </div>
+      </div>
+    </div>
+
+  </form>
+
+  <!-- NAV BUTTONS -->
+  <div class="form-nav-row" id="formNavRow">
+    <button type="button" class="btn-outline" id="btnPrev" onclick="prevStep()" style="display:none">← Anterior</button>
+    <button type="button" class="btn-primary" id="btnNext" onclick="nextStep()">Siguiente →</button>
+    <button type="button" class="btn-primary" id="btnSubmit" onclick="submitForm()" style="display:none">
+      <span id="btnSubmitText">Enviar inscripción →</span>
+      <span id="btnSubmitSpin" style="display:none">⏳ Enviando…</span>
+    </button>
+  </div>
+
+</div><!-- /form-outer -->
+
+<footer>
+  <p>© 2026 Club Deportivo Enrique Soler · <a href="inscripciones.html">Inscripciones</a> · <a href="privacidad-inscripciones.html">Privacidad</a> · <a href="index.html">Inicio</a></p>
+</footer>
+
+<script>
+// ═══════════════════════════════════════════════════════
+//  CONFIGURACIÓN SUPABASE
+//  Reemplaza estos valores con los de tu proyecto
+// ═══════════════════════════════════════════════════════
+const SUPABASE_URL = 'https://zhpidfscepgxrgmawzhm.supabase.co';          // ej: https://abcdefgh.supabase.co
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpocGlkZnNjZXBneHJnbWF3emhtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAwMDQ1OTksImV4cCI6MjA5NTU4MDU5OX0.ZJL9GnOd9pLnbdv6wqlDSQrJYKGA7FzApFVUehScOhs'; // ej: eyJhbGci...
+
+const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+// ── Estado del formulario ────────────────────────────────
+let currentStep = 1;
+const TOTAL_STEPS = 4;
+let uploadedFiles = {};
+
+// ── Preseleccionar categoría desde URL ───────────────────
+(function() {
+  const cat = new URLSearchParams(window.location.search).get('cat');
+  if (!cat) return;
+  const sel = document.getElementById('f-cat');
+  for (const opt of sel.options) {
+    if (opt.value.toLowerCase().startsWith(cat.toLowerCase()) ||
+        opt.value === cat) {
+      sel.value = opt.value;
+      break;
+    }
+  }
+})();
+
+// ── Checkbox mayor de edad ───────────────────────────────
+document.getElementById('f-adult').addEventListener('change', function() {
+  const desc = document.getElementById('s2-desc');
+  const rel = document.getElementById('g-rel');
+  if (this.checked) {
+    desc.textContent = 'Como mayor de edad, completa aquí tus propios datos. Serás el firmante de la inscripción.';
+    rel.value = 'El propio jugador';
+    rel.disabled = true;
+  } else {
+    desc.textContent = 'Información del padre, madre o tutor legal responsable del jugador/a.';
+    rel.disabled = false;
+    if (rel.value === 'El propio jugador') rel.value = '';
+  }
+});
+
+// ── Firma (canvas) ───────────────────────────────────────
+const canvas = document.getElementById('sigCanvas');
+const ctx = canvas.getContext('2d');
+let isDrawing = false;
+let lastPt = null;
+let sigHasData = false;
+let canvasInited = false;
+
+function initCanvas() {
+  const w = canvas.parentElement.clientWidth;
+  if (!w) return; // parent still hidden, skip
+  canvas.width = w;
+  ctx.fillStyle = '#fff';
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  ctx.strokeStyle = '#1a1a1a';
+  ctx.lineWidth = 2.2;
+  ctx.lineCap = 'round';
+  ctx.lineJoin = 'round';
+  canvasInited = true;
+}
+window.addEventListener('resize', () => { if (currentStep === 3) initCanvas(); });
+
+function getPoint(e) {
+  const r = canvas.getBoundingClientRect();
+  const sx = canvas.width / r.width;
+  const sy = canvas.height / r.height;
+  const src = e.touches ? e.touches[0] : e;
+  return { x: (src.clientX - r.left) * sx, y: (src.clientY - r.top) * sy };
+}
+
+function startDraw(e) { e.preventDefault(); isDrawing = true; lastPt = getPoint(e); }
+function moveDraw(e) {
+  if (!isDrawing || !lastPt) return;
+  e.preventDefault();
+  const p = getPoint(e);
+  ctx.beginPath();
+  ctx.moveTo(lastPt.x, lastPt.y);
+  ctx.lineTo(p.x, p.y);
+  ctx.stroke();
+  lastPt = p;
+  if (!sigHasData) {
+    sigHasData = true;
+    document.getElementById('sigHint').textContent = '✍️ Firma añadida';
+    document.getElementById('sigHint').style.color = '#4ade80';
+    document.getElementById('sigArea').style.borderColor = 'rgba(74,222,128,.3)';
+  }
+}
+function stopDraw() { isDrawing = false; lastPt = null; }
+
+canvas.addEventListener('mousedown', startDraw);
+canvas.addEventListener('mousemove', moveDraw);
+canvas.addEventListener('mouseup', stopDraw);
+canvas.addEventListener('mouseleave', stopDraw);
+canvas.addEventListener('touchstart', startDraw, { passive: false });
+canvas.addEventListener('touchmove', moveDraw, { passive: false });
+canvas.addEventListener('touchend', stopDraw);
+
+function clearSig() {
+  ctx.fillStyle = '#fff';
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  sigHasData = false;
+  document.getElementById('sigHint').textContent = 'Sin firma todavía';
+  document.getElementById('sigHint').style.color = '';
+  document.getElementById('sigArea').style.borderColor = '';
+}
+
+function isSigEmpty() {
+  const d = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
+  for (let i = 0; i < d.length; i += 4) {
+    if (d[i] < 250 || d[i+1] < 250 || d[i+2] < 250) return false;
+  }
+  return true;
+}
+
+function getSigBlob() {
+  return new Promise(res => canvas.toBlob(b => res(b), 'image/png'));
+}
+
+// ── Subida de archivos ───────────────────────────────────
+function triggerFile(id) { document.getElementById(id).click(); }
+
+function handleFile(input, type) {
+  const file = input.files[0];
+  if (!file) return;
+  if (file.size > 10 * 1024 * 1024) {
+    showError(`El archivo "${file.name}" supera los 10 MB permitidos.`);
+    input.value = '';
+    return;
+  }
+  uploadedFiles[type] = file;
+  const id = type.replace(/_/g, '-');
+  const ph = document.getElementById(`ph-${id}`);
+  const pv = document.getElementById(`pv-${id}`);
+  const uz = document.getElementById(`uz-${id}`);
+  if (!ph || !pv || !uz) return;
+  uz.classList.add('has-file');
+  uz.classList.remove('upload-error');
+  if (file.type.startsWith('image/')) {
+    const r = new FileReader();
+    r.onload = e => {
+      pv.innerHTML = `<img src="${e.target.result}" alt="Vista previa"><div class="pv-name">${file.name}</div><div class="pv-change" onclick="triggerFile('f-${id}')">Cambiar</div>`;
+      pv.style.display = 'flex';
+      ph.style.display = 'none';
+    };
+    r.readAsDataURL(file);
+  } else {
+    pv.innerHTML = `<div class="pv-pdf">📄</div><div class="pv-name">${file.name}</div><div class="pv-change" onclick="triggerFile('f-${id}')">Cambiar</div>`;
+    pv.style.display = 'flex';
+    ph.style.display = 'none';
+  }
+}
+
+// ── Resumen (Step 4) ─────────────────────────────────────
+function buildSummary() {
+  const cat   = document.getElementById('f-cat').value;
+  const fn    = document.getElementById('f-fname').value.trim();
+  const ln    = document.getElementById('f-lname').value.trim();
+  const bd    = document.getElementById('f-bdate').value;
+  const gfn   = document.getElementById('g-fname').value.trim();
+  const gln   = document.getElementById('g-lname').value.trim();
+  const grel  = document.getElementById('g-rel').value;
+  const docs  = Object.keys(uploadedFiles).length;
+  const rows  = [
+    ['Categoría', cat],
+    ['Jugador/a', `${fn} ${ln}`],
+    ['Fecha de nacimiento', formatDate(bd)],
+    ['Tutor / firmante', `${gfn} ${gln} (${grel})`],
+    ['Archivos subidos', `${docs} de 4 requeridos ✅`],
+    ['Firma', sigHasData ? '✅ Añadida' : '⚠️ Pendiente'],
+  ];
+  document.getElementById('summaryCard').innerHTML = `
+    <h4>Resumen de la solicitud</h4>
+    ${rows.map(([k,v]) => `<div class="sum-row"><span>${k}</span><strong>${v}</strong></div>`).join('')}
+  `;
+}
+
+function formatDate(d) {
+  if (!d) return '—';
+  const [y,m,day] = d.split('-');
+  return `${day}/${m}/${y}`;
+}
+
+// ── Validación por paso ──────────────────────────────────
+function validateStep(n) {
+  clearErrors();
+  if (n === 1) {
+    const ids = ['f-cat','f-fname','f-lname','f-bdate','f-addr'];
+    for (const id of ids) {
+      const el = document.getElementById(id);
+      if (!el.value.trim()) { markError(id,'Este campo es obligatorio'); return false; }
+    }
+    const em = document.getElementById('f-email');
+    if (em.value && !/\S+@\S+\.\S+/.test(em.value)) { markError('f-email','Email inválido'); return false; }
+    return true;
+  }
+  if (n === 2) {
+    const ids = ['g-fname','g-lname','g-dni','g-phone','g-email','g-rel'];
+    for (const id of ids) {
+      const el = document.getElementById(id);
+      if (!el.value.trim()) { markError(id,'Este campo es obligatorio'); return false; }
+    }
+    const em = document.getElementById('g-email');
+    if (!/\S+@\S+\.\S+/.test(em.value)) { markError('g-email','Email inválido'); return false; }
+    return true;
+  }
+  if (n === 3) {
+    const req = ['dni_front','dni_back','medical','photo'];
+    const names = { dni_front:'DNI cara anterior', dni_back:'DNI cara posterior', medical:'Reconocimiento médico', photo:'Fotografía carnet' };
+    for (const t of req) {
+      if (!uploadedFiles[t]) {
+        const id = t.replace(/_/g,'-');
+        document.getElementById(`uz-${id}`)?.classList.add('upload-error');
+        showError(`Falta subir: ${names[t]}`);
+        document.getElementById(`uf-${id}`)?.scrollIntoView({behavior:'smooth',block:'center'});
+        return false;
+      }
+    }
+    if (isSigEmpty()) {
+      showError('Por favor, añade tu firma en el recuadro de firma');
+      document.getElementById('sigArea').scrollIntoView({behavior:'smooth',block:'center'});
+      return false;
+    }
+    return true;
+  }
+  if (n === 4) {
+    if (!document.getElementById('f-consent').checked) {
+      showError('Debes aceptar el consentimiento para enviar la inscripción');
+      return false;
+    }
+    return true;
+  }
+  return true;
+}
+
+function markError(id, msg) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.classList.add('field-error');
+  let err = el.parentElement.querySelector('.field-err-msg');
+  if (!err) {
+    err = document.createElement('div');
+    err.className = 'field-err-msg';
+    el.parentElement.appendChild(err);
+  }
+  err.textContent = msg;
+  el.focus();
+}
+
+function showError(msg) {
+  const b = document.getElementById('errorBanner');
+  document.getElementById('errorMsg').textContent = msg;
+  b.style.display = 'flex';
+  b.scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+
+function clearErrors() {
+  document.querySelectorAll('.field-error').forEach(e => e.classList.remove('field-error'));
+  document.querySelectorAll('.field-err-msg').forEach(e => e.remove());
+  document.querySelectorAll('.upload-error').forEach(e => e.classList.remove('upload-error'));
+  const b = document.getElementById('errorBanner');
+  if (b) b.style.display = 'none';
+}
+
+// ── Navegación de pasos ──────────────────────────────────
+function showStep(n) {
+  document.querySelectorAll('.form-step').forEach(el => el.classList.add('hidden'));
+  document.getElementById(`s${n}`).classList.remove('hidden');
+  if (n === 3 && !canvasInited) initCanvas();
+
+  document.querySelectorAll('.stp-item').forEach((el, i) => {
+    el.classList.remove('active','done');
+    if (i + 1 < n) { el.classList.add('done'); }
+    if (i + 1 === n) { el.classList.add('active'); }
+  });
+  for (let i = 1; i <= 3; i++) {
+    const ln = document.getElementById(`ln${i}`);
+    if (ln) ln.classList.toggle('done', i < n);
+  }
+
+  const isSuccess = n === 5;
+  document.getElementById('stepProg').style.display = isSuccess ? 'none' : 'flex';
+  document.getElementById('formNavRow').style.display = isSuccess ? 'none' : 'flex';
+  document.getElementById('btnPrev').style.display = (n > 1 && !isSuccess) ? '' : 'none';
+  document.getElementById('btnNext').style.display = (n < TOTAL_STEPS && !isSuccess) ? '' : 'none';
+  document.getElementById('btnSubmit').style.display = (n === TOTAL_STEPS && !isSuccess) ? '' : 'none';
+
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function prevStep() {
+  if (currentStep > 1) { currentStep--; showStep(currentStep); }
+}
+
+function nextStep() {
+  clearErrors();
+  if (!validateStep(currentStep)) return;
+  if (currentStep === TOTAL_STEPS - 1) buildSummary();
+  currentStep++;
+  showStep(currentStep);
+}
+
+// ── Envío del formulario ─────────────────────────────────
+async function submitForm() {
+  clearErrors();
+  if (!validateStep(4)) return;
+
+  const btn    = document.getElementById('btnSubmit');
+  const txtEl  = document.getElementById('btnSubmitText');
+  const spinEl = document.getElementById('btnSubmitSpin');
+  btn.disabled = true;
+  txtEl.style.display = 'none';
+  spinEl.style.display = 'inline';
+
+  try {
+    const playerId = crypto.randomUUID();
+
+    // 1. Subir archivos a Storage
+    const docRecords = [];
+    for (const [type, file] of Object.entries(uploadedFiles)) {
+      const ext = file.name.split('.').pop().toLowerCase();
+      const path = `${playerId}/${type}.${ext}`;
+      const { error } = await sb.storage.from('inscriptions').upload(path, file, {
+        contentType: file.type, upsert: false
+      });
+      if (error) throw new Error(`Error subiendo ${type}: ${error.message}`);
+      docRecords.push({ player_id: playerId, type, storage_path: path, original_name: file.name, file_size: file.size, mime_type: file.type });
+    }
+
+    // 2. Subir firma
+    const sigBlob = await getSigBlob();
+    const sigPath = `${playerId}/signature.png`;
+    const { error: sigErr } = await sb.storage.from('inscriptions').upload(sigPath, sigBlob, { contentType: 'image/png' });
+    if (sigErr) throw new Error(`Error subiendo firma: ${sigErr.message}`);
+    docRecords.push({ player_id: playerId, type: 'signature', storage_path: sigPath, original_name: 'firma.png', file_size: sigBlob.size, mime_type: 'image/png' });
+
+    // 3. Insertar jugador
+    const { error: pErr } = await sb.from('players').insert([{
+      id: playerId,
+      first_name: document.getElementById('f-fname').value.trim(),
+      last_name:  document.getElementById('f-lname').value.trim(),
+      birth_date: document.getElementById('f-bdate').value,
+      dni:        document.getElementById('f-dni').value.trim() || null,
+      category:   document.getElementById('f-cat').value,
+      address:    document.getElementById('f-addr').value.trim(),
+      phone:      document.getElementById('f-phone').value.trim() || null,
+      email:      document.getElementById('f-email').value.trim() || null,
+      status:     'pendiente'
+    }]);
+    if (pErr) throw new Error(`Error guardando jugador: ${pErr.message}`);
+
+    // 4. Insertar tutor
+    const { error: gErr } = await sb.from('guardians').insert([{
+      player_id:    playerId,
+      first_name:   document.getElementById('g-fname').value.trim(),
+      last_name:    document.getElementById('g-lname').value.trim(),
+      dni:          document.getElementById('g-dni').value.trim(),
+      phone:        document.getElementById('g-phone').value.trim(),
+      email:        document.getElementById('g-email').value.trim(),
+      relationship: document.getElementById('g-rel').value,
+      is_self:      document.getElementById('f-adult').checked
+    }]);
+    if (gErr) throw new Error(`Error guardando tutor: ${gErr.message}`);
+
+    // 5. Insertar documentos
+    const { error: dErr } = await sb.from('documents').insert(docRecords);
+    if (dErr) throw new Error(`Error guardando documentos: ${dErr.message}`);
+
+    // 6. Insertar consentimiento
+    const consentTxt = 'Confirmo que soy padre/madre/tutor legal del menor y autorizo al Club Deportivo Enrique Soler a tratar estos datos y documentos exclusivamente para la gestión de la inscripción deportiva/federativa.';
+    const { error: cErr } = await sb.from('consents').insert([{
+      player_id:       playerId,
+      consent_text:    consentTxt,
+      consent_version: '1.0',
+      guardian_name:   `${document.getElementById('g-fname').value.trim()} ${document.getElementById('g-lname').value.trim()}`,
+      guardian_dni:    document.getElementById('g-dni').value.trim(),
+      user_agent:      navigator.userAgent
+    }]);
+    if (cErr) throw new Error(`Error guardando consentimiento: ${cErr.message}`);
+
+    // ✅ Éxito
+    document.getElementById('successRef').innerHTML = `
+      <strong>Número de solicitud</strong>
+      <code>${playerId.substring(0,8).toUpperCase()}</code>
+      <p style="font-size:12px;color:rgba(255,255,255,.4);margin-top:6px;">Guarda este número por si necesitas hacer referencia</p>
+    `;
+    currentStep = 5;
+    showStep(5);
+
+  } catch (err) {
+    console.error(err);
+    showError(`Error al enviar la inscripción: ${err.message}. Por favor inténtalo de nuevo o contacta al club por WhatsApp.`);
+  } finally {
+    btn.disabled = false;
+    txtEl.style.display = '';
+    spinEl.style.display = 'none';
+  }
+}
+
+// ── Nav scroll ───────────────────────────────────────────
+window.addEventListener('scroll', () =>
+  document.getElementById('nav').classList.toggle('scrolled', scrollY > 40));
+
+function toggleMenu() {
+  document.getElementById('navBurger').classList.toggle('open');
+}
+
+// Inicializar
+showStep(1);
+</script>
+</body>
+</html>

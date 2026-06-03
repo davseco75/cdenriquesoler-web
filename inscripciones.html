@@ -341,7 +341,7 @@
     <li><a href="index.html#tienda">Tienda</a></li>
     <li><a href="patrocinadores.html">Partners</a></li>
   </ul>
-  <a href="https://cdenriquesoler.clupik.app/es/registrations" target="_blank" class="nav-cta">Inscribirse</a>
+  <a href="inscripciones-nueva.html" class="nav-cta">Inscribirse</a>
   <div class="nav-burger" id="navBurger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
 </nav>
 
@@ -365,7 +365,7 @@
   <div class="mob-label">Club</div>
   <a href="index.html#tienda">🛍️ Tienda</a>
   <a href="patrocinadores.html">💼 Partners</a>
-  <a href="https://cdenriquesoler.clupik.app/es/registrations" target="_blank" class="mob-cta">Inscribirse →</a>
+  <a href="inscripciones-nueva.html" class="mob-cta">Inscribirse →</a>
 </div>
 
 <!-- HERO -->
@@ -554,7 +554,7 @@
         ¿Dónde entrego la documentación?
         <div class="faq-toggle"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 2v8M2 6h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
       </div>
-      <div class="faq-a"><p>Toda la documentación se adjunta directamente en el formulario de Clupik (plataforma oficial de inscripciones). Si tienes dificultades, puedes entregar los documentos en mano en el pabellón o enviarlos por WhatsApp al <a href="https://wa.me/34952699700">+34 952 699 700</a>.</p></div>
+      <div class="faq-a"><p>Toda la documentación se adjunta directamente en el <a href="inscripciones-nueva.html">formulario online de inscripción</a>. Si tienes dificultades, puedes entregar los documentos en mano en el pabellón o enviarlos por WhatsApp al <a href="https://wa.me/34952699700">+34 952 699 700</a>.</p></div>
     </div>
     <div class="faq-item">
       <div class="faq-q" onclick="toggleFaq(this)">
@@ -609,8 +609,8 @@
     <a href="https://wa.me/34952699700?text=Hola%2C%20quiero%20información%20sobre%20las%20inscripciones%20de%20la%20escuela%20de%20baloncesto." target="_blank" class="btn-primary">
       💬 WhatsApp directo
     </a>
-    <a href="https://cdenriquesoler.clupik.app/es/registrations" target="_blank" class="btn-outline">
-      📋 Ir a Clupik
+    <a href="inscripciones-nueva.html" class="btn-outline">
+      📋 Formulario online
     </a>
   </div>
 </div>
@@ -827,7 +827,7 @@ function showCategory(id) {
           <div class="docs-intro-icon">📋</div>
           <div>
             <h4>Documentación necesaria para la inscripción</h4>
-            <p>Reúne todos los documentos antes de acceder al formulario de Clupik. Marca cada documento al tenerlo listo. El sistema te pedirá adjuntarlos digitalmente.</p>
+            <p>Reúne todos los documentos antes de abrir el formulario online. Marca cada documento al tenerlo listo. El formulario te pedirá adjuntarlos digitalmente.</p>
           </div>
         </div>
 
@@ -947,7 +947,7 @@ function showCategory(id) {
         </div>
 
         <div class="docs-note">
-          <strong>💡 Consejo:</strong> Te recomendamos crear una carpeta en tu dispositivo con todos los documentos antes de acceder a Clupik. Los documentos de los puntos 6, 7 y 8 los recibirás del club una vez contactes por WhatsApp o te presentes en el pabellón.
+          <strong>💡 Consejo:</strong> Te recomendamos crear una carpeta en tu dispositivo con todos los documentos antes de abrir el formulario online. Los documentos de los puntos 6, 7 y 8 los recibirás del club una vez contactes por WhatsApp o te presentes en el pabellón.
         </div>
 
         <div style="display:flex;gap:12px;margin-top:28px;flex-wrap:wrap;">
@@ -1001,7 +1001,7 @@ function showCategory(id) {
               </div>
               <div class="pago-step">
                 <div class="pago-step-num">3</div>
-                <div class="pago-step-text"><strong>Combina ambos justificantes</strong> (cuota club + PASS CO.MA.MEL) en un solo PDF para adjuntarlo en Clupik.</div>
+                <div class="pago-step-text"><strong>Combina ambos justificantes</strong> (cuota club + PASS CO.MA.MEL) en un solo PDF para adjuntarlo en el formulario online.</div>
               </div>
             </div>
 
@@ -1050,11 +1050,11 @@ function showCategory(id) {
               <div class="sol-circle">📋</div>
             </div>
             <div class="sol-step-right">
-              <h4>Acceder a la plataforma Clupik</h4>
-              <p>Toda la gestión de inscripciones se realiza a través de la plataforma oficial del club. Crea una cuenta si no tienes una.</p>
+              <h4>Completar el formulario online</h4>
+              <p>Todo el proceso se realiza en nuestro formulario propio. Solo necesitas los documentos listos y 5 minutos.</p>
               <div class="sol-action">
-                <a href="https://cdenriquesoler.clupik.app/es/registrations" target="_blank" class="btn-clupik">
-                  📋 Abrir formulario en Clupik →
+                <a href="inscripciones-nueva.html?cat=${encodeURIComponent(cat.name)}" class="btn-clupik">
+                  📋 Completar inscripción online →
                 </a>
               </div>
             </div>
@@ -1065,7 +1065,7 @@ function showCategory(id) {
             </div>
             <div class="sol-step-right">
               <h4>Seleccionar categoría y adjuntar documentos</h4>
-              <p>En Clupik, selecciona la categoría <strong>${cat.name}</strong> y completa todos los campos del formulario. Adjunta cada documento en el apartado correspondiente.</p>
+              <p>La categoría <strong>${cat.name}</strong> viene preseleccionada. Completa los datos del jugador/a, sube los documentos y añade la firma digital.</p>
             </div>
           </div>
           <div class="sol-step">
@@ -1076,7 +1076,7 @@ function showCategory(id) {
               <h4>Esperar confirmación del club</h4>
               <p>Una vez enviada la solicitud, el club la revisará y se pondrá en contacto contigo para confirmar la plaza y facilitar los documentos pendientes (horarios, normas, licencia).</p>
               <div class="sol-action">
-                <a href="https://wa.me/34952699700?text=Hola%2C%20acabo%20de%20enviar%20mi%20inscripci%C3%B3n%20en%20Clupik%20para%20la%20categor%C3%ADa%20${encodeURIComponent(cat.name)}%20y%20quer%C3%ADa%20confirmarlo." target="_blank" class="btn-wa">
+                <a href="https://wa.me/34952699700?text=Hola%2C%20acabo%20de%20enviar%20mi%20inscripci%C3%B3n%20online%20para%20la%20categor%C3%ADa%20${encodeURIComponent(cat.name)}%20y%20quer%C3%ADa%20confirmarlo." target="_blank" class="btn-wa">
                   💬 Confirmar por WhatsApp
                 </a>
               </div>
@@ -1088,8 +1088,8 @@ function showCategory(id) {
           <h3>¿Todo listo? <em style="color:var(--o);font-style:normal;">¡Inscríbete ahora!</em></h3>
           <p>Recuerda que las plazas son limitadas. Cuanto antes envíes tu solicitud, antes confirmas tu plaza para la temporada 2026-27.</p>
           <div class="sol-final-btns">
-            <a href="https://cdenriquesoler.clupik.app/es/registrations" target="_blank" class="btn-clupik">
-              📋 Ir a Clupik — Inscripción oficial
+            <a href="inscripciones-nueva.html?cat=${encodeURIComponent(cat.name)}" class="btn-clupik">
+              📋 Inscripción online →
             </a>
             <a href="https://wa.me/34952699700?text=Hola%2C%20quiero%20información%20sobre%20la%20inscripción%20en%20categoría%20${encodeURIComponent(cat.name)}." target="_blank" class="btn-wa">
               💬 Preguntar por WhatsApp
@@ -1311,7 +1311,7 @@ ScrollTrigger.batch('.faq-item', {
     /* ── INSCRIPCIONES ───────────────────────────────────── */
     { id:'apuntar',
       k:['apuntar','apunte','inscribir','inscripcion','como apunto','como me apunto','quiero entrar','unirme','apuntar hijo','apuntar hija','quiero apuntar','me quiero apuntar'],
-      t:'El proceso es sencillo y está explicado paso a paso en esta página:<br><br>1️⃣ Elige tu categoría según el año de nacimiento<br>2️⃣ Reúne los 10 documentos necesarios<br>3️⃣ Paga la cuota de inscripción (120€) por transferencia<br>4️⃣ Completa la solicitud en Clupik (plataforma oficial)<br><br>Puedes empezar haciendo clic en tu categoría en esta misma página.',
+      t:'El proceso es sencillo y está explicado paso a paso en esta página:<br><br>1️⃣ Elige tu categoría según el año de nacimiento<br>2️⃣ Reúne los documentos necesarios<br>3️⃣ Paga la cuota de inscripción (120€) por transferencia<br>4️⃣ Completa el <a href="inscripciones-nueva.html" style="color:var(--o3)">formulario online</a> con tus datos y documentos<br><br>Puedes empezar haciendo clic en tu categoría en esta misma página.',
       wa:false },
 
     { id:'edad',
@@ -1336,7 +1336,7 @@ ScrollTrigger.batch('.faq-item', {
 
     { id:'proceso',
       k:['como es el proceso','pasos','que hay que hacer','proceso de inscripcion','como funciona','que tengo que hacer','como se hace','explicame'],
-      t:'El proceso de inscripción tiene 4 pasos:<br><br>1️⃣ <b>Información</b> — Elige tu categoría y revisa horarios y cuota<br>2️⃣ <b>Documentación</b> — Reúne los 10 documentos requeridos<br>3️⃣ <b>Pago</b> — Transfiere 120€ al IBAN del club + PASS CO.MA.MEL<br>4️⃣ <b>Solicitud</b> — Completa el formulario en Clupik<br><br>Haz clic en cualquier categoría de esta página para seguir el proceso paso a paso.',
+      t:'El proceso de inscripción tiene 4 pasos:<br><br>1️⃣ <b>Información</b> — Elige tu categoría y revisa horarios y cuota<br>2️⃣ <b>Documentación</b> — Reúne los documentos requeridos<br>3️⃣ <b>Pago</b> — Transfiere 120€ al IBAN del club + PASS CO.MA.MEL<br>4️⃣ <b>Solicitud</b> — Completa el <a href="inscripciones-nueva.html" style="color:var(--o3)">formulario online</a> con datos y documentos<br><br>Haz clic en cualquier categoría de esta página para seguir el proceso paso a paso.',
       wa:false },
 
     /* ── HORARIOS Y ENTRENAMIENTOS ───────────────────────── */
@@ -1368,12 +1368,12 @@ ScrollTrigger.batch('.faq-item', {
 
     { id:'iban',
       k:['iban','cuenta bancaria','numero de cuenta','transferencia','donde pago','como pago','bbva'],
-      t:'El pago se realiza por transferencia bancaria:<br><br>🏦 <b>IBAN: ES25 0182 4220 81 0201838965</b> (BBVA)<br><br>Concepto: <b>"Inscripción [Nombre Apellidos] – [Categoría]"</b><br><br>Guarda el justificante en PDF, lo necesitarás para adjuntarlo en Clupik.',
+      t:'El pago se realiza por transferencia bancaria:<br><br>🏦 <b>IBAN: ES25 0182 4220 81 0201838965</b> (BBVA)<br><br>Concepto: <b>"Inscripción [Nombre Apellidos] – [Categoría]"</b><br><br>Guarda el justificante en PDF, lo necesitarás para subirlo en el formulario online.',
       wa:false },
 
     { id:'pass',
       k:['pass','comamel','co ma mel','comite arbitros','arbitros melilla','pass comamel','que es el pass'],
-      t:'El <b>PASS CO.MA.MEL</b> es la cuota obligatoria del Comité de Árbitros de Melilla para todos los jugadores federados. El importe varía según la categoría. El club te informará del importe exacto al gestionar la inscripción.<br><br>Ambos justificantes (cuota club + PASS) deben combinarse en un solo PDF antes de adjuntarlos en Clupik.',
+      t:'El <b>PASS CO.MA.MEL</b> es la cuota obligatoria del Comité de Árbitros de Melilla para todos los jugadores federados. El importe varía según la categoría. El club te informará del importe exacto al gestionar la inscripción.<br><br>Ambos justificantes (cuota club + PASS) deben combinarse en un solo PDF antes de subirlos en el formulario online.',
       wa:true },
 
     { id:'incluye',
@@ -1404,7 +1404,7 @@ ScrollTrigger.batch('.faq-item', {
 
     { id:'clupik',
       k:['clupik','plataforma','formulario','solicitud online','donde me apunto online','registro online','enlace inscripcion'],
-      t:'<b>Clupik</b> es la plataforma oficial de inscripciones del club. Allí adjuntarás todos los documentos y completarás la solicitud.<br><br>🔗 <a href="https://cdenriquesoler.clupik.app/es/registrations" target="_blank" style="color:var(--o3)">cdenriquesoler.clupik.app</a>',
+      t:'Las inscripciones se gestionan a través de nuestro propio formulario online. Allí rellenarás los datos, subirás los documentos y firmarás la autorización.<br><br>📋 <a href="inscripciones-nueva.html" style="color:var(--o3)">Abrir formulario de inscripción</a>',
       wa:false },
 
     { id:'cambio_categoria',
@@ -1457,7 +1457,7 @@ ScrollTrigger.batch('.faq-item', {
     /* ── FAMILIAS ────────────────────────────────────────── */
     { id:'comunicacion',
       k:['como avisan','comunicacion','comunicación','informacion familias','como me entero','grupos whatsapp','notificaciones','me avisan'],
-      t:'El club informa a las familias a través de grupos de equipo, email, esta web y la aplicación Clupik de gestión deportiva.',
+      t:'El club informa a las familias a través de grupos de equipo de WhatsApp, email y esta web.',
       wa:false },
 
     { id:'ver_entrenamientos',
@@ -1489,7 +1489,7 @@ ScrollTrigger.batch('.faq-item', {
     /* ── CONTACTO ────────────────────────────────────────── */
     { id:'contactar',
       k:['contactar','contacto','telefono','teléfono','email','correo','whatsapp','llamar','como os contacto','escribir','numero de telefono'],
-      t:'Puedes contactarnos por:<br><br>💬 <b>WhatsApp</b>: +34 952 699 700<br>📋 <b>Formulario</b>: en esta misma página<br>🔗 <b>Clupik</b>: cdenriquesoler.clupik.app',
+      t:'Puedes contactarnos por:<br><br>💬 <b>WhatsApp</b>: +34 952 699 700<br>📋 <b>Formulario online</b>: <a href="inscripciones-nueva.html" style="color:var(--o3)">inscripciones-nueva</a>',
       wa:true },
 
     { id:'noticias',

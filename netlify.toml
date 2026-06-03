@@ -24,3 +24,20 @@
   for = "/admin/*"
   [headers.values]
     X-Robots-Tag = "noindex, nofollow"
+
+# El formulario de inscripción no debe estar indexado
+[[headers]]
+  for = "/inscripciones-nueva*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+
+# ── Redirects ──────────────────────────────────────────────────────
+[[redirects]]
+  from = "/inscripciones/nueva"
+  to   = "/inscripciones-nueva"
+  status = 301
+
+[[redirects]]
+  from = "/inscripciones/nueva.html"
+  to   = "/inscripciones-nueva"
+  status = 301
