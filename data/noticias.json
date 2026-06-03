@@ -3,6 +3,20 @@
     {
       "seccion": "general",
       "tipo": "principal",
+      "titulo": "Orgullosos de vosotros",
+      "tag": "🏆 Campeonato de España Infantil de Clubes",
+      "texto": "Nuestro Infantil Masculino ha cerrado su participación en el Campeonato de España Infantil de Clubes con una victoria ante el C.B. Corrales, campeón de Cantabria, por 75-69. Pero más allá del resultado, queremos quedarnos con algo mucho más importante: el camino recorrido, el esfuerzo de cada entrenamiento, la ilusión con la que habéis competido y la forma en la que habéis representado al C.D. Enrique Soler. Habéis estado entre los mejores equipos del país, viviendo una experiencia que no se olvida y compitiendo siempre con respeto, compromiso y orgullo por estos colores. Ese es el verdadero valor de este Campeonato. Desde el club queremos deciros que estamos con vosotros, que os hemos acompañado en cada partido y que nos sentimos profundamente orgullosos de vuestra participación. También queremos agradecer el trabajo del cuerpo técnico y el apoyo de las familias, que siempre están ahí empujando al equipo. Seguid creciendo, seguid aprendiendo y seguid disfrutando del baloncesto. Gracias por defender este escudo como lo habéis hecho. 🧡",
+      "imagen": "galeria/foto-infantil-nacional.jpg",
+      "fecha": "3 Junio 2026",
+      "autor": "Infantil Masculino",
+      "stats": [
+        { "num": "75-69", "label": "Victoria vs C.B. Corrales" },
+        { "num": "🇪🇸", "label": "Entre los mejores de España" }
+      ]
+    },
+    {
+      "seccion": "general",
+      "tipo": "principal",
       "titulo": "¡Campeones! Los Pre-Peques celebran una final inolvidable ante el Club Deportivo La Salle",
       "tag": "🏆 Campeones · Comp. Autonómica",
       "texto": "Nuestros Pre-Peques Masculino 3º se proclamaron campeones tras imponerse por un ajustadísimo 21-22 al Club Deportivo La Salle en una final emocionante, igualada y llena de ilusión hasta el último segundo. Más allá del resultado, este partido volvió a demostrar lo más bonito del deporte en estas edades: competir con ganas, disfrutar con los compañeros y aprender juntos. La competitividad, bien entendida, ayuda a crecer, pero son el compañerismo, la hermandad, el respeto y los valores los que de verdad forman equipo, tanto en las victorias como en las derrotas. El encuentro fue el broche de oro a una temporada espectacular, con 17 triunfos en 18 partidos, fruto del esfuerzo, la constancia y la ilusión de todos los niños. Gracias a sus entrenadores, Mario Gámez y Verónica, por acompañar, formar y enseñar a estos pequeños deportistas dentro y fuera de la pista. Y enhorabuena también al Club Deportivo La Salle por formar parte de una final tan bonita y competida. ¡Enhorabuena, campeones! 🏆🧡",
