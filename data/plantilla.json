@@ -1,7 +1,7 @@
 {
   "items": [
     {
-      "num": 1,
+      "num": 9,
       "nombre": "Farid Chekri",
       "pos": "Base",
       "cap": false,
@@ -76,7 +76,7 @@
         "tap": "0.0",
         "val": "9.5"
       },
-      "foto": ""
+      "foto": "jugadores/MARIO.jpg"
     },
     {
       "num": 29,
@@ -109,7 +109,7 @@
         "tap": "0.0",
         "val": "1.8"
       },
-      "foto": ""
+      "foto": "jugadores/MALAVE.jpg"
     },
     {
       "num": 11,
