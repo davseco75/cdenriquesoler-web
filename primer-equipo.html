@@ -134,7 +134,7 @@
 
     /* ── PLANTILLA ── */
     .player-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;}
-    .player-card{background:var(--card);border:1px solid rgba(255,255,255,.06);border-radius:14px;overflow:hidden;cursor:default;transition:all .3s;}
+    .player-card{background:var(--card);border:1px solid rgba(255,255,255,.06);border-radius:14px;overflow:hidden;cursor:pointer;transition:all .3s;}
     .player-card:hover{transform:translateY(-5px);border-color:rgba(255,107,43,.3);box-shadow:0 20px 40px rgba(0,0,0,.5);}
     .player-num-bg{height:100px;display:flex;align-items:center;justify-content:center;position:relative;}
     .player-num-ghost{font-family:'Bebas Neue';font-size:80px;color:rgba(255,255,255,.08);line-height:1;position:absolute;}
@@ -274,6 +274,39 @@
       .player-grid{grid-template-columns:repeat(2,1fr);}
       .pe-highlights{grid-template-columns:1fr;}
     }
+
+    /* ── MODAL JUGADOR ── */
+    .modal-overlay{position:fixed;inset:0;background:rgba(8,4,0,.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);z-index:2000;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s ease;padding:20px;}
+    .modal-overlay.active{opacity:1;pointer-events:all;}
+    .modal-card{background:rgba(20,10,2,.95);border:1px solid rgba(255,107,43,.25);border-radius:20px;width:100%;max-width:720px;max-height:calc(100vh - 40px);overflow-y:auto;position:relative;box-shadow:0 25px 50px -12px rgba(0,0,0,.8),0 0 40px rgba(255,107,43,.15);transform:scale(.9) translateY(20px);transition:transform .3s cubic-bezier(.34,1.56,.64,1);}
+    .modal-overlay.active .modal-card{transform:scale(1) translateY(0);}
+    .modal-close{position:absolute;top:16px;right:16px;width:36px;height:36px;border-radius:50%;background:rgba(255,107,43,.1);border:1px solid rgba(255,107,43,.3);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:16px;z-index:10;transition:all .2s;}
+    .modal-close:hover{background:var(--o);box-shadow:0 0 12px var(--o);}
+    .modal-header-bg{height:120px;display:flex;align-items:center;padding:0 32px;position:relative;overflow:hidden;}
+    .modal-num-ghost{font-family:'Bebas Neue';font-size:120px;color:rgba(255,255,255,.05);position:absolute;right:20px;bottom:-30px;line-height:1;}
+    .modal-player-title{position:relative;z-index:1;}
+    .modal-player-name{font-family:'Bebas Neue';font-size:32px;line-height:1.1;color:#fff;text-shadow:0 2px 10px rgba(0,0,0,.5);}
+    .modal-player-meta{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--o3);margin-top:4px;display:flex;align-items:center;gap:8px;}
+    .modal-body{padding:32px;display:grid;grid-template-columns:1fr 1.2fr;gap:28px;}
+    .modal-col-title{font-family:'Bebas Neue';font-size:18px;color:var(--o);margin-bottom:14px;border-bottom:1px solid rgba(255,107,43,.15);padding-bottom:6px;letter-spacing:.05em;}
+    .ficha-list{list-style:none;display:flex;flex-direction:column;gap:12px;}
+    .ficha-item{display:flex;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,.04);padding-bottom:8px;font-size:13px;}
+    .ficha-lbl{color:rgba(255,255,255,.4);font-weight:500;}
+    .ficha-val{color:#fff;font-weight:600;}
+    .tray-timeline{margin-top:20px;display:flex;flex-direction:column;gap:10px;}
+    .tray-item{display:flex;gap:12px;font-size:13px;}
+    .tray-years{color:var(--o3);font-weight:700;white-space:nowrap;width:90px;}
+    .tray-club{color:rgba(255,255,255,.85);font-weight:500;}
+    .stats-table-wrap{background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.05);border-radius:10px;overflow:hidden;margin-bottom:18px;}
+    .stats-table-wrap table{width:100%;border-collapse:collapse;font-size:13px;}
+    .stats-table-wrap th{background:rgba(255,107,43,.08);color:var(--o3);font-weight:700;font-size:10px;padding:8px 10px;border-bottom:1px solid rgba(255,107,43,.15);text-align:center;}
+    .stats-table-wrap td{padding:10px;text-align:center;border-bottom:1px solid rgba(255,255,255,.04);font-weight:600;color:#fff;}
+    .stats-table-wrap tr:last-child td{border-bottom:none;}
+    .stats-grid-mini{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
+    .stat-box-mini{background:rgba(255,107,43,.04);border:1px solid rgba(255,107,43,.1);border-radius:8px;padding:10px;text-align:center;}
+    .stat-val-mini{font-family:'Bebas Neue';font-size:22px;color:var(--o);line-height:1;}
+    .stat-lbl-mini{font-size:8px;font-weight:700;color:rgba(255,255,255,.3);text-transform:uppercase;margin-top:3px;}
+    @media(max-width:768px){.modal-body{grid-template-columns:1fr;gap:24px;padding:24px;}.modal-header-bg{padding:0 24px;}}
   </style>
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
@@ -535,7 +568,7 @@ function isUs(n){ return n.toLowerCase().includes('enrique soler'); }
 
 /* ── RENDER PLANTILLA ─────────────────────────────────────── */
 function renderPlantilla(){
-  var html = PLANTILLA.map(function(p){
+  var html = PLANTILLA.map(function(p, idx){
     var style = POS[p.pos] || POS['Base'];
     var dorsal = p.num !== undefined ? p.num : '—';
     var s = p.stats || {};
@@ -547,7 +580,7 @@ function renderPlantilla(){
         +'</div>'
         +'<div class="player-pj">'+s.pj+' partidos · Media por partido</div>'
       : '';
-    return '<div class="player-card">'
+    return '<div class="player-card" onclick="openPlayerModal('+idx+')">'
       +'<div class="player-num-bg" style="background:'+style.bg+'">'
         +'<span class="player-num-ghost">'+dorsal+'</span>'
         +'<div class="player-num-badge" style="background:rgba(0,0,0,.4);border:1px solid rgba(255,255,255,.15);font-family:\'Bebas Neue\';font-size:18px;color:#fff;width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;">'+dorsal+'</div>'
@@ -561,6 +594,49 @@ function renderPlantilla(){
     +'</div>';
   }).join('');
   document.getElementById('playerGrid').innerHTML = html;
+}
+
+/* ── MODAL JUGADOR ─────────────────────────────────────────── */
+function openPlayerModal(idx) {
+  var p = PLANTILLA[idx];
+  if (!p) return;
+  var style = POS[p.pos] || POS['Base'];
+  var dorsal = p.num !== undefined ? p.num : '—';
+  document.getElementById('modalHeaderBg').style.background = style.bg;
+  document.getElementById('modalNumGhost').textContent = dorsal;
+  document.getElementById('modalPlayerName').textContent = p.nombre;
+  var metaText = p.pos; if (p.cap) metaText += ' · ★ Capitán';
+  document.getElementById('modalPlayerMeta').textContent = metaText;
+  var f = p.ficha || {};
+  document.getElementById('ficha-altura').textContent = f.altura || '—';
+  document.getElementById('ficha-edad').textContent = f.edad || '—';
+  document.getElementById('ficha-peso').textContent = f.peso || '—';
+  document.getElementById('ficha-nacimiento').textContent = f.nacimiento || '—';
+  document.getElementById('ficha-nacionalidad').textContent = f.nacionalidad || '—';
+  var trayHtml = (p.trayectoria && p.trayectoria.length)
+    ? p.trayectoria.map(function(t){ return '<div class="tray-item"><div class="tray-years">'+t.temporadas+'</div><div class="tray-club">'+t.club+'</div></div>'; }).join('')
+    : '<div style="font-size:12px;color:rgba(255,255,255,.3)">Historial no disponible</div>';
+  document.getElementById('modalTrayectoria').innerHTML = trayHtml;
+  var sd = p.statsDetalle || {}; var s = p.stats || {};
+  document.getElementById('stat-det-pj').textContent = s.pj || '—';
+  document.getElementById('stat-det-min').textContent = sd.min || '—';
+  document.getElementById('stat-det-ppg').textContent = s.ppg || '—';
+  document.getElementById('stat-det-val').textContent = sd.val || '—';
+  document.getElementById('stat-det-rpg').textContent = s.rpg || '—';
+  document.getElementById('stat-det-apg').textContent = s.apg || '—';
+  document.getElementById('stat-det-rob').textContent = sd.rob || '—';
+  document.getElementById('stat-det-tap').textContent = sd.tap || '—';
+  document.getElementById('pct-t2').textContent = sd.tc || '—';
+  document.getElementById('pct-t3').textContent = sd.t3 || '—';
+  document.getElementById('pct-tl').textContent = sd.tl || '—';
+  var overlay = document.getElementById('playerModal');
+  overlay.classList.add('active');
+  gsap.killTweensOf(overlay.querySelector('.modal-card'));
+  gsap.fromTo(overlay.querySelector('.modal-card'),{scale:.9,y:30,opacity:0},{scale:1,y:0,opacity:1,duration:.4,ease:'power2.out'});
+}
+function closePlayerModal() {
+  var overlay = document.getElementById('playerModal');
+  gsap.to(overlay.querySelector('.modal-card'),{scale:.9,y:20,opacity:0,duration:.25,ease:'power2.in',onComplete:function(){ overlay.classList.remove('active'); }});
 }
 
 /* ── RENDER STAFF ─────────────────────────────────────────── */
@@ -688,7 +764,10 @@ Promise.all([
   /* Plantilla: adaptar campos planos → stats objeto */
   PLANTILLA = pData.items.map(function(p){
     return { num:p.num, nombre:p.nombre, pos:p.pos, cap:p.cap,
-             stats:{ pj:p.pj, ppg:p.ppg, rpg:p.rpg, apg:p.apg } };
+             stats:{ pj:p.pj, ppg:p.ppg, rpg:p.rpg, apg:p.apg },
+             ficha: p.ficha || {},
+             trayectoria: p.trayectoria || [],
+             statsDetalle: p.statsDetalle || {} };
   });
   STAFF = pData.staff || [];
 
@@ -725,5 +804,53 @@ ScrollTrigger.batch('.match-card', {
   once:true
 });
 </script>
+
+<!-- MODAL DETALLE JUGADOR -->
+<div id="playerModal" class="modal-overlay" onclick="if(event.target===this) closePlayerModal()">
+  <div class="modal-card">
+    <button class="modal-close" onclick="closePlayerModal()">✕</button>
+    <div class="modal-header-bg" id="modalHeaderBg">
+      <div class="modal-num-ghost" id="modalNumGhost">--</div>
+      <div class="modal-player-title">
+        <h2 class="modal-player-name" id="modalPlayerName">Nombre Jugador</h2>
+        <div class="modal-player-meta" id="modalPlayerMeta">Base · CD Enrique Soler</div>
+      </div>
+    </div>
+    <div class="modal-body">
+      <div>
+        <div class="modal-col-title">Ficha Técnica</div>
+        <ul class="ficha-list">
+          <li class="ficha-item"><span class="ficha-lbl">Altura</span><span class="ficha-val" id="ficha-altura">--</span></li>
+          <li class="ficha-item"><span class="ficha-lbl">Edad</span><span class="ficha-val" id="ficha-edad">--</span></li>
+          <li class="ficha-item"><span class="ficha-lbl">Peso</span><span class="ficha-val" id="ficha-peso">--</span></li>
+          <li class="ficha-item"><span class="ficha-lbl">Lugar de Nac.</span><span class="ficha-val" id="ficha-nacimiento">--</span></li>
+          <li class="ficha-item"><span class="ficha-lbl">Nacionalidad</span><span class="ficha-val" id="ficha-nacionalidad">--</span></li>
+        </ul>
+        <div class="modal-col-title" style="margin-top:24px">Trayectoria</div>
+        <div class="tray-timeline" id="modalTrayectoria"></div>
+      </div>
+      <div>
+        <div class="modal-col-title">Acierto de Tiro</div>
+        <div class="stats-table-wrap">
+          <table>
+            <thead><tr><th>Tiro de 2</th><th>Tiro de 3</th><th>Tiro Libre</th></tr></thead>
+            <tbody><tr><td id="pct-t2">--</td><td id="pct-t3">--</td><td id="pct-tl">--</td></tr></tbody>
+          </table>
+        </div>
+        <div class="modal-col-title">Promedios de Temporada</div>
+        <div class="stats-grid-mini">
+          <div class="stat-box-mini"><div class="stat-val-mini" id="stat-det-pj">--</div><div class="stat-lbl-mini">PJ</div></div>
+          <div class="stat-box-mini"><div class="stat-val-mini" id="stat-det-min">--</div><div class="stat-lbl-mini">MIN</div></div>
+          <div class="stat-box-mini"><div class="stat-val-mini" id="stat-det-ppg">--</div><div class="stat-lbl-mini">PTS</div></div>
+          <div class="stat-box-mini"><div class="stat-val-mini" id="stat-det-val">--</div><div class="stat-lbl-mini">VAL</div></div>
+          <div class="stat-box-mini"><div class="stat-val-mini" id="stat-det-rpg">--</div><div class="stat-lbl-mini">REB</div></div>
+          <div class="stat-box-mini"><div class="stat-val-mini" id="stat-det-apg">--</div><div class="stat-lbl-mini">AST</div></div>
+          <div class="stat-box-mini"><div class="stat-val-mini" id="stat-det-rob">--</div><div class="stat-lbl-mini">ROB</div></div>
+          <div class="stat-box-mini"><div class="stat-val-mini" id="stat-det-tap">--</div><div class="stat-lbl-mini">TAP</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 </body>
 </html>
