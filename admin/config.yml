@@ -175,6 +175,47 @@ collections:
                 widget: "string"
                 default: "🏀"
 
+  # ── CANTERA ───────────────────────────────────────────────────
+  - name: "cantera"
+    label: "🏀 Cantera"
+    description: "Plantillas de los equipos de cantera (dorsal y nombre)"
+    files:
+      - name: "cantera"
+        label: "Gestionar plantillas de cantera"
+        file: "data/cantera.json"
+        fields:
+          - label: "Equipos"
+            name: "equipos"
+            widget: "list"
+            allow_add: false
+            summary: "{{fields.nombre}}"
+            fields:
+              - { label: "ID interno (no tocar)", name: "id", widget: "hidden" }
+              - { label: "Categoría", name: "categoria", widget: "hidden" }
+              - { label: "Género", name: "genero", widget: "hidden" }
+              - label: "Nombre del equipo"
+                name: "nombre"
+                widget: "string"
+              - label: "Entrenador/a (opcional)"
+                name: "entrenador"
+                widget: "string"
+                required: false
+              - label: "Jugadores"
+                name: "jugadores"
+                widget: "list"
+                summary: "#{{fields.num}} · {{fields.nombre}}"
+                fields:
+                  - label: "Dorsal"
+                    name: "num"
+                    widget: "number"
+                    value_type: "int"
+                    required: false
+                    min: 0
+                    max: 99
+                  - label: "Nombre del jugador/a"
+                    name: "nombre"
+                    widget: "string"
+
   # ── PARTIDOS & CLASIFICACIÓN ──────────────────────────────────
   - name: "temporada"
     label: "📅 Partidos & Clasificación"

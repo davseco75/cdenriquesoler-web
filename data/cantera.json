@@ -1,0 +1,191 @@
+{
+  "equipos": [
+    {
+      "id": "junior-m",
+      "nombre": "Junior Masculino",
+      "categoria": "Junior & Cadete",
+      "genero": "Masculino",
+      "entrenador": "",
+      "jugadores": [
+        { "num": 4, "nombre": "Jugador de ejemplo 1" },
+        { "num": 5, "nombre": "Jugador de ejemplo 2" }
+      ]
+    },
+    {
+      "id": "cadete-junior-f",
+      "nombre": "Cadete-Junior Femenino",
+      "categoria": "Junior & Cadete",
+      "genero": "Femenino",
+      "entrenador": "",
+      "jugadores": [
+        { "num": 4, "nombre": "Jugadora de ejemplo 1" },
+        { "num": 5, "nombre": "Jugadora de ejemplo 2" }
+      ]
+    },
+    {
+      "id": "cadete-m-naranja",
+      "nombre": "Cadete Masculino Naranja",
+      "categoria": "Junior & Cadete",
+      "genero": "Masculino",
+      "entrenador": "",
+      "jugadores": [
+        { "num": 4, "nombre": "Jugador de ejemplo 1" },
+        { "num": 5, "nombre": "Jugador de ejemplo 2" }
+      ]
+    },
+    {
+      "id": "cadete-m-azul",
+      "nombre": "Cadete Masculino Azul",
+      "categoria": "Junior & Cadete",
+      "genero": "Masculino",
+      "entrenador": "",
+      "jugadores": [
+        { "num": 4, "nombre": "Jugador de ejemplo 1" },
+        { "num": 5, "nombre": "Jugador de ejemplo 2" }
+      ]
+    },
+    {
+      "id": "infantil-m",
+      "nombre": "Infantil Masculino",
+      "categoria": "Infantil & Pre-Infantil",
+      "genero": "Masculino",
+      "entrenador": "",
+      "jugadores": [
+        { "num": 4, "nombre": "Jugador de ejemplo 1" },
+        { "num": 5, "nombre": "Jugador de ejemplo 2" }
+      ]
+    },
+    {
+      "id": "infantil-f",
+      "nombre": "Infantil Femenino",
+      "categoria": "Infantil & Pre-Infantil",
+      "genero": "Femenino",
+      "entrenador": "",
+      "jugadores": [
+        { "num": 4, "nombre": "Jugadora de ejemplo 1" },
+        { "num": 5, "nombre": "Jugadora de ejemplo 2" }
+      ]
+    },
+    {
+      "id": "preinfantil-m",
+      "nombre": "Pre-Infantil Masculino",
+      "categoria": "Infantil & Pre-Infantil",
+      "genero": "Masculino",
+      "entrenador": "",
+      "jugadores": [
+        { "num": 4, "nombre": "Jugador de ejemplo 1" },
+        { "num": 5, "nombre": "Jugador de ejemplo 2" }
+      ]
+    },
+    {
+      "id": "preinfantil-f",
+      "nombre": "Pre-Infantil Femenino",
+      "categoria": "Infantil & Pre-Infantil",
+      "genero": "Femenino",
+      "entrenador": "",
+      "jugadores": [
+        { "num": 4, "nombre": "Jugadora de ejemplo 1" },
+        { "num": 5, "nombre": "Jugadora de ejemplo 2" }
+      ]
+    },
+    {
+      "id": "mini-m",
+      "nombre": "Mini Masculino",
+      "categoria": "Mini",
+      "genero": "Masculino",
+      "entrenador": "",
+      "jugadores": [
+        { "num": 4, "nombre": "Jugador de ejemplo 1" },
+        { "num": 5, "nombre": "Jugador de ejemplo 2" }
+      ]
+    },
+    {
+      "id": "mini-f",
+      "nombre": "Mini Femenino",
+      "categoria": "Mini",
+      "genero": "Femenino",
+      "entrenador": "",
+      "jugadores": [
+        { "num": 4, "nombre": "Jugadora de ejemplo 1" },
+        { "num": 5, "nombre": "Jugadora de ejemplo 2" }
+      ]
+    },
+    {
+      "id": "peque4-m",
+      "nombre": "Peque 4 Masculino",
+      "categoria": "Peques",
+      "genero": "Masculino",
+      "entrenador": "",
+      "jugadores": [
+        { "num": 4, "nombre": "Jugador de ejemplo 1" },
+        { "num": 5, "nombre": "Jugador de ejemplo 2" }
+      ]
+    },
+    {
+      "id": "peque4-f",
+      "nombre": "Peque 4 Femenino",
+      "categoria": "Peques",
+      "genero": "Femenino",
+      "entrenador": "",
+      "jugadores": [
+        { "num": 4, "nombre": "Jugadora de ejemplo 1" },
+        { "num": 5, "nombre": "Jugadora de ejemplo 2" }
+      ]
+    },
+    {
+      "id": "peque3-m",
+      "nombre": "Peque 3 Masculino",
+      "categoria": "Peques",
+      "genero": "Masculino",
+      "entrenador": "",
+      "jugadores": [
+        { "num": 4, "nombre": "Jugador de ejemplo 1" },
+        { "num": 5, "nombre": "Jugador de ejemplo 2" }
+      ]
+    },
+    {
+      "id": "peque3-f",
+      "nombre": "Peque 3 Femenino",
+      "categoria": "Peques",
+      "genero": "Femenino",
+      "entrenador": "",
+      "jugadores": [
+        { "num": 4, "nombre": "Jugadora de ejemplo 1" },
+        { "num": 5, "nombre": "Jugadora de ejemplo 2" }
+      ]
+    },
+    {
+      "id": "baby1",
+      "nombre": "Baby 1 Mixto",
+      "categoria": "Iniciación",
+      "genero": "Mixto",
+      "entrenador": "",
+      "jugadores": [
+        { "num": 1, "nombre": "Peque de ejemplo 1" },
+        { "num": 2, "nombre": "Peque de ejemplo 2" }
+      ]
+    },
+    {
+      "id": "baby2",
+      "nombre": "Baby 2 Mixto",
+      "categoria": "Iniciación",
+      "genero": "Mixto",
+      "entrenador": "",
+      "jugadores": [
+        { "num": 1, "nombre": "Peque de ejemplo 1" },
+        { "num": 2, "nombre": "Peque de ejemplo 2" }
+      ]
+    },
+    {
+      "id": "psicomotricidad",
+      "nombre": "Psicomotricidad",
+      "categoria": "Iniciación",
+      "genero": "Mixto",
+      "entrenador": "",
+      "jugadores": [
+        { "num": 1, "nombre": "Peque de ejemplo 1" },
+        { "num": 2, "nombre": "Peque de ejemplo 2" }
+      ]
+    }
+  ]
+}

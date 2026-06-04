@@ -604,6 +604,27 @@
     .gp-item:first-child{grid-column:span 2;grid-row:span 2;aspect-ratio:unset;}
     .gp-count{display:flex;align-items:center;justify-content:center;background:rgba(255,107,43,.08);border:1px solid rgba(255,107,43,.15);border-radius:4px;font-size:13px;color:rgba(255,255,255,.5);font-weight:600;gap:8px;}
     .gp-count span{font-family:'Bebas Neue';font-size:32px;color:var(--o);}
+
+    /* ── VENTANA PLANTILLA DE CANTERA ── */
+    .cant-modal-overlay{position:fixed;inset:0;background:rgba(8,4,0,.85);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);z-index:3000;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s;padding:20px;}
+    .cant-modal-overlay.active{opacity:1;pointer-events:all;}
+    .cant-modal{background:rgba(20,10,2,.97);border:1px solid rgba(255,107,43,.25);border-radius:20px;width:100%;max-width:520px;max-height:calc(100vh - 40px);overflow-y:auto;position:relative;box-shadow:0 25px 60px rgba(0,0,0,.7);transform:scale(.92) translateY(15px);transition:transform .3s cubic-bezier(.34,1.56,.64,1);}
+    .cant-modal-overlay.active .cant-modal{transform:scale(1) translateY(0);}
+    .cant-close{position:absolute;top:14px;right:14px;width:34px;height:34px;border-radius:50%;background:rgba(255,107,43,.12);border:1px solid rgba(255,107,43,.3);color:#fff;cursor:pointer;font-size:15px;z-index:2;transition:all .2s;}
+    .cant-close:hover{background:var(--o);}
+    .cant-head{padding:28px 28px 18px;border-bottom:1px solid rgba(255,255,255,.07);}
+    .cant-cat{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--o);margin-bottom:6px;}
+    .cant-head h3{font-family:'Bebas Neue';font-size:30px;line-height:1;}
+    .cant-gen{display:inline-block;margin-top:10px;font-size:11px;font-weight:600;color:rgba(255,255,255,.55);background:rgba(255,255,255,.06);padding:3px 12px;border-radius:20px;}
+    .cant-coach{font-size:12px;color:rgba(255,255,255,.45);margin-top:10px;}
+    .cant-coach b{color:rgba(255,255,255,.75);}
+    .cant-body{padding:14px 28px 28px;}
+    .cant-player{display:flex;align-items:center;gap:14px;padding:11px 0;border-bottom:1px solid rgba(255,255,255,.05);}
+    .cant-player:last-child{border-bottom:none;}
+    .cant-dorsal{width:34px;height:34px;flex-shrink:0;border-radius:9px;background:rgba(255,107,43,.12);border:1px solid rgba(255,107,43,.25);display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue';font-size:17px;color:var(--o);}
+    .cant-pname{font-size:15px;font-weight:600;color:#fff;}
+    .cant-count{font-size:11px;color:rgba(255,255,255,.35);margin-bottom:8px;letter-spacing:.04em;}
+    .cant-empty{text-align:center;padding:24px 10px;color:rgba(255,255,255,.45);font-size:14px;line-height:1.7;}
   </style>
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
@@ -1009,10 +1030,10 @@
     <div class="cg">
       <div class="cg-label">Junior & Cadete</div>
       <div class="cg-grid">
-        <div class="cteam cteam-m tilt"><div class="ct-icon">🏀</div><div class="ct-info"><h4>Junior Masculino</h4><span>Masculino</span></div></div>
-        <div class="cteam cteam-f tilt"><div class="ct-icon">⭐</div><div class="ct-info"><h4>Cadete-Junior Femenino</h4><span>Femenino</span></div></div>
-        <div class="cteam cteam-m tilt"><div class="ct-icon">🧡</div><div class="ct-info"><h4>Cadete Masculino Naranja</h4><span>Masculino</span></div></div>
-        <div class="cteam cteam-m tilt"><div class="ct-icon">💙</div><div class="ct-info"><h4>Cadete Masculino Azul</h4><span>Masculino</span></div></div>
+        <div class="cteam cteam-m tilt" onclick="openCanteraModal('junior-m')"><div class="ct-icon">🏀</div><div class="ct-info"><h4>Junior Masculino</h4><span>Masculino</span></div></div>
+        <div class="cteam cteam-f tilt" onclick="openCanteraModal('cadete-junior-f')"><div class="ct-icon">⭐</div><div class="ct-info"><h4>Cadete-Junior Femenino</h4><span>Femenino</span></div></div>
+        <div class="cteam cteam-m tilt" onclick="openCanteraModal('cadete-m-naranja')"><div class="ct-icon">🧡</div><div class="ct-info"><h4>Cadete Masculino Naranja</h4><span>Masculino</span></div></div>
+        <div class="cteam cteam-m tilt" onclick="openCanteraModal('cadete-m-azul')"><div class="ct-icon">💙</div><div class="ct-info"><h4>Cadete Masculino Azul</h4><span>Masculino</span></div></div>
       </div>
     </div>
 
@@ -1020,10 +1041,10 @@
     <div class="cg">
       <div class="cg-label">Infantil & Pre-Infantil</div>
       <div class="cg-grid">
-        <div class="cteam cteam-m tilt"><div class="ct-icon">🏀</div><div class="ct-info"><h4>Infantil Masculino</h4><span>Masculino</span></div></div>
-        <div class="cteam cteam-f tilt"><div class="ct-icon">⭐</div><div class="ct-info"><h4>Infantil Femenino</h4><span>Femenino</span></div></div>
-        <div class="cteam cteam-m tilt"><div class="ct-icon">🏀</div><div class="ct-info"><h4>Pre-Infantil Masculino</h4><span>Masculino</span></div></div>
-        <div class="cteam cteam-f tilt"><div class="ct-icon">⭐</div><div class="ct-info"><h4>Pre-Infantil Femenino</h4><span>Femenino</span></div></div>
+        <div class="cteam cteam-m tilt" onclick="openCanteraModal('infantil-m')"><div class="ct-icon">🏀</div><div class="ct-info"><h4>Infantil Masculino</h4><span>Masculino</span></div></div>
+        <div class="cteam cteam-f tilt" onclick="openCanteraModal('infantil-f')"><div class="ct-icon">⭐</div><div class="ct-info"><h4>Infantil Femenino</h4><span>Femenino</span></div></div>
+        <div class="cteam cteam-m tilt" onclick="openCanteraModal('preinfantil-m')"><div class="ct-icon">🏀</div><div class="ct-info"><h4>Pre-Infantil Masculino</h4><span>Masculino</span></div></div>
+        <div class="cteam cteam-f tilt" onclick="openCanteraModal('preinfantil-f')"><div class="ct-icon">⭐</div><div class="ct-info"><h4>Pre-Infantil Femenino</h4><span>Femenino</span></div></div>
       </div>
     </div>
 
@@ -1031,8 +1052,8 @@
     <div class="cg">
       <div class="cg-label">Mini</div>
       <div class="cg-grid">
-        <div class="cteam cteam-m tilt"><div class="ct-icon">🏀</div><div class="ct-info"><h4>Mini Masculino</h4><span>Masculino</span></div></div>
-        <div class="cteam cteam-f tilt"><div class="ct-icon">⭐</div><div class="ct-info"><h4>Mini Femenino</h4><span>Femenino</span></div></div>
+        <div class="cteam cteam-m tilt" onclick="openCanteraModal('mini-m')"><div class="ct-icon">🏀</div><div class="ct-info"><h4>Mini Masculino</h4><span>Masculino</span></div></div>
+        <div class="cteam cteam-f tilt" onclick="openCanteraModal('mini-f')"><div class="ct-icon">⭐</div><div class="ct-info"><h4>Mini Femenino</h4><span>Femenino</span></div></div>
       </div>
     </div>
 
@@ -1040,10 +1061,10 @@
     <div class="cg">
       <div class="cg-label">Peques</div>
       <div class="cg-grid">
-        <div class="cteam cteam-m tilt"><div class="ct-icon">🏀</div><div class="ct-info"><h4>Peque 4 Masculino</h4><span>Masculino</span></div></div>
-        <div class="cteam cteam-f tilt"><div class="ct-icon">⭐</div><div class="ct-info"><h4>Peque 4 Femenino</h4><span>Femenino</span></div></div>
-        <div class="cteam cteam-m tilt"><div class="ct-icon">🏀</div><div class="ct-info"><h4>Peque 3 Masculino</h4><span>Masculino</span></div></div>
-        <div class="cteam cteam-f tilt"><div class="ct-icon">⭐</div><div class="ct-info"><h4>Peque 3 Femenino</h4><span>Femenino</span></div></div>
+        <div class="cteam cteam-m tilt" onclick="openCanteraModal('peque4-m')"><div class="ct-icon">🏀</div><div class="ct-info"><h4>Peque 4 Masculino</h4><span>Masculino</span></div></div>
+        <div class="cteam cteam-f tilt" onclick="openCanteraModal('peque4-f')"><div class="ct-icon">⭐</div><div class="ct-info"><h4>Peque 4 Femenino</h4><span>Femenino</span></div></div>
+        <div class="cteam cteam-m tilt" onclick="openCanteraModal('peque3-m')"><div class="ct-icon">🏀</div><div class="ct-info"><h4>Peque 3 Masculino</h4><span>Masculino</span></div></div>
+        <div class="cteam cteam-f tilt" onclick="openCanteraModal('peque3-f')"><div class="ct-icon">⭐</div><div class="ct-info"><h4>Peque 3 Femenino</h4><span>Femenino</span></div></div>
       </div>
     </div>
 
@@ -1051,9 +1072,9 @@
     <div class="cg">
       <div class="cg-label">Iniciación · Los más pequeños 🧡</div>
       <div class="cg-grid">
-        <div class="cteam cteam-x tilt"><div class="ct-icon">👶</div><div class="ct-info"><h4>Baby 1 Mixto</h4><span>Mixto</span></div></div>
-        <div class="cteam cteam-x tilt"><div class="ct-icon">👶</div><div class="ct-info"><h4>Baby 2 Mixto</h4><span>Mixto</span></div></div>
-        <div class="cteam cteam-special tilt">
+        <div class="cteam cteam-x tilt" onclick="openCanteraModal('baby1')"><div class="ct-icon">👶</div><div class="ct-info"><h4>Baby 1 Mixto</h4><span>Mixto</span></div></div>
+        <div class="cteam cteam-x tilt" onclick="openCanteraModal('baby2')"><div class="ct-icon">👶</div><div class="ct-info"><h4>Baby 2 Mixto</h4><span>Mixto</span></div></div>
+        <div class="cteam cteam-special tilt" onclick="openCanteraModal('psicomotricidad')">
           <div class="ct-icon">🌈</div>
           <div class="ct-info">
             <h4>Psicomotricidad</h4>
@@ -1691,6 +1712,64 @@ fetch('/data/partidos.json').then(function(r){return r.json();}).then(function(d
     set('kpiTeams', cl.length);
   }
 }).catch(function(){ /* se conserva la tabla fija de respaldo */ });
+</script>
+
+<!-- VENTANA PLANTILLA DE CANTERA -->
+<div id="canteraModal" class="cant-modal-overlay" onclick="if(event.target===this)closeCanteraModal()">
+  <div class="cant-modal">
+    <button class="cant-close" onclick="closeCanteraModal()" aria-label="Cerrar">✕</button>
+    <div class="cant-head">
+      <div class="cant-cat" id="cantCat"></div>
+      <h3 id="cantName">Equipo</h3>
+      <span class="cant-gen" id="cantGen"></span>
+      <div class="cant-coach" id="cantCoach"></div>
+    </div>
+    <div class="cant-body" id="cantBody"></div>
+  </div>
+</div>
+
+<!-- Lógica de las plantillas de cantera (bloque independiente para que siempre se ejecute) -->
+<script>
+(function(){
+  var CANTERA = null;
+  function render(id){
+    var t = (CANTERA||[]).filter(function(e){return e.id===id;})[0];
+    if(!t) return;
+    document.getElementById('cantCat').textContent  = t.categoria || 'Cantera';
+    document.getElementById('cantName').textContent = t.nombre || '';
+    document.getElementById('cantGen').textContent  = t.genero || '';
+    document.getElementById('cantCoach').innerHTML  = t.entrenador ? 'Entrenador/a: <b>'+t.entrenador+'</b>' : '';
+    var body = document.getElementById('cantBody');
+    var js = t.jugadores || [];
+    if(js.length){
+      body.innerHTML = '<div class="cant-count">'+js.length+' jugadores</div>' + js.map(function(p){
+        var num = (p.num!==undefined && p.num!=='' && p.num!==null) ? p.num : '–';
+        return '<div class="cant-player"><div class="cant-dorsal">'+num+'</div><div class="cant-pname">'+(p.nombre||'')+'</div></div>';
+      }).join('');
+    } else {
+      body.innerHTML = '<div class="cant-empty">Plantilla en preparación.<br>Pronto publicaremos los jugadores de este equipo. 🧡</div>';
+    }
+    document.getElementById('canteraModal').classList.add('active');
+  }
+  window.openCanteraModal = function(id){
+    if(CANTERA){ render(id); return; }
+    fetch('/data/cantera.json').then(function(r){return r.json();}).then(function(d){
+      CANTERA = d.equipos || [];
+      render(id);
+    }).catch(function(){
+      document.getElementById('cantCat').textContent='';
+      document.getElementById('cantName').textContent='Cantera';
+      document.getElementById('cantGen').textContent='';
+      document.getElementById('cantCoach').innerHTML='';
+      document.getElementById('cantBody').innerHTML='<div class="cant-empty">No se pudo cargar la plantilla. Revisa la conexión e inténtalo de nuevo.</div>';
+      document.getElementById('canteraModal').classList.add('active');
+    });
+  };
+  window.closeCanteraModal = function(){
+    document.getElementById('canteraModal').classList.remove('active');
+  };
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape') window.closeCanteraModal(); });
+})();
 </script>
 <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "4c91f0661ca6422f82e4f9468f5cc02f"}'></script><!-- End Cloudflare Web Analytics -->
 </body>
