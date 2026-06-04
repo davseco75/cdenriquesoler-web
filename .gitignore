@@ -1,2 +1,5 @@
 .DS_Store
 .claude/
+
+# Lanzador local de vista previa (no desplegar)
+Ver web en local.command
