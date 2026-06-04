@@ -632,7 +632,7 @@
         <a href="primer-equipo.html"><span class="di">🏆</span>Primer Equipo</a>
         <a href="primer-equipo.html#squad"><span class="di">👥</span>Plantilla</a>
         <a href="primer-equipo.html#noticias"><span class="di">📰</span>Noticias</a>
-        <a href="primer-equipo.html#resultados"><span class="di">📅</span>Resultados</a>
+        <a href="primer-equipo.html#resultados"><span class="di">📅</span>Calendario</a>
       </div>
     </li>
     <li class="has-dd">
@@ -662,7 +662,7 @@
   <a href="primer-equipo.html">🏆 Inicio Primer Equipo</a>
   <a href="primer-equipo.html#squad">👥 Plantilla</a>
   <a href="primer-equipo.html#noticias">📰 Noticias</a>
-  <a href="primer-equipo.html#resultados">📅 Resultados</a>
+  <a href="primer-equipo.html#resultados">📅 Calendario</a>
   <div class="mob-label">Cantera</div>
   <a href="calendario.html">📅 Calendario</a>
   <a href="estadisticas.html">📊 Estadísticas</a>
@@ -910,24 +910,24 @@
 
     <!-- KPIs -->
     <div class="pro-kpis">
-      <div class="pk"><span class="pk-n">5ª</span><span class="pk-l">Posición final</span></div>
-      <div class="pk"><span class="pk-n">17</span><span class="pk-l">Victorias</span></div>
-      <div class="pk"><span class="pk-n">9</span><span class="pk-l">Derrotas</span></div>
-      <div class="pk"><span class="pk-n">65%</span><span class="pk-l">% de victorias</span></div>
-      <div class="pk"><span class="pk-n">14</span><span class="pk-l">Equipos en el grupo</span></div>
+      <div class="pk"><span class="pk-n" id="kpiPos">5ª</span><span class="pk-l">Posición final</span></div>
+      <div class="pk"><span class="pk-n" id="kpiWins">17</span><span class="pk-l">Victorias</span></div>
+      <div class="pk"><span class="pk-n" id="kpiLoss">9</span><span class="pk-l">Derrotas</span></div>
+      <div class="pk"><span class="pk-n" id="kpiPct">65%</span><span class="pk-l">% de victorias</span></div>
+      <div class="pk"><span class="pk-n" id="kpiTeams">14</span><span class="pk-l">Equipos en el grupo</span></div>
     </div>
 
     <div class="pro-grid">
 
       <!-- Tabla de clasificación -->
       <div>
-        <div class="pwrap-title">Clasificación Grupo DA · Temporada regular 2026–27</div>
+        <div class="pwrap-title">Clasificación Grupo DA · Temporada regular 2025–26</div>
         <div class="feb-table-wrap">
           <table class="feb-table">
             <thead>
               <tr><th>#</th><th>Equipo</th><th>PJ</th><th>V</th><th>D</th></tr>
             </thead>
-            <tbody>
+            <tbody id="febBody">
               <tr><td class="pos">1</td><td>Damex CB Algeciras</td><td>26</td><td class="w">24</td><td class="l">2</td></tr>
               <tr><td class="pos">2</td><td>Jaén Paraíso Interior FS</td><td>26</td><td class="w">24</td><td class="l">2</td></tr>
               <tr><td class="pos">3</td><td>El Pinar</td><td>26</td><td class="w">18</td><td class="l">8</td></tr>
@@ -992,6 +992,13 @@
         </div>
       </div>
 
+    </div>
+
+    <!-- CTA al hub completo del primer equipo -->
+    <div style="text-align:center;margin-top:32px;">
+      <a href="primer-equipo.html" style="display:inline-flex;align-items:center;gap:10px;background:var(--o);color:#fff;padding:14px 32px;border-radius:8px;font-family:'Bebas Neue';font-size:18px;letter-spacing:.04em;transition:opacity .2s;">
+        Ver primer equipo completo · plantilla, calendario y resultados →
+      </a>
     </div>
   </div>
 
@@ -1650,6 +1657,39 @@ function handleForm(e){
   btn.style.background='#22c55e';btn.style.color='#fff';btn.disabled=true;
   setTimeout(()=>{btn.textContent='Quiero unirme al club 🏀';btn.style.background='';btn.style.color='';btn.disabled=false;e.target.reset();},4000);
 }
+</script>
+
+<!-- Clasificación + KPIs del primer equipo: sincronizados desde /data/partidos.json.
+     Bloque independiente para que se ejecute siempre. Si falla la carga
+     (p. ej. sin conexión), se mantiene la tabla fija de respaldo del HTML. -->
+<script>
+fetch('/data/partidos.json').then(function(r){return r.json();}).then(function(d){
+  var cl = (d && d.clasificacion) || [];
+  if(!cl.length) return;
+  var body = document.getElementById('febBody');
+  if(body){
+    body.innerHTML = cl.map(function(t){
+      var cls  = t.local ? ' class="feb-our"' : '';
+      var name = (t.local ? '🏀 ' : '') + t.equipo;
+      return '<tr'+cls+'>'
+        +'<td class="pos">'+t.pos+'</td>'
+        +'<td>'+name+'</td>'
+        +'<td>'+t.pj+'</td>'
+        +'<td class="w">'+t.g+'</td>'
+        +'<td class="l">'+t.p+'</td>'
+      +'</tr>';
+    }).join('');
+  }
+  var me = cl.filter(function(t){return t.local;})[0];
+  if(me){
+    var set=function(id,val){var el=document.getElementById(id); if(el) el.textContent=val;};
+    set('kpiPos', me.pos+'ª');
+    set('kpiWins', me.g);
+    set('kpiLoss', me.p);
+    set('kpiPct', Math.round(me.g/me.pj*100)+'%');
+    set('kpiTeams', cl.length);
+  }
+}).catch(function(){ /* se conserva la tabla fija de respaldo */ });
 </script>
 </body>
 </html>
