@@ -197,6 +197,76 @@
     .nav-mobile a{font-size:14px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.7);padding:8px 0;border-bottom:1px solid rgba(255,255,255,.05);}
     .nav-mobile a.active{color:var(--o);}
     .nav-mobile .nav-cta-m{background:var(--o);color:#fff;text-align:center;padding:12px;border-radius:4px;margin-top:8px;border:none;}
+
+    /* ===== TORNEO 3X3 · energía ===== */
+    .t3-hero{position:relative;overflow:hidden;padding:110px 8% 64px;background:linear-gradient(135deg,#0A2463 0%,#0a1a3f 42%,#1a0a00 100%);border-bottom:1px solid rgba(255,107,43,.2);}
+    .t3-hero::before{content:'';position:absolute;top:-30%;right:-10%;width:720px;height:720px;background:radial-gradient(circle,rgba(255,107,43,.18) 0%,transparent 65%);pointer-events:none;}
+    .t3-hero::after{content:'3x3';position:absolute;right:1%;bottom:-14%;font-family:'Bebas Neue';font-size:30vw;color:rgba(255,255,255,.04);line-height:1;pointer-events:none;}
+    .t3-hero-grid{position:relative;z-index:2;display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center;max-width:1200px;margin:0 auto;}
+    .t3-eyebrow{display:inline-flex;align-items:center;gap:10px;background:rgba(255,107,43,.15);border:1px solid rgba(255,107,43,.4);color:var(--o3);font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;padding:8px 16px;border-radius:30px;margin-bottom:20px;}
+    .t3-title{font-family:'Bebas Neue';font-size:clamp(60px,9vw,120px);line-height:.84;color:#fff;margin-bottom:4px;text-shadow:0 6px 30px rgba(0,0,0,.5);}
+    .t3-title em{color:var(--o);font-style:normal;}
+    .t3-name{font-family:'Bebas Neue';font-size:clamp(26px,3.6vw,44px);color:var(--o3);letter-spacing:.04em;margin-bottom:20px;}
+    .t3-sub{font-size:17px;line-height:1.7;color:rgba(255,255,255,.75);max-width:520px;margin-bottom:28px;}
+    .t3-sub b{color:#fff;}
+    .t3-cta-row{display:flex;gap:14px;flex-wrap:wrap;}
+    .t3-btn{display:inline-flex;align-items:center;gap:9px;padding:15px 30px;border-radius:10px;font-family:'Bebas Neue';font-size:19px;letter-spacing:.04em;transition:transform .2s,box-shadow .2s,opacity .2s;}
+    .t3-btn-primary{background:var(--o);color:#fff;box-shadow:0 10px 30px rgba(255,107,43,.35);}
+    .t3-btn-primary:hover{transform:translateY(-3px);box-shadow:0 16px 42px rgba(255,107,43,.5);}
+    .t3-btn-ghost{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.22);color:#fff;}
+    .t3-btn-ghost:hover{transform:translateY(-3px);border-color:var(--o);color:var(--o3);}
+    .t3-poster{position:relative;justify-self:center;}
+    .t3-poster img{width:100%;max-width:380px;border-radius:18px;border:2px solid rgba(255,107,43,.25);box-shadow:0 30px 70px rgba(0,0,0,.6),0 0 50px rgba(255,107,43,.2);animation:t3float 5s ease-in-out infinite;display:block;}
+    @keyframes t3float{0%,100%{transform:translateY(0) rotate(-1deg);}50%{transform:translateY(-14px) rotate(1deg);}}
+    .t3-poster-glow{position:absolute;inset:-24px;background:radial-gradient(circle,rgba(255,107,43,.35) 0%,transparent 70%);filter:blur(34px);z-index:-1;}
+
+    .t3-countdown{background:var(--dark2);padding:42px 8%;text-align:center;border-bottom:1px solid rgba(255,255,255,.05);}
+    .t3-cd-label{font-size:12px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--o);margin-bottom:18px;}
+    .t3-cd-grid{display:inline-flex;gap:14px;flex-wrap:wrap;justify-content:center;}
+    .t3-cd-box{background:linear-gradient(160deg,rgba(255,107,43,.12),rgba(8,4,0,.6));border:1px solid rgba(255,107,43,.2);border-radius:14px;padding:18px 22px;min-width:96px;}
+    .t3-cd-num{font-family:'Bebas Neue';font-size:54px;line-height:1;color:#fff;}
+    .t3-cd-unit{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-top:6px;}
+    .t3-cd-live .t3-cd-num{color:#4ade80;}
+    .t3-cd-box.t3-cd-live{background:rgba(74,222,128,.12);border-color:rgba(74,222,128,.4);}
+
+    .t3-cats{padding:60px 8% 52px;text-align:center;}
+    .t3-cats h2{font-family:'Bebas Neue';font-size:clamp(34px,4vw,52px);margin-bottom:8px;}
+    .t3-cats h2 em{color:var(--o);font-style:normal;}
+    .t3-cats-sub{font-size:14px;color:rgba(255,255,255,.45);margin-bottom:34px;}
+    .t3-cat-grid{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;max-width:900px;margin:0 auto;}
+    .t3-cat{display:flex;align-items:center;gap:10px;background:var(--card);border:1px solid rgba(255,107,43,.15);border-radius:50px;padding:12px 22px;font-family:'Bebas Neue';font-size:20px;letter-spacing:.03em;color:#fff;transition:transform .2s,background .2s,border-color .2s;cursor:default;}
+    .t3-cat:hover{transform:translateY(-4px) scale(1.05);background:rgba(255,107,43,.15);border-color:var(--o);}
+    .t3-cat .e{font-size:22px;}
+
+    .t3-marquee{background:var(--o);padding:14px 0;overflow:hidden;white-space:nowrap;}
+    .t3-marquee-track{display:inline-flex;animation:t3marq 22s linear infinite;font-family:'Bebas Neue';font-size:22px;letter-spacing:.08em;color:#fff;}
+    @keyframes t3marq{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
+
+    .t3-cal{padding:58px 8% 10px;}
+    .t3-cal-head{max-width:1100px;margin:0 auto 22px;text-align:center;}
+    .t3-cal-head h2{font-family:'Bebas Neue';font-size:clamp(32px,4vw,48px);margin-bottom:6px;}
+    .t3-cal-head h2 em{color:var(--o);font-style:normal;}
+    .t3-cal-head p{font-size:14px;color:rgba(255,255,255,.45);}
+    .t3-cal-frame{max-width:1100px;margin:0 auto;background:#fff;border:1px solid rgba(255,107,43,.2);border-radius:18px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.4);}
+    .t3-cal-frame iframe{width:100%;height:1100px;border:0;display:block;}
+    .t3-cal-fed{max-width:1100px;margin:14px auto 0;text-align:center;font-size:12px;color:rgba(255,255,255,.4);}
+    .t3-cal-fed a{color:var(--o);font-weight:700;}
+
+    .t3-fan{margin:54px 8% 72px;background:linear-gradient(135deg,rgba(255,107,43,.13),rgba(10,36,99,.28));border:1px solid rgba(255,107,43,.2);border-radius:20px;padding:50px 40px;text-align:center;}
+    .t3-fan h2{font-family:'Bebas Neue';font-size:clamp(30px,4vw,46px);margin-bottom:10px;}
+    .t3-fan h2 em{color:var(--o);font-style:normal;}
+    .t3-fan p{font-size:15px;color:rgba(255,255,255,.62);margin-bottom:8px;}
+    .t3-fan-meta{font-size:13px;color:rgba(255,255,255,.45);margin-bottom:24px;}
+
+    @media(max-width:900px){
+      .t3-hero-grid{grid-template-columns:1fr;gap:30px;text-align:center;}
+      .t3-eyebrow,.t3-cta-row{justify-content:center;}
+      .t3-sub{margin-left:auto;margin-right:auto;}
+      .t3-poster{order:-1;}
+      .t3-poster img{max-width:300px;}
+      .t3-cal-frame iframe{height:900px;}
+      .t3-cd-num{font-size:42px;}
+    }
   </style>
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
@@ -274,45 +344,77 @@
 
 
 <!-- HERO -->
-<section class="cal-hero">
-  <div class="cal-hero-inner">
-    <div class="cal-eyebrow">Competición oficial · Federación Melillense</div>
-    <h1 class="cal-title">CALENDARIO<br><em>3x3</em></h1>
-    <p class="cal-sub">Calendario oficial de la competición 3x3 con los equipos del CD Enrique Soler. Fechas, horarios y pabellón, siempre actualizado por la federación.</p>
-    <div class="cal-season-badge">
-      <span></span>
-      DATOS OFICIALES · ACTUALIZACIÓN AUTOMÁTICA
+<section class="t3-hero">
+  <div class="t3-hero-grid">
+    <div class="t3-hero-text">
+      <div class="t3-eyebrow">🔥 Del 8 al 11 de junio · Melilla 2026</div>
+      <h1 class="t3-title">TORNEO <em>3X3</em></h1>
+      <div class="t3-name">Javier Almansa</div>
+      <p class="t3-sub">El <b>CD Enrique Soler</b> sale a comerse la pista. De los más peques a los séniors: <b>siete categorías, un solo equipo, un mismo sueño.</b> ¡Vamos a darlo todo! 🧡</p>
+      <div class="t3-cta-row">
+        <a href="#calendario" class="t3-btn t3-btn-primary">📅 Ver calendario</a>
+        <a href="#animar" class="t3-btn t3-btn-ghost">📣 Ven a animar</a>
+      </div>
+    </div>
+    <div class="t3-poster">
+      <div class="t3-poster-glow"></div>
+      <img src="galeria/cartel-3x3.jpg" alt="Torneo 3x3 Javier Almansa · del 8 al 11 de junio · todas las categorías · Melilla" />
     </div>
   </div>
 </section>
 
-<!-- CARTEL OFICIAL DEL CAMPEONATO -->
-<section style="padding:44px 8% 0;text-align:center;">
-  <img src="galeria/cartel-3x3.jpg"
-       alt="Torneo 3x3 Javier Almansa · del 8 al 11 de junio · Babybasket, Pequebasket, Minibasket, Infantil, Cadete, Junior y Senior · Melilla"
-       loading="lazy"
-       style="max-width:420px;width:100%;height:auto;border-radius:16px;box-shadow:0 18px 55px rgba(0,0,0,.55);border:1px solid rgba(255,107,43,.18);margin:0 auto;" />
+<!-- CUENTA ATRÁS -->
+<section class="t3-countdown">
+  <div class="t3-cd-label" id="cdLabel">⏳ El torneo empieza en</div>
+  <div class="t3-cd-grid" id="cdGrid">
+    <div class="t3-cd-box"><div class="t3-cd-num" id="cdD">--</div><div class="t3-cd-unit">Días</div></div>
+    <div class="t3-cd-box"><div class="t3-cd-num" id="cdH">--</div><div class="t3-cd-unit">Horas</div></div>
+    <div class="t3-cd-box"><div class="t3-cd-num" id="cdM">--</div><div class="t3-cd-unit">Minutos</div></div>
+    <div class="t3-cd-box"><div class="t3-cd-num" id="cdS">--</div><div class="t3-cd-unit">Segundos</div></div>
+  </div>
 </section>
 
-<!-- MAIN: calendario oficial 3x3 incrustado -->
-<main class="cal-main">
-  <div style="max-width:1100px;margin:0 auto;">
-    <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap;justify-content:space-between;margin-bottom:18px;">
-      <p style="font-size:13px;color:rgba(255,255,255,.45);line-height:1.6;margin:0;max-width:640px;">
-        🏀 Calendario gestionado por la <strong style="color:rgba(255,255,255,.7)">Federación Melillense de Baloncesto</strong>. Usa el selector dentro del calendario para filtrar por categoría o equipo.
-      </p>
-      <a href="https://melillensebaloncesto.es/calendario/" target="_blank" rel="noopener" style="flex-shrink:0;font-size:12px;font-weight:700;color:var(--o);text-transform:uppercase;letter-spacing:.06em;">Ver en la federación ↗</a>
-    </div>
-    <div style="background:#fff;border:1px solid rgba(255,107,43,.15);border-radius:16px;overflow:hidden;">
-      <iframe
-        src="https://gesdeportiva.melillensebaloncesto.es/competiciones-15/melillense"
-        title="Calendario oficial 3x3 · Federación Melillense de Baloncesto"
-        loading="lazy"
-        style="width:100%;height:1100px;border:0;display:block;">
-      </iframe>
-    </div>
+<!-- CINTA ANIMADA -->
+<div class="t3-marquee"><div class="t3-marquee-track">
+  <span>🏀&nbsp;&nbsp;VAMOS ENRIQUE SOLER&nbsp;&nbsp;·&nbsp;&nbsp;ORGULLO&nbsp;&nbsp;·&nbsp;&nbsp;ESFUERZO&nbsp;&nbsp;·&nbsp;&nbsp;PASIÓN&nbsp;&nbsp;·&nbsp;&nbsp;🧡&nbsp;&nbsp;MELILLA CIUDAD DEL DEPORTE&nbsp;&nbsp;·&nbsp;&nbsp;</span>
+  <span>🏀&nbsp;&nbsp;VAMOS ENRIQUE SOLER&nbsp;&nbsp;·&nbsp;&nbsp;ORGULLO&nbsp;&nbsp;·&nbsp;&nbsp;ESFUERZO&nbsp;&nbsp;·&nbsp;&nbsp;PASIÓN&nbsp;&nbsp;·&nbsp;&nbsp;🧡&nbsp;&nbsp;MELILLA CIUDAD DEL DEPORTE&nbsp;&nbsp;·&nbsp;&nbsp;</span>
+</div></div>
+
+<!-- CATEGORÍAS -->
+<section class="t3-cats">
+  <h2>Competimos en <em>7 categorías</em></h2>
+  <div class="t3-cats-sub">Todo el club, de los más pequeños a los mayores, a por el torneo</div>
+  <div class="t3-cat-grid">
+    <div class="t3-cat"><span class="e">👶</span>Babybasket</div>
+    <div class="t3-cat"><span class="e">🧒</span>Pequebasket</div>
+    <div class="t3-cat"><span class="e">🏀</span>Minibasket</div>
+    <div class="t3-cat"><span class="e">⭐</span>Infantil</div>
+    <div class="t3-cat"><span class="e">🔥</span>Cadete</div>
+    <div class="t3-cat"><span class="e">💪</span>Junior</div>
+    <div class="t3-cat"><span class="e">🏆</span>Senior</div>
   </div>
-</main>
+</section>
+
+<!-- CALENDARIO OFICIAL -->
+<section class="t3-cal" id="calendario">
+  <div class="t3-cal-head">
+    <h2>Calendario <em>oficial</em></h2>
+    <p>Sigue todos los partidos en directo · actualizado por la Federación Melillense</p>
+  </div>
+  <div class="t3-cal-frame">
+    <iframe src="https://gesdeportiva.melillensebaloncesto.es/competiciones-15/melillense"
+            title="Calendario oficial 3x3 · Federación Melillense de Baloncesto" loading="lazy"></iframe>
+  </div>
+  <div class="t3-cal-fed">Usa el selector del calendario para filtrar por categoría o equipo · <a href="https://melillensebaloncesto.es/calendario/" target="_blank" rel="noopener">Ver en la federación ↗</a></div>
+</section>
+
+<!-- VEN A ANIMAR -->
+<section class="t3-fan" id="animar">
+  <h2>¡Ven a <em>animar</em>!</h2>
+  <p>Cada grito desde la grada empuja a nuestros chavales. 🧡</p>
+  <div class="t3-fan-meta">🏟️ Pabellón Guillermo García Pezzi · 📍 Calle Azucena s/n, Melilla · 📅 8–11 de junio</div>
+  <a href="https://wa.me/34952699700?text=Hola!%20Quiero%20info%20del%20Torneo%203x3%20Javier%20Almansa" target="_blank" class="t3-btn t3-btn-primary">💬 Más información</a>
+</section>
 
 <!-- FOOTER -->
 <footer>
@@ -341,6 +443,38 @@ function closeMenu(){
   document.getElementById('mobNav').classList.remove('open');
   document.getElementById('navBurger').classList.remove('open');
 }
+
+/* Cuenta atrás hasta el Torneo 3x3 (8-11 junio 2026) */
+(function(){
+  var start = new Date('2026-06-08T09:00:00').getTime();
+  var end   = new Date('2026-06-11T23:59:59').getTime();
+  var elD=document.getElementById('cdD'), elH=document.getElementById('cdH'),
+      elM=document.getElementById('cdM'), elS=document.getElementById('cdS'),
+      grid=document.getElementById('cdGrid'), label=document.getElementById('cdLabel');
+  if(!elD) return;
+  function pad(n){ return (n<10?'0':'')+n; }
+  var iv;
+  function tick(){
+    var now = Date.now();
+    if(now < start){
+      var d = start - now;
+      elD.textContent = Math.floor(d/86400000);
+      elH.textContent = pad(Math.floor(d/3600000)%24);
+      elM.textContent = pad(Math.floor(d/60000)%60);
+      elS.textContent = pad(Math.floor(d/1000)%60);
+    } else if(now < end){
+      if(label) label.innerHTML = '🟢 ¡El torneo está EN JUEGO!';
+      grid.innerHTML = '<div class="t3-cd-box t3-cd-live"><div class="t3-cd-num">¡VAMOS!</div><div class="t3-cd-unit">Enrique Soler en pista</div></div>';
+      if(iv) clearInterval(iv);
+    } else {
+      if(label) label.innerHTML = '🏁 Torneo finalizado';
+      grid.innerHTML = '<div class="t3-cd-box"><div class="t3-cd-num">🧡</div><div class="t3-cd-unit">¡Gracias por vivirlo!</div></div>';
+      if(iv) clearInterval(iv);
+    }
+  }
+  tick();
+  iv = setInterval(tick, 1000);
+})();
 </script>
 <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "4c91f0661ca6422f82e4f9468f5cc02f"}'></script><!-- End Cloudflare Web Analytics -->
 </body>
