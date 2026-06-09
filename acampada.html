@@ -114,14 +114,19 @@
 
     /* ── NATIONS ── */
     .nations-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;padding:48px 5% 80px;max-width:1300px;margin:0 auto;}
-    .nation-card{border-radius:20px;padding:28px 24px;position:relative;overflow:hidden;cursor:default;transition:transform .3s,box-shadow .4s;}
+    .nation-card{border-radius:20px;padding:28px 24px 24px;position:relative;overflow:visible;cursor:default;transition:transform .3s,box-shadow .4s;}
     .nation-card:hover{transform:translateY(-8px) scale(1.02);}
-    .nation-card::before{content:'';position:absolute;inset:0;background:rgba(0,0,0,.35);z-index:0;}
-    .nation-card-inner{position:relative;z-index:1;}
-    .nation-color{width:14px;height:14px;border-radius:50%;border:2px solid rgba(255,255,255,.5);margin-bottom:14px;}
+    .nation-card::before{content:'';position:absolute;inset:0;background:rgba(0,0,0,.35);z-index:0;border-radius:20px;}
+    .nation-card-inner{position:relative;z-index:1;overflow:hidden;border-radius:20px;}
     .nation-name{font-family:'Bebas Neue';font-size:36px;line-height:.9;color:#fff;text-shadow:0 2px 12px rgba(0,0,0,.5);margin-bottom:8px;}
     .nation-motto{font-size:12px;color:rgba(255,255,255,.7);line-height:1.5;font-style:italic;}
     .nation-card .n-glow{position:absolute;bottom:-30px;right:-30px;width:120px;height:120px;border-radius:50%;filter:blur(40px);z-index:0;opacity:.5;}
+    /* FLAG */
+    .flag-wrap{display:flex;align-items:center;margin-bottom:16px;position:relative;}
+    .flag-pole{width:5px;height:100px;background:linear-gradient(to bottom,#d4d4d4,#888,#555);border-radius:3px 3px 2px 2px;flex-shrink:0;box-shadow:inset -1px 0 2px rgba(0,0,0,.4),1px 0 3px rgba(0,0,0,.3);}
+    .flag-pole::before{content:'';position:absolute;top:-5px;left:-2px;width:9px;height:9px;background:radial-gradient(circle,#eee,#aaa);border-radius:50%;}
+    .flag-img{width:calc(100% - 5px);height:90px;object-fit:cover;border-radius:0 6px 6px 0;display:block;box-shadow:4px 6px 20px rgba(0,0,0,.6);filter:url(#wave-filter);}
+    @media(max-width:480px){.flag-img{height:70px;}}
 
     .nation-volkania{background:linear-gradient(135deg,#3d0000,#8B0000);}
     .nation-volkania:hover{box-shadow:0 24px 60px rgba(180,0,0,.4);}
@@ -273,6 +278,18 @@
 </head>
 <body>
 
+<!-- SVG wave filter for flags -->
+<svg width="0" height="0" style="position:absolute;pointer-events:none;">
+  <defs>
+    <filter id="wave-filter" x="-5%" y="-10%" width="115%" height="130%">
+      <feTurbulence type="turbulence" baseFrequency="0.02 0.08" numOctaves="3" seed="5" result="turbulence">
+        <animate attributeName="baseFrequency" values="0.02 0.08;0.03 0.05;0.015 0.09;0.02 0.08" dur="3s" repeatCount="indefinite"/>
+      </feTurbulence>
+      <feDisplacementMap in="SourceGraphic" in2="turbulence" scale="10" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+  </defs>
+</svg>
+
 <div id="cur" style="position:fixed;z-index:9999;pointer-events:none;width:36px;height:36px;border:2px solid rgba(125,216,255,.6);border-radius:50%;transform:translate(-50%,-50%);transition:width .2s,height .2s;"></div>
 <div id="dot" style="position:fixed;z-index:9999;pointer-events:none;width:5px;height:5px;background:#7DD8FF;border-radius:50%;transform:translate(-50%,-50%);"></div>
 
@@ -401,7 +418,10 @@
 <div class="nations-grid">
   <div class="nation-card nation-volkania">
     <div class="nation-card-inner">
-      <div class="nation-color" style="background:#FF2200;"></div>
+      <div class="flag-wrap">
+        <div class="flag-pole"></div>
+        <img class="flag-img" src="acampada/VOLKANIA.jpeg" alt="Bandera Volkania" />
+      </div>
       <div class="nation-name">Volkania</div>
       <div class="nation-motto">"Ardemos para vencer"</div>
     </div>
@@ -409,7 +429,10 @@
   </div>
   <div class="nation-card nation-glaciera">
     <div class="nation-card-inner">
-      <div class="nation-color" style="background:#0088FF;"></div>
+      <div class="flag-wrap">
+        <div class="flag-pole"></div>
+        <img class="flag-img" src="acampada/GLACIERA.jpeg" alt="Bandera Glaciera" />
+      </div>
       <div class="nation-name">Glaciera</div>
       <div class="nation-motto">"Fríos por fuera, imparables por dentro"</div>
     </div>
@@ -417,7 +440,10 @@
   </div>
   <div class="nation-card nation-silvania">
     <div class="nation-card-inner">
-      <div class="nation-color" style="background:#00CC44;"></div>
+      <div class="flag-wrap">
+        <div class="flag-pole"></div>
+        <img class="flag-img" src="acampada/SILVANIA.jpeg" alt="Bandera Silvania" />
+      </div>
       <div class="nation-name">Silvania</div>
       <div class="nation-motto">"La fuerza nace de la unión"</div>
     </div>
@@ -425,7 +451,10 @@
   </div>
   <div class="nation-card nation-solaris">
     <div class="nation-card-inner">
-      <div class="nation-color" style="background:#FFD700;"></div>
+      <div class="flag-wrap">
+        <div class="flag-pole"></div>
+        <img class="flag-img" src="acampada/SOLARIS.jpeg" alt="Bandera Solaris" />
+      </div>
       <div class="nation-name">Solaris</div>
       <div class="nation-motto">"Brillamos más que nadie"</div>
     </div>
@@ -433,7 +462,10 @@
   </div>
   <div class="nation-card nation-neburia">
     <div class="nation-card-inner">
-      <div class="nation-color" style="background:#AA00FF;"></div>
+      <div class="flag-wrap">
+        <div class="flag-pole"></div>
+        <img class="flag-img" src="acampada/NEBURIA.jpeg" alt="Bandera Neburia" />
+      </div>
       <div class="nation-name">Neburia</div>
       <div class="nation-motto">"Lo imposible empieza aquí"</div>
     </div>
@@ -441,7 +473,10 @@
   </div>
   <div class="nation-card nation-terranova">
     <div class="nation-card-inner">
-      <div class="nation-color" style="background:#FF5500;"></div>
+      <div class="flag-wrap">
+        <div class="flag-pole"></div>
+        <img class="flag-img" src="acampada/TERRANOVA.jpeg" alt="Bandera Terranova" />
+      </div>
       <div class="nation-name">Terranova</div>
       <div class="nation-motto">"La aventura nos guía"</div>
     </div>
@@ -449,7 +484,10 @@
   </div>
   <div class="nation-card nation-umbrius">
     <div class="nation-card-inner">
-      <div class="nation-color" style="background:#888;border-color:rgba(255,255,255,.3);"></div>
+      <div class="flag-wrap">
+        <div class="flag-pole"></div>
+        <img class="flag-img" src="acampada/UMBRIUS.jpeg" alt="Bandera Umbrius" />
+      </div>
       <div class="nation-name">Umbrius</div>
       <div class="nation-motto">"Nunca nos rendimos"</div>
     </div>
@@ -457,7 +495,10 @@
   </div>
   <div class="nation-card nation-albaria">
     <div class="nation-card-inner">
-      <div class="nation-color" style="background:#AAAACC;"></div>
+      <div class="flag-wrap">
+        <div class="flag-pole"></div>
+        <img class="flag-img" src="acampada/ALBARIA.jpeg" alt="Bandera Albaria" />
+      </div>
       <div class="nation-name">Albaria</div>
       <div class="nation-motto">"Honor antes que victoria"</div>
     </div>
