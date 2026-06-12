@@ -6,10 +6,11 @@
   publish = "."
 
 # ── Headers ──────────────────────────────────────────────────────
-[[headers]]
-  for = "/*"
-  [headers.values]
-    Cache-Control = "no-cache, no-store, must-revalidate"
+# Sin regla catch-all de Cache-Control: en Netlify, si dos reglas
+# coinciden en la misma ruta los valores se COMBINAN ("no-store" +
+# "max-age=60" = el navegador aplica lo más restrictivo y no cachea
+# nada). El HTML sin regla usa el default de Netlify
+# (max-age=0 + ETag): siempre fresco con revalidaciones baratas (304).
 
 # Los JSON del CMS deben ser accesibles con CORS para fetch()
 [[headers]]
@@ -18,6 +19,70 @@
     Access-Control-Allow-Origin = "*"
     Cache-Control = "public, max-age=60"
     Content-Type = "application/json; charset=utf-8"
+
+# Fotos de galería: nombres únicos (foto-NNN), nunca se reemplazan → 1 año
+[[headers]]
+  for = "/galeria/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Imágenes que podrían reemplazarse con el mismo nombre → 1 semana
+[[headers]]
+  for = "/jugadores/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+[[headers]]
+  for = "/tienda/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+[[headers]]
+  for = "/acampada/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+# Logo e iconos de la PWA → 1 semana
+[[headers]]
+  for = "/logo.png"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+[[headers]]
+  for = "/icon-192.png"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+[[headers]]
+  for = "/icon-512.png"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+[[headers]]
+  for = "/apple-touch-icon.png"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+[[headers]]
+  for = "/favicon-16.png"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+[[headers]]
+  for = "/favicon-32.png"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+# El service worker debe revalidarse siempre
+[[headers]]
+  for = "/sw.js"
+  [headers.values]
+    Cache-Control = "no-cache, must-revalidate"
 
 # El panel /admin no debe estar indexado
 [[headers]]
