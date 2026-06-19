@@ -10,8 +10,14 @@
       "fecha": "3 Junio 2026",
       "autor": "Infantil Masculino",
       "stats": [
-        { "num": "75-69", "label": "Victoria vs C.B. Corrales" },
-        { "num": "🇪🇸", "label": "Entre los mejores de España" }
+        {
+          "num": "75-69",
+          "label": "Victoria vs C.B. Corrales"
+        },
+        {
+          "num": "🇪🇸",
+          "label": "Entre los mejores de España"
+        }
       ]
     },
     {
@@ -24,8 +30,14 @@
       "fecha": "25 Mayo 2026",
       "autor": "Pre-Peques Masculino 3º",
       "stats": [
-        { "num": "21-22", "label": "Marcador final" },
-        { "num": "17/18", "label": "Victorias en temporada" }
+        {
+          "num": "21-22",
+          "label": "Marcador final"
+        },
+        {
+          "num": "17/18",
+          "label": "Victorias en temporada"
+        }
       ]
     },
     {
@@ -38,10 +50,22 @@
       "fecha": "22 Mayo 2026",
       "autor": "José Ángel González",
       "stats": [
-        { "num": "136", "label": "Deportistas del club" },
-        { "num": "400+", "label": "Atletas en total" },
-        { "num": "39",   "label": "Equipos participantes" },
-        { "num": "44",   "label": "Partidos jugados" }
+        {
+          "num": "136",
+          "label": "Deportistas del club"
+        },
+        {
+          "num": "400+",
+          "label": "Atletas en total"
+        },
+        {
+          "num": "39",
+          "label": "Equipos participantes"
+        },
+        {
+          "num": "44",
+          "label": "Partidos jugados"
+        }
       ]
     },
     {
@@ -81,6 +105,19 @@
       "link": "",
       "emoji": "🌟",
       "gradiente": "linear-gradient(135deg,#0A2463,#1A3A8F)"
+    },
+    {
+      "seccion": "equipo",
+      "tipo": "card",
+      "destacado": true,
+      "tag": "FICHAJE",
+      "color": "#FF6B2B",
+      "bg": "rgba(255,107,43,.12)",
+      "titulo": "Juan Martín, nuevo pívot del primer equipo",
+      "texto": "El C.D. Enrique Soler refuerza su juego interior con la incorporación de Juan Martín (2,08 m), pívot de 21 años procedente del CB Novaschool. Un interior dominante en el rebote y el tapón, con físico y hambre de competir. ¡Bienvenido a casa, Juan!",
+      "imagen": "galeria/fichaje-juan-martin.jpg",
+      "fecha": "Junio 2026",
+      "enlace": "fichaje-juan-martin.html"
     },
     {
       "seccion": "equipo",

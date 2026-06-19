@@ -333,7 +333,6 @@
       <div class="dd-menu">
         <a href="calendario.html"><span class="di">📅</span>Calendario</a>
         <a href="calendario-3x3.html"><span class="di">🏀</span>Calendario 3x3</a>
-        <a href="acampada.html" style="color:#7DD8FF;background:rgba(125,216,255,.07)"><span class="di">⛺</span>Acampada 2026</a>
         <a href="estadisticas.html"><span class="di">📊</span>Estadísticas</a>
         <a href="inscripciones.html"><span class="di">📋</span>Inscripciones</a>
       </div>
@@ -358,7 +357,6 @@
   <div class="mob-label">Cantera</div>
   <a href="calendario.html">📅 Calendario</a>
   <a href="calendario-3x3.html">🏀 Calendario 3x3</a>
-  <a href="acampada.html" class="active">⛺ Acampada 2026</a>
   <a href="estadisticas.html">📊 Estadísticas</a>
   <a href="inscripciones.html">📋 Inscripciones</a>
   <div class="mob-label">Club</div>
@@ -372,7 +370,7 @@
   <canvas id="starCanvas"></canvas>
   <div class="aurora"></div>
   <div class="oly-hero-inner">
-    <div class="oly-label">⛺ Acampada · 12 – 13 Junio 2026 · Melilla</div>
+    <div class="oly-label">⛺ Acampada celebrada · 12 – 13 Junio 2026 · Melilla</div>
     <h1 class="oly-title">
       <span class="cold">OLIMPIADAS</span><br>
       DE <span class="hot">INVIERNO</span><br>
@@ -401,15 +399,17 @@
   <div class="scroll-cue">scroll</div>
 </section>
 
-<!-- ═══ CUENTA ATRÁS ═══ -->
+<!-- ═══ EDICIÓN CELEBRADA ═══ -->
 <section class="oly-cd">
-  <div class="oly-cd-label" id="cdLabel">⏳ La acampada comienza en</div>
-  <div class="oly-cd-grid" id="cdGrid">
-    <div class="oly-cd-box"><div class="oly-cd-num" id="cdD">--</div><div class="oly-cd-unit">Días</div></div>
-    <div class="oly-cd-box"><div class="oly-cd-num" id="cdH">--</div><div class="oly-cd-unit">Horas</div></div>
-    <div class="oly-cd-box"><div class="oly-cd-num" id="cdM">--</div><div class="oly-cd-unit">Minutos</div></div>
-    <div class="oly-cd-box"><div class="oly-cd-num" id="cdS">--</div><div class="oly-cd-unit">Segundos</div></div>
+  <div class="oly-cd-label" style="color:#FFD700;opacity:.85">🏁 Edición celebrada · 12 – 13 Junio 2026</div>
+  <div class="oly-cd-grid">
+    <div class="oly-cd-box oly-cd-live"><div class="oly-cd-num">🧡</div><div class="oly-cd-unit">¡Gracias, campeones!</div></div>
   </div>
+  <p style="max-width:560px;margin:22px auto 0;font-size:14px;line-height:1.7;color:rgba(255,255,255,.4)">
+    La acampada de las <b style="color:#fff">Olimpiadas de Invierno en Verano 2026</b> ya es historia.
+    130 atletas y 8 naciones vivieron una edición inolvidable. Revive abajo todo lo que pasó —
+    y nos vemos en la próxima. 🏅
+  </p>
 </section>
 
 <!-- ═══ MARQUEE ═══ -->
@@ -783,35 +783,7 @@ function toggleMenu(){document.getElementById('mobNav').classList.toggle('open')
   window.addEventListener('resize',init);init();draw();
 })();
 
-/* Countdown */
-(function(){
-  var start=new Date('2026-06-12T18:00:00').getTime();
-  var end=new Date('2026-06-13T10:00:00').getTime();
-  var eD=document.getElementById('cdD'),eH=document.getElementById('cdH'),eM=document.getElementById('cdM'),eS=document.getElementById('cdS');
-  var grid=document.getElementById('cdGrid'),lbl=document.getElementById('cdLabel');
-  if(!eD)return;
-  function pad(n){return(n<10?'0':'')+n;}
-  var iv;
-  function tick(){
-    var now=Date.now();
-    if(now<start){
-      var d=start-now;
-      eD.textContent=Math.floor(d/86400000);
-      eH.textContent=pad(Math.floor(d/3600000)%24);
-      eM.textContent=pad(Math.floor(d/60000)%60);
-      eS.textContent=pad(Math.floor(d/1000)%60);
-    } else if(now<end){
-      if(lbl)lbl.innerHTML='🟢 ¡La acampada está EN MARCHA!';
-      grid.innerHTML='<div class="oly-cd-box oly-cd-live"><div class="oly-cd-num">🏅</div><div class="oly-cd-unit">Olimpiadas en juego</div></div>';
-      if(iv)clearInterval(iv);
-    } else {
-      if(lbl)lbl.innerHTML='🏁 Acampada 2026 · Completada';
-      grid.innerHTML='<div class="oly-cd-box"><div class="oly-cd-num">🧡</div><div class="oly-cd-unit">¡Gracias campeones!</div></div>';
-      if(iv)clearInterval(iv);
-    }
-  }
-  tick();iv=setInterval(tick,1000);
-})();
+/* Acampada 2026 ya celebrada — el bloque conmemorativo es estático (sin cuenta atrás) */
 
 /* GSAP scroll animations */
 gsap.registerPlugin(ScrollTrigger);

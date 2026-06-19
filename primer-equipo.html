@@ -168,6 +168,16 @@
     .news-title{font-family:'Bebas Neue';font-size:20px;line-height:1.15;color:#fff;}
     .news-excerpt{font-size:13px;color:rgba(255,255,255,.45);line-height:1.6;}
     .news-link{font-size:11px;font-weight:700;color:var(--o);letter-spacing:.06em;text-transform:uppercase;margin-top:auto;display:flex;align-items:center;gap:5px;}
+    /* Tarjeta destacada de fichaje (cartel + texto, ancho completo) */
+    .news-card.feat{grid-column:1/-1;flex-direction:row;gap:0;padding:0;align-items:stretch;}
+    .news-card.feat .feat-img{flex-shrink:0;width:300px;display:block;overflow:hidden;}
+    .news-card.feat .feat-img img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block;transition:transform .4s;}
+    .news-card.feat:hover .feat-img img{transform:scale(1.04);}
+    .news-card.feat .feat-body{padding:30px 34px;display:flex;flex-direction:column;gap:13px;justify-content:center;}
+    @media(max-width:640px){
+      .news-card.feat{flex-direction:column;}
+      .news-card.feat .feat-img{width:100%;max-height:420px;}
+    }
 
     /* ── RESULTADOS + CLASIFICACIÓN (2 cols) ── */
     .pe-results-wrap{display:grid;grid-template-columns:1fr 380px;gap:40px;align-items:start;}
@@ -353,7 +363,6 @@
       <div class="dd-menu">
         <a href="calendario.html"><span class="di">📅</span>Calendario</a>
         <a href="calendario-3x3.html"><span class="di">🏀</span>Calendario 3x3</a>
-        <a href="acampada.html"><span class="di">⛺</span>Acampada 2026</a>
         <a href="estadisticas.html"><span class="di">📊</span>Estadísticas</a>
         <a href="inscripciones.html"><span class="di">📋</span>Inscripciones</a>
       </div>
@@ -375,7 +384,6 @@
   <div class="mob-label">Cantera</div>
   <a href="calendario.html">📅 Calendario</a>
   <a href="calendario-3x3.html">🏀 Calendario 3x3</a>
-  <a href="acampada.html">⛺ Acampada 2026</a>
   <a href="estadisticas.html">📊 Estadísticas</a>
   <a href="inscripciones.html">📋 Inscripciones</a>
   <div class="mob-label">Club</div>
@@ -686,6 +694,21 @@ function renderStaff(){
 /* ── RENDER NOTICIAS ──────────────────────────────────────── */
 function renderNoticias(){
   var html = NOTICIAS.map(function(n){
+    // Tarjeta destacada (fichaje con cartel): imagen + texto, a ancho completo
+    if(n.destacado && n.imagen){
+      var enlace = n.enlace || n.imagen;
+      return '<div class="news-card feat" style="--tag-color:'+n.color+';--tag-bg:'+n.bg+'">'
+        +'<a class="feat-img" href="'+enlace+'">'
+          +'<img src="'+n.imagen+'" alt="'+n.titulo+'" loading="lazy">'
+        +'</a>'
+        +'<div class="feat-body">'
+          +'<div class="news-top"><span class="news-tag">'+n.tag+'</span><span class="news-date">'+n.fecha+'</span></div>'
+          +'<div class="news-title" style="font-size:30px">'+n.titulo+'</div>'
+          +'<div class="news-excerpt">'+n.texto+'</div>'
+          +'<a class="news-link" href="'+enlace+'">Leer la noticia completa <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>'
+        +'</div>'
+      +'</div>';
+    }
     return '<div class="news-card" style="--tag-color:'+n.color+';--tag-bg:'+n.bg+'">'
       +'<div class="news-top">'
         +'<span class="news-tag">'+n.tag+'</span>'
@@ -812,7 +835,8 @@ Promise.all([
   /* Noticias: solo las del primer equipo */
   NOTICIAS = nData.items.filter(function(n){ return n.seccion === 'equipo'; })
     .map(function(n){ return { tag:n.tag, color:n.color, bg:n.bg,
-      fecha:n.fecha, titulo:n.titulo, texto:n.texto }; });
+      fecha:n.fecha, titulo:n.titulo, texto:n.texto,
+      imagen:n.imagen, destacado:n.destacado, enlace:n.enlace }; });
 
   renderPlantilla();
   renderStaff();
