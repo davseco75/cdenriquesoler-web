@@ -1,0 +1,13 @@
+{
+  "seccion": "equipo",
+  "tipo": "card",
+  "destacado": true,
+  "tag": "FICHAJE",
+  "color": "#FF6B2B",
+  "bg": "rgba(255,107,43,.12)",
+  "titulo": "Juan Martín, nuevo pívot del primer equipo",
+  "texto": "El C.D. Enrique Soler refuerza su juego interior con la incorporación de Juan Martín (2,08 m), pívot de 21 años procedente del CB Novaschool. Un interior dominante en el rebote y el tapón, con físico y hambre de competir. ¡Bienvenido a casa, Juan!",
+  "imagen": "galeria/fichaje-juan-martin.jpg",
+  "fecha": "Junio 2026",
+  "enlace": "fichaje-juan-martin.html"
+}

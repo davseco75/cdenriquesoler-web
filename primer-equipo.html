@@ -68,33 +68,21 @@
     .mob-cta{background:var(--o)!important;color:#fff!important;text-align:center;justify-content:center;padding:14px 8px!important;border-radius:4px;margin-top:12px;font-weight:700!important;letter-spacing:.1em;}
 
     /* ── HERO ── */
-    /* ── HERO PORTADA · FICHAJE DESTACADO ── */
-    .pe-hero{position:relative;min-height:90vh;display:flex;align-items:flex-end;overflow:hidden;border-bottom:1px solid rgba(255,107,43,.15);}
-    .peh-photo{position:absolute;inset:0;background:url('galeria/juan-martin-accion.jpg') center 16%/cover no-repeat;animation:pehKen 20s ease-in-out infinite alternate;will-change:transform;}
-    @keyframes pehKen{0%{transform:scale(1.06) translate(0,0);}100%{transform:scale(1.2) translate(-2%,-1%);}}
-    .peh-veil{position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,4,0,.7) 0%,transparent 30%,transparent 40%,rgba(8,4,0,.82) 76%,var(--dark2) 100%),linear-gradient(90deg,rgba(8,4,0,.72),transparent 62%);}
-    .peh-inner{position:relative;z-index:2;padding:120px 8% 60px;width:100%;max-width:1100px;}
-    .peh-eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:11px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.65);margin-bottom:18px;}
-    .peh-eyebrow::before{content:'';width:24px;height:2px;background:var(--o);}
-    .peh-tag{display:inline-flex;align-items:center;gap:9px;background:var(--o);color:#fff;font-weight:800;font-size:12px;letter-spacing:.16em;text-transform:uppercase;padding:8px 16px;border-radius:3px;margin-bottom:20px;}
-    .peh-tag .dot{width:8px;height:8px;border-radius:50%;background:#fff;animation:fpPulse 1.6s infinite;}
-    @keyframes fpPulse{0%{box-shadow:0 0 0 0 rgba(255,255,255,.7);}70%{box-shadow:0 0 0 8px rgba(255,255,255,0);}100%{box-shadow:0 0 0 0 rgba(255,255,255,0);}}
-    .peh-kicker{font-family:'Bebas Neue';font-size:clamp(20px,3vw,30px);color:var(--o);letter-spacing:.04em;line-height:1;}
-    .peh-name{font-family:'Bebas Neue';font-size:clamp(60px,11vw,150px);line-height:.82;color:#fff;margin:2px 0 16px;text-shadow:0 6px 30px rgba(0,0,0,.5);}
-    .peh-sub{font-size:clamp(14px,2vw,19px);font-weight:600;color:rgba(255,255,255,.78);max-width:600px;line-height:1.55;margin-bottom:20px;}
-    .peh-stats{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:28px;}
-    .peh-stat{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.13);border-radius:10px;padding:9px 15px;backdrop-filter:blur(4px);}
-    .peh-stat b{font-family:'Bebas Neue';font-size:23px;color:#fff;}
-    .peh-stat span{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.5);display:block;margin-top:1px;}
-    .peh-ctas{display:flex;flex-wrap:wrap;gap:12px;}
-    .peh-btn{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:15px 28px;border-radius:30px;transition:all .25s;}
-    .peh-btn.o{background:var(--o);color:#fff;}
-    .peh-btn.o:hover{transform:translateY(-2px);box-shadow:0 14px 32px rgba(255,107,43,.4);}
-    .peh-btn.g{border:1px solid rgba(255,255,255,.25);color:#fff;}
-    .peh-btn.g:hover{border-color:#fff;background:rgba(255,255,255,.08);}
-    .peh-scroll{position:absolute;bottom:18px;left:50%;transform:translateX(-50%);z-index:2;font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,.4);animation:bob 2s infinite;}
-    @keyframes bob{0%,100%{transform:translateX(-50%) translateY(0);}50%{transform:translateX(-50%) translateY(7px);}}
-    @media(max-width:680px){.pe-hero{min-height:86vh;}.peh-inner{padding:100px 5% 48px;}}
+    .pe-hero{padding:110px 8% 56px;background:var(--dark2);position:relative;overflow:hidden;border-bottom:1px solid rgba(255,107,43,.1);display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:48px;}
+    .pe-hero::after{content:'PRIMER EQUIPO';position:absolute;right:-1%;bottom:-8%;font-family:'Bebas Neue';font-size:16vw;color:rgba(255,107,43,.04);white-space:nowrap;pointer-events:none;line-height:1;}
+    .pe-hero-text{position:relative;z-index:1;}
+    .pe-eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--o);margin-bottom:14px;}
+    .pe-eyebrow::before,.pe-eyebrow::after{content:'';width:24px;height:2px;background:var(--o);}
+    .pe-title{font-size:clamp(52px,7vw,88px);line-height:.9;margin-bottom:14px;}
+    .pe-title em{color:var(--o);font-style:normal;}
+    .pe-sub{font-size:15px;color:rgba(255,255,255,.4);max-width:500px;line-height:1.6;margin-bottom:24px;}
+    .pe-badges{display:flex;flex-wrap:wrap;gap:10px;}
+    .pe-badge{display:inline-flex;align-items:center;gap:7px;background:rgba(255,107,43,.08);border:1px solid rgba(255,107,43,.18);border-radius:20px;padding:6px 14px;font-size:11px;font-weight:700;color:var(--o);letter-spacing:.06em;}
+    /* hero photo */
+    .pe-hero-photo{position:relative;z-index:1;border-radius:20px;overflow:hidden;border:1px solid rgba(255,107,43,.12);box-shadow:0 32px 80px rgba(0,0,0,.6);}
+    .pe-hero-photo img{width:100%;height:380px;object-fit:cover;object-position:center top;display:block;transition:transform .6s ease;}
+    .pe-hero-photo:hover img{transform:scale(1.03);}
+    .pe-hero-photo-caption{position:absolute;bottom:0;left:0;right:0;padding:20px 20px 16px;background:linear-gradient(to top,rgba(8,4,0,.85) 0%,transparent 100%);font-family:'Bebas Neue';font-size:14px;letter-spacing:.12em;color:rgba(255,255,255,.7);}
 
     /* ── REF BANNER ── */
     .ref-banner{background:rgba(255,200,50,.05);border-top:1px solid rgba(255,200,50,.15);border-bottom:1px solid rgba(255,200,50,.15);padding:12px 8%;display:flex;align-items:center;gap:14px;}
@@ -407,26 +395,20 @@
 
 <!-- HERO -->
 <section class="pe-hero">
-  <div class="peh-photo"></div>
-  <div class="peh-veil"></div>
-  <div class="peh-inner">
-    <div class="peh-eyebrow">Primer Equipo · Tercera FEB · Grupo DA</div>
-    <div class="peh-tag"><span class="dot"></span> Último fichaje · Temporada 2026/27</div>
-    <div class="peh-kicker">FICHAJE</div>
-    <h1 class="peh-name">JUAN MARTÍN</h1>
-    <p class="peh-sub">El primer equipo refuerza su juego interior con un pívot de <b>2,08 m</b> procedente del CB Novaschool. Rebote, tapón, físico y hambre de competir.</p>
-    <div class="peh-stats">
-      <div class="peh-stat"><b>6,9</b><span>Rebotes</span></div>
-      <div class="peh-stat"><b>1,5</b><span>Tapones</span></div>
-      <div class="peh-stat"><b>65,3%</b><span>Tiros 2</span></div>
-      <div class="peh-stat"><b>11,8</b><span>PIR</span></div>
-    </div>
-    <div class="peh-ctas">
-      <a class="peh-btn o" href="fichaje-juan-martin.html">Ver la noticia completa →</a>
-      <a class="peh-btn g" href="#squad">Ver plantilla</a>
+  <div class="pe-hero-text">
+    <div class="pe-eyebrow">Tercera FEB · Grupo DA</div>
+    <h1 class="pe-title">PRIMER<br><em>EQUIPO</em></h1>
+    <p class="pe-sub">El primer equipo del CD Enrique Soler compite en la Tercera División de la Federación Española de Baloncesto. Melilla, desde 1996.</p>
+    <div class="pe-badges">
+      <div class="pe-badge">🏆 TERCERA FEB</div>
+      <div class="pe-badge">📍 GRUPO DA</div>
+      <div class="pe-badge">🏟️ MELILLA</div>
     </div>
   </div>
-  <div class="peh-scroll">scroll</div>
+  <div class="pe-hero-photo">
+    <img src="galeria/foto-primer-equipo.jpg" alt="Primer equipo CD Enrique Soler — Temporada 2025-26" />
+    <div class="pe-hero-photo-caption">CD ENRIQUE SOLER · TEMPORADA 2025–26</div>
+  </div>
 </section>
 
 <!-- REF BANNER -->

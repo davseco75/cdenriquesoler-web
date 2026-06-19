@@ -1,6 +1,7 @@
 User-agent: *
 Allow: /
 Disallow: /admin/
+Disallow: /_inactivas/
 Disallow: /app.html
 
 Sitemap: https://cdenriquesoler.com/sitemap.xml
