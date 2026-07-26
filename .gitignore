@@ -3,3 +3,9 @@
 
 # Lanzador local de vista previa (no desplegar)
 Ver web en local.command
+
+# Copias de seguridad (no desplegar)
+*.bak
+*.bak2526
+data/*.bak*
+_inactivas/
