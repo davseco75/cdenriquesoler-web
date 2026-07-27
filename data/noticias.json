@@ -12,6 +12,19 @@
       "imagen": "galeria/fichaje-juan-martin.jpg",
       "fecha": "Julio 2026",
       "enlace": "fichaje-juan-martin.html"
+    },
+    {
+      "seccion": "equipo",
+      "tipo": "card",
+      "destacado": true,
+      "tag": "RENOVACIÓN",
+      "color": "#FF6B2B",
+      "bg": "rgba(255,107,43,.12)",
+      "titulo": "Mario Gámez renueva y sigue dirigiendo al equipo",
+      "texto": "El base Mario Gámez (23 años), formado en el club, renueva su compromiso con el CD Enrique Soler. La pasada temporada promedió 8,1 puntos y 4,3 asistencias en Tercera FEB, con un 87,5% en tiros libres. El director de juego se queda en casa.",
+      "imagen": "galeria/renovacion-mario-gamez.jpg",
+      "fecha": "Julio 2026",
+      "enlace": "renovacion-mario-gamez.html"
     }
   ]
 }
