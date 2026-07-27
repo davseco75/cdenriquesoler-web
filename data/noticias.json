@@ -51,6 +51,19 @@
       "imagen": "galeria/renovacion-wasim-elotmani.jpg",
       "fecha": "Julio 2026",
       "enlace": "renovacion-wasim-elotmani.html"
+    },
+    {
+      "seccion": "equipo",
+      "tipo": "card",
+      "destacado": true,
+      "tag": "RENOVACIÓN",
+      "color": "#FF6B2B",
+      "bg": "rgba(255,107,43,.12)",
+      "titulo": "Farid Chekri renueva: la joven perla melillense sigue",
+      "texto": "El base melillense Farid Chekri, de solo 19 años y producto de la cantera, renueva con el CD Enrique Soler. La pasada temporada repartió 4,6 asistencias y robó 2,3 balones por partido en Tercera FEB, el que más del equipo.",
+      "imagen": "galeria/renovacion-farid-chekri.jpg",
+      "fecha": "Julio 2026",
+      "enlace": "renovacion-farid-chekri.html"
     }
   ]
 }
