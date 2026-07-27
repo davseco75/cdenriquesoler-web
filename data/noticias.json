@@ -25,6 +25,19 @@
       "imagen": "galeria/renovacion-mario-gamez.jpg",
       "fecha": "Julio 2026",
       "enlace": "renovacion-mario-gamez.html"
+    },
+    {
+      "seccion": "equipo",
+      "tipo": "card",
+      "destacado": true,
+      "tag": "RENOVACIÓN",
+      "color": "#FF6B2B",
+      "bg": "rgba(255,107,43,.12)",
+      "titulo": "Sergio Curbelo renueva: el alero anotador se queda",
+      "texto": "El alero tinerfeño Sergio Curbelo (22 años) renueva con el CD Enrique Soler. La pasada temporada fue una de las referencias ofensivas del equipo con 10,7 puntos por partido y un 54% en tiros de 2 en Tercera FEB.",
+      "imagen": "galeria/renovacion-sergio-curbelo.jpg",
+      "fecha": "Julio 2026",
+      "enlace": "renovacion-sergio-curbelo.html"
     }
   ]
 }
