@@ -1,6 +1,137 @@
 {
   "temporada": "2026-27",
-  "grupo": "Tercera FEB · Grupo DA",
+  "grupo": "Grupo D-A",
   "partidos": [],
-  "clasificacion": []
+  "clasificacion": [
+    {
+      "pos": 1,
+      "equipo": "CDBO Byspania Tíjola",
+      "pj": 0,
+      "g": 0,
+      "p": 0,
+      "pts": 0,
+      "zona": "normal",
+      "local": false
+    },
+    {
+      "pos": 2,
+      "equipo": "Ecoculture CB Almería",
+      "pj": 0,
+      "g": 0,
+      "p": 0,
+      "pts": 0,
+      "zona": "normal",
+      "local": false
+    },
+    {
+      "pos": 3,
+      "equipo": "Surseeds · B. Murgi",
+      "pj": 0,
+      "g": 0,
+      "p": 0,
+      "pts": 0,
+      "zona": "normal",
+      "local": false
+    },
+    {
+      "pos": 4,
+      "equipo": "CB La Zubia",
+      "pj": 0,
+      "g": 0,
+      "p": 0,
+      "pts": 0,
+      "zona": "normal",
+      "local": false
+    },
+    {
+      "pos": 5,
+      "equipo": "Molina Olea CB Costa Motril",
+      "pj": 0,
+      "g": 0,
+      "p": 0,
+      "pts": 0,
+      "zona": "normal",
+      "local": false
+    },
+    {
+      "pos": 6,
+      "equipo": "Hospital Ochoa CB Marbella",
+      "pj": 0,
+      "g": 0,
+      "p": 0,
+      "pts": 0,
+      "zona": "normal",
+      "local": false
+    },
+    {
+      "pos": 7,
+      "equipo": "Colegio El Pinar",
+      "pj": 0,
+      "g": 0,
+      "p": 0,
+      "pts": 0,
+      "zona": "normal",
+      "local": false
+    },
+    {
+      "pos": 8,
+      "equipo": "CB Novaschool Rincón de la Victoria",
+      "pj": 0,
+      "g": 0,
+      "p": 0,
+      "pts": 0,
+      "zona": "normal",
+      "local": false
+    },
+    {
+      "pos": 9,
+      "equipo": "Baloncesto Comarca de la Axarquía",
+      "pj": 0,
+      "g": 0,
+      "p": 0,
+      "pts": 0,
+      "zona": "normal",
+      "local": false
+    },
+    {
+      "pos": 10,
+      "equipo": "Jaén Paraíso Interior CB",
+      "pj": 0,
+      "g": 0,
+      "p": 0,
+      "pts": 0,
+      "zona": "normal",
+      "local": false
+    },
+    {
+      "pos": 11,
+      "equipo": "Dehesas R. Climanavas Agrometal Peñaroya",
+      "pj": 0,
+      "g": 0,
+      "p": 0,
+      "pts": 0,
+      "zona": "normal",
+      "local": false
+    },
+    {
+      "pos": 12,
+      "equipo": "La Cartonera Lucentina · Coto · Lucena",
+      "pj": 0,
+      "g": 0,
+      "p": 0,
+      "pts": 0,
+      "zona": "normal",
+      "local": false
+    },
+    {
+      "pos": 13,
+      "equipo": "Melilla Ciudad del Deporte Enrique Soler",
+      "pj": 0,
+      "g": 0,
+      "p": 0,
+      "pts": 0,
+      "zona": "normal",
+      "local": true
+    }
+  ]
 }

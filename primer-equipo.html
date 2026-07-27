@@ -690,6 +690,15 @@ function renderStaff(){
 
 /* ── RENDER NOTICIAS ──────────────────────────────────────── */
 function renderNoticias(){
+  if(!NOTICIAS.length){
+    document.getElementById('newsGrid').innerHTML =
+      '<div style="grid-column:1/-1;text-align:center;padding:60px 20px;border:1px dashed rgba(255,255,255,.1);border-radius:16px;">'
+      +'<div style="font-size:32px;margin-bottom:12px;">📰</div>'
+      +'<div style="font-family:\'Bebas Neue\';font-size:26px;color:#fff;">Arranca la temporada 2026-27</div>'
+      +'<div style="font-size:14px;color:rgba(255,255,255,.45);margin-top:8px;max-width:420px;margin-left:auto;margin-right:auto;line-height:1.6;">Pronto llenaremos esta sección con los fichajes, crónicas y desplazamientos de la nueva temporada. ¡Síguenos!</div>'
+      +'</div>';
+    return;
+  }
   var html = NOTICIAS.map(function(n){
     // Tarjeta destacada (fichaje con cartel): imagen + texto, a ancho completo
     if(n.destacado && n.imagen){
