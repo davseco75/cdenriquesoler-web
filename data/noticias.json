@@ -38,6 +38,19 @@
       "imagen": "galeria/renovacion-sergio-curbelo.jpg",
       "fecha": "Julio 2026",
       "enlace": "renovacion-sergio-curbelo.html"
+    },
+    {
+      "seccion": "equipo",
+      "tipo": "card",
+      "destacado": true,
+      "tag": "RENOVACIÓN",
+      "color": "#FF6B2B",
+      "bg": "rgba(255,107,43,.12)",
+      "titulo": "Wasim El Otmani renueva: el máximo anotador se queda en casa",
+      "texto": "El alero melillense Wasim El Otmani (27 años), formado en el club, renueva con el CD Enrique Soler. Fue el máximo anotador del equipo la pasada temporada con 13 puntos por partido y la mejor valoración (9,1) en Tercera FEB.",
+      "imagen": "galeria/renovacion-wasim-elotmani.jpg",
+      "fecha": "Julio 2026",
+      "enlace": "renovacion-wasim-elotmani.html"
     }
   ]
 }
