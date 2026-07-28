@@ -103,6 +103,19 @@
       "imagen": "galeria/renovacion-javi-bosch.jpg",
       "fecha": "Julio 2026",
       "enlace": "renovacion-javi-bosch.html"
+    },
+    {
+      "seccion": "equipo",
+      "tipo": "card",
+      "destacado": true,
+      "tag": "RENOVACIÓN",
+      "color": "#FF6B2B",
+      "bg": "rgba(255,107,43,.12)",
+      "titulo": "Tomás Liberatore renueva: la joven promesa sigue creciendo",
+      "texto": "El joven base Tomás Liberatore (19 años), una de las promesas del equipo, renueva con el CD Enrique Soler. El club apuesta por su desarrollo y proyección dentro del proyecto deportivo para la temporada 2026/27.",
+      "imagen": "galeria/renovacion-tomas-liberatore.jpg",
+      "fecha": "Julio 2026",
+      "enlace": "renovacion-tomas-liberatore.html"
     }
   ]
 }
