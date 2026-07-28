@@ -37,7 +37,7 @@
 
   /* ── HERO con foto en movimiento (Ken Burns) ── */
   .hero{position:relative;height:100vh;min-height:640px;overflow:hidden;display:flex;align-items:flex-end;}
-  .hero-photo{position:absolute;inset:0;background:url('galeria/juan-martin-accion.jpg') center 20%/cover no-repeat;
+  .hero-photo{position:absolute;inset:0;background:url('galeria/juan-martin-accion.jpg') center 20%/cover no-repeat;background-image:-webkit-image-set(url('galeria/juan-martin-accion.webp') type('image/webp'),url('galeria/juan-martin-accion.jpg') type('image/jpeg'));background-image:image-set(url('galeria/juan-martin-accion.webp') type('image/webp'),url('galeria/juan-martin-accion.jpg') type('image/jpeg'));
     animation:kenburns 18s ease-in-out infinite alternate;will-change:transform;}
   @keyframes kenburns{0%{transform:scale(1.05) translate(0,0);}100%{transform:scale(1.18) translate(-2%,-2%);}}
   .hero-veil{position:absolute;inset:0;background:
@@ -135,6 +135,60 @@
     .tabla th,.tabla td{padding:10px 4px;}
   }
 </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "SportsOrganization",
+      "@id": "https://cdenriquesoler.com/#club",
+      "name": "Club Deportivo Enrique Soler",
+      "alternateName": "CD Enrique Soler",
+      "sport": "Baloncesto",
+      "url": "https://cdenriquesoler.com/",
+      "logo": "https://cdenriquesoler.com/logo.png",
+      "foundingDate": "1996",
+      "email": "enriquesolergerencia@gmail.com",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Melilla",
+        "addressRegion": "Melilla",
+        "addressCountry": "ES"
+      },
+      "areaServed": {
+        "@type": "City",
+        "name": "Melilla"
+      },
+      "sameAs": [
+        "https://www.instagram.com/c.d.enriquesoler",
+        "https://x.com/camesoler"
+      ]
+    },
+    {
+      "@type": "NewsArticle",
+      "headline": "Fichaje: Juan Martín, nuevo pívot del primer equipo",
+      "description": "El CD Enrique Soler ficha a Juan Martín, pívot de 2,08 m procedente del CB Novaschool. 6,9 rebotes, 1,5 tapones y 65,3% en tiros de 2 la pasada temporada en Tercera FEB.",
+      "image": "https://cdenriquesoler.com/galeria/fichaje-juan-martin.jpg",
+      "datePublished": "2026-07-27T17:08:15+02:00",
+      "dateModified": "2026-07-27T17:08:15+02:00",
+      "inLanguage": "es-ES",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://cdenriquesoler.com/fichaje-juan-martin.html"
+      },
+      "author": {
+        "@id": "https://cdenriquesoler.com/#club"
+      },
+      "publisher": {
+        "@id": "https://cdenriquesoler.com/#club"
+      },
+      "about": {
+        "@id": "https://cdenriquesoler.com/primer-equipo.html#equipo"
+      }
+    }
+  ]
+}
+</script>
 </head>
 <body>
 

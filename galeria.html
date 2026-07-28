@@ -108,6 +108,7 @@
       border-radius:4px;
       background:rgba(255,255,255,.03);
     }
+    .gi picture{display:block;width:100%;height:100%;}
     .gi img{
       width:100%;
       height:100%;
@@ -329,7 +330,10 @@ const grid = document.getElementById('galleryGrid');
 PHOTOS.forEach((src, i) => {
   const div = document.createElement('div');
   div.className = 'gi';
-  div.innerHTML = `<img src="${src}" loading="lazy" alt="Foto ${i+1} · XIII Torneo Sin Insultos CD Enrique Soler">
+  div.innerHTML = `<picture>
+      <source srcset="galeria/thumbs/foto-${String(i+1).padStart(3,'0')}.webp" type="image/webp">
+      <img src="${src}" loading="lazy" decoding="async" alt="Foto ${i+1} · XIII Torneo Sin Insultos CD Enrique Soler">
+    </picture>
     <span class="gi-num">${i+1}/${TOTAL}</span>`;
   div.addEventListener('click', () => openLb(i));
   grid.appendChild(div);
@@ -350,7 +354,9 @@ const lbCntr  = document.getElementById('lbCounter');
 
 function openLb(i) {
   current = i;
-  lbImg.src = PHOTOS[i];
+  // WebP si el navegador lo soporta; si falla, cae al JPG original
+  lbImg.onerror = function(){ lbImg.onerror = null; lbImg.src = PHOTOS[i]; };
+  lbImg.src = PHOTOS[i].replace('.jpg', '.webp');
   lbCntr.textContent = `${i + 1} / ${TOTAL}`;
   lb.classList.add('open');
   document.body.style.overflow = 'hidden';

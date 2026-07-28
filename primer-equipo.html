@@ -330,6 +330,69 @@
     @media(max-width:768px){.modal-body{grid-template-columns:1fr;gap:24px;padding:24px;}}
   </style>
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "SportsOrganization",
+      "@id": "https://cdenriquesoler.com/#club",
+      "name": "Club Deportivo Enrique Soler",
+      "alternateName": "CD Enrique Soler",
+      "sport": "Baloncesto",
+      "url": "https://cdenriquesoler.com/",
+      "logo": "https://cdenriquesoler.com/logo.png",
+      "foundingDate": "1996",
+      "email": "enriquesolergerencia@gmail.com",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Melilla",
+        "addressRegion": "Melilla",
+        "addressCountry": "ES"
+      },
+      "areaServed": {
+        "@type": "City",
+        "name": "Melilla"
+      },
+      "sameAs": [
+        "https://www.instagram.com/c.d.enriquesoler",
+        "https://x.com/camesoler"
+      ]
+    },
+    {
+      "@type": "SportsTeam",
+      "@id": "https://cdenriquesoler.com/primer-equipo.html#equipo",
+      "name": "CD Enrique Soler · Primer Equipo",
+      "sport": "Baloncesto",
+      "url": "https://cdenriquesoler.com/primer-equipo.html",
+      "logo": "https://cdenriquesoler.com/logo.png",
+      "parentOrganization": {
+        "@id": "https://cdenriquesoler.com/#club"
+      },
+      "memberOf": {
+        "@type": "SportsOrganization",
+        "name": "Tercera FEB · Grupo D-A",
+        "parentOrganization": {
+          "@type": "SportsOrganization",
+          "name": "Federación Española de Baloncesto"
+        }
+      },
+      "location": {
+        "@type": "Place",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Melilla",
+          "addressCountry": "ES"
+        }
+      },
+      "sameAs": [
+        "https://www.instagram.com/c.d.enriquesoler",
+        "https://x.com/camesoler"
+      ]
+    }
+  ]
+}
+</script>
 </head>
 <body>
 
@@ -799,6 +862,47 @@ function renderClasificacion(){
   document.getElementById('standingsBody').innerHTML = html;
 }
 
+/* ── DATOS ESTRUCTURADOS (schema.org) ──────────────────────
+   Genera los partidos como SportsEvent desde partidos.json, para que
+   Google pueda mostrarlos y nunca se queden desincronizados del JSON. */
+function renderDatosEstructurados(){
+  if(!PARTIDOS.length) return;
+  var SITE = 'https://cdenriquesoler.com';
+  var CLUB = SITE + '/#club';
+  var eventos = PARTIDOS.map(function(p){
+    // fecha "DD/MM/AAAA" → ISO "AAAA-MM-DD"
+    var f = (p.fecha || '').split('/');
+    if(f.length !== 3) return null;
+    var iso = f[2] + '-' + f[1] + '-' + f[0] + (p.hora ? 'T' + p.hora : '');
+    var enCasa = /Enrique Soler/i.test(p.local);
+    return {
+      '@type': 'SportsEvent',
+      name: p.local + ' vs ' + p.visitante,
+      startDate: iso,
+      eventStatus: 'https://schema.org/EventScheduled',
+      eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
+      sport: 'Baloncesto',
+      description: 'Jornada ' + p.jornada + ' · Tercera FEB Grupo D-A',
+      homeTeam: { '@type':'SportsTeam', name: p.local },
+      awayTeam: { '@type':'SportsTeam', name: p.visitante },
+      competitor: [ {'@type':'SportsTeam', name:p.local}, {'@type':'SportsTeam', name:p.visitante} ],
+      organizer: { '@type':'SportsOrganization', name:'Federación Española de Baloncesto' },
+      location: {
+        '@type': 'Place',
+        name: p.pabellon || (enCasa ? 'Melilla' : p.local),
+        address: { '@type':'PostalAddress',
+                   addressLocality: enCasa ? 'Melilla' : '',
+                   addressCountry: 'ES' }
+      }
+    };
+  }).filter(Boolean);
+  if(!eventos.length) return;
+  var s = document.createElement('script');
+  s.type = 'application/ld+json';
+  s.textContent = JSON.stringify({ '@context':'https://schema.org', '@graph': eventos });
+  document.head.appendChild(s);
+}
+
 /* ── QUICK NAV ACTIVE ─────────────────────────────────────── */
 function updateQuickNav(){
   var sections = ['squad','noticias','resultados','clasificacion','fanzone'];
@@ -849,6 +953,7 @@ Promise.all([
   renderNoticias();
   renderPartidos();
   renderClasificacion();
+  renderDatosEstructurados();
 
   ScrollTrigger.refresh();
 }).catch(function(err){

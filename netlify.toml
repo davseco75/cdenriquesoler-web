@@ -26,6 +26,12 @@
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 
+# Miniaturas WebP de la galería (subcarpeta: /galeria/* no baja un nivel más)
+[[headers]]
+  for = "/galeria/thumbs/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
 # Imágenes que podrían reemplazarse con el mismo nombre → 1 semana
 [[headers]]
   for = "/jugadores/*"

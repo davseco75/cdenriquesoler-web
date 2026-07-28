@@ -30,7 +30,7 @@
   .nav-back{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.55);border:1px solid rgba(255,255,255,.15);padding:9px 18px;border-radius:30px;transition:all .2s;}
   .nav-back:hover{border-color:var(--o);color:#fff;}
   .hero{position:relative;height:100vh;min-height:640px;overflow:hidden;display:flex;align-items:flex-end;}
-  .hero-photo{position:absolute;inset:0;background:url('galeria/alvaro-bonnemaison-accion.jpg') 50% 8%/cover no-repeat;animation:kenburns 18s ease-in-out infinite alternate;will-change:transform;}
+  .hero-photo{position:absolute;inset:0;background:url('galeria/alvaro-bonnemaison-accion.jpg') 50% 8%/cover no-repeat;background-image:-webkit-image-set(url('galeria/alvaro-bonnemaison-accion.webp') type('image/webp'),url('galeria/alvaro-bonnemaison-accion.jpg') type('image/jpeg'));background-image:image-set(url('galeria/alvaro-bonnemaison-accion.webp') type('image/webp'),url('galeria/alvaro-bonnemaison-accion.jpg') type('image/jpeg'));animation:kenburns 18s ease-in-out infinite alternate;will-change:transform;}
   @keyframes kenburns{0%{transform:scale(1.05) translate(0,0);}100%{transform:scale(1.18) translate(-2%,-2%);}}
   .hero-veil{position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,4,0,.55) 0%,transparent 28%,transparent 45%,rgba(8,4,0,.85) 82%,var(--bg) 100%),linear-gradient(90deg,rgba(8,4,0,.6),transparent 55%);}
   .hero-inner{position:relative;z-index:3;padding:0 5% 64px;max-width:1100px;}
@@ -102,6 +102,60 @@
   .prensa a{color:rgba(255,154,108,.7);}
   @media(max-width:680px){.stats-banner{grid-template-columns:repeat(3,1fr);gap:24px 8px;}.sb:nth-child(3)::after{display:none;}.ficha{grid-template-columns:1fr;}.tabla{font-size:12px;}.tabla th,.tabla td{padding:10px 4px;}}
 </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "SportsOrganization",
+      "@id": "https://cdenriquesoler.com/#club",
+      "name": "Club Deportivo Enrique Soler",
+      "alternateName": "CD Enrique Soler",
+      "sport": "Baloncesto",
+      "url": "https://cdenriquesoler.com/",
+      "logo": "https://cdenriquesoler.com/logo.png",
+      "foundingDate": "1996",
+      "email": "enriquesolergerencia@gmail.com",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Melilla",
+        "addressRegion": "Melilla",
+        "addressCountry": "ES"
+      },
+      "areaServed": {
+        "@type": "City",
+        "name": "Melilla"
+      },
+      "sameAs": [
+        "https://www.instagram.com/c.d.enriquesoler",
+        "https://x.com/camesoler"
+      ]
+    },
+    {
+      "@type": "NewsArticle",
+      "headline": "Renovación: Álvaro Bonnemaison sigue en el primer equipo",
+      "description": "Álvaro Bonnemaison renueva con el CD Enrique Soler. El joven alero canterano seguirá creciendo en el primer equipo en Tercera FEB.",
+      "image": "https://cdenriquesoler.com/galeria/renovacion-alvaro-bonnemaison.jpg",
+      "datePublished": "2026-07-28T21:10:40+02:00",
+      "dateModified": "2026-07-28T21:10:40+02:00",
+      "inLanguage": "es-ES",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://cdenriquesoler.com/renovacion-alvaro-bonnemaison.html"
+      },
+      "author": {
+        "@id": "https://cdenriquesoler.com/#club"
+      },
+      "publisher": {
+        "@id": "https://cdenriquesoler.com/#club"
+      },
+      "about": {
+        "@id": "https://cdenriquesoler.com/primer-equipo.html#equipo"
+      }
+    }
+  ]
+}
+</script>
 </head>
 <body>
 
