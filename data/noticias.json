@@ -116,6 +116,19 @@
       "imagen": "galeria/renovacion-tomas-liberatore.jpg",
       "fecha": "Julio 2026",
       "enlace": "renovacion-tomas-liberatore.html"
+    },
+    {
+      "seccion": "equipo",
+      "tipo": "card",
+      "destacado": true,
+      "tag": "RENOVACIÓN",
+      "color": "#FF6B2B",
+      "bg": "rgba(255,107,43,.12)",
+      "titulo": "Álvaro Bonnemaison renueva: la cantera da un paso más",
+      "texto": "El joven alero canterano Álvaro Bonnemaison (18 años) renueva con el CD Enrique Soler. Producto de la casa, dio sus primeros pasos en el primer equipo la pasada temporada y seguirá creciendo en Tercera FEB.",
+      "imagen": "galeria/renovacion-alvaro-bonnemaison.jpg",
+      "fecha": "Julio 2026",
+      "enlace": "renovacion-alvaro-bonnemaison.html"
     }
   ]
 }
