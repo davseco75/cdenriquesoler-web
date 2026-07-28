@@ -90,6 +90,19 @@
       "imagen": "galeria/renovacion-demba-sheriff.jpg",
       "fecha": "Julio 2026",
       "enlace": "renovacion-demba-sheriff.html"
+    },
+    {
+      "seccion": "equipo",
+      "tipo": "card",
+      "destacado": true,
+      "tag": "RENOVACIÓN",
+      "color": "#FF6B2B",
+      "bg": "rgba(255,107,43,.12)",
+      "titulo": "Javi Bosch renueva: otra joya de la cantera sigue",
+      "texto": "El joven alero melillense Javi Bosch, de solo 18 años y producto de la cantera, renueva con el CD Enrique Soler. La pasada temporada fue el más eficaz en el tiro con un 63% en lanzamientos de 2 en Tercera FEB.",
+      "imagen": "galeria/renovacion-javi-bosch.jpg",
+      "fecha": "Julio 2026",
+      "enlace": "renovacion-javi-bosch.html"
     }
   ]
 }
