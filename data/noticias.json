@@ -77,6 +77,19 @@
       "imagen": "galeria/renovacion-faris-chekri.jpg",
       "fecha": "Julio 2026",
       "enlace": "renovacion-faris-chekri.html"
+    },
+    {
+      "seccion": "equipo",
+      "tipo": "card",
+      "destacado": true,
+      "tag": "RENOVACIÓN",
+      "color": "#FF6B2B",
+      "bg": "rgba(255,107,43,.12)",
+      "titulo": "Demba Sheriff renueva: el poder interior se queda",
+      "texto": "El pívot internacional gambiano Demba Sheriff (21 años) renueva con el CD Enrique Soler. Fue el mejor reboteador (5,0) y taponador (0,9) del equipo la pasada temporada en Tercera FEB, imponiendo su físico en la pintura.",
+      "imagen": "galeria/renovacion-demba-sheriff.jpg",
+      "fecha": "Julio 2026",
+      "enlace": "renovacion-demba-sheriff.html"
     }
   ]
 }
