@@ -64,6 +64,19 @@
       "imagen": "galeria/renovacion-farid-chekri.jpg",
       "fecha": "Julio 2026",
       "enlace": "renovacion-farid-chekri.html"
+    },
+    {
+      "seccion": "equipo",
+      "tipo": "card",
+      "destacado": true,
+      "tag": "RENOVACIÓN",
+      "color": "#FF6B2B",
+      "bg": "rgba(255,107,43,.12)",
+      "titulo": "Faris Chekri renueva: el otro gemelo de la cantera sigue",
+      "texto": "El joven alero melillense Faris Chekri (19 años), gemelo de Farid y producto de la cantera, renueva con el CD Enrique Soler. La pasada temporada destacó en el rebote con 4,7 capturas por partido en Tercera FEB.",
+      "imagen": "galeria/renovacion-faris-chekri.jpg",
+      "fecha": "Julio 2026",
+      "enlace": "renovacion-faris-chekri.html"
     }
   ]
 }
