@@ -143,7 +143,7 @@
       "nombre": "Sergio Curbelo",
       "pos": "Alero",
       "cap": false,
-      "foto": "",
+      "foto": "jugadores/SERGIO.jpg",
       "ficha": {
         "altura": "1.96 m",
         "edad": "25 años",
@@ -176,7 +176,7 @@
       "nombre": "Álvaro Bonnemaison",
       "pos": "Alero",
       "cap": false,
-      "foto": "",
+      "foto": "jugadores/ALVARO.jpg",
       "ficha": {
         "edad": "18 años",
         "nacimiento": "Melilla, España",
@@ -207,7 +207,7 @@
       "nombre": "Faris Chekri",
       "pos": "Alero",
       "cap": false,
-      "foto": "",
+      "foto": "jugadores/FARIS.jpg",
       "ficha": {
         "altura": "1.99 m",
         "edad": "24 años",
@@ -289,7 +289,7 @@
       "nombre": "Miracle Bamadu",
       "pos": "Ala-Pívot",
       "cap": false,
-      "foto": "",
+      "foto": "jugadores/MIRACLE.jpg",
       "ficha": {
         "edad": "20 años",
         "nacimiento": "Nigeria",
@@ -333,7 +333,7 @@
       "nombre": "Demba Sheriff",
       "pos": "Pívot",
       "cap": false,
-      "foto": "",
+      "foto": "jugadores/DEMBA.jpg",
       "ficha": {
         "altura": "2.08 m",
         "edad": "22 años",
@@ -366,7 +366,7 @@
       "nombre": "Juan Martín",
       "pos": "Pívot",
       "cap": false,
-      "foto": "",
+      "foto": "jugadores/JUAN.jpg",
       "ficha": {
         "altura": "2,08 m",
         "peso": "98 kg",
