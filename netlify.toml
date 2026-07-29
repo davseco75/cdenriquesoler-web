@@ -53,6 +53,14 @@
   [headers.values]
     Cache-Control = "public, max-age=604800"
 
+# Hojas de estilo compartidas: se editan al cambiar el diseño, así que
+# deben revalidar siempre (ETag → 304 barato) en vez de quedarse
+# cacheadas una semana y mostrar el diseño antiguo a quien ya nos visitó.
+[[headers]]
+  for = "/assets/*.css"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
 # Logo e iconos de la PWA → 1 semana
 [[headers]]
   for = "/logo.png"
