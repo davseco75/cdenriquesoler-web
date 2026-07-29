@@ -1113,27 +1113,31 @@
     <div class="join-form">
       <h3>Apúntate ahora</h3>
       <p>Te contactamos en menos de 48 horas</p>
-      <form name="contacto-club" netlify data-netlify="true" onsubmit="handleForm(event)">
+      <form name="contacto-club" id="formClub" method="POST" data-netlify="true" netlify-honeypot="bot-field" onsubmit="handleForm(event)">
+        <!-- Netlify necesita form-name al enviar por fetch -->
+        <input type="hidden" name="form-name" value="contacto-club" />
+        <p hidden><label>No rellenar: <input name="bot-field" /></label></p>
         <div class="fg-row">
-          <div class="fg"><label>Nombre</label><input type="text" placeholder="Tu nombre" required /></div>
-          <div class="fg"><label>Apellidos</label><input type="text" placeholder="Tus apellidos" required /></div>
+          <div class="fg"><label for="fcNombre">Nombre</label><input id="fcNombre" name="nombre" type="text" autocomplete="given-name" placeholder="Tu nombre" required /></div>
+          <div class="fg"><label for="fcApellidos">Apellidos</label><input id="fcApellidos" name="apellidos" type="text" autocomplete="family-name" placeholder="Tus apellidos" required /></div>
         </div>
         <div class="fg-row">
-          <div class="fg"><label>Edad</label><input type="number" placeholder="Años" min="5" max="50" required /></div>
-          <div class="fg"><label>Teléfono</label><input type="tel" placeholder="612 345 678" /></div>
+          <div class="fg"><label for="fcEdad">Edad</label><input id="fcEdad" name="edad" type="number" placeholder="Años" min="5" max="50" required /></div>
+          <div class="fg"><label for="fcTel">Teléfono</label><input id="fcTel" name="telefono" type="tel" autocomplete="tel" placeholder="612 345 678" required /></div>
         </div>
         <div class="fg">
-          <label>Categoría</label>
-          <select required>
+          <label for="fcCat">Categoría</label>
+          <select id="fcCat" name="categoria" required>
             <option value="" disabled selected>Selecciona una categoría</option>
             <option>PreMini (5-7 años)</option><option>Mini (8-9 años)</option>
             <option>Benjamín (10-11 años)</option><option>Alevín (12-13 años)</option>
             <option>Infantil (14-15 años)</option><option>Cadete (16-17 años)</option>
-            <option>Junior (18-19 años)</option><option>Senior</option>
+            <option>Junior (18-19 años)</option><option>Senior (20-21 años)</option>
           </select>
         </div>
-        <div class="fg"><label>Mensaje (opcional)</label><textarea placeholder="Cuéntanos algo sobre ti..." rows="2" style="resize:none"></textarea></div>
+        <div class="fg"><label for="fcMsg">Mensaje (opcional)</label><textarea id="fcMsg" name="mensaje" placeholder="Cuéntanos algo sobre ti..." rows="2" style="resize:none"></textarea></div>
         <button type="submit" class="btn-white">Quiero unirme al club 🏀</button>
+        <div id="formClubAviso" role="status" aria-live="polite" style="margin-top:12px;font-size:13px;line-height:1.5;"></div>
       </form>
     </div>
   </div>
@@ -1671,12 +1675,56 @@ function openCart(){
 }
 
 /* FORM */
+/* Envío real del formulario de la portada.
+   Se registra en Netlify Forms (queda constancia aunque el visitante no
+   siga por WhatsApp) y se le ofrece el enlace de WhatsApp para aviso
+   inmediato. Si el registro falla NO se dice que ha llegado: se muestra
+   la vía alternativa. */
 function handleForm(e){
   e.preventDefault();
-  const btn=e.target.querySelector('.btn-white');
-  btn.textContent='✅ ¡Apuntado! Te llamamos pronto';
-  btn.style.background='#22c55e';btn.style.color='#fff';btn.disabled=true;
-  setTimeout(()=>{btn.textContent='Quiero unirme al club 🏀';btn.style.background='';btn.style.color='';btn.disabled=false;e.target.reset();},4000);
+  const form = e.target;
+  const btn  = form.querySelector('.btn-white');
+  const avis = document.getElementById('formClubAviso');
+  const d    = new FormData(form);
+  const v    = k => (d.get(k) || '').toString().trim();
+
+  const wa = 'https://wa.me/34952699700?text=' + encodeURIComponent(
+      'Hola, quiero unirme al CD Enrique Soler.\n\n'
+    + '👤 ' + v('nombre') + ' ' + v('apellidos') + '\n'
+    + '🎂 ' + v('edad') + ' años\n'
+    + '📱 ' + v('telefono') + '\n'
+    + '🏀 ' + v('categoria')
+    + (v('mensaje') ? '\n\n' + v('mensaje') : ''));
+
+  const txtOriginal = btn.textContent;
+  btn.disabled = true; btn.textContent = 'Enviando…';
+  avis.style.color = 'rgba(255,255,255,.75)'; avis.textContent = '';
+
+  fetch('/', {
+    method:'POST',
+    headers:{'Content-Type':'application/x-www-form-urlencoded'},
+    body:new URLSearchParams(d).toString()
+  })
+  .then(function(r){ if(!r.ok) throw new Error(r.status);
+    btn.textContent = '✅ Solicitud recibida';
+    btn.style.background='#22c55e'; btn.style.color='#fff';
+    avis.innerHTML = 'Hemos recibido tus datos y te contactaremos. '
+      + '¿Prefieres que hablemos ya? <a href="'+wa+'" target="_blank" rel="noopener" '
+      + 'style="color:#25D366;font-weight:700;text-decoration:underline">Escríbenos por WhatsApp</a>.';
+    setTimeout(function(){
+      btn.textContent = txtOriginal; btn.style.background=''; btn.style.color='';
+      btn.disabled = false; form.reset();
+    }, 6000);
+  })
+  .catch(function(){
+    // No se ha podido registrar: se dice la verdad y se ofrece la alternativa.
+    btn.textContent = txtOriginal; btn.disabled = false;
+    avis.style.color = '#FFB08A';
+    avis.innerHTML = 'No hemos podido enviar el formulario. '
+      + '<a href="'+wa+'" target="_blank" rel="noopener" '
+      + 'style="color:#25D366;font-weight:700;text-decoration:underline">Escríbenos por WhatsApp</a> '
+      + 'o llama al 952 69 97 00.';
+  });
 }
 </script>
 
