@@ -1,6 +1,6 @@
 {
   "_nota": "FUENTE ÚNICA de las categorías del club. La usan calendario.html y estadisticas.html. Si cambia una categoría, se cambia AQUÍ.",
-  "_revisar": "Los años de 'nacidos' corresponden a la temporada 2025-26. Para la 2026-27 hay que sumar 1 a cada tramo (pendiente de confirmar con gerencia).",
+  "_revisar": "Al cambiar de temporada hay que sumar 1 a cada tramo de 'nacidos'. Estos corresponden a la 2026-27.",
   "temporada": "2026-27",
   "categorias": [
     {
@@ -8,7 +8,7 @@
       "label": "PreMini",
       "emoji": "⭐",
       "edad": "5-7 años",
-      "nacidos": "2018-2020",
+      "nacidos": "2019-2021",
       "color": "#FF6B2B",
       "orden": 1
     },
@@ -17,7 +17,7 @@
       "label": "Mini",
       "emoji": "🌟",
       "edad": "8-9 años",
-      "nacidos": "2016-2017",
+      "nacidos": "2017-2018",
       "color": "#FF8040",
       "orden": 2
     },
@@ -26,7 +26,7 @@
       "label": "Benjamín",
       "emoji": "🔥",
       "edad": "10-11 años",
-      "nacidos": "2014-2015",
+      "nacidos": "2015-2016",
       "color": "#E85000",
       "orden": 3
     },
@@ -35,7 +35,7 @@
       "label": "Alevín",
       "emoji": "🏀",
       "edad": "12-13 años",
-      "nacidos": "2012-2013",
+      "nacidos": "2013-2014",
       "color": "#CC4400",
       "orden": 4
     },
@@ -44,7 +44,7 @@
       "label": "Infantil",
       "emoji": "⚡",
       "edad": "14-15 años",
-      "nacidos": "2010-2011",
+      "nacidos": "2011-2012",
       "color": "#1A3A8F",
       "orden": 5
     },
@@ -53,7 +53,7 @@
       "label": "Cadete",
       "emoji": "🎯",
       "edad": "16-17 años",
-      "nacidos": "2008-2009",
+      "nacidos": "2009-2010",
       "color": "#0A2463",
       "orden": 6
     },
@@ -62,7 +62,7 @@
       "label": "Junior",
       "emoji": "💪",
       "edad": "18-19 años",
-      "nacidos": "2006-2007",
+      "nacidos": "2007-2008",
       "color": "#2D5FD9",
       "orden": 7
     },
@@ -71,7 +71,7 @@
       "label": "Senior",
       "emoji": "🏆",
       "edad": "20-21 años",
-      "nacidos": "2004-2005",
+      "nacidos": "2005-2006",
       "color": "#8B2500",
       "orden": 8
     }
