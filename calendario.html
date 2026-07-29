@@ -212,7 +212,7 @@
     <li><a href="patrocinadores.html">Partners</a></li>
   </ul>
   <a href="inscripciones.html" class="nav-cta">Únete</a>
-  <div class="nav-burger" id="navBurger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+  <button class="nav-burger" id="navBurger" type="button" onclick="toggleMenu()" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobNav"><span></span><span></span><span></span></button>
 </nav>
 
 <!-- MOBILE NAV -->
@@ -261,7 +261,7 @@
     <strong>Calendarios pendientes de publicación</strong>
     <span>Los horarios se publicarán aquí en cuanto la FMB confirme las jornadas de la temporada 2026-27</span>
   </div>
-  <a href="https://wa.me/34952699700?text=Hola!%20Quisiera%20recibir%20aviso%20cuando%20salga%20el%20calendario%202026-27" target="_blank" class="pending-banner-cta">📲 Avisarme por WhatsApp</a>
+  <a href="https://wa.me/34952699700?text=Hola!%20Quisiera%20recibir%20aviso%20cuando%20salga%20el%20calendario%202026-27" target="_blank" class="pending-banner-cta" rel="noopener">📲 Avisarme por WhatsApp</a>
 </div>
 
 <!-- MAIN -->
@@ -304,7 +304,7 @@
 </footer>
 
 <!-- WHATSAPP -->
-<a href="https://wa.me/34952699700" target="_blank" class="wa-float" title="WhatsApp">💬</a>
+<a href="https://wa.me/34952699700" target="_blank" class="wa-float"  title="WhatsApp" aria-label="Escríbenos por WhatsApp" rel="noopener">💬</a>
 
 <script>
 gsap.registerPlugin(ScrollTrigger);
@@ -323,13 +323,25 @@ document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;});
 function toggleMenu(){
   const nav=document.getElementById('mobNav');
   const burger=document.getElementById('navBurger');
-  nav.classList.toggle('open');
-  burger.classList.toggle('open');
+  const abierto = nav.classList.toggle('open');
+  burger.classList.toggle('open', abierto);
+  // Estado accesible: sin esto un lector de pantalla no sabe si está abierto
+  burger.setAttribute('aria-expanded', abierto ? 'true' : 'false');
+  burger.setAttribute('aria-label', abierto ? 'Cerrar menú' : 'Abrir menú');
 }
 function closeMenu(){
   document.getElementById('mobNav').classList.remove('open');
-  document.getElementById('navBurger').classList.remove('open');
+  const burger=document.getElementById('navBurger');
+  burger.classList.remove('open');
+  burger.setAttribute('aria-expanded','false');
+  burger.setAttribute('aria-label','Abrir menú');
 }
+// Escape cierra el menú móvil y devuelve el foco al botón
+document.addEventListener('keydown', function(e){
+  if(e.key!=='Escape') return;
+  const nav=document.getElementById('mobNav');
+  if(nav && nav.classList.contains('open')){ closeMenu(); document.getElementById('navBurger').focus(); }
+});
 
 /* =====================================================================
    ██████████████████████████████████████████████████
@@ -366,7 +378,7 @@ function closeMenu(){
      hora: '10:30',
      local: 'CD Enrique Soler',
      visitante: 'CB Melilla',
-     pabellon: 'Pabellón Municipal Enrique Soler',
+     pabellon: 'Pabellón Guillermo García Pezzi',
      resultado: null,
      estado: 'pendiente'
    },
@@ -380,7 +392,7 @@ function closeMenu(){
      hora: '10:30',
      local: 'CD Enrique Soler',
      visitante: 'CB Melilla',
-     pabellon: 'Pabellón Municipal Enrique Soler',
+     pabellon: 'Pabellón Guillermo García Pezzi',
      resultado: { local: 72, visitante: 68 },
      estado: 'jugado'
    },
@@ -536,8 +548,12 @@ function buildCalendar() {
 
 function filterCat(cat, btn) {
   // Update pills
-  document.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.filter-pill').forEach(function(p){
+    p.classList.remove('active');
+    p.setAttribute('aria-pressed','false');   // estado real para lectores de pantalla
+  });
   btn.classList.add('active');
+  btn.setAttribute('aria-pressed','true');
 
   // Show/hide blocks
   document.querySelectorAll('.cat-block').forEach(block => {

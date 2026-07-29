@@ -20,7 +20,7 @@ nav{position:fixed;top:0;left:0;width:100%;z-index:500;display:flex;align-items:
 .dd-menu a:hover{background:rgba(255,107,43,.1);color:#fff;}
 .nav-cta{background:var(--o);color:#fff;padding:8px 20px;border-radius:2px;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;transition:opacity .2s;margin-left:8px;}
 .nav-cta:hover{opacity:.85;}
-.nav-burger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;}
+.nav-burger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;background:none;border:0;color:inherit;}
 .nav-burger span{width:22px;height:2px;background:#fff;border-radius:2px;transition:all .3s;}
 .mob-nav{display:none;position:fixed;top:68px;left:0;width:100%;background:rgba(8,4,0,.98);backdrop-filter:blur(20px);padding:16px 5% 28px;z-index:499;border-bottom:1px solid rgba(255,107,43,.12);max-height:calc(100vh - 68px);overflow-y:auto;}
 .mob-nav.open{display:flex;flex-direction:column;}

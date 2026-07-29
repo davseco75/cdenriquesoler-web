@@ -281,7 +281,7 @@
     <li><a href="patrocinadores.html">Partners</a></li>
   </ul>
   <a href="inscripciones.html" class="nav-cta">Únete</a>
-  <div class="nav-burger" id="navBurger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+  <button class="nav-burger" id="navBurger" type="button" onclick="toggleMenu()" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobNav"><span></span><span></span><span></span></button>
 </nav>
 
 <!-- MOBILE NAV -->
@@ -307,6 +307,8 @@
   <a href="patrocinadores.html">💼 Partners</a>
   <a href="inscripciones.html" class="mob-cta">Únete al club →</a>
 </div>
+
+<main id="contenido">
 
 
 
@@ -380,16 +382,18 @@
   <h2>¡Ven a <em>animar</em>!</h2>
   <p>Cada grito desde la grada empuja a nuestros chavales. 🧡</p>
   <div class="t3-fan-meta">🏟️ Pabellón Guillermo García Pezzi · 📍 Calle Azucena s/n, Melilla · 📅 8–11 de junio</div>
-  <a href="https://wa.me/34952699700?text=Hola!%20Quiero%20info%20del%20Torneo%203x3%20Javier%20Almansa" target="_blank" class="t3-btn t3-btn-primary">💬 Más información</a>
+  <a href="https://wa.me/34952699700?text=Hola!%20Quiero%20info%20del%20Torneo%203x3%20Javier%20Almansa" target="_blank" class="t3-btn t3-btn-primary" rel="noopener">💬 Más información</a>
 </section>
 
 <!-- FOOTER -->
+</main>
+
 <footer>
   <p>© 2026 CD Enrique Soler · <a href="index.html">Inicio</a> · <a href="galeria.html">Galería</a> · <a href="estadisticas.html">Estadísticas</a> · <a href="inscripciones.html">Inscripciones</a> · <a href="patrocinadores.html">Partners</a> · <a href="https://wa.me/34952699700" target="_blank" rel="noopener" style="color:#25D366">WhatsApp</a></p>
 </footer>
 
 <!-- WHATSAPP -->
-<a href="https://wa.me/34952699700" target="_blank" class="wa-float" title="WhatsApp">💬</a>
+<a href="https://wa.me/34952699700" target="_blank" class="wa-float"  title="WhatsApp" aria-label="Escríbenos por WhatsApp" rel="noopener">💬</a>
 
 <script>
 /* Cursor personalizado */
@@ -403,13 +407,39 @@
 })();
 /* Menu movil */
 function toggleMenu(){
-  document.getElementById('mobNav').classList.toggle('open');
-  document.getElementById('navBurger').classList.toggle('open');
+  var nav=document.getElementById('mobNav');
+  var burger=document.getElementById('navBurger');
+  var abierto = nav ? nav.classList.toggle('open') : burger.classList.toggle('open');
+  burger.classList.toggle('open', abierto);
+  // Estado accesible: sin esto un lector de pantalla no sabe si está abierto
+  burger.setAttribute('aria-expanded', abierto ? 'true' : 'false');
+  burger.setAttribute('aria-label', abierto ? 'Cerrar menú' : 'Abrir menú');
 }
+// Escape cierra el menú y devuelve el foco al botón
+document.addEventListener('keydown', function(e){
+  if(e.key!=='Escape') return;
+  var nav=document.getElementById('mobNav'), b=document.getElementById('navBurger');
+  if(b && b.classList.contains('open')){
+    if(nav) nav.classList.remove('open');
+    b.classList.remove('open');
+    b.setAttribute('aria-expanded','false');
+    b.setAttribute('aria-label','Abrir menú');
+    b.focus();
+  }
+});
 function closeMenu(){
   document.getElementById('mobNav').classList.remove('open');
-  document.getElementById('navBurger').classList.remove('open');
+  const burger=document.getElementById('navBurger');
+  burger.classList.remove('open');
+  burger.setAttribute('aria-expanded','false');
+  burger.setAttribute('aria-label','Abrir menú');
 }
+// Escape cierra el menú móvil y devuelve el foco al botón
+document.addEventListener('keydown', function(e){
+  if(e.key!=='Escape') return;
+  const nav=document.getElementById('mobNav');
+  if(nav && nav.classList.contains('open')){ closeMenu(); document.getElementById('navBurger').focus(); }
+});
 
 /* Cuenta atrás hasta el Torneo 3x3 (8-11 junio 2026) */
 (function(){

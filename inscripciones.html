@@ -312,7 +312,7 @@
     <li><a href="patrocinadores.html">Partners</a></li>
   </ul>
   <a href="inscripciones-nueva.html" class="nav-cta">Inscribirse</a>
-  <div class="nav-burger" id="navBurger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+  <button class="nav-burger" id="navBurger" type="button" onclick="toggleMenu()" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobNav"><span></span><span></span><span></span></button>
 </nav>
 
 <!-- MOBILE NAV -->
@@ -338,6 +338,8 @@
   <a href="patrocinadores.html">💼 Partners</a>
   <a href="inscripciones-nueva.html" class="mob-cta">Inscribirse →</a>
 </div>
+
+<main id="contenido">
 
 <!-- HERO -->
 <section class="ins-hero">
@@ -495,7 +497,7 @@
       <div class="his-icon">🏟️</div>
       <div>
         <div class="his-label">Lugar de entrenamiento</div>
-        <div class="his-value">Pabellón Deportivo<br><small style="color:rgba(255,255,255,.4);">Av. Azucena s/n, Melilla</small></div>
+        <div class="his-value">Pabellón Guillermo García Pezzi<br><small style="color:rgba(255,255,255,.4);">Av. Azucena s/n, Melilla</small></div>
       </div>
     </div>
   </div>
@@ -532,7 +534,7 @@
         ¿Qué es el reconocimiento médico y cómo lo obtengo?
         <div class="faq-toggle"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 2v8M2 6h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
       </div>
-      <div class="faq-a"><p>El reconocimiento médico deportivo es obligatorio para federarte. Puedes obtenerlo en <a href="https://www.medicalimbrain.com/" target="_blank">medicalimbrain.com</a>, el servicio médico homologado por el club. Es un trámite sencillo y rápido.</p></div>
+      <div class="faq-a"><p>El reconocimiento médico deportivo es obligatorio para federarte. Puedes obtenerlo en <a href="https://www.medicalimbrain.com/" target="_blank" rel="noopener">medicalimbrain.com</a>, el servicio médico homologado por el club. Es un trámite sencillo y rápido.</p></div>
     </div>
     <div class="faq-item">
       <div class="faq-q" onclick="toggleFaq(this)">
@@ -577,7 +579,7 @@
   <h2>¿Tienes dudas?<br><em>Escríbenos</em></h2>
   <p>Nuestro equipo te orienta y te ayuda a elegir la categoría correcta para tu hijo/a</p>
   <div class="ins-footer-cta-btns">
-    <a href="https://wa.me/34952699700?text=Hola%2C%20quiero%20información%20sobre%20las%20inscripciones%20de%20la%20escuela%20de%20baloncesto." target="_blank" class="btn-primary">
+    <a href="https://wa.me/34952699700?text=Hola%2C%20quiero%20información%20sobre%20las%20inscripciones%20de%20la%20escuela%20de%20baloncesto." target="_blank" class="btn-primary" rel="noopener">
       💬 WhatsApp directo
     </a>
     <a href="inscripciones-nueva.html" class="btn-outline">
@@ -587,12 +589,14 @@
 </div>
 
 <!-- FOOTER -->
+</main>
+
 <footer>
   <p>© 2026 Club Deportivo Enrique Soler · Melilla Ciudad del Deporte · <a href="index.html">Volver al inicio</a></p>
 </footer>
 
 <!-- FLOATING WA -->
-<a href="https://wa.me/34952699700?text=Hola%2C%20quiero%20información%20sobre%20las%20inscripciones." target="_blank" class="wa-float">
+<a href="https://wa.me/34952699700?text=Hola%2C%20quiero%20información%20sobre%20las%20inscripciones." target="_blank" class="wa-float"  aria-label="Escríbenos por WhatsApp" rel="noopener">
   <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
 </a>
 
@@ -845,7 +849,7 @@ function showCategory(id) {
             <div class="doc-content">
               <div class="doc-title">🩺 Reconocimiento médico deportivo</div>
               <div class="doc-desc">Certificado médico de aptitud para la práctica del baloncesto. Obligatorio para obtener la licencia federativa.</div>
-              <a class="doc-link" href="https://www.medicalimbrain.com/" target="_blank">
+              <a class="doc-link" href="https://www.medicalimbrain.com/" target="_blank" rel="noopener">
                 🔗 Solicitar en medicalimbrain.com
               </a>
             </div>
@@ -908,7 +912,7 @@ function showCategory(id) {
             <div class="doc-content">
               <div class="doc-title">📎 Justificantes de pago combinados (Cuota + PASS CO.MA.MEL)</div>
               <div class="doc-desc">Ambos justificantes de pago (cuota de inscripción del club + PASS CO.MA.MEL) deben adjuntarse en un único documento PDF. Usa una herramienta de unión de PDFs como ilovepdf.com si los tienes por separado.</div>
-              <a class="doc-link" href="https://www.ilovepdf.com/es/unir_pdf" target="_blank">
+              <a class="doc-link" href="https://www.ilovepdf.com/es/unir_pdf" target="_blank" rel="noopener">
                 🔗 Unir PDFs gratis en ilovepdf.com
               </a>
             </div>
@@ -977,7 +981,7 @@ function showCategory(id) {
             </div>
 
             <div style="margin-top:16px;">
-              <a href="https://www.ilovepdf.com/es/unir_pdf" target="_blank" class="doc-link" style="font-size:12px;">
+              <a href="https://www.ilovepdf.com/es/unir_pdf" target="_blank" class="doc-link" style="font-size:12px;" rel="noopener">
                 📎 Unir PDFs gratis → ilovepdf.com
               </a>
             </div>
@@ -1047,7 +1051,7 @@ function showCategory(id) {
               <h4>Esperar confirmación del club</h4>
               <p>Una vez enviada la solicitud, el club la revisará y se pondrá en contacto contigo para confirmar la plaza y facilitar los documentos pendientes (horarios, normas, licencia).</p>
               <div class="sol-action">
-                <a href="https://wa.me/34952699700?text=Hola%2C%20acabo%20de%20enviar%20mi%20inscripci%C3%B3n%20online%20para%20la%20categor%C3%ADa%20${encodeURIComponent(cat.name)}%20y%20quer%C3%ADa%20confirmarlo." target="_blank" class="btn-wa">
+                <a href="https://wa.me/34952699700?text=Hola%2C%20acabo%20de%20enviar%20mi%20inscripci%C3%B3n%20online%20para%20la%20categor%C3%ADa%20${encodeURIComponent(cat.name)}%20y%20quer%C3%ADa%20confirmarlo." target="_blank" class="btn-wa" rel="noopener">
                   💬 Confirmar por WhatsApp
                 </a>
               </div>
@@ -1062,7 +1066,7 @@ function showCategory(id) {
             <a href="inscripciones-nueva.html?cat=${encodeURIComponent(cat.name)}" class="btn-clupik">
               📋 Inscripción online →
             </a>
-            <a href="https://wa.me/34952699700?text=Hola%2C%20quiero%20información%20sobre%20la%20inscripción%20en%20categoría%20${encodeURIComponent(cat.name)}." target="_blank" class="btn-wa">
+            <a href="https://wa.me/34952699700?text=Hola%2C%20quiero%20información%20sobre%20la%20inscripción%20en%20categoría%20${encodeURIComponent(cat.name)}." target="_blank" class="btn-wa" rel="noopener">
               💬 Preguntar por WhatsApp
             </a>
           </div>
@@ -1145,13 +1149,25 @@ window.addEventListener('scroll', () =>
 function toggleMenu(){
   const nav=document.getElementById('mobNav');
   const burger=document.getElementById('navBurger');
-  nav.classList.toggle('open');
-  burger.classList.toggle('open');
+  const abierto = nav.classList.toggle('open');
+  burger.classList.toggle('open', abierto);
+  // Estado accesible: sin esto un lector de pantalla no sabe si está abierto
+  burger.setAttribute('aria-expanded', abierto ? 'true' : 'false');
+  burger.setAttribute('aria-label', abierto ? 'Cerrar menú' : 'Abrir menú');
 }
 function closeMenu(){
   document.getElementById('mobNav').classList.remove('open');
-  document.getElementById('navBurger').classList.remove('open');
+  const burger=document.getElementById('navBurger');
+  burger.classList.remove('open');
+  burger.setAttribute('aria-expanded','false');
+  burger.setAttribute('aria-label','Abrir menú');
 }
+// Escape cierra el menú móvil y devuelve el foco al botón
+document.addEventListener('keydown', function(e){
+  if(e.key!=='Escape') return;
+  const nav=document.getElementById('mobNav');
+  if(nav && nav.classList.contains('open')){ closeMenu(); document.getElementById('navBurger').focus(); }
+});
 
 // ── GSAP ANIMATIONS ──────────────────────────────────────────────────────────
 gsap.registerPlugin(ScrollTrigger);
@@ -1318,7 +1334,7 @@ ScrollTrigger.batch('.faq-item', {
 
     { id:'donde',
       k:['donde','pista','instalacion','instalaciones','lugar','ubicacion','direccion','donde se entrena','donde entrena','en que pista','pabellon','pabellón'],
-      t:'Los entrenamientos se realizan en el <b>Pabellón Deportivo</b>, Av. Azucena s/n, Melilla.',
+      t:'Los entrenamientos se realizan en el <b>Pabellón Guillermo García Pezzi</b>, Av. Azucena s/n, Melilla.',
       wa:false },
 
     { id:'duracion',
@@ -1543,7 +1559,7 @@ ScrollTrigger.batch('.faq-item', {
       hideTyping();
       var html = faq.t;
       if(faq.wa){
-        html += '<br><a href="'+WA+'" target="_blank" class="chat-wa">💬 Escríbenos por WhatsApp</a>';
+        html += '<br><a href="'+WA+'" target="_blank" class="chat-wa" rel="noopener">💬 Escríbenos por WhatsApp</a>';
       }
       addMsg(html, 'bot');
     }, 600);
@@ -1553,7 +1569,7 @@ ScrollTrigger.batch('.faq-item', {
     showTyping();
     setTimeout(function(){
       hideTyping();
-      var html = 'No tengo esa información exacta ahora mismo, pero podemos ayudarte directamente 👇<br><a href="'+WA+'" target="_blank" class="chat-wa">💬 Escríbenos por WhatsApp</a>';
+      var html = 'No tengo esa información exacta ahora mismo, pero podemos ayudarte directamente 👇<br><a href="'+WA+'" target="_blank" class="chat-wa" rel="noopener">💬 Escríbenos por WhatsApp</a>';
       addMsg(html, 'bot');
     }, 500);
   }

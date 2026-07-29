@@ -34,7 +34,7 @@
     .nav-logo span em{color:var(--o);font-style:normal;display:block;font-size:10px;letter-spacing:.18em;}
     .nav-back{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.5);padding:8px 16px;border:1px solid rgba(255,255,255,.12);border-radius:6px;transition:all .2s;}
     .nav-back:hover{color:#fff;border-color:rgba(255,107,43,.4);}
-    .nav-burger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;}
+    .nav-burger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;background:none;border:0;color:inherit;}
     .nav-burger span{width:22px;height:2px;background:#fff;border-radius:2px;}
 
     /* ── HERO ── */
@@ -222,8 +222,10 @@
   <a href="inscripciones.html" class="nav-back">
     ← Inscripciones
   </a>
-  <div class="nav-burger" id="navBurger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+  <button class="nav-burger" id="navBurger" type="button" onclick="toggleMenu()" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobNav"><span></span><span></span><span></span></button>
 </nav>
+
+<main id="contenido">
 
 <!-- HERO -->
 <section class="form-hero">
@@ -440,7 +442,7 @@
           </div>
           <div class="uz-preview" id="pv-medical"></div>
         </div>
-        <p class="field-hint">Certificado médico de aptitud para practicar baloncesto. Puedes obtenerlo en <a href="https://www.medicalimbrain.com/" target="_blank">medicalimbrain.com</a></p>
+        <p class="field-hint">Certificado médico de aptitud para practicar baloncesto. Puedes obtenerlo en <a href="https://www.medicalimbrain.com/" target="_blank" rel="noopener">medicalimbrain.com</a></p>
       </div>
 
       <!-- Photo -->
@@ -486,7 +488,7 @@
 
       <div class="consent-box">
         <h4>Autorización y protección de datos</h4>
-        <p>Los datos personales facilitados serán tratados por el Club Deportivo Enrique Soler con la única finalidad de gestionar la inscripción deportiva y federativa del jugador/a. Los datos serán conservados durante el tiempo necesario para cumplir con las obligaciones derivadas de la inscripción y, en cualquier caso, durante el período de vigencia de la licencia federativa. Podrás ejercer tus derechos de acceso, rectificación, supresión y oposición dirigiéndote al club. Para más información, consulta nuestra <a href="/privacidad-inscripciones" target="_blank">política de privacidad</a>.</p>
+        <p>Los datos personales facilitados serán tratados por el Club Deportivo Enrique Soler con la única finalidad de gestionar la inscripción deportiva y federativa del jugador/a. Los datos serán conservados durante el tiempo necesario para cumplir con las obligaciones derivadas de la inscripción y, en cualquier caso, durante el período de vigencia de la licencia federativa. Podrás ejercer tus derechos de acceso, rectificación, supresión y oposición dirigiéndote al club. Para más información, consulta nuestra <a href="/privacidad-inscripciones" target="_blank" rel="noopener">política de privacidad</a>.</p>
         <label class="consent-check-row" for="f-consent">
           <input type="checkbox" id="f-consent" required>
           <span>Confirmo que soy padre/madre/tutor legal del menor y autorizo al Club Deportivo Enrique Soler a tratar estos datos y documentos exclusivamente para la gestión de la inscripción deportiva/federativa, de acuerdo con el RGPD (UE) 2016/679 y la LOPDGDD 3/2018.</span>
@@ -522,7 +524,7 @@
         </div>
         <div style="display:flex;flex-direction:column;gap:12px;align-items:center;width:100%;">
           <a href="inscripciones.html" class="btn-primary btn-full" style="max-width:320px">← Volver a inscripciones</a>
-          <a href="https://wa.me/34952699700?text=Hola%2C%20acabo%20de%20enviar%20mi%20inscripci%C3%B3n%20online%20y%20quer%C3%ADa%20confirmarlo." target="_blank" class="btn-outline btn-full" style="max-width:320px">💬 Confirmar por WhatsApp</a>
+          <a href="https://wa.me/34952699700?text=Hola%2C%20acabo%20de%20enviar%20mi%20inscripci%C3%B3n%20online%20y%20quer%C3%ADa%20confirmarlo." target="_blank" class="btn-outline btn-full" style="max-width:320px" rel="noopener">💬 Confirmar por WhatsApp</a>
         </div>
       </div>
     </div>
@@ -540,6 +542,8 @@
   </div>
 
 </div><!-- /form-outer -->
+
+</main>
 
 <footer>
   <p>© 2026 Club Deportivo Enrique Soler · <a href="inscripciones.html">Inscripciones</a> · <a href="privacidad-inscripciones.html">Privacidad</a> · <a href="index.html">Inicio</a></p>
@@ -951,9 +955,27 @@ async function submitForm() {
 window.addEventListener('scroll', () =>
   document.getElementById('nav').classList.toggle('scrolled', scrollY > 40));
 
-function toggleMenu() {
-  document.getElementById('navBurger').classList.toggle('open');
+function toggleMenu(){
+  var nav=document.getElementById('mobNav');
+  var burger=document.getElementById('navBurger');
+  var abierto = nav ? nav.classList.toggle('open') : burger.classList.toggle('open');
+  burger.classList.toggle('open', abierto);
+  // Estado accesible: sin esto un lector de pantalla no sabe si está abierto
+  burger.setAttribute('aria-expanded', abierto ? 'true' : 'false');
+  burger.setAttribute('aria-label', abierto ? 'Cerrar menú' : 'Abrir menú');
 }
+// Escape cierra el menú y devuelve el foco al botón
+document.addEventListener('keydown', function(e){
+  if(e.key!=='Escape') return;
+  var nav=document.getElementById('mobNav'), b=document.getElementById('navBurger');
+  if(b && b.classList.contains('open')){
+    if(nav) nav.classList.remove('open');
+    b.classList.remove('open');
+    b.setAttribute('aria-expanded','false');
+    b.setAttribute('aria-label','Abrir menú');
+    b.focus();
+  }
+});
 
 // Inicializar
 showStep(1);

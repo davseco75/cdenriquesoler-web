@@ -313,7 +313,7 @@
     <li><a href="patrocinadores.html">Partners</a></li>
   </ul>
   <a href="inscripciones.html" class="nav-cta">Únete</a>
-  <div class="nav-burger" id="navBurger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+  <button class="nav-burger" id="navBurger" type="button" onclick="toggleMenu()" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobNav"><span></span><span></span><span></span></button>
 </nav>
 
 <!-- MOB NAV -->
@@ -336,6 +336,8 @@
   <a href="patrocinadores.html">💼 Partners</a>
   <a href="inscripciones.html" class="mob-cta">Únete al club →</a>
 </div>
+
+<main id="contenido">
 
 <!-- ═══ HERO ═══ -->
 <section class="oly-hero">
@@ -725,10 +727,12 @@
 </section>
 
 <!-- FOOTER -->
+</main>
+
 <footer>
   <p>© 2026 CD Enrique Soler · <a href="index.html">Inicio</a> · <a href="galeria.html">Galería</a> · <a href="estadisticas.html">Estadísticas</a> · <a href="inscripciones.html">Inscripciones</a> · <a href="patrocinadores.html">Partners</a> · <a href="https://wa.me/34952699700" target="_blank" rel="noopener" style="color:#25D366">WhatsApp</a></p>
 </footer>
-<a href="https://wa.me/34952699700" target="_blank" class="wa-float" title="WhatsApp">💬</a>
+<a href="https://wa.me/34952699700" target="_blank" class="wa-float"  title="WhatsApp" aria-label="Escríbenos por WhatsApp" rel="noopener">💬</a>
 
 <script>
 /* Cursor */
@@ -741,7 +745,27 @@
 })();
 
 /* Mobile nav */
-function toggleMenu(){document.getElementById('mobNav').classList.toggle('open');document.getElementById('navBurger').classList.toggle('open');}
+function toggleMenu(){
+  var nav=document.getElementById('mobNav');
+  var burger=document.getElementById('navBurger');
+  var abierto = nav ? nav.classList.toggle('open') : burger.classList.toggle('open');
+  burger.classList.toggle('open', abierto);
+  // Estado accesible: sin esto un lector de pantalla no sabe si está abierto
+  burger.setAttribute('aria-expanded', abierto ? 'true' : 'false');
+  burger.setAttribute('aria-label', abierto ? 'Cerrar menú' : 'Abrir menú');
+}
+// Escape cierra el menú y devuelve el foco al botón
+document.addEventListener('keydown', function(e){
+  if(e.key!=='Escape') return;
+  var nav=document.getElementById('mobNav'), b=document.getElementById('navBurger');
+  if(b && b.classList.contains('open')){
+    if(nav) nav.classList.remove('open');
+    b.classList.remove('open');
+    b.setAttribute('aria-expanded','false');
+    b.setAttribute('aria-label','Abrir menú');
+    b.focus();
+  }
+});
 
 /* Stars */
 (function(){
