@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>MCD Enrique Soler · Primer Equipo</title>
+<meta name="description" content="App del primer equipo del Melilla Ciudad del Deporte Enrique Soler: próximo partido, calendario, plantilla, clasificación y crónicas de la Tercera FEB Grupo D-A.">
+<meta name="theme-color" content="#FF6B2B">
+<link rel="canonical" href="https://cdenriquesoler.com/primer-equipo.html">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --o:#FF6B2B; --o2:#FF9A6C; --bg:#080400; --bg2:#100800;
+    --card:rgba(255,255,255,.035); --linea:rgba(255,255,255,.08);
+    --txt:#fff; --txt2:rgba(255,255,255,.55); --txt3:rgba(255,255,255,.32);
+    --barra: calc(58px + env(safe-area-inset-bottom));
+  }
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+  body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--txt);
+    overflow-x:hidden;overscroll-behavior-y:none;}
+  a{color:inherit;text-decoration:none;}
+  .bebas{font-family:'Bebas Neue',sans-serif;}
+
+  /* ── Cabecera ── */
+  .cab{position:sticky;top:0;z-index:50;background:rgba(8,4,0,.94);
+    backdrop-filter:blur(18px);border-bottom:1px solid var(--linea);
+    padding:calc(10px + env(safe-area-inset-top)) 16px 10px;display:flex;align-items:center;gap:10px;}
+  .cab img{width:34px;height:34px;object-fit:contain;background:#fff;border-radius:9px;padding:3px;}
+  .cab b{font-family:'Bebas Neue';font-size:17px;letter-spacing:.02em;line-height:1;display:block;}
+  .cab small{font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--txt3);}
+
+  /* ── Vistas ── */
+  main{padding:14px 14px calc(var(--barra) + 18px);min-height:60vh;}
+  .tit{font-family:'Bebas Neue';font-size:26px;line-height:1;margin:2px 0 12px;}
+  .sub{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--txt3);margin-bottom:10px;}
+  .tarjeta{background:var(--card);border:1px solid var(--linea);border-radius:14px;padding:14px;margin-bottom:10px;}
+
+  /* Próximo partido */
+  .prox{background:linear-gradient(150deg,#101a33,#0b1020 60%,#140a02);
+    border:1px solid rgba(255,107,43,.3);border-radius:16px;padding:16px;margin-bottom:14px;}
+  .prox .et{display:inline-block;background:var(--o);font-size:10px;font-weight:800;
+    letter-spacing:.14em;text-transform:uppercase;padding:4px 10px;border-radius:20px;margin-bottom:12px;}
+  .prox .eq{font-family:'Bebas Neue';font-size:19px;line-height:1.12;}
+  .prox .vs{font-family:'Bebas Neue';color:var(--o);font-size:14px;margin:5px 0;}
+  .prox .meta{font-size:12px;color:var(--txt2);margin-top:10px;}
+  .cuenta{display:flex;gap:7px;margin-top:12px;}
+  .cuenta div{flex:1;background:rgba(255,255,255,.05);border-radius:9px;padding:8px 2px;text-align:center;}
+  .cuenta b{font-family:'Bebas Neue';font-size:24px;display:block;line-height:1;}
+  .cuenta span{font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--txt3);}
+
+  /* Partidos */
+  .pt{display:flex;gap:12px;align-items:center;background:var(--card);
+    border:1px solid var(--linea);border-radius:13px;padding:12px;margin-bottom:8px;}
+  .pt.gan{border-color:rgba(74,222,128,.3);} .pt.per{border-color:rgba(239,68,68,.25);}
+  .pt .fec{text-align:center;min-width:44px;}
+  .pt .fec b{font-family:'Bebas Neue';font-size:20px;display:block;line-height:1;}
+  .pt .fec span{font-size:9px;text-transform:uppercase;color:var(--txt3);letter-spacing:.08em;}
+  .pt .eqs{flex:1;min-width:0;}
+  .pt .eqs .j{font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--txt3);}
+  .pt .eqs .n{font-size:13px;line-height:1.35;overflow-wrap:anywhere;}
+  .pt .eqs .n .yo{font-weight:800;color:var(--o2);}
+  .pt .der{text-align:right;}
+  .pt .res{font-family:'Bebas Neue';font-size:19px;white-space:nowrap;}
+  .pt .badge{font-size:9px;font-weight:800;letter-spacing:.06em;padding:3px 7px;border-radius:5px;
+    background:rgba(255,255,255,.06);color:var(--txt3);display:inline-block;margin-top:3px;}
+  .pt .badge.g{background:rgba(74,222,128,.14);color:#4ade80;}
+  .pt .badge.p{background:rgba(239,68,68,.12);color:#ef4444;}
+  .cron{display:inline-block;margin-top:6px;font-size:11px;font-weight:700;color:var(--o);}
+
+  /* Filtros */
+  .filtros{display:flex;gap:7px;margin-bottom:12px;flex-wrap:wrap;}
+  .filtros button{flex:1;min-width:78px;background:var(--card);border:1px solid var(--linea);
+    color:var(--txt2);font:inherit;font-size:11px;font-weight:700;letter-spacing:.06em;
+    text-transform:uppercase;padding:9px 6px;border-radius:9px;cursor:pointer;}
+  .filtros button[aria-pressed="true"]{background:var(--o);border-color:var(--o);color:#fff;}
+
+  /* Clasificación */
+  table{width:100%;border-collapse:collapse;font-size:12px;}
+  th{font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--txt3);
+    padding:8px 4px;border-bottom:1px solid rgba(255,107,43,.28);text-align:center;}
+  th:nth-child(2){text-align:left;}
+  td{padding:9px 4px;text-align:center;border-bottom:1px solid rgba(255,255,255,.05);color:var(--txt2);}
+  td:nth-child(2){text-align:left;color:var(--txt);overflow-wrap:anywhere;}
+  tr.yo td{background:rgba(255,107,43,.09);color:#fff;font-weight:700;}
+  tr.yo td:nth-child(2){color:var(--o2);}
+
+  /* Plantilla */
+  .jug{display:flex;gap:11px;align-items:center;background:var(--card);
+    border:1px solid var(--linea);border-radius:13px;padding:11px;margin-bottom:8px;}
+  .jug .d{width:34px;height:34px;flex-shrink:0;border-radius:50%;background:rgba(255,107,43,.14);
+    color:var(--o2);font-family:'Bebas Neue';font-size:16px;display:flex;align-items:center;justify-content:center;}
+  .jug .i{flex:1;min-width:0;}
+  .jug .i b{font-size:14px;display:block;}
+  .jug .i span{font-size:11px;color:var(--txt3);}
+  .jug .s{text-align:right;font-size:11px;color:var(--txt2);white-space:nowrap;}
+  .jug .s b{font-family:'Bebas Neue';font-size:17px;color:#fff;display:block;line-height:1;}
+
+  /* Noticias */
+  .not{display:block;background:var(--card);border:1px solid var(--linea);
+    border-radius:13px;overflow:hidden;margin-bottom:10px;}
+  .not img{width:100%;height:150px;object-fit:cover;display:block;}
+  .not .c{padding:12px;}
+  .not .tag{font-size:9px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--o);}
+  .not h3{font-family:'Bebas Neue';font-size:19px;line-height:1.1;margin:5px 0 4px;font-weight:400;}
+  .not p{font-size:12px;line-height:1.5;color:var(--txt2);}
+
+  /* Barra inferior */
+  .barra{position:fixed;left:0;right:0;bottom:0;z-index:60;display:flex;
+    background:rgba(8,4,0,.97);backdrop-filter:blur(18px);border-top:1px solid var(--linea);
+    padding-bottom:env(safe-area-inset-bottom);}
+  .barra button{flex:1;background:none;border:0;color:var(--txt3);font:inherit;font-size:9px;
+    font-weight:700;letter-spacing:.04em;padding:8px 2px 7px;cursor:pointer;
+    display:flex;flex-direction:column;align-items:center;gap:3px;}
+  .barra button span{font-size:17px;line-height:1;}
+  .barra button[aria-current="page"]{color:var(--o);}
+
+  .vacio{text-align:center;padding:44px 16px;color:var(--txt3);font-size:13px;line-height:1.6;}
+  .cargando{text-align:center;padding:44px;color:var(--txt3);font-size:13px;}
+  @media(min-width:700px){ main{max-width:640px;margin:0 auto;} .barra{max-width:640px;margin:0 auto;} }
+</style>
+</head>
+<body>
+
+<header class="cab">
+  <img src="/logo.png" alt="">
+  <div>
+    <b>MCD Enrique Soler</b>
+    <small>Tercera FEB · Grupo D-A</small>
+  </div>
+</header>
+
+<main id="vista"><div class="cargando">Cargando…</div></main>
+
+<nav class="barra" aria-label="Secciones">
+  <button data-v="inicio"       aria-current="page"><span>🏀</span>Inicio</button>
+  <button data-v="partidos"><span>📅</span>Partidos</button>
+  <button data-v="clasificacion"><span>📊</span>Clasific.</button>
+  <button data-v="plantilla"><span>👥</span>Plantilla</button>
+  <button data-v="noticias"><span>📰</span>Noticias</button>
+</nav>
+
+<script>
+/* ================================================================
+   App del primer equipo · Melilla Ciudad del Deporte Enrique Soler
+   Lee los MISMOS JSON que la web (/data/*.json): actualizar un
+   resultado en la web lo actualiza aquí, sin duplicar datos.
+   ================================================================ */
+var D = { partidos:[], clasificacion:[], plantilla:[], noticias:[], cronicas:{}, grupo:'' };
+var MESES = ['ENE','FEB','MAR','ABR','MAY','JUN','JUL','AGO','SEP','OCT','NOV','DIC'];
+var esNuestro = function(n){ return /enrique soler/i.test(n||''); };
+var esc = function(s){ return String(s==null?'':s).replace(/[&<>"]/g, function(c){
+  return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); };
+
+function cargar(){
+  return Promise.all([
+    fetch('/data/partidos.json').then(function(r){return r.json();}).catch(function(){return null;}),
+    fetch('/data/plantilla.json').then(function(r){return r.json();}).catch(function(){return null;}),
+    fetch('/data/noticias.json').then(function(r){return r.json();}).catch(function(){return null;}),
+    fetch('/data/cronicas.json').then(function(r){return r.json();}).catch(function(){return null;})
+  ]).then(function(res){
+    if(res[0]){ D.partidos=res[0].partidos||[]; D.clasificacion=res[0].clasificacion||[]; D.grupo=res[0].grupo||''; }
+    if(res[1]){ D.plantilla=res[1].items||[]; }
+    if(res[2]){ D.noticias=(res[2].items||[]).filter(function(n){return n.seccion==='equipo';}); }
+    if(res[3]){ (res[3].cronicas||[]).forEach(function(c){ if(!c.borrador) D.cronicas[c.jornada]=c.id; }); }
+  });
+}
+
+/* ── Vistas ─────────────────────────────────────────────────── */
+function vInicio(){
+  var pend = D.partidos.filter(function(p){ return !p.resultado; });
+  var jug  = D.partidos.filter(function(p){ return p.resultado; });
+  var p = pend[0] || jug[jug.length-1];
+  var h = '';
+
+  if(p){
+    var casa = esNuestro(p.local);
+    var f = (p.fecha||'').split('/');
+    h += '<div class="prox">'
+      + '<span class="et">'+(pend[0]?'Próximo partido':'Último resultado')+'</span>'
+      + '<div class="eq">'+esc(p.local)+'</div>'
+      + '<div class="vs">'+(p.resultado ? esc(p.resultado) : 'VS')+'</div>'
+      + '<div class="eq">'+esc(p.visitante)+'</div>'
+      + '<div class="meta">'+(casa?'🏟️ En casa':'✈️ Fuera')+' · Jornada '+esc(p.jornada)+' · '+esc(p.fecha)
+        + (p.hora?' · '+esc(p.hora):'') + '</div>';
+    if(pend[0] && f.length===3){
+      h += '<div class="cuenta" id="cuenta">'
+         +   '<div><b id="cD">--</b><span>días</span></div>'
+         +   '<div><b id="cH">--</b><span>horas</span></div>'
+         +   '<div><b id="cM">--</b><span>min</span></div>'
+         + '</div>';
+    }
+    h += '</div>';
+  }
+
+  var mi = D.clasificacion.filter(function(t){return t.local;})[0];
+  if(mi){
+    h += '<div class="tarjeta"><div class="sub">Nuestra situación</div>'
+       + '<div style="display:flex;gap:10px;text-align:center">'
+       + ['<div style="flex:1"><b class="bebas" style="font-size:26px">'+mi.pos+'º</b><br><span style="font-size:10px;color:var(--txt3)">POSICIÓN</span></div>',
+          '<div style="flex:1"><b class="bebas" style="font-size:26px">'+mi.g+'</b><br><span style="font-size:10px;color:var(--txt3)">VICTORIAS</span></div>',
+          '<div style="flex:1"><b class="bebas" style="font-size:26px">'+mi.p+'</b><br><span style="font-size:10px;color:var(--txt3)">DERROTAS</span></div>',
+          '<div style="flex:1"><b class="bebas" style="font-size:26px">'+mi.pj+'</b><br><span style="font-size:10px;color:var(--txt3)">JUGADOS</span></div>'].join('')
+       + '</div></div>';
+  }
+
+  if(D.noticias.length){
+    h += '<div class="sub" style="margin-top:16px">Últimas noticias</div>';
+    h += D.noticias.slice(0,3).map(tarjetaNoticia).join('');
+  }
+  return h || '<div class="vacio">Todavía no hay datos.</div>';
+}
+
+function vPartidos(){
+  if(!D.partidos.length) return '<div class="vacio">El calendario aún no está publicado.</div>';
+  return '<div class="tit">Calendario</div>'
+   + '<div class="filtros" id="fp">'
+   +   '<button data-f="todos" aria-pressed="true">Todos</button>'
+   +   '<button data-f="casa" aria-pressed="false">Casa</button>'
+   +   '<button data-f="fuera" aria-pressed="false">Fuera</button>'
+   + '</div><div id="listaP">'+pintaPartidos('todos')+'</div>'
+   + '<p style="font-size:11px;color:var(--txt3);line-height:1.6;margin-top:10px">'
+   + 'El grupo tiene 13 equipos, impar, así que cada jornada descansa uno. '
+   + 'A nosotros nos tocan las jornadas 1 y 14.</p>';
+}
+
+function pintaPartidos(filtro){
+  var lista = D.partidos.filter(function(p){
+    if(filtro==='casa')  return esNuestro(p.local);
+    if(filtro==='fuera') return esNuestro(p.visitante);
+    return true;
+  });
+  if(!lista.length) return '<div class="vacio">No hay partidos con ese filtro.</div>';
+  return lista.map(function(p){
+    var casa=esNuestro(p.local), f=(p.fecha||'').split('/');
+    var gan=null;
+    if(p.resultado){
+      var r=String(p.resultado).split('-').map(Number);
+      if(r.length===2) gan = casa ? r[0]>r[1] : r[1]>r[0];
+    }
+    var nombre=function(n){ return esNuestro(n) ? '<span class="yo">'+esc(n)+'</span>' : esc(n); };
+    return '<div class="pt'+(gan===true?' gan':gan===false?' per':'')+'">'
+      + '<div class="fec">'+(f.length===3
+          ? '<b>'+f[0]+'</b><span>'+MESES[+f[1]-1]+'</span>'
+          : '<span>TBD</span>')+'</div>'
+      + '<div class="eqs"><div class="j">Jornada '+esc(p.jornada)+'</div>'
+      +   '<div class="n">'+nombre(p.local)+' <span style="color:var(--txt3)">vs</span> '+nombre(p.visitante)+'</div>'
+      +   (D.cronicas[p.jornada] ? '<a class="cron" href="/cronica.html?id='+esc(D.cronicas[p.jornada])+'">📝 Leer la crónica →</a>' : '')
+      + '</div>'
+      + '<div class="der">'
+      +   (p.resultado ? '<div class="res">'+esc(p.resultado)+'</div>' : '')
+      +   '<span class="badge'+(gan===true?' g':gan===false?' p':'')+'">'
+      +     (gan===true?'Victoria':gan===false?'Derrota':'Pendiente')+'</span>'
+      + '</div></div>';
+  }).join('');
+}
+
+function vClasificacion(){
+  if(!D.clasificacion.length) return '<div class="vacio">La clasificación aún no está disponible.</div>';
+  return '<div class="tit">Clasificación</div><div class="sub">'+esc(D.grupo)+'</div>'
+   + '<table><thead><tr><th>#</th><th>Equipo</th><th>PJ</th><th>V</th><th>D</th></tr></thead><tbody>'
+   + D.clasificacion.map(function(t){
+       return '<tr'+(t.local?' class="yo"':'')+'><td>'+t.pos+'</td><td>'+esc(t.equipo)
+        +'</td><td>'+t.pj+'</td><td>'+t.g+'</td><td>'+t.p+'</td></tr>'; }).join('')
+   + '</tbody></table>';
+}
+
+function vPlantilla(){
+  if(!D.plantilla.length) return '<div class="vacio">La plantilla aún no está publicada.</div>';
+  return '<div class="tit">Plantilla</div><div class="sub">Temporada 2026-27 · medias de la 2025-26</div>'
+   + D.plantilla.map(function(j){
+       var f=j.ficha||{};
+       var stats = (j.pj!==undefined)
+         ? '<div class="s"><b>'+esc(j.ppg)+'</b>PTS</div>'
+         : '<div class="s" style="font-size:10px;color:var(--txt3)">Sin partidos<br>en 2025-26</div>';
+       return '<div class="jug"><div class="d">'+esc(j.num)+'</div>'
+        + '<div class="i"><b>'+esc(j.nombre)+'</b><span>'+esc(j.pos)
+        + (f.edad?' · '+esc(f.edad):'')+(f.altura?' · '+esc(f.altura):'')+'</span></div>'
+        + stats + '</div>'; }).join('');
+}
+
+function tarjetaNoticia(n){
+  return '<a class="not" href="/'+esc(n.enlace||'primer-equipo.html')+'">'
+   + (n.imagen?'<img src="/'+esc(n.imagen)+'" alt="" loading="lazy">':'')
+   + '<div class="c"><span class="tag">'+esc(n.tag||'Noticia')+'</span>'
+   + '<h3>'+esc(n.titulo)+'</h3><p>'+esc((n.texto||'').slice(0,110))+'…</p></div></a>';
+}
+
+function vNoticias(){
+  if(!D.noticias.length) return '<div class="vacio">Todavía no hay noticias del primer equipo.</div>';
+  return '<div class="tit">Noticias</div>' + D.noticias.map(tarjetaNoticia).join('');
+}
+
+/* ── Navegación ─────────────────────────────────────────────── */
+var VISTAS = { inicio:vInicio, partidos:vPartidos, clasificacion:vClasificacion,
+               plantilla:vPlantilla, noticias:vNoticias };
+var temporizador = null;
+
+function ir(v){
+  if(temporizador){ clearInterval(temporizador); temporizador=null; }
+  document.getElementById('vista').innerHTML = (VISTAS[v]||vInicio)();
+  document.querySelectorAll('.barra button').forEach(function(b){
+    if(b.dataset.v===v) b.setAttribute('aria-current','page'); else b.removeAttribute('aria-current');
+  });
+  window.scrollTo(0,0);
+  location.hash = v;
+  if(v==='inicio') arrancaCuenta();
+  if(v==='partidos') enlazaFiltros();
+}
+
+function enlazaFiltros(){
+  var barra=document.getElementById('fp'); if(!barra) return;
+  barra.addEventListener('click', function(e){
+    var b=e.target.closest('button'); if(!b) return;
+    barra.querySelectorAll('button').forEach(function(x){ x.setAttribute('aria-pressed','false'); });
+    b.setAttribute('aria-pressed','true');
+    document.getElementById('listaP').innerHTML = pintaPartidos(b.dataset.f);
+  });
+}
+
+function arrancaCuenta(){
+  var p = D.partidos.filter(function(x){ return !x.resultado; })[0];
+  if(!p || !document.getElementById('cuenta')) return;
+  var f=(p.fecha||'').split('/'); if(f.length!==3) return;
+  var destino=new Date(+f[2], +f[1]-1, +f[0],
+      p.hora? +p.hora.split(':')[0] : 18, p.hora? +(p.hora.split(':')[1]||0) : 0);
+  function pinta(){
+    var ms=destino-Date.now();
+    var c=document.getElementById('cuenta'); if(!c) return;
+    if(ms<=0){ c.style.display='none'; return; }
+    var min=Math.floor(ms/60000), hs=Math.floor(min/60);
+    document.getElementById('cD').textContent=Math.floor(hs/24);
+    document.getElementById('cH').textContent=hs%24;
+    document.getElementById('cM').textContent=min%60;
+  }
+  pinta(); temporizador=setInterval(pinta, 30000);
+}
+
+document.querySelector('.barra').addEventListener('click', function(e){
+  var b=e.target.closest('button'); if(b) ir(b.dataset.v);
+});
+window.addEventListener('hashchange', function(){
+  var v=location.hash.replace('#',''); if(VISTAS[v]) ir(v);
+});
+
+cargar().then(function(){
+  var v=location.hash.replace('#','');
+  ir(VISTAS[v] ? v : 'inicio');
+}).catch(function(){
+  document.getElementById('vista').innerHTML =
+    '<div class="vacio">No se han podido cargar los datos.<br>Comprueba tu conexión.</div>';
+});
+
+if('serviceWorker' in navigator && location.protocol==='https:'){
+  window.addEventListener('load', function(){ navigator.serviceWorker.register('/sw.js').catch(function(){}); });
+}
+</script>
+</body>
+</html>

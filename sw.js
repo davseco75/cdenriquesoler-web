@@ -6,10 +6,12 @@
    · Imágenes, fuentes y librerías de CDN → CACHE-FIRST
      (rápidas y no cambian de nombre)
 ================================================================ */
-const CACHE_NAME = 'es-app-v4';
+const CACHE_NAME = 'es-app-v5';
 
 const PRECACHE = [
   '/index.html',
+  '/equipo/',                 // app del primer equipo
+  '/equipo/manifest.webmanifest',
   '/manifest.json',
   '/logo.png',
   '/icon-192.png',
