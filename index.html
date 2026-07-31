@@ -602,6 +602,38 @@
     .cant-pname{font-size:15px;font-weight:600;color:#fff;}
     .cant-count{font-size:11px;color:rgba(255,255,255,.35);margin-bottom:8px;letter-spacing:.04em;}
     .cant-empty{text-align:center;padding:24px 10px;color:rgba(255,255,255,.45);font-size:14px;line-height:1.7;}
+  
+    /* ── PRÓXIMO PARTIDO ─────────────────────────────────────── */
+    .np-sec{padding:0 5% 8px;margin-top:-38px;position:relative;z-index:20;}
+    .np-card{max-width:940px;margin:0 auto;background:linear-gradient(150deg,#101a33,#0b1020 60%,#140a02);
+      border:1px solid rgba(255,107,43,.28);border-radius:18px;padding:26px 30px 22px;
+      box-shadow:0 26px 60px rgba(0,0,0,.55);}
+    .np-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:18px;}
+    .np-tag{background:var(--o);color:#fff;font-size:11px;font-weight:800;letter-spacing:.16em;
+      text-transform:uppercase;padding:6px 14px;border-radius:20px;}
+    .np-comp{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.4);}
+    .np-teams{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:14px;}
+    .np-team{display:flex;flex-direction:column;gap:4px;min-width:0;}
+    .np-team:last-child{text-align:right;align-items:flex-end;}
+    .np-name{font-family:'Bebas Neue';font-size:clamp(20px,3.4vw,32px);line-height:1.05;color:#fff;}
+    .np-where{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.35);}
+    .np-vs{font-family:'Bebas Neue';font-size:20px;color:var(--o);opacity:.85;}
+    .np-meta{margin-top:14px;font-size:13px;color:rgba(255,255,255,.55);}
+    .np-count{display:flex;gap:10px;margin-top:16px;}
+    .np-unit{flex:1;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);
+      border-radius:10px;padding:10px 4px;text-align:center;}
+    .np-unit span{display:block;font-family:'Bebas Neue';font-size:30px;line-height:1;color:#fff;}
+    .np-unit em{font-style:normal;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.35);}
+    .np-cta{display:inline-block;margin-top:16px;font-size:12px;font-weight:700;letter-spacing:.08em;
+      text-transform:uppercase;color:var(--o);}
+    .np-cta:hover{text-decoration:underline;}
+    @media(max-width:560px){
+      .np-sec{margin-top:-20px;}
+      .np-card{padding:20px 18px 18px;}
+      .np-teams{grid-template-columns:1fr;text-align:center;gap:6px;}
+      .np-team:last-child{text-align:center;align-items:center;}
+      .np-vs{margin:2px 0;}
+    }
   </style>
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 <script type="application/ld+json">
@@ -764,6 +796,28 @@
     <div class="hs" id="hs1"><div class="n">136</div><div class="l">Deportistas este torneo</div></div>
     <div class="hs" id="hs2"><div class="n">18</div><div class="l">Equipos activos</div></div>
     <div class="hs" id="hs3"><div class="n">1.300</div><div class="l">Aforo pabellón</div></div>
+  </div>
+</section>
+
+<!-- PRÓXIMO PARTIDO · se rellena desde data/partidos.json -->
+<section id="proximo" class="np-sec" hidden>
+  <div class="np-card">
+    <div class="np-head">
+      <span class="np-tag" id="npTag">Próximo partido</span>
+      <span class="np-comp" id="npComp">Tercera FEB · Grupo D-A</span>
+    </div>
+    <div class="np-teams">
+      <div class="np-team"><span class="np-name" id="npLocal">—</span><span class="np-where" id="npWhereL"></span></div>
+      <div class="np-vs" id="npVs">VS</div>
+      <div class="np-team"><span class="np-name" id="npVisit">—</span><span class="np-where" id="npWhereV"></span></div>
+    </div>
+    <div class="np-meta" id="npMeta"></div>
+    <div class="np-count" id="npCount" role="timer" aria-live="off">
+      <div class="np-unit"><span id="npD">--</span><em>días</em></div>
+      <div class="np-unit"><span id="npH">--</span><em>horas</em></div>
+      <div class="np-unit"><span id="npM">--</span><em>min</em></div>
+    </div>
+    <a class="np-cta" href="primer-equipo.html#resultados">Ver todo el calendario →</a>
   </div>
 </section>
 
@@ -1945,6 +1999,60 @@ if ('serviceWorker' in navigator && location.protocol === 'https:') {
     });
   });
 }
+</script>
+
+<script>
+/* ── PRÓXIMO PARTIDO ────────────────────────────────────────────
+   Toma el primer encuentro pendiente de data/partidos.json. Si ya se
+   jugaron todos, muestra el último resultado en vez de la cuenta atrás. */
+(function(){
+  fetch('/data/partidos.json').then(function(r){return r.json();}).then(function(d){
+    var ps=(d&&d.partidos)||[]; if(!ps.length) return;
+    var sec=document.getElementById('proximo'); if(!sec) return;
+    var jugados=ps.filter(function(p){return p.resultado;});
+    var prox=ps.filter(function(p){return !p.resultado;})[0];
+    var p = prox || jugados[jugados.length-1];
+    if(!p) return;
+
+    var casa=/Enrique Soler/i.test(p.local||'');
+    document.getElementById('npLocal').textContent=p.local;
+    document.getElementById('npVisit').textContent=p.visitante;
+    // La primera columna es SIEMPRE el equipo local del acta, la segunda el visitante.
+    document.getElementById('npWhereL').textContent='Local';
+    document.getElementById('npWhereV').textContent='Visitante';
+    document.getElementById('npComp').textContent=(d.grupo||'Tercera FEB')+' · Jornada '+p.jornada;
+
+    var f=(p.fecha||'').split('/');
+    var fechaTxt=p.fecha+(p.hora?' · '+p.hora:'');
+    var sitio=p.pabellon || (casa?'Pabellón Guillermo García Pezzi':'');
+    document.getElementById('npMeta').innerHTML=
+      (casa?'🏟️ En casa':'✈️ Fuera')+' · '+fechaTxt+(sitio?' · '+sitio:'')
+      +(p.hora?'':' <span style="opacity:.5">(hora por confirmar)</span>');
+
+    if(!prox){                                   // temporada terminada
+      document.getElementById('npTag').textContent='Último resultado';
+      document.getElementById('npVs').textContent=p.resultado;
+      document.getElementById('npCount').style.display='none';
+      sec.hidden=false; return;
+    }
+
+    if(f.length!==3){ sec.hidden=false; return; }
+    var destino=new Date(+f[2], +f[1]-1, +f[0],
+                         p.hora? +p.hora.split(':')[0] : 18,
+                         p.hora? +(p.hora.split(':')[1]||0) : 0);
+    function pinta(){
+      var ms=destino-Date.now();
+      if(ms<=0){ document.getElementById('npTag').textContent='¡Hoy se juega!';
+                 document.getElementById('npCount').style.display='none'; return; }
+      var min=Math.floor(ms/60000), h=Math.floor(min/60), dias=Math.floor(h/24);
+      document.getElementById('npD').textContent=dias;
+      document.getElementById('npH').textContent=h%24;
+      document.getElementById('npM').textContent=min%60;
+    }
+    pinta(); setInterval(pinta, 30000);
+    sec.hidden=false;
+  }).catch(function(){ /* si falla, la sección sigue oculta */ });
+})();
 </script>
 </body>
 </html>

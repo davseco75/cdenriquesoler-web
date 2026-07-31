@@ -186,6 +186,8 @@
     .match-team{font-size:13px;font-weight:600;color:rgba(255,255,255,.7);}
     .match-team.us{color:#fff;font-weight:700;}
     .match-sep{font-size:10px;color:rgba(255,255,255,.2);}
+    .match-cronica{display:inline-block;margin-top:6px;font-size:11px;font-weight:700;letter-spacing:.05em;color:var(--o);}
+    .match-cronica:hover{text-decoration:underline;}
     .match-venue{font-size:10px;color:rgba(255,255,255,.25);margin-top:3px;}
     .match-right{text-align:right;}
     .match-result{font-family:'Bebas Neue';font-size:22px;line-height:1;margin-bottom:3px;}
@@ -639,6 +641,7 @@ document.addEventListener('keydown', function(e){
 ===================================================================== */
 /* ── DATOS: cargados desde /data/*.json vía fetch ── */
 var PLANTILLA = [], STAFF = [], NOTICIAS = [], PARTIDOS = [], CLASIFICACION = [];
+var CRONICAS = {};   // jornada -> id de crónica publicada
 
 /* ── POSITION STYLES ──────────────────────────────────────── */
 var POS = {
@@ -854,6 +857,7 @@ function buildMatchCard(p){
         +'<span class="match-team'+(isUs(p.visitante)?' us':'')+'">'+p.visitante+'</span>'
       +'</div>'
       +(p.pabellon?'<div class="match-venue">📍 '+p.pabellon+'</div>':'')
+      +(CRONICAS[p.jornada]?'<a class="match-cronica" href="cronica.html?id='+CRONICAS[p.jornada]+'">📝 Leer la crónica →</a>':'')
     +'</div>'
     +'<div class="match-right">'+result+'</div>'
   +'</div>';
@@ -977,6 +981,9 @@ Promise.all([
       fecha:n.fecha, titulo:n.titulo, texto:n.texto,
       imagen:n.imagen, destacado:n.destacado, enlace:n.enlace }; });
 
+  return fetch('/data/cronicas.json').then(function(r){return r.json();}).then(function(cr){
+    (cr.cronicas||[]).forEach(function(c){ if(!c.borrador) CRONICAS[c.jornada]=c.id; });
+  }).catch(function(){}).then(function(){
   renderPlantilla();
   renderStaff();
   renderNoticias();
@@ -985,6 +992,7 @@ Promise.all([
   renderDatosEstructurados();
 
   ScrollTrigger.refresh();
+  });
 }).catch(function(err){
   console.warn('Error cargando datos JSON:', err);
 });
