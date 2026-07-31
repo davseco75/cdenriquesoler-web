@@ -1,5 +1,5 @@
 {
-  "_nota": "Crónicas de partido. Cada entrada genera una tarjeta en primer-equipo y alimenta cronica.html?id=<id>. Para publicar una nueva: copiar el bloque de ejemplo, rellenar y quitar \"borrador\": true.",
+  "_nota": "Crónicas de partido. Cada entrada genera una tarjeta en primer-equipo y alimenta cronica.html?id=<id>. Para publicar una nueva: copiar el bloque de ejemplo, rellenar y quitar \"borrador\": true. El equipo compite como 'Melilla Ciudad del Deporte Enrique Soler' (nombre obligado por patrocinio): usarlo en local/visitante.",
   "cronicas": [
     {
       "id": "ejemplo-j2",
@@ -7,9 +7,14 @@
       "jornada": 2,
       "fecha": "11/10/2026",
       "local": "La Cartonera Lucentina · Coto · Lucena",
-      "visitante": "CD Enrique Soler",
+      "visitante": "Melilla Ciudad del Deporte Enrique Soler",
       "resultado": "68-74",
-      "cuartos": ["18-20", "15-19", "20-16", "15-19"],
+      "cuartos": [
+        "18-20",
+        "15-19",
+        "20-16",
+        "15-19"
+      ],
       "titular": "Primer triunfo del curso a domicilio",
       "entradilla": "El Enrique Soler se lleva el debut en Lucena con una segunda parte muy sólida.",
       "cuerpo": [
@@ -17,8 +22,14 @@
         "Otro párrafo."
       ],
       "destacados": [
-        { "jugador": "Sergio Curbelo", "linea": "18 pts · 5 reb" },
-        { "jugador": "Demba Sheriff", "linea": "12 pts · 9 reb" }
+        {
+          "jugador": "Sergio Curbelo",
+          "linea": "18 pts · 5 reb"
+        },
+        {
+          "jugador": "Demba Sheriff",
+          "linea": "12 pts · 9 reb"
+        }
       ],
       "foto": "",
       "pabellon": ""

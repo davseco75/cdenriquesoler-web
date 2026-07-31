@@ -163,6 +163,11 @@
 
     /* ── RESULTADOS + CLASIFICACIÓN (2 cols) ── */
     .pe-results-wrap{display:grid;grid-template-columns:1fr 380px;gap:40px;align-items:start;}
+    /* Sin esto, un nombre de equipo largo impide que la columna encoja
+       (min-width:auto por defecto en grid) y la página se desplaza en móvil. */
+    .pe-results-wrap>*{min-width:0;}
+    .match-filter{flex-wrap:wrap;}
+    .match-team{overflow-wrap:anywhere;}
 
     /* FILTER */
     .match-filter{display:flex;gap:8px;margin-bottom:24px;}
@@ -343,7 +348,7 @@
     {
       "@type": "SportsTeam",
       "@id": "https://cdenriquesoler.com/primer-equipo.html#equipo",
-      "name": "CD Enrique Soler · Primer Equipo",
+      "name": "Melilla Ciudad del Deporte Enrique Soler",
       "sport": "Baloncesto",
       "url": "https://cdenriquesoler.com/primer-equipo.html",
       "logo": "https://cdenriquesoler.com/logo.png",
@@ -369,7 +374,15 @@
       "sameAs": [
         "https://www.instagram.com/c.d.enriquesoler",
         "https://x.com/camesoler"
-      ]
+      ],
+      "alternateName": [
+        "CD Enrique Soler",
+        "MCD Enrique Soler"
+      ],
+      "sponsor": {
+        "@type": "Organization",
+        "name": "Melilla Ciudad del Deporte"
+      }
     }
   ]
 }
@@ -444,7 +457,7 @@
   <div class="pe-hero-text">
     <div class="pe-eyebrow">Tercera FEB · Grupo DA</div>
     <h1 class="pe-title">PRIMER<br><em>EQUIPO</em></h1>
-    <p class="pe-sub">El primer equipo del CD Enrique Soler compite en la Tercera División de la Federación Española de Baloncesto. Melilla, desde 1996.</p>
+    <p class="pe-sub">El primer equipo del Club Deportivo Enrique Soler compite en la Tercera División de la Federación Española de Baloncesto bajo el nombre <strong style="color:#fff">Melilla Ciudad del Deporte Enrique Soler</strong>. Melilla, desde 1996.</p>
     <div class="pe-badges">
       <div class="pe-badge">🏆 TERCERA FEB</div>
       <div class="pe-badge">📍 GRUPO DA</div>
@@ -453,7 +466,7 @@
   </div>
   <div class="pe-hero-photo">
     <picture><source srcset="galeria/foto-primer-equipo.webp" type="image/webp"><img src="galeria/foto-primer-equipo.jpg" alt="Primer equipo CD Enrique Soler — Temporada 2026-27" /></picture>
-    <div class="pe-hero-photo-caption">CD ENRIQUE SOLER · TEMPORADA 2026–27</div>
+    <div class="pe-hero-photo-caption">MELILLA CIUDAD DEL DEPORTE ENRIQUE SOLER · 2026–27</div>
   </div>
 </section>
 
