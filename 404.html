@@ -48,5 +48,16 @@
       <a class="btn btn-ghost" href="/calendario.html">📅 Ver calendario</a>
     </div>
   </div></main>
+<script>
+/* Service worker: caché offline e instalación como app.
+   Solo en producción (https), no en el servidor local de pruebas. */
+if ('serviceWorker' in navigator && location.protocol === 'https:') {
+  window.addEventListener('load', function(){
+    navigator.serviceWorker.register('/sw.js').catch(function(e){
+      console.warn('SW no registrado:', e);
+    });
+  });
+}
+</script>
 </body>
 </html>

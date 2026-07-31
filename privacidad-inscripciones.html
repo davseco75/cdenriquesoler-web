@@ -159,5 +159,16 @@
 </footer>
 
 <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "4c91f0661ca6422f82e4f9468f5cc02f"}'></script><!-- End Cloudflare Web Analytics -->
+<script>
+/* Service worker: caché offline e instalación como app.
+   Solo en producción (https), no en el servidor local de pruebas. */
+if ('serviceWorker' in navigator && location.protocol === 'https:') {
+  window.addEventListener('load', function(){
+    navigator.serviceWorker.register('/sw.js').catch(function(e){
+      console.warn('SW no registrado:', e);
+    });
+  });
+}
+</script>
 </body>
 </html>

@@ -146,7 +146,7 @@
     .ai{display:flex;gap:16px;padding:20px;background:rgba(255,107,43,.05);border:1px solid rgba(255,107,43,.1);border-radius:12px;transition:border-color .2s,background .2s;}
     .ai:hover{border-color:rgba(255,107,43,.3);background:rgba(255,107,43,.08);}
     .ai-icon{width:44px;height:44px;flex-shrink:0;background:rgba(255,107,43,.15);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;}
-    .ai h4{font-family:'Inter';font-size:14px;font-weight:700;margin-bottom:4px;}
+    .ai h3,.ai h4{font-family:'Inter';font-size:14px;font-weight:700;margin-bottom:4px;}
     .ai p{font-size:13px;color:rgba(255,255,255,.5);line-height:1.6;}
 
     /* About right: big number + photo */
@@ -328,7 +328,7 @@
     .cteam-special:hover{box-shadow:0 12px 40px rgba(255,150,50,.22);}
     .ct-icon{font-size:26px;flex-shrink:0;line-height:1;}
     .ct-info{flex:1;min-width:0;}
-    .ct-info h4{font-family:'Inter';font-size:14px;font-weight:700;color:#fff;line-height:1.25;margin-bottom:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+    .ct-info h3,.ct-info h4{font-family:'Inter';font-size:14px;font-weight:700;color:#fff;line-height:1.25;margin-bottom:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
     .ct-info span{font-size:11px;color:rgba(255,255,255,.4);letter-spacing:.04em;}
 
     /* TEAMS SUMMARY */
@@ -348,7 +348,7 @@
     .join-steps{display:flex;flex-direction:column;gap:16px;}
     .js{display:flex;gap:16px;align-items:flex-start;}
     .js-n{width:36px;height:36px;flex-shrink:0;background:rgba(255,255,255,.2);border-radius:50%;font-family:'Bebas Neue';font-size:20px;display:flex;align-items:center;justify-content:center;color:#fff;}
-    .js h4{font-family:'Inter';font-weight:700;font-size:15px;color:#fff;margin-bottom:3px;}
+    .js h3,.js h4{font-family:'Inter';font-weight:700;font-size:15px;color:#fff;margin-bottom:3px;}
     .js p{font-size:14px;color:rgba(255,255,255,.75);line-height:1.6;}
     .join-form{background:rgba(8,4,0,.25);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.2);border-radius:20px;padding:40px;}
     .join-form h3{font-size:32px;color:#fff;margin-bottom:6px;}
@@ -529,7 +529,7 @@
     .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1fr;gap:40px;margin-bottom:48px;}
     .fb img{height:56px;mix-blend-mode:lighten;filter:drop-shadow(0 0 8px rgba(255,107,43,.25));margin-bottom:16px;}
     .fb p{font-size:14px;color:rgba(255,255,255,.35);line-height:1.75;max-width:260px;}
-    .fc h4{font-size:12px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:18px;color:rgba(255,255,255,.6);}
+    .fc h3,.fc h4{font-size:12px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:18px;color:rgba(255,255,255,.6);}
     .fc ul{list-style:none;display:flex;flex-direction:column;gap:10px;}
     .fc ul li a{font-size:14px;color:rgba(255,255,255,.35);transition:color .2s;}
     .fc ul li a:hover{color:var(--o);}
@@ -712,11 +712,11 @@
 
   <!-- Slideshow de fotos reales con Ken Burns -->
   <div class="hero-slides">
-    <div class="slide active"><img src="galeria/foto-046.jpg" alt="CD Enrique Soler" /></div>
-    <div class="slide"><img src="galeria/foto-043.jpg" alt="CD Enrique Soler" /></div>
-    <div class="slide"><img src="galeria/foto-029.jpg" alt="CD Enrique Soler" /></div>
-    <div class="slide"><img src="galeria/foto-036.jpg" alt="CD Enrique Soler" /></div>
-    <div class="slide"><img src="galeria/foto-024.jpg" alt="CD Enrique Soler" /></div>
+    <div class="slide active"><picture><source srcset="galeria/foto-046.webp" type="image/webp"><img src="galeria/foto-046.jpg" alt="CD Enrique Soler" /></picture></div>
+    <div class="slide"><picture><source srcset="galeria/foto-043.webp" type="image/webp"><img src="galeria/foto-043.jpg" alt="CD Enrique Soler" /></picture></div>
+    <div class="slide"><picture><source srcset="galeria/foto-029.webp" type="image/webp"><img src="galeria/foto-029.jpg" alt="CD Enrique Soler" /></picture></div>
+    <div class="slide"><picture><source srcset="galeria/foto-036.webp" type="image/webp"><img src="galeria/foto-036.jpg" alt="CD Enrique Soler" /></picture></div>
+    <div class="slide"><picture><source srcset="galeria/foto-024.webp" type="image/webp"><img src="galeria/foto-024.jpg" alt="CD Enrique Soler" /></picture></div>
   </div>
 
   <!-- Overlays -->
@@ -784,15 +784,15 @@
       <h2>Más que un club,<br>una familia</h2>
       <p>Nacimos en Melilla en 1996 con una misión: dar a los jóvenes de nuestra ciudad un lugar donde crecer, competir y soñar. Hoy somos el referente del baloncesto melillense.</p>
       <div class="about-items">
-        <div class="ai"><div class="ai-icon">🏆</div><div><h4>13 temporadas en Liga EBA</h4><p>Ascenso histórico a LEB Plata en 2020.</p></div></div>
-        <div class="ai"><div class="ai-icon">👥</div><div><h4>Cantera completa</h4><p>Benjamín, Alevín, Infantil, Cadete, Junior y Senior, masculino y femenino.</p></div></div>
-        <div class="ai"><div class="ai-icon">📍</div><div><h4>Pabellón Guillermo García Pezzi</h4><p>Av. Azucena, Polígono Industrial · 1.300 aficionados.</p></div></div>
+        <div class="ai"><div class="ai-icon">🏆</div><div><h3>13 temporadas en Liga EBA</h3><p>Ascenso histórico a LEB Plata en 2020.</p></div></div>
+        <div class="ai"><div class="ai-icon">👥</div><div><h3>Cantera completa</h3><p>Benjamín, Alevín, Infantil, Cadete, Junior y Senior, masculino y femenino.</p></div></div>
+        <div class="ai"><div class="ai-icon">📍</div><div><h3>Pabellón Guillermo García Pezzi</h3><p>Av. Azucena, Polígono Industrial · 1.300 aficionados.</p></div></div>
       </div>
     </div>
     <div class="about-right">
       <div class="about-photo-stack">
-        <div class="ap-main"><img loading="lazy" decoding="async" src="galeria/foto-047.jpg" alt="Jugadoras del club" /></div>
-        <div class="ap-small"><img loading="lazy" decoding="async" src="galeria/foto-049.jpg" alt="Equipo CD Enrique Soler" /></div>
+        <div class="ap-main"><picture><source srcset="galeria/foto-047.webp" type="image/webp"><img loading="lazy" decoding="async" src="galeria/foto-047.jpg" alt="Jugadoras del club" /></picture></div>
+        <div class="ap-small"><picture><source srcset="galeria/foto-049.webp" type="image/webp"><img loading="lazy" decoding="async" src="galeria/foto-049.jpg" alt="Equipo CD Enrique Soler" /></picture></div>
         <div class="ap-badge"><div class="y">1996</div><div class="t">Fundación</div></div>
       </div>
     </div>
@@ -810,7 +810,7 @@
     <!-- Featured: Infantil · Campeonato de España -->
     <div class="bento-article">
       <div class="ba-inner stacked">
-        <div class="ba-photo"><img loading="lazy" decoding="async" src="galeria/foto-infantil-nacional.jpg" alt="Infantil Masculino · Campeonato de España de Clubes" /></div>
+        <div class="ba-photo"><picture><source srcset="galeria/foto-infantil-nacional.webp" type="image/webp"><img loading="lazy" decoding="async" src="galeria/foto-infantil-nacional.jpg" alt="Infantil Masculino · Campeonato de España de Clubes" /></picture></div>
         <div class="ba-body">
           <div class="ba-tag">🏆 Campeonato de España Infantil de Clubes</div>
           <h3>Orgullosos de vosotros</h3>
@@ -826,21 +826,21 @@
 
     <!-- Photo cards: Torneo Sin Insultos -->
     <div class="bento-photo" style="grid-column:span 4;">
-      <img loading="lazy" decoding="async" src="galeria/foto-015.jpg" alt="Equipo femenino en el hotel" />
+      <picture><source srcset="galeria/foto-015.webp" type="image/webp"><img loading="lazy" decoding="async" src="galeria/foto-015.jpg" alt="Equipo femenino en el hotel" /></picture>
       <div class="bp-cap">El equipo femenino en el hotel</div>
     </div>
     <div class="bento-photo" style="grid-column:span 4;">
-      <img loading="lazy" decoding="async" src="galeria/foto-025.jpg" alt="Cena del equipo" />
+      <picture><source srcset="galeria/foto-025.webp" type="image/webp"><img loading="lazy" decoding="async" src="galeria/foto-025.jpg" alt="Cena del equipo" /></picture>
       <div class="bp-cap">Cena de equipo la noche antes</div>
     </div>
     <div class="bento-photo" style="grid-column:span 4;">
-      <img loading="lazy" decoding="async" src="galeria/foto-035.jpg" alt="Llegada al hotel" />
+      <picture><source srcset="galeria/foto-035.webp" type="image/webp"><img loading="lazy" decoding="async" src="galeria/foto-035.jpg" alt="Llegada al hotel" /></picture>
       <div class="bp-cap">¡Llegamos al hotel! 🧡</div>
     </div>
 
     <!-- Small news (4 × span 3) -->
     <div class="bento-small">
-      <div class="bs-img"><img loading="lazy" decoding="async" src="galeria/foto-pre-peques.jpg" alt="Pre-Peques campeones autonómicos" /></div>
+      <div class="bs-img"><picture><source srcset="galeria/foto-pre-peques.webp" type="image/webp"><img loading="lazy" decoding="async" src="galeria/foto-pre-peques.jpg" alt="Pre-Peques campeones autonómicos" /></picture></div>
       <div class="bs-body">
         <div class="bs-tag">🏆 Campeones · Autonómico</div>
         <h4>Los Pre-Peques, campeones tras una final de infarto (21-22)</h4>
@@ -848,7 +848,7 @@
       </div>
     </div>
     <div class="bento-small">
-      <div class="bs-img"><img loading="lazy" decoding="async" src="galeria/foto-005.jpg" alt="Torneo Sin Insultos" /></div>
+      <div class="bs-img"><picture><source srcset="galeria/foto-005.webp" type="image/webp"><img loading="lazy" decoding="async" src="galeria/foto-005.jpg" alt="Torneo Sin Insultos" /></picture></div>
       <div class="bs-body">
         <div class="bs-tag">🏆 Torneo · Valores</div>
         <h4>150 niños viajan al Torneo "Sin Insultos"</h4>
@@ -903,12 +903,12 @@
     <a href="galeria.html" class="gp-cta">Ver las 50 fotos →</a>
   </div>
   <div class="gp-grid">
-    <div class="gp-item"><img src="galeria/foto-049.jpg" loading="lazy" alt="Hotel Salliver · CD Enrique Soler" onclick="window.location='galeria.html'"></div>
-    <div class="gp-item"><img src="galeria/foto-023.jpg" loading="lazy" alt="XIII Torneo Sin Insultos" onclick="window.location='galeria.html'"></div>
-    <div class="gp-item"><img src="galeria/foto-048.jpg" loading="lazy" alt="Equipo CD Enrique Soler en Salliver" onclick="window.location='galeria.html'"></div>
-    <div class="gp-item"><img src="galeria/foto-034.jpg" loading="lazy" alt="Equipo CD Enrique Soler" onclick="window.location='galeria.html'"></div>
-    <div class="gp-item"><img src="galeria/foto-050.jpg" loading="lazy" alt="Salliver · CD Enrique Soler" onclick="window.location='galeria.html'"></div>
-    <div class="gp-item"><img src="galeria/foto-021.jpg" loading="lazy" alt="Jugadores Enrique Soler" onclick="window.location='galeria.html'"></div>
+    <div class="gp-item"><picture><source srcset="galeria/foto-049.webp" type="image/webp"><img src="galeria/foto-049.jpg" loading="lazy" alt="Hotel Salliver · CD Enrique Soler" onclick="window.location='galeria.html'"></picture></div>
+    <div class="gp-item"><picture><source srcset="galeria/foto-023.webp" type="image/webp"><img src="galeria/foto-023.jpg" loading="lazy" alt="XIII Torneo Sin Insultos" onclick="window.location='galeria.html'"></picture></div>
+    <div class="gp-item"><picture><source srcset="galeria/foto-048.webp" type="image/webp"><img src="galeria/foto-048.jpg" loading="lazy" alt="Equipo CD Enrique Soler en Salliver" onclick="window.location='galeria.html'"></picture></div>
+    <div class="gp-item"><picture><source srcset="galeria/foto-034.webp" type="image/webp"><img src="galeria/foto-034.jpg" loading="lazy" alt="Equipo CD Enrique Soler" onclick="window.location='galeria.html'"></picture></div>
+    <div class="gp-item"><picture><source srcset="galeria/foto-050.webp" type="image/webp"><img src="galeria/foto-050.jpg" loading="lazy" alt="Salliver · CD Enrique Soler" onclick="window.location='galeria.html'"></picture></div>
+    <div class="gp-item"><picture><source srcset="galeria/foto-021.webp" type="image/webp"><img src="galeria/foto-021.jpg" loading="lazy" alt="Jugadores Enrique Soler" onclick="window.location='galeria.html'"></picture></div>
     <div class="gp-count"><span>+44</span>&nbsp;fotos más en la galería</div>
   </div>
 </section>
@@ -1034,10 +1034,10 @@
     <div class="cg">
       <div class="cg-label">Junior & Cadete</div>
       <div class="cg-grid">
-        <div class="cteam cteam-m tilt" onclick="openCanteraModal('junior-m')"><div class="ct-icon">🏀</div><div class="ct-info"><h4>Junior Masculino</h4><span>Masculino</span></div></div>
-        <div class="cteam cteam-f tilt" onclick="openCanteraModal('cadete-junior-f')"><div class="ct-icon">⭐</div><div class="ct-info"><h4>Cadete-Junior Femenino</h4><span>Femenino</span></div></div>
-        <div class="cteam cteam-m tilt" onclick="openCanteraModal('cadete-m-naranja')"><div class="ct-icon">🧡</div><div class="ct-info"><h4>Cadete Masculino Naranja</h4><span>Masculino</span></div></div>
-        <div class="cteam cteam-m tilt" onclick="openCanteraModal('cadete-m-azul')"><div class="ct-icon">💙</div><div class="ct-info"><h4>Cadete Masculino Azul</h4><span>Masculino</span></div></div>
+        <div class="cteam cteam-m tilt" onclick="openCanteraModal('junior-m')"><div class="ct-icon">🏀</div><div class="ct-info"><h3>Junior Masculino</h3><span>Masculino</span></div></div>
+        <div class="cteam cteam-f tilt" onclick="openCanteraModal('cadete-junior-f')"><div class="ct-icon">⭐</div><div class="ct-info"><h3>Cadete-Junior Femenino</h3><span>Femenino</span></div></div>
+        <div class="cteam cteam-m tilt" onclick="openCanteraModal('cadete-m-naranja')"><div class="ct-icon">🧡</div><div class="ct-info"><h3>Cadete Masculino Naranja</h3><span>Masculino</span></div></div>
+        <div class="cteam cteam-m tilt" onclick="openCanteraModal('cadete-m-azul')"><div class="ct-icon">💙</div><div class="ct-info"><h3>Cadete Masculino Azul</h3><span>Masculino</span></div></div>
       </div>
     </div>
 
@@ -1045,10 +1045,10 @@
     <div class="cg">
       <div class="cg-label">Infantil & Pre-Infantil</div>
       <div class="cg-grid">
-        <div class="cteam cteam-m tilt" onclick="openCanteraModal('infantil-m')"><div class="ct-icon">🏀</div><div class="ct-info"><h4>Infantil Masculino</h4><span>Masculino</span></div></div>
-        <div class="cteam cteam-f tilt" onclick="openCanteraModal('infantil-f')"><div class="ct-icon">⭐</div><div class="ct-info"><h4>Infantil Femenino</h4><span>Femenino</span></div></div>
-        <div class="cteam cteam-m tilt" onclick="openCanteraModal('preinfantil-m')"><div class="ct-icon">🏀</div><div class="ct-info"><h4>Pre-Infantil Masculino</h4><span>Masculino</span></div></div>
-        <div class="cteam cteam-f tilt" onclick="openCanteraModal('preinfantil-f')"><div class="ct-icon">⭐</div><div class="ct-info"><h4>Pre-Infantil Femenino</h4><span>Femenino</span></div></div>
+        <div class="cteam cteam-m tilt" onclick="openCanteraModal('infantil-m')"><div class="ct-icon">🏀</div><div class="ct-info"><h3>Infantil Masculino</h3><span>Masculino</span></div></div>
+        <div class="cteam cteam-f tilt" onclick="openCanteraModal('infantil-f')"><div class="ct-icon">⭐</div><div class="ct-info"><h3>Infantil Femenino</h3><span>Femenino</span></div></div>
+        <div class="cteam cteam-m tilt" onclick="openCanteraModal('preinfantil-m')"><div class="ct-icon">🏀</div><div class="ct-info"><h3>Pre-Infantil Masculino</h3><span>Masculino</span></div></div>
+        <div class="cteam cteam-f tilt" onclick="openCanteraModal('preinfantil-f')"><div class="ct-icon">⭐</div><div class="ct-info"><h3>Pre-Infantil Femenino</h3><span>Femenino</span></div></div>
       </div>
     </div>
 
@@ -1056,8 +1056,8 @@
     <div class="cg">
       <div class="cg-label">Mini</div>
       <div class="cg-grid">
-        <div class="cteam cteam-m tilt" onclick="openCanteraModal('mini-m')"><div class="ct-icon">🏀</div><div class="ct-info"><h4>Mini Masculino</h4><span>Masculino</span></div></div>
-        <div class="cteam cteam-f tilt" onclick="openCanteraModal('mini-f')"><div class="ct-icon">⭐</div><div class="ct-info"><h4>Mini Femenino</h4><span>Femenino</span></div></div>
+        <div class="cteam cteam-m tilt" onclick="openCanteraModal('mini-m')"><div class="ct-icon">🏀</div><div class="ct-info"><h3>Mini Masculino</h3><span>Masculino</span></div></div>
+        <div class="cteam cteam-f tilt" onclick="openCanteraModal('mini-f')"><div class="ct-icon">⭐</div><div class="ct-info"><h3>Mini Femenino</h3><span>Femenino</span></div></div>
       </div>
     </div>
 
@@ -1065,10 +1065,10 @@
     <div class="cg">
       <div class="cg-label">Peques</div>
       <div class="cg-grid">
-        <div class="cteam cteam-m tilt" onclick="openCanteraModal('peque4-m')"><div class="ct-icon">🏀</div><div class="ct-info"><h4>Peque 4 Masculino</h4><span>Masculino</span></div></div>
-        <div class="cteam cteam-f tilt" onclick="openCanteraModal('peque4-f')"><div class="ct-icon">⭐</div><div class="ct-info"><h4>Peque 4 Femenino</h4><span>Femenino</span></div></div>
-        <div class="cteam cteam-m tilt" onclick="openCanteraModal('peque3-m')"><div class="ct-icon">🏀</div><div class="ct-info"><h4>Peque 3 Masculino</h4><span>Masculino</span></div></div>
-        <div class="cteam cteam-f tilt" onclick="openCanteraModal('peque3-f')"><div class="ct-icon">⭐</div><div class="ct-info"><h4>Peque 3 Femenino</h4><span>Femenino</span></div></div>
+        <div class="cteam cteam-m tilt" onclick="openCanteraModal('peque4-m')"><div class="ct-icon">🏀</div><div class="ct-info"><h3>Peque 4 Masculino</h3><span>Masculino</span></div></div>
+        <div class="cteam cteam-f tilt" onclick="openCanteraModal('peque4-f')"><div class="ct-icon">⭐</div><div class="ct-info"><h3>Peque 4 Femenino</h3><span>Femenino</span></div></div>
+        <div class="cteam cteam-m tilt" onclick="openCanteraModal('peque3-m')"><div class="ct-icon">🏀</div><div class="ct-info"><h3>Peque 3 Masculino</h3><span>Masculino</span></div></div>
+        <div class="cteam cteam-f tilt" onclick="openCanteraModal('peque3-f')"><div class="ct-icon">⭐</div><div class="ct-info"><h3>Peque 3 Femenino</h3><span>Femenino</span></div></div>
       </div>
     </div>
 
@@ -1076,12 +1076,12 @@
     <div class="cg">
       <div class="cg-label">Iniciación · Los más pequeños 🧡</div>
       <div class="cg-grid">
-        <div class="cteam cteam-x tilt" onclick="openCanteraModal('baby1')"><div class="ct-icon">👶</div><div class="ct-info"><h4>Baby 1 Mixto</h4><span>Mixto</span></div></div>
-        <div class="cteam cteam-x tilt" onclick="openCanteraModal('baby2')"><div class="ct-icon">👶</div><div class="ct-info"><h4>Baby 2 Mixto</h4><span>Mixto</span></div></div>
+        <div class="cteam cteam-x tilt" onclick="openCanteraModal('baby1')"><div class="ct-icon">👶</div><div class="ct-info"><h3>Baby 1 Mixto</h3><span>Mixto</span></div></div>
+        <div class="cteam cteam-x tilt" onclick="openCanteraModal('baby2')"><div class="ct-icon">👶</div><div class="ct-info"><h3>Baby 2 Mixto</h3><span>Mixto</span></div></div>
         <div class="cteam cteam-special tilt" onclick="openCanteraModal('psicomotricidad')">
           <div class="ct-icon">🌈</div>
           <div class="ct-info">
-            <h4>Psicomotricidad</h4>
+            <h3>Psicomotricidad</h3>
             <span>3, 4 y 5 años · El primer paso</span>
           </div>
         </div>
@@ -1106,9 +1106,9 @@
       <h2>¿Quieres jugar<br>al basket<br>en Melilla?</h2>
       <p>No importa tu nivel ni tu edad. En el CD Enrique Soler hay un sitio para ti.</p>
       <div class="join-steps">
-        <div class="js"><div class="js-n">1</div><div><h4>Rellena el formulario</h4><p>Nombre, edad y categoría. Sin compromiso.</p></div></div>
-        <div class="js"><div class="js-n">2</div><div><h4>Ven a entrenar gratis</h4><p>Te invitamos a conocer el equipo y el pabellón.</p></div></div>
-        <div class="js"><div class="js-n">3</div><div><h4>¡Empieza a jugar!</h4><p>Formaliza y únete a la familia naranja.</p></div></div>
+        <div class="js"><div class="js-n">1</div><div><h3>Rellena el formulario</h3><p>Nombre, edad y categoría. Sin compromiso.</p></div></div>
+        <div class="js"><div class="js-n">2</div><div><h3>Ven a entrenar gratis</h3><p>Te invitamos a conocer el equipo y el pabellón.</p></div></div>
+        <div class="js"><div class="js-n">3</div><div><h3>¡Empieza a jugar!</h3><p>Formaliza y únete a la familia naranja.</p></div></div>
       </div>
     </div>
     <div class="join-form">
@@ -1149,7 +1149,7 @@
   <div class="shop-hero">
     <div class="shop-hero-grid"></div>
     <div class="shop-hero-media">
-      <div class="shop-hero-vitrina"><img src="tienda/equipacion-juego-azul.jpg" alt="Equipación oficial CD Enrique Soler 2026"></div>
+      <div class="shop-hero-vitrina"><picture><source srcset="tienda/equipacion-juego-azul.webp" type="image/webp"><img src="tienda/equipacion-juego-azul.jpg" alt="Equipación oficial CD Enrique Soler 2026"></picture></div>
     </div>
     <div class="shop-hero-text">
       <div class="shop-hero-eyebrow">Tienda oficial · Colección 2026</div>
@@ -1174,7 +1174,7 @@
 
     <div class="sp-card featured tilt" data-cat="juego">
       <div class="sp-img">
-        <img loading="lazy" decoding="async" src="tienda/equipacion-juego-azul.jpg" alt="Equipación de Juego Azul CD Enrique Soler">
+        <picture><source srcset="tienda/equipacion-juego-azul.webp" type="image/webp"><img loading="lazy" decoding="async" src="tienda/equipacion-juego-azul.jpg" alt="Equipación de Juego Azul CD Enrique Soler"></picture>
         <div class="sp-badge-chip best">⭐ Oficial</div>
         <div class="sp-cat">Competición</div>
         <div class="sp-quick"><a href="https://wa.me/34952699700?text=Hola%2C%20quiero%20pedir%3A%20Equipaci%C3%B3n%20de%20Juego%20Azul%20%28CD%20Enrique%20Soler%29.%20Talla%3A%20___.%20%C2%BFPrecio%20y%20disponibilidad%3F%20Gracias." target="_blank" rel="noopener">💬 Pedir por WhatsApp</a></div>
@@ -1188,7 +1188,7 @@
 
     <div class="sp-card tilt" data-cat="juego">
       <div class="sp-img">
-        <img loading="lazy" decoding="async" src="tienda/equipacion-juego-naranja.jpg" alt="Equipación de Juego Naranja CD Enrique Soler">
+        <picture><source srcset="tienda/equipacion-juego-naranja.webp" type="image/webp"><img loading="lazy" decoding="async" src="tienda/equipacion-juego-naranja.jpg" alt="Equipación de Juego Naranja CD Enrique Soler"></picture>
         <div class="sp-badge-chip best">2ª equipación</div>
         <div class="sp-cat">Competición</div>
         <div class="sp-quick"><a href="https://wa.me/34952699700?text=Hola%2C%20quiero%20pedir%3A%20Equipaci%C3%B3n%20de%20Juego%20Naranja%20%28CD%20Enrique%20Soler%29.%20Talla%3A%20___.%20%C2%BFPrecio%20y%20disponibilidad%3F%20Gracias." target="_blank" rel="noopener">💬 Pedir por WhatsApp</a></div>
@@ -1202,7 +1202,7 @@
 
     <div class="sp-card tilt" data-cat="juego">
       <div class="sp-img">
-        <img loading="lazy" decoding="async" src="tienda/camiseta-juego-oficial.jpg" alt="Camiseta de Juego Oficial CD Enrique Soler">
+        <picture><source srcset="tienda/camiseta-juego-oficial.webp" type="image/webp"><img loading="lazy" decoding="async" src="tienda/camiseta-juego-oficial.jpg" alt="Camiseta de Juego Oficial CD Enrique Soler"></picture>
         
         <div class="sp-cat">Competición</div>
         <div class="sp-quick"><a href="https://wa.me/34952699700?text=Hola%2C%20quiero%20pedir%3A%20Camiseta%20de%20Juego%20Oficial%20%28CD%20Enrique%20Soler%29.%20Talla%3A%20___.%20%C2%BFPrecio%20y%20disponibilidad%3F%20Gracias." target="_blank" rel="noopener">💬 Pedir por WhatsApp</a></div>
@@ -1216,7 +1216,7 @@
 
     <div class="sp-card tilt" data-cat="juego">
       <div class="sp-img">
-        <img loading="lazy" decoding="async" src="tienda/camiseta-juego-patrocinada.jpg" alt="Camiseta Oficial Patrocinadores CD Enrique Soler">
+        <picture><source srcset="tienda/camiseta-juego-patrocinada.webp" type="image/webp"><img loading="lazy" decoding="async" src="tienda/camiseta-juego-patrocinada.jpg" alt="Camiseta Oficial Patrocinadores CD Enrique Soler"></picture>
         <div class="sp-badge-chip best">Nuevo 2026</div>
         <div class="sp-cat">Competición</div>
         <div class="sp-quick"><a href="https://wa.me/34952699700?text=Hola%2C%20quiero%20pedir%3A%20Camiseta%20Oficial%20Patrocinadores%20%28CD%20Enrique%20Soler%29.%20Talla%3A%20___.%20%C2%BFPrecio%20y%20disponibilidad%3F%20Gracias." target="_blank" rel="noopener">💬 Pedir por WhatsApp</a></div>
@@ -1230,7 +1230,7 @@
 
     <div class="sp-card tilt" data-cat="juego">
       <div class="sp-img">
-        <img loading="lazy" decoding="async" src="tienda/equipacion-entrenamiento.jpg" alt="Equipación de Entrenamiento CD Enrique Soler">
+        <picture><source srcset="tienda/equipacion-entrenamiento.webp" type="image/webp"><img loading="lazy" decoding="async" src="tienda/equipacion-entrenamiento.jpg" alt="Equipación de Entrenamiento CD Enrique Soler"></picture>
         <div class="sp-badge-chip best">Reversible</div>
         <div class="sp-cat">Competición</div>
         <div class="sp-quick"><a href="https://wa.me/34952699700?text=Hola%2C%20quiero%20pedir%3A%20Equipaci%C3%B3n%20de%20Entrenamiento%20%28CD%20Enrique%20Soler%29.%20Talla%3A%20___.%20%C2%BFPrecio%20y%20disponibilidad%3F%20Gracias." target="_blank" rel="noopener">💬 Pedir por WhatsApp</a></div>
@@ -1249,7 +1249,7 @@
 
     <div class="sp-card featured tilt" data-cat="lifestyle">
       <div class="sp-img">
-        <img loading="lazy" decoding="async" src="tienda/chandal-completo.jpg" alt="Chándal Completo Oficial CD Enrique Soler">
+        <picture><source srcset="tienda/chandal-completo.webp" type="image/webp"><img loading="lazy" decoding="async" src="tienda/chandal-completo.jpg" alt="Chándal Completo Oficial CD Enrique Soler"></picture>
         <div class="sp-badge-chip best">⭐ Más pedido</div>
         <div class="sp-cat">Colección</div>
         <div class="sp-quick"><a href="https://wa.me/34952699700?text=Hola%2C%20quiero%20pedir%3A%20Ch%C3%A1ndal%20Completo%20Oficial%20%28CD%20Enrique%20Soler%29.%20Talla%3A%20___.%20%C2%BFPrecio%20y%20disponibilidad%3F%20Gracias." target="_blank" rel="noopener">💬 Pedir por WhatsApp</a></div>
@@ -1263,7 +1263,7 @@
 
     <div class="sp-card tilt" data-cat="lifestyle">
       <div class="sp-img">
-        <img loading="lazy" decoding="async" src="tienda/chaqueton-acolchado.jpg" alt="Chaquetón Acolchado CD Enrique Soler">
+        <picture><source srcset="tienda/chaqueton-acolchado.webp" type="image/webp"><img loading="lazy" decoding="async" src="tienda/chaqueton-acolchado.jpg" alt="Chaquetón Acolchado CD Enrique Soler"></picture>
         <div class="sp-badge-chip best">Invierno</div>
         <div class="sp-cat">Colección</div>
         <div class="sp-quick"><a href="https://wa.me/34952699700?text=Hola%2C%20quiero%20pedir%3A%20Chaquet%C3%B3n%20Acolchado%20%28CD%20Enrique%20Soler%29.%20Talla%3A%20___.%20%C2%BFPrecio%20y%20disponibilidad%3F%20Gracias." target="_blank" rel="noopener">💬 Pedir por WhatsApp</a></div>
@@ -1277,7 +1277,7 @@
 
     <div class="sp-card tilt" data-cat="lifestyle">
       <div class="sp-img">
-        <img loading="lazy" decoding="async" src="tienda/sudadera-capucha.jpg" alt="Sudadera con Capucha CD Enrique Soler">
+        <picture><source srcset="tienda/sudadera-capucha.webp" type="image/webp"><img loading="lazy" decoding="async" src="tienda/sudadera-capucha.jpg" alt="Sudadera con Capucha CD Enrique Soler"></picture>
         
         <div class="sp-cat">Colección</div>
         <div class="sp-quick"><a href="https://wa.me/34952699700?text=Hola%2C%20quiero%20pedir%3A%20Sudadera%20con%20Capucha%20%28CD%20Enrique%20Soler%29.%20Talla%3A%20___.%20%C2%BFPrecio%20y%20disponibilidad%3F%20Gracias." target="_blank" rel="noopener">💬 Pedir por WhatsApp</a></div>
@@ -1291,7 +1291,7 @@
 
     <div class="sp-card tilt" data-cat="lifestyle">
       <div class="sp-img">
-        <img loading="lazy" decoding="async" src="tienda/polo-oficial.jpg" alt="Polo Oficial CD Enrique Soler">
+        <picture><source srcset="tienda/polo-oficial.webp" type="image/webp"><img loading="lazy" decoding="async" src="tienda/polo-oficial.jpg" alt="Polo Oficial CD Enrique Soler"></picture>
         
         <div class="sp-cat">Colección</div>
         <div class="sp-quick"><a href="https://wa.me/34952699700?text=Hola%2C%20quiero%20pedir%3A%20Polo%20Oficial%20%28CD%20Enrique%20Soler%29.%20Talla%3A%20___.%20%C2%BFPrecio%20y%20disponibilidad%3F%20Gracias." target="_blank" rel="noopener">💬 Pedir por WhatsApp</a></div>
@@ -1305,7 +1305,7 @@
 
     <div class="sp-card tilt" data-cat="lifestyle">
       <div class="sp-img">
-        <img loading="lazy" decoding="async" src="tienda/bermuda-paseo.jpg" alt="Bermuda de Paseo CD Enrique Soler">
+        <picture><source srcset="tienda/bermuda-paseo.webp" type="image/webp"><img loading="lazy" decoding="async" src="tienda/bermuda-paseo.jpg" alt="Bermuda de Paseo CD Enrique Soler"></picture>
         
         <div class="sp-cat">Colección</div>
         <div class="sp-quick"><a href="https://wa.me/34952699700?text=Hola%2C%20quiero%20pedir%3A%20Bermuda%20de%20Paseo%20%28CD%20Enrique%20Soler%29.%20Talla%3A%20___.%20%C2%BFPrecio%20y%20disponibilidad%3F%20Gracias." target="_blank" rel="noopener">💬 Pedir por WhatsApp</a></div>
@@ -1319,7 +1319,7 @@
 
     <div class="sp-card tilt" data-cat="lifestyle">
       <div class="sp-img">
-        <img loading="lazy" decoding="async" src="tienda/mochila-oficial.jpg" alt="Mochila Oficial CD Enrique Soler">
+        <picture><source srcset="tienda/mochila-oficial.webp" type="image/webp"><img loading="lazy" decoding="async" src="tienda/mochila-oficial.jpg" alt="Mochila Oficial CD Enrique Soler"></picture>
         
         <div class="sp-cat">Colección</div>
         <div class="sp-quick"><a href="https://wa.me/34952699700?text=Hola%2C%20quiero%20pedir%3A%20Mochila%20Oficial%20%28CD%20Enrique%20Soler%29.%20Talla%3A%20___.%20%C2%BFPrecio%20y%20disponibilidad%3F%20Gracias." target="_blank" rel="noopener">💬 Pedir por WhatsApp</a></div>
@@ -1379,7 +1379,7 @@
     <!-- Foto + Mapa -->
     <div class="pab-media">
       <div class="pab-photo-img">
-        <img loading="lazy" decoding="async" src="galeria/foto-pabellon.jpg" alt="Pabellón Guillermo García Pezzi · Melilla" />
+        <picture><source srcset="galeria/foto-pabellon.webp" type="image/webp"><img loading="lazy" decoding="async" src="galeria/foto-pabellon.jpg" alt="Pabellón Guillermo García Pezzi · Melilla" /></picture>
         <div class="pab-name">Pabellón Guillermo García Pezzi</div>
       </div>
       <div class="pab-map">
@@ -1488,10 +1488,10 @@
       <img src="logo.png" alt="CD Enrique Soler" />
       <p>El baloncesto de Melilla tiene nombre propio desde 1996.</p>
     </div>
-    <div class="fc"><h4>El Club</h4><ul><li><a href="#about">Historia</a></li><li><a href="#teams">Equipos</a></li><li><a href="#pabellon">Pabellón</a></li><li><a href="#noticias">Noticias</a></li></ul></div>
-    <div class="fc"><h4>Únete</h4><ul><li><a href="inscripciones.html">Inscripción</a></li><li><a href="inscripciones.html">Escuela</a></li><li><a href="inscripciones.html">Cantera</a></li><li><a href="inscripciones.html">Senior</a></li></ul></div>
-    <div class="fc"><h4>Partners</h4><ul><li><a href="patrocinadores.html">Patrocinar el club</a></li><li><a href="patrocinadores.html#planes">Planes de inversión</a></li><li><a href="patrocinadores.html#socios">Patrocinadores actuales</a></li><li><a href="patrocinadores.html#contacto">Solicitar dosier</a></li></ul></div>
-    <div class="fc"><h4>Contacto</h4><ul><li><a href="https://maps.google.com/?q=Pabellón+Guillermo+García+Pezzi+Melilla" target="_blank" rel="noopener">Av. Azucena s/n</a></li><li><a href="https://maps.google.com/?q=Pabellón+Guillermo+García+Pezzi+Melilla" target="_blank" rel="noopener">Melilla, 52004</a></li><li><a href="mailto:info@cdenriquesoler.es">info@cdenriquesoler.es</a></li><li><a href="https://x.com/camesoler">@CAMESoler</a></li></ul></div>
+    <div class="fc"><h3>El Club</h3><ul><li><a href="#about">Historia</a></li><li><a href="#teams">Equipos</a></li><li><a href="#pabellon">Pabellón</a></li><li><a href="#noticias">Noticias</a></li></ul></div>
+    <div class="fc"><h3>Únete</h3><ul><li><a href="inscripciones.html">Inscripción</a></li><li><a href="inscripciones.html">Escuela</a></li><li><a href="inscripciones.html">Cantera</a></li><li><a href="inscripciones.html">Senior</a></li></ul></div>
+    <div class="fc"><h3>Partners</h3><ul><li><a href="patrocinadores.html">Patrocinar el club</a></li><li><a href="patrocinadores.html#planes">Planes de inversión</a></li><li><a href="patrocinadores.html#socios">Patrocinadores actuales</a></li><li><a href="patrocinadores.html#contacto">Solicitar dosier</a></li></ul></div>
+    <div class="fc"><h3>Contacto</h3><ul><li><a href="https://maps.google.com/?q=Pabellón+Guillermo+García+Pezzi+Melilla" target="_blank" rel="noopener">Av. Azucena s/n</a></li><li><a href="https://maps.google.com/?q=Pabellón+Guillermo+García+Pezzi+Melilla" target="_blank" rel="noopener">Melilla, 52004</a></li><li><a href="mailto:info@cdenriquesoler.es">info@cdenriquesoler.es</a></li><li><a href="https://x.com/camesoler">@CAMESoler</a></li></ul></div>
   </div>
   <div class="footer-bottom">
     <p>© 2026 Club Deportivo Enrique Soler · Melilla Ciudad del Deporte</p>
@@ -1934,6 +1934,17 @@ fetch('/data/plantilla.json').then(function(r){return r.json();}).then(function(
   /* Respaldo: si algo fallara, mostrar todo a los 2,5s */
   setTimeout(function(){ cards.forEach(function(c){ c.style.opacity=1; c.style.transform=''; }); }, 2500);
 })();
+</script>
+<script>
+/* Service worker: caché offline e instalación como app.
+   Solo en producción (https), no en el servidor local de pruebas. */
+if ('serviceWorker' in navigator && location.protocol === 'https:') {
+  window.addEventListener('load', function(){
+    navigator.serviceWorker.register('/sw.js').catch(function(e){
+      console.warn('SW no registrado:', e);
+    });
+  });
+}
 </script>
 </body>
 </html>

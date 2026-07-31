@@ -27,6 +27,9 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <link rel="stylesheet" href="assets/nav.css">
   <style>
+    /* El cursor del sistema solo se oculta si el cursor propio llegó a
+       activarse (clase puesta por JS). Si el JS falla, no se pierde el ratón. */
+    html.cursor-propio body{cursor:none;}
     /* Nav: solo lo propio de esta página (el resto en assets/nav.css) */
     .nav-links>li>a:hover,.nav-links>li>a.active{color:#fff;background:rgba(255,255,255,.05);}
     .mob-nav a{border-bottom:1px solid rgba(255,255,255,.04);}
@@ -40,7 +43,7 @@
       --card:#150900;
     }
     html{scroll-behavior:smooth;}
-    body{font-family:'Inter',sans-serif;background:var(--dark);color:#fff;overflow-x:hidden;cursor:none;}
+    body{font-family:'Inter',sans-serif;background:var(--dark);color:#fff;overflow-x:hidden;}
     a{text-decoration:none;color:inherit;}
     img{display:block;}
 
@@ -287,7 +290,12 @@ gsap.registerPlugin(ScrollTrigger);
 /* CURSOR */
 const cur=document.getElementById('cur'),dot=document.getElementById('dot');
 let mx=0,my=0,dx=0,dy=0;
-document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;});
+document.addEventListener('mousemove',e=>{
+  // Solo al detectar ratón se oculta el cursor del sistema: en táctil o si
+  // este script fallara, el puntero normal sigue visible.
+  if(!document.documentElement.classList.contains('cursor-propio'))
+    document.documentElement.classList.add('cursor-propio');
+  mx=e.clientX;my=e.clientY;});
 (function loop(){dx+=(mx-dx)*.1;dy+=(my-dy)*.1;cur.style.left=mx+'px';cur.style.top=my+'px';dot.style.left=dx+'px';dot.style.top=dy+'px';requestAnimationFrame(loop);})();
 
 /* NAV */
@@ -400,5 +408,16 @@ gsap.from('.gallery-hero p',  {opacity:0, y:20, duration:.7, ease:'power3.out', 
 gsap.from('.hero-badges',     {opacity:0, y:16, duration:.6, ease:'power3.out', delay:.6});
 </script>
 <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "4c91f0661ca6422f82e4f9468f5cc02f"}'></script><!-- End Cloudflare Web Analytics -->
+<script>
+/* Service worker: caché offline e instalación como app.
+   Solo en producción (https), no en el servidor local de pruebas. */
+if ('serviceWorker' in navigator && location.protocol === 'https:') {
+  window.addEventListener('load', function(){
+    navigator.serviceWorker.register('/sw.js').catch(function(e){
+      console.warn('SW no registrado:', e);
+    });
+  });
+}
+</script>
 </body>
 </html>

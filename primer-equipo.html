@@ -12,6 +12,14 @@
   <meta property="og:site_name" content="CD Enrique Soler" />
   <meta property="og:title" content="Primer Equipo · Tercera FEB | CD Enrique Soler" />
   <meta property="og:url" content="https://cdenriquesoler.com/primer-equipo.html" />
+  <meta property="og:site_name" content="CD Enrique Soler">
+  <meta property="og:description" content="Plantilla, calendario, clasificación y noticias del primer equipo del CD Enrique Soler en la Tercera FEB Grupo D-A. Melilla.">
+  <meta property="og:image" content="https://cdenriquesoler.com/galeria/foto-primer-equipo.jpg">
+  <meta property="og:image:alt" content="Plantilla del CD Enrique Soler, temporada 2026-27">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Primer Equipo · CD Enrique Soler">
+  <meta name="twitter:description" content="Plantilla 2026-27, calendario y clasificación en la Tercera FEB Grupo D-A.">
+  <meta name="twitter:image" content="https://cdenriquesoler.com/galeria/foto-primer-equipo.jpg">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png"/>
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png"/>
   <link rel="manifest" href="manifest.json">
@@ -442,7 +450,7 @@
     </div>
   </div>
   <div class="pe-hero-photo">
-    <img src="galeria/foto-primer-equipo.jpg" alt="Primer equipo CD Enrique Soler — Temporada 2026-27" />
+    <picture><source srcset="galeria/foto-primer-equipo.webp" type="image/webp"><img src="galeria/foto-primer-equipo.jpg" alt="Primer equipo CD Enrique Soler — Temporada 2026-27" /></picture>
     <div class="pe-hero-photo-caption">CD ENRIQUE SOLER · TEMPORADA 2026–27</div>
   </div>
 </section>
@@ -1052,5 +1060,16 @@ ScrollTrigger.batch('.match-card', {
   </div>
 </div>
 <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "4c91f0661ca6422f82e4f9468f5cc02f"}'></script><!-- End Cloudflare Web Analytics -->
+<script>
+/* Service worker: caché offline e instalación como app.
+   Solo en producción (https), no en el servidor local de pruebas. */
+if ('serviceWorker' in navigator && location.protocol === 'https:') {
+  window.addEventListener('load', function(){
+    navigator.serviceWorker.register('/sw.js').catch(function(e){
+      console.warn('SW no registrado:', e);
+    });
+  });
+}
+</script>
 </body>
 </html>

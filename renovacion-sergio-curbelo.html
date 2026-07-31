@@ -153,7 +153,7 @@
 
 <section class="cartel-sec reveal">
   <h3>El cartel oficial</h3>
-  <div class="cartel-frame"><img src="galeria/renovacion-sergio-curbelo.jpg" alt="Cartel renovación Sergio Curbelo"></div>
+  <div class="cartel-frame"><picture><source srcset="galeria/renovacion-sergio-curbelo.webp" type="image/webp"><img src="galeria/renovacion-sergio-curbelo.jpg" alt="Cartel renovación Sergio Curbelo"></picture></div>
   <div class="cartel-actions">
     <a class="btn btn-o" href="galeria/renovacion-sergio-curbelo.jpg" download>⬇ Descargar cartel</a>
     <a class="btn btn-g" href="primer-equipo.html#noticias">← Volver al equipo</a>
@@ -190,6 +190,17 @@ document.querySelectorAll('.pbar-new').forEach(function(el){
     gsap.to(el,{width:el.dataset.w+'%',duration:1.3,ease:'power2.out',delay:.2});
   }});
 });
+}
+</script>
+<script>
+/* Service worker: caché offline e instalación como app.
+   Solo en producción (https), no en el servidor local de pruebas. */
+if ('serviceWorker' in navigator && location.protocol === 'https:') {
+  window.addEventListener('load', function(){
+    navigator.serviceWorker.register('/sw.js').catch(function(e){
+      console.warn('SW no registrado:', e);
+    });
+  });
 }
 </script>
 </body>

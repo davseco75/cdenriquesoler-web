@@ -52,7 +52,7 @@
 
         /* ── HERO ── */
     .oly-hero{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden;text-align:center;background:#06050f;}
-    #starCanvas{position:absolute;inset:0;z-index:0;}
+    #starCanvas{max-width:100%;position:absolute;inset:0;z-index:0;}
     .aurora{position:absolute;inset:0;z-index:1;overflow:hidden;}
     .aurora::before{content:'';position:absolute;top:-60%;left:-30%;width:160%;height:100%;background:linear-gradient(135deg,rgba(0,180,255,.07) 0%,rgba(100,50,255,.06) 30%,rgba(0,255,150,.05) 60%,transparent 100%);animation:auroraMove 12s ease-in-out infinite alternate;border-radius:60%;}
     .aurora::after{content:'';position:absolute;top:-40%;right:-20%;width:120%;height:80%;background:linear-gradient(200deg,rgba(255,107,43,.05) 0%,rgba(180,0,255,.04) 40%,rgba(0,220,180,.04) 100%);animation:auroraMove 18s ease-in-out infinite alternate-reverse;border-radius:50%;}
@@ -772,7 +772,7 @@ document.addEventListener('keydown', function(e){
   var c=document.getElementById('starCanvas');
   if(!c)return;
   var ctx=c.getContext('2d'),stars=[];
-  function resize(){c.width=window.innerWidth;c.height=document.querySelector('.oly-hero').offsetHeight||window.innerHeight;}
+  function resize(){c.width=document.documentElement.clientWidth;c.height=document.querySelector('.oly-hero').offsetHeight||window.innerHeight;}
   function mkStar(){return{x:Math.random()*c.width,y:Math.random()*c.height,r:Math.random()*1.4+.3,o:Math.random()*.8+.2,s:Math.random()*.003+.001};}
   function init(){resize();stars=[];for(var i=0;i<220;i++)stars.push(mkStar());}
   function draw(){ctx.clearRect(0,0,c.width,c.height);stars.forEach(function(s){s.o+=s.s;if(s.o>1||s.o<.2)s.s*=-1;ctx.beginPath();ctx.arc(s.x,s.y,s.r,0,Math.PI*2);ctx.fillStyle='rgba(255,255,255,'+s.o.toFixed(2)+')';ctx.fill();});requestAnimationFrame(draw);}
@@ -797,5 +797,16 @@ gsap.utils.toArray('.gf-step').forEach(function(el,i){
 });
 </script>
 <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "4c91f0661ca6422f82e4f9468f5cc02f"}'></script><!-- End Cloudflare Web Analytics -->
+<script>
+/* Service worker: caché offline e instalación como app.
+   Solo en producción (https), no en el servidor local de pruebas. */
+if ('serviceWorker' in navigator && location.protocol === 'https:') {
+  window.addEventListener('load', function(){
+    navigator.serviceWorker.register('/sw.js').catch(function(e){
+      console.warn('SW no registrado:', e);
+    });
+  });
+}
+</script>
 </body>
 </html>

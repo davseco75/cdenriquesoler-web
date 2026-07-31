@@ -6,7 +6,7 @@
    · Imágenes, fuentes y librerías de CDN → CACHE-FIRST
      (rápidas y no cambian de nombre)
 ================================================================ */
-const CACHE_NAME = 'es-app-v3';
+const CACHE_NAME = 'es-app-v4';
 
 const PRECACHE = [
   '/index.html',
@@ -42,6 +42,10 @@ function isFreshFirst(request) {
   if (request.mode === 'navigate' || request.destination === 'document') return true;
   if (request.url.includes('/data/')) return true;       // plantilla, partidos, noticias...
   if (request.url.endsWith('.html')) return true;
+  // Hojas de estilo y scripts PROPIOS: si fueran cache-first, un cambio de
+  // diseño no llegaría nunca a quien ya tiene el service worker instalado.
+  if (request.url.includes(self.location.origin) &&
+      (request.url.endsWith('.css') || request.url.endsWith('.js'))) return true;
   return false;
 }
 
@@ -80,6 +84,7 @@ self.addEventListener('fetch', event => {
           (request.url.includes(self.location.origin) ||
            request.url.includes('fonts.googleapis.com') ||
            request.url.includes('fonts.gstatic.com') ||
+           request.url.includes('cdnjs.cloudflare.com') ||
            request.url.includes('cdn.jsdelivr.net'))
         ) {
           const clone = response.clone();
