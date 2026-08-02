@@ -118,9 +118,34 @@
     .player-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;}
     .player-card{font:inherit;color:inherit;text-align:left;width:100%;display:block;padding:0;background:var(--card);border:1px solid rgba(255,255,255,.06);border-radius:14px;overflow:hidden;cursor:pointer;transition:all .3s;}
     .player-card:hover{transform:translateY(-5px);border-color:rgba(255,107,43,.3);box-shadow:0 20px 40px rgba(0,0,0,.5);}
-    .player-num-bg{height:100px;display:flex;align-items:center;justify-content:center;position:relative;}
+    
     .player-num-ghost{font-family:'Bebas Neue';font-size:80px;color:rgba(255,255,255,.08);line-height:1;position:absolute;}
     .player-num-badge{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue';font-size:16px;color:#fff;position:relative;z-index:1;}
+
+
+    /* Al pasar la tarjeta a <button> los hijos son <span>: sin esto no
+       ocupan linea propia y el nombre se solapa con la posicion. */
+    .player-info{display:block;}
+    .player-name{display:block;}
+    .player-cap{display:block;}
+    .player-stats{display:flex;}
+    .player-pj{display:block;}
+    .player-card{display:flex;flex-direction:column;}
+    .player-info{flex:1;}
+
+    /* Tarjeta de jugador con foto */
+    .pc-top{display:block;position:relative;height:170px;overflow:hidden;}
+    .pc-foto{position:absolute;inset:0;display:block;}
+    .pc-foto img{width:100%;height:100%;object-fit:cover;object-position:top center;
+      display:block;filter:grayscale(.25) brightness(.92);transition:transform .45s,filter .35s;}
+    .player-card:hover .pc-foto img{transform:scale(1.06);filter:grayscale(0) brightness(1);}
+    .pc-foto.sin{display:flex;align-items:center;justify-content:center;}
+    .pc-ghost{font-family:'Bebas Neue';font-size:76px;color:rgba(255,255,255,.13);line-height:1;}
+    .pc-top::after{content:'';position:absolute;inset:0;
+      background:linear-gradient(180deg,transparent 45%,rgba(0,0,0,.55) 100%);}
+    .pc-dorsal{position:absolute;left:10px;bottom:8px;z-index:2;font-family:'Bebas Neue';
+      font-size:30px;line-height:1;color:#fff;text-shadow:0 2px 10px rgba(0,0,0,.8);}
+    @media(max-width:680px){ .pc-top{height:132px;} .pc-ghost{font-size:56px;} }
     .player-info{padding:14px 12px;}
     .player-name{font-family:'Bebas Neue';font-size:16px;line-height:1.1;margin-bottom:6px;}
     .player-pos{display:inline-block;font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:3px 8px;border-radius:8px;}
@@ -232,6 +257,23 @@
     .pe-fanzone-meta{font-size:13px;color:rgba(255,255,255,.35);margin-bottom:32px;display:flex;justify-content:center;align-items:center;gap:20px;flex-wrap:wrap;}
     .pe-fanzone-meta span{display:flex;align-items:center;gap:6px;}
     
+
+
+    /* ── Noticias compactas ── */
+    .news-mini-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px;margin-top:14px;}
+    .news-mini{display:flex;flex-direction:column;background:var(--card);border:1px solid rgba(255,255,255,.07);
+      border-radius:14px;overflow:hidden;transition:border-color .2s,transform .2s;}
+    .news-mini:hover{border-color:rgba(255,107,43,.35);transform:translateY(-3px);}
+    .news-mini.oculta{display:none;}
+    .nm-img{display:block;height:150px;background:rgba(255,255,255,.03);overflow:hidden;}
+    .nm-img img{width:100%;height:100%;object-fit:cover;object-position:center 22%;display:block;}
+    .nm-body{display:block;padding:12px 14px 14px;}
+    .nm-tit{display:block;font-family:'Bebas Neue';font-size:19px;line-height:1.12;color:#fff;margin:6px 0 5px;}
+    .nm-fecha{display:block;font-size:11px;color:rgba(255,255,255,.3);}
+    .news-mas{display:block;margin:18px auto 0;background:transparent;border:1px solid rgba(255,255,255,.16);
+      color:rgba(255,255,255,.7);font:inherit;font-size:12px;font-weight:700;letter-spacing:.08em;
+      text-transform:uppercase;padding:12px 28px;border-radius:30px;cursor:pointer;transition:all .2s;}
+    .news-mas:hover{border-color:var(--o);color:#fff;}
 
     /* ── APOYA AL CLUB ── */
     .ap-banner{position:relative;border-radius:18px;overflow:hidden;margin-bottom:22px;
@@ -836,21 +878,25 @@ function renderPlantilla(){
           +'<div class="player-stat"><div class="player-stat-val">'+s.rpg+'</div><div class="player-stat-lbl">REB</div></div>'
           +'<div class="player-stat"><div class="player-stat-val">'+s.apg+'</div><div class="player-stat-lbl">AST</div></div>'
         +'</div>'
-        +'<div class="player-pj">'+s.pj+' partidos · Medias 2025-26</div>'
-      : '<div class="player-pj" style="color:rgba(255,154,108,.45)">Sin partidos en 2025-26</div>';
+        +'<span class="player-pj">'+s.pj+' PJ · medias 25-26</span>'
+      : '<span class="player-pj" style="color:rgba(255,154,108,.45)">Sin partidos en 25-26</span>';
     var etq = p.nombre + ', ' + p.pos + (dorsal!=='—' ? ', dorsal ' + dorsal : '');
+    var etq = p.nombre + ', ' + p.pos + (dorsal!=='—' ? ', dorsal ' + dorsal : '');
+    var foto = p.foto
+      ? '<span class="pc-foto"><img src="'+p.foto+'" alt="" loading="lazy"></span>'
+      : '<span class="pc-foto sin"><span class="pc-ghost">'+dorsal+'</span></span>';
     return '<button type="button" class="player-card" onclick="openPlayerModal('+idx+')"'
       +' aria-label="Ver ficha de '+etq+'">'
-      +'<div class="player-num-bg" style="background:'+style.bg+'">'
-        +'<span class="player-num-ghost">'+dorsal+'</span>'
-        +'<div class="player-num-badge" style="background:rgba(0,0,0,.4);border:1px solid rgba(255,255,255,.15);font-family:\'Bebas Neue\';font-size:18px;color:#fff;width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;">'+dorsal+'</div>'
-      +'</div>'
-      +'<div class="player-info">'
-        +'<div class="player-name">'+p.nombre+'</div>'
+      +'<span class="pc-top" style="background:'+style.bg+'">'
+        + foto
+        +'<span class="pc-dorsal">'+dorsal+'</span>'
+      +'</span>'
+      +'<span class="player-info">'
+        +'<span class="player-name">'+p.nombre+'</span>'
         +'<span class="player-pos" style="background:'+style.badge+'33;color:'+style.text+'">'+p.pos+'</span>'
-        +(p.cap?'<div class="player-cap">★ Capitán</div>':'')
+        +(p.cap?'<span class="player-cap">★ Capitán</span>':'')
         +statsHtml
-      +'</div>'
+      +'</span>'
     +'</button>';
   }).join('');
   document.getElementById('playerGrid').innerHTML = html;
@@ -949,8 +995,9 @@ function renderStaff(){
 
 /* ── RENDER NOTICIAS ──────────────────────────────────────── */
 function renderNoticias(){
+  var cont = document.getElementById('newsGrid');
   if(!NOTICIAS.length){
-    document.getElementById('newsGrid').innerHTML =
+    cont.innerHTML =
       '<div style="grid-column:1/-1;text-align:center;padding:60px 20px;border:1px dashed rgba(255,255,255,.1);border-radius:16px;">'
       +'<div style="font-size:32px;margin-bottom:12px;">📰</div>'
       +'<div style="font-family:\'Bebas Neue\';font-size:26px;color:#fff;">Arranca la temporada 2026-27</div>'
@@ -958,33 +1005,54 @@ function renderNoticias(){
       +'</div>';
     return;
   }
-  var html = NOTICIAS.map(function(n){
-    // Tarjeta destacada (fichaje con cartel): imagen + texto, a ancho completo
-    if(n.destacado && n.imagen){
-      var enlace = n.enlace || n.imagen;
-      return '<div class="news-card feat" style="--tag-color:'+n.color+';--tag-bg:'+n.bg+'">'
-        +'<a class="feat-img" href="'+enlace+'">'
-          +'<img src="'+n.imagen+'" alt="'+n.titulo+'" loading="lazy">'
-        +'</a>'
-        +'<div class="feat-body">'
-          +'<div class="news-top"><span class="news-tag">'+n.tag+'</span><span class="news-date">'+n.fecha+'</span></div>'
-          +'<div class="news-title" style="font-size:30px">'+n.titulo+'</div>'
-          +'<div class="news-excerpt">'+n.texto+'</div>'
-          +'<a class="news-link" href="'+enlace+'">Leer la noticia completa <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>'
-        +'</div>'
-      +'</div>';
-    }
-    return '<div class="news-card" style="--tag-color:'+n.color+';--tag-bg:'+n.bg+'">'
-      +'<div class="news-top">'
-        +'<span class="news-tag">'+n.tag+'</span>'
-        +'<span class="news-date">'+n.fecha+'</span>'
-      +'</div>'
-      +'<div class="news-title">'+n.titulo+'</div>'
-      +'<div class="news-excerpt">'+n.texto+'</div>'
-      +'<span class="news-link">Leer más <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>'
-    +'</div>';
-  }).join('');
-  document.getElementById('newsGrid').innerHTML = html;
+
+  /* La primera va grande; el resto en rejilla compacta. Antes iban las 11
+     a tamaño completo y la seccion ocupaba el 44% de la pagina. */
+  var VISIBLES = 6;
+  var destacada = NOTICIAS[0];
+  var resto = NOTICIAS.slice(1);
+
+  function tarjetaGrande(n){
+    var enlace = n.enlace || n.imagen || '#';
+    return '<a class="news-card feat" href="'+enlace+'" style="--tag-color:'+n.color+';--tag-bg:'+n.bg+'">'
+      + (n.imagen ? '<span class="feat-img"><img src="'+n.imagen+'" alt="" loading="lazy"></span>' : '')
+      + '<span class="feat-body">'
+        + '<span class="news-top"><span class="news-tag">'+n.tag+'</span><span class="news-date">'+n.fecha+'</span></span>'
+        + '<span class="news-title" style="font-size:30px">'+n.titulo+'</span>'
+        + '<span class="news-text">'+n.texto+'</span>'
+      + '</span></a>';
+  }
+  function tarjetaMini(n, oculta){
+    var enlace = n.enlace || n.imagen || '#';
+    return '<a class="news-mini'+(oculta?' oculta':'')+'" href="'+enlace+'" style="--tag-color:'+n.color+';--tag-bg:'+n.bg+'">'
+      + (n.imagen ? '<span class="nm-img"><img src="'+n.imagen+'" alt="" loading="lazy"></span>' : '<span class="nm-img"></span>')
+      + '<span class="nm-body">'
+        + '<span class="news-tag">'+n.tag+'</span>'
+        + '<span class="nm-tit">'+n.titulo+'</span>'
+        + '<span class="nm-fecha">'+n.fecha+'</span>'
+      + '</span></a>';
+  }
+
+  cont.innerHTML = tarjetaGrande(destacada)
+    + '<div class="news-mini-grid">'
+      + resto.map(function(n,i){ return tarjetaMini(n, i>=VISIBLES); }).join('')
+    + '</div>'
+    + (resto.length > VISIBLES
+        ? '<button type="button" class="news-mas" id="newsMas" aria-expanded="false">Ver las '
+          + (resto.length - VISIBLES) + ' noticias anteriores</button>'
+        : '');
+
+  var btn = document.getElementById('newsMas');
+  if(btn) btn.addEventListener('click', function(){
+    var abierto = cont.querySelectorAll('.news-mini.oculta').length === 0;
+    cont.querySelectorAll('.news-mini').forEach(function(el,i){
+      el.classList.toggle('oculta', abierto && i >= VISIBLES);
+    });
+    btn.setAttribute('aria-expanded', abierto ? 'false' : 'true');
+    btn.textContent = abierto
+      ? 'Ver las ' + (resto.length - VISIBLES) + ' noticias anteriores'
+      : 'Ver menos';
+  });
 }
 
 /* ── RENDER PARTIDOS ──────────────────────────────────────── */
