@@ -1012,11 +1012,16 @@ function renderNoticias(){
     return;
   }
 
-  /* La primera va grande; el resto en rejilla compacta. Antes iban las 11
-     a tamaño completo y la seccion ocupaba el 44% de la pagina. */
+  /* Si TODAS las noticias son de plantilla (fichajes y renovaciones) van
+     todas visibles y del mismo tamaño: son jugadores del equipo y ninguno
+     debe quedar escondido tras un botón. En cuanto haya noticias de otro
+     tipo (crónicas, desplazamientos...) se destaca la última y el resto
+     se compacta. */
+  var TAGS_PLANTILLA = ['fichaje','renovación','renovacion'];
+  var soloPlantilla = NOTICIAS.every(function(n){
+    return TAGS_PLANTILLA.indexOf((n.tag||'').toLowerCase().trim()) !== -1;
+  });
   var VISIBLES = 6;
-  var destacada = NOTICIAS[0];
-  var resto = NOTICIAS.slice(1);
 
   function tarjetaGrande(n){
     var enlace = n.enlace || n.imagen || '#';
@@ -1039,6 +1044,14 @@ function renderNoticias(){
       + '</span></a>';
   }
 
+  if(soloPlantilla){
+    cont.innerHTML = '<div class="news-mini-grid">'
+      + NOTICIAS.map(function(n){ return tarjetaMini(n, false); }).join('')
+      + '</div>';
+    return;
+  }
+
+  var destacada = NOTICIAS[0], resto = NOTICIAS.slice(1);
   cont.innerHTML = tarjetaGrande(destacada)
     + '<div class="news-mini-grid">'
       + resto.map(function(n,i){ return tarjetaMini(n, i>=VISIBLES); }).join('')
