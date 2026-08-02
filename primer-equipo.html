@@ -234,6 +234,19 @@
     
 
     /* ── APOYA AL CLUB ── */
+    .ap-banner{position:relative;border-radius:18px;overflow:hidden;margin-bottom:22px;
+      min-height:260px;display:flex;align-items:flex-end;
+      background:url('galeria/aficion-cantera.jpg') center 38%/cover no-repeat;}
+    @supports (background-image:image-set(url('x.webp') type('image/webp'))){
+      .ap-banner{background-image:image-set(url('galeria/aficion-cantera.webp') type('image/webp'),
+                                            url('galeria/aficion-cantera.jpg') type('image/jpeg'));}
+    }
+    .ap-banner::after{content:'';position:absolute;inset:0;
+      background:linear-gradient(180deg,rgba(8,4,0,.25) 0%,rgba(8,4,0,.55) 45%,rgba(8,4,0,.94) 100%);}
+    .ap-banner-txt{position:relative;z-index:2;width:100%;padding:26px 24px 22px;text-align:left;}
+    .ap-banner .ap-tit{margin-bottom:0;text-shadow:0 3px 20px rgba(0,0,0,.7);}
+    .ap-banner .ap-et{margin-bottom:6px;text-shadow:0 2px 10px rgba(0,0,0,.7);}
+    @media(max-width:560px){ .ap-banner{min-height:210px;} .ap-banner-txt{padding:20px 18px 18px;} }
     .ap{max-width:860px;margin:0 auto 34px;text-align:center;}
     .ap-et{font-size:11px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--o);margin-bottom:8px;}
     .ap-tit{font-family:'Bebas Neue';font-size:clamp(30px,5vw,46px);line-height:1;margin-bottom:12px;}
@@ -706,8 +719,12 @@
       <a class="ap-btn grande" id="apInvBtn" href="#" target="_blank" rel="noopener">Aportar lo que yo decida →</a>
     </div>
 
-    <div class="ap-et">Apoya al club</div>
-    <h3 class="ap-tit">Este equipo se sostiene<br><em>con su gente</em></h3>
+    <div class="ap-banner">
+      <div class="ap-banner-txt">
+        <div class="ap-et">Apoya al club</div>
+        <h3 class="ap-tit">Este equipo se sostiene<br><em>con su gente</em></h3>
+      </div>
+    </div>
     <p class="ap-lead">
       No buscamos llenar una caja: buscamos que el pabellón tenga vida y que quien quiera
       arrimar el hombro pueda hacerlo. Elige la forma que mejor te encaje.
