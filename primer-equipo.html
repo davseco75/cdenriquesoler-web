@@ -260,6 +260,12 @@
 
 
     /* ── Noticias compactas ── */
+    /* #newsGrid es una rejilla de 2 columnas: sin esto, la rejilla compacta
+       y el boton se colocan como celdas sueltas y el boton se estira a lo
+       alto dejando un hueco vacio con pinta de sin terminar. */
+    .news-mini-grid{grid-column:1/-1;}
+    .news-mas{grid-column:1/-1;justify-self:center;align-self:start;}
+
     .news-mini-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px;margin-top:14px;}
     .news-mini{display:flex;flex-direction:column;background:var(--card);border:1px solid rgba(255,255,255,.07);
       border-radius:14px;overflow:hidden;transition:border-color .2s,transform .2s;}
