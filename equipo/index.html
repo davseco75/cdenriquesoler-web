@@ -60,7 +60,8 @@
   .pt.gan{border-color:rgba(74,222,128,.3);} .pt.per{border-color:rgba(239,68,68,.25);}
   .pt .fec{text-align:center;min-width:44px;}
   .pt .fec b{font-family:'Bebas Neue';font-size:20px;display:block;line-height:1;}
-  .pt .fec span{font-size:9px;text-transform:uppercase;color:var(--txt3);letter-spacing:.08em;}
+  .pt .fec span{font-size:9px;text-transform:uppercase;color:var(--txt3);letter-spacing:.08em;display:block;}
+  .pt .fec .hr{color:var(--o2);font-weight:700;margin-top:2px;}
   .pt .eqs{flex:1;min-width:0;}
   .pt .eqs .j{font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--txt3);}
   .pt .eqs .n{font-size:13px;line-height:1.35;overflow-wrap:anywhere;}
@@ -71,6 +72,7 @@
     background:rgba(255,255,255,.06);color:var(--txt3);display:inline-block;margin-top:3px;}
   .pt .badge.g{background:rgba(74,222,128,.14);color:#4ade80;}
   .pt .badge.p{background:rgba(239,68,68,.12);color:#ef4444;}
+  .pt .pab{font-size:10px;color:var(--txt3);margin-top:3px;}
   .cron{display:inline-block;margin-top:6px;font-size:11px;font-weight:700;color:var(--o);}
 
   /* Filtros */
@@ -247,9 +249,11 @@ function pintaPartidos(filtro){
     return '<div class="pt'+(gan===true?' gan':gan===false?' per':'')+'">'
       + '<div class="fec">'+(f.length===3
           ? '<b>'+f[0]+'</b><span>'+MESES[+f[1]-1]+'</span>'
+            + (p.hora ? '<span class="hr">'+esc(p.hora)+'</span>' : '')
           : '<span>TBD</span>')+'</div>'
       + '<div class="eqs"><div class="j">Jornada '+esc(p.jornada)+'</div>'
       +   '<div class="n">'+nombre(p.local)+' <span style="color:var(--txt3)">vs</span> '+nombre(p.visitante)+'</div>'
+      +   (p.pabellon ? '<div class="pab">📍 '+esc(p.pabellon)+'</div>' : '')
       +   (D.cronicas[p.jornada] ? '<a class="cron" href="/cronica.html?id='+esc(D.cronicas[p.jornada])+'">📝 Leer la crónica →</a>' : '')
       + '</div>'
       + '<div class="der">'
