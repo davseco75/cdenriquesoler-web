@@ -233,31 +233,44 @@
     .pe-fanzone-meta span{display:flex;align-items:center;gap:6px;}
     
 
-    /* ── HAZTE SOCIO ── */
-    .soc{max-width:820px;margin:0 auto 34px;text-align:center;}
-    .soc-et{font-size:11px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--o);margin-bottom:8px;}
-    .soc-tit{font-family:'Bebas Neue';font-size:clamp(30px,5vw,46px);line-height:1;margin-bottom:12px;}
-    .soc-tit em{color:var(--o);font-style:normal;}
-    .soc-lead{font-size:15px;line-height:1.65;color:rgba(255,255,255,.6);max-width:600px;margin:0 auto 26px;}
-    .soc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px;margin-bottom:18px;}
-    .soc-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.09);
-      border-radius:16px;padding:24px 22px;text-align:left;position:relative;}
-    .soc-card.destacada{border-color:rgba(255,107,43,.45);background:linear-gradient(160deg,rgba(255,107,43,.09),rgba(255,255,255,.02));}
-    .soc-badge{position:absolute;top:-10px;left:22px;background:var(--o);color:#fff;font-size:10px;
-      font-weight:800;letter-spacing:.12em;text-transform:uppercase;padding:4px 12px;border-radius:20px;}
-    .soc-nombre{font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:6px;}
-    .soc-precio{font-family:'Bebas Neue';font-size:56px;line-height:.9;color:#fff;}
-    .soc-precio span{font-size:26px;color:var(--o);margin-left:3px;}
-    .soc-periodo{font-size:13px;color:rgba(255,255,255,.4);margin-bottom:16px;}
-    .soc-lista{list-style:none;margin-bottom:20px;}
-    .soc-lista li{font-size:14px;line-height:1.5;color:rgba(255,255,255,.65);padding-left:20px;position:relative;margin-bottom:8px;}
-    .soc-lista li::before{content:'✓';position:absolute;left:0;color:var(--o);font-weight:800;}
-    .soc-lista b{color:#fff;}
-    .soc-btn{display:block;text-align:center;background:var(--o);color:#fff;font-family:'Bebas Neue';
-      font-size:18px;letter-spacing:.04em;padding:12px;border-radius:9px;transition:opacity .2s;}
-    .soc-btn:hover{opacity:.88;}
-    .soc-btn.sec{background:transparent;border:1px solid rgba(255,255,255,.18);color:rgba(255,255,255,.75);}
-    .soc-pie{font-size:13px;line-height:1.6;color:rgba(255,255,255,.35);max-width:520px;margin:0 auto;}
+    /* ── APOYA AL CLUB ── */
+    .ap{max-width:860px;margin:0 auto 34px;text-align:center;}
+    .ap-et{font-size:11px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--o);margin-bottom:8px;}
+    .ap-tit{font-family:'Bebas Neue';font-size:clamp(30px,5vw,46px);line-height:1;margin-bottom:12px;}
+    .ap-tit em{color:var(--o);font-style:normal;}
+    .ap-lead{font-size:15px;line-height:1.65;color:rgba(255,255,255,.6);max-width:620px;margin:0 auto 26px;}
+    .ap-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(235px,1fr));gap:12px;margin-bottom:16px;}
+    .ap-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.09);
+      border-radius:16px;padding:22px 20px;text-align:left;position:relative;display:flex;flex-direction:column;}
+    .ap-card.dest{border-color:rgba(255,107,43,.42);background:linear-gradient(160deg,rgba(255,107,43,.09),rgba(255,255,255,.02));}
+    .ap-gancho{position:absolute;top:-10px;left:20px;background:var(--o);color:#fff;font-size:10px;
+      font-weight:800;letter-spacing:.1em;text-transform:uppercase;padding:4px 11px;border-radius:20px;}
+    .ap-nom{font-size:12px;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:6px;}
+    .ap-precio{font-family:'Bebas Neue';font-size:50px;line-height:.9;color:#fff;}
+    .ap-precio span{font-size:24px;color:var(--o);margin-left:3px;}
+    .ap-periodo{font-size:12px;color:rgba(255,255,255,.38);margin-bottom:14px;line-height:1.4;}
+    .ap-lista{list-style:none;margin-bottom:18px;flex:1;}
+    .ap-lista li{font-size:13px;line-height:1.5;color:rgba(255,255,255,.62);padding-left:18px;position:relative;margin-bottom:7px;}
+    .ap-lista li::before{content:'·';position:absolute;left:4px;color:var(--o);font-weight:800;font-size:16px;line-height:1;}
+    .ap-btn{display:block;text-align:center;background:var(--o);color:#fff;font-family:'Bebas Neue';
+      font-size:17px;letter-spacing:.04em;padding:11px;border-radius:9px;transition:opacity .2s;}
+    .ap-btn:hover{opacity:.88;}
+    .ap-btn.sec{background:transparent;border:1px solid rgba(255,255,255,.18);color:rgba(255,255,255,.78);}
+    .ap-btn.grande{font-size:20px;padding:14px 30px;display:inline-block;}
+    /* Taquilla inversa */
+    .ap-inversa{background:linear-gradient(150deg,rgba(255,107,43,.16),rgba(8,4,0,.5));
+      border:1px solid rgba(255,107,43,.45);border-radius:18px;padding:28px 24px;margin-bottom:30px;}
+    .ap-inv-et{font-size:11px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--o);margin-bottom:8px;}
+    .ap-inv-tit{font-family:'Bebas Neue';font-size:clamp(26px,4.5vw,38px);line-height:1.05;margin-bottom:12px;}
+    .ap-inv-txt{font-size:15px;line-height:1.6;color:rgba(255,255,255,.72);max-width:520px;margin:0 auto 8px;}
+    .ap-inv-ref{font-size:13px;color:rgba(255,255,255,.4);margin-bottom:18px;}
+    /* Fila 0 */
+    .ap-fila0{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.09);
+      border-radius:16px;padding:24px 22px;margin-bottom:16px;}
+    .ap-f0-et{font-size:10px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--o);margin-bottom:6px;}
+    .ap-f0-tit{font-family:'Bebas Neue';font-size:28px;line-height:1;margin-bottom:10px;font-weight:400;}
+    .ap-f0-txt{font-size:14px;line-height:1.6;color:rgba(255,255,255,.6);max-width:580px;margin:0 auto 16px;}
+    .ap-pie{font-size:13px;line-height:1.6;color:rgba(255,255,255,.35);max-width:560px;margin:0 auto;}
 
     /* ── ZONA DEL AFICIONADO ── */
     .fz-casa{max-width:560px;margin:0 auto 30px;background:rgba(255,255,255,.04);
@@ -681,46 +694,35 @@
   </div>
 
 
-  <!-- HAZTE SOCIO · las cifras se calculan desde partidos.json -->
-  <div class="soc" id="soc">
-    <div class="soc-et">Apoya al equipo</div>
-    <h3 class="soc-tit">Hazte socio<br><em>por 20 € toda la temporada</em></h3>
-    <p class="soc-lead">
-      El Melilla Ciudad del Deporte Enrique Soler se sostiene con la gente que viene al pabellón.
-      Tu aportación no es un trámite: es lo que permite que este equipo compita.
-    </p>
+  <!-- APOYA AL CLUB · se rellena desde data/apoyo.json -->
+  <div class="ap" id="ap">
 
-    <div class="soc-grid">
-      <div class="soc-card destacada">
-        <div class="soc-badge">La mejor opción</div>
-        <div class="soc-nombre">Abono de socio</div>
-        <div class="soc-precio">20<span>€</span></div>
-        <div class="soc-periodo">toda la temporada 2026-27</div>
-        <ul class="soc-lista">
-          <li><b id="socPartidos">12</b> partidos en casa</li>
-          <li>Sale a <b id="socUnidad">1,67 €</b> por partido</li>
-          <li>Ahorras <b id="socAhorro">16 €</b> frente a pagar suelto</li>
-        </ul>
-        <a class="soc-btn" id="socBtnAbono" href="#" target="_blank" rel="noopener">Quiero el abono →</a>
-      </div>
-
-      <div class="soc-card">
-        <div class="soc-nombre">Entrada de partido</div>
-        <div class="soc-precio">3<span>€</span></div>
-        <div class="soc-periodo">un partido suelto</div>
-        <ul class="soc-lista">
-          <li>Para un encuentro concreto</li>
-          <li>En taquilla el mismo día</li>
-          <li id="socSueltas">Los 12 partidos sueltos costarían 36 €</li>
-        </ul>
-        <a class="soc-btn sec" id="socBtnEntrada" href="#" target="_blank" rel="noopener">Reservar entrada →</a>
-      </div>
+    <!-- Taquilla inversa: solo visible los días siguientes a un partido en casa -->
+    <div class="ap-inversa" id="apInversa" hidden>
+      <div class="ap-inv-et" id="apInvEt">Tras el partido</div>
+      <h3 class="ap-inv-tit" id="apInvTit">¿Qué te ha parecido el partido?</h3>
+      <p class="ap-inv-txt" id="apInvTxt"></p>
+      <p class="ap-inv-ref" id="apInvRef"></p>
+      <a class="ap-btn grande" id="apInvBtn" href="#" target="_blank" rel="noopener">Aportar lo que yo decida →</a>
     </div>
 
-    <p class="soc-pie">
-      Escríbenos por WhatsApp y te decimos cómo hacer el pago. Te confirmamos el abono
-      al móvil y ya puedes venir a todos los partidos en casa.
+    <div class="ap-et">Apoya al club</div>
+    <h3 class="ap-tit">Este equipo se sostiene<br><em>con su gente</em></h3>
+    <p class="ap-lead">
+      No buscamos llenar una caja: buscamos que el pabellón tenga vida y que quien quiera
+      arrimar el hombro pueda hacerlo. Elige la forma que mejor te encaje.
     </p>
+
+    <div class="ap-grid" id="apGrid"></div>
+
+    <div class="ap-fila0" id="apFila0" hidden>
+      <div class="ap-f0-et" id="apF0Gancho"></div>
+      <h4 class="ap-f0-tit" id="apF0Tit"></h4>
+      <p class="ap-f0-txt" id="apF0Txt"></p>
+      <a class="ap-btn sec" id="apF0Btn" href="#" target="_blank" rel="noopener">Sumarme a la Fila 0 →</a>
+    </div>
+
+    <p class="ap-pie" id="apPie"></p>
   </div>
 
   <!-- Accesos para el aficionado -->
@@ -1045,31 +1047,81 @@ function renderClasificacion(){
 
 
 
-/* ── HAZTE SOCIO ────────────────────────────────────────────────
-   Las cifras (partidos en casa, precio por partido y ahorro) se
-   calculan del calendario: si cambia, el argumento sigue siendo cierto. */
-var PRECIO_ABONO = 20, PRECIO_ENTRADA = 3;
-function renderSocio(){
-  var enCasa = PARTIDOS.filter(function(p){ return isUs(p.local); }).length;
-  if(!enCasa) return;
-  var unidad = PRECIO_ABONO / enCasa;
-  var sueltas = enCasa * PRECIO_ENTRADA;
-  var pon = function(id, txt){ var e=document.getElementById(id); if(e) e.textContent = txt; };
-  pon('socPartidos', enCasa);
-  pon('socUnidad', unidad.toFixed(2).replace('.', ',') + ' €');
-  pon('socAhorro', (sueltas - PRECIO_ABONO) + ' €');
-  pon('socSueltas', 'Los ' + enCasa + ' partidos sueltos costarían ' + sueltas + ' €');
+/* ── APOYA AL CLUB ─────────────────────────────────────────────
+   Importes y textos salen de data/apoyo.json (editable sin tocar código).
+   La "taquilla inversa" solo se muestra los días siguientes a un partido
+   en casa: es cuando la aportación tiene sentido, no antes. */
+function renderApoyo(){
+  fetch('/data/apoyo.json').then(function(r){ return r.json(); }).then(function(A){
+    var wa = function(msg){ return 'https://wa.me/'+A.whatsapp+'?text='+encodeURIComponent(msg); };
+    var enCasa = PARTIDOS.filter(function(p){ return isUs(p.local); }).length || 12;
 
-  var a = document.getElementById('socBtnAbono');
-  if(a) a.href = 'https://wa.me/34952699700?text=' + encodeURIComponent(
-    'Hola! Quiero hacerme socio del Melilla Ciudad del Deporte Enrique Soler '
-    + '(abono de ' + PRECIO_ABONO + ' € para la temporada 2026-27). ¿Cómo hago el pago?');
+    /* ── Tarjetas ── */
+    var tarjetas = [];
+    var socio = A.socio, entrada = A.entrada;
+    var unidad = (socio.precio/enCasa).toFixed(2).replace('.',',');
+    tarjetas.push({dest:false, gancho:'', nom:socio.titulo, precio:socio.precio, periodo:socio.periodo,
+      lista:[enCasa+' partidos en casa', 'Sale a '+unidad+' € por partido',
+             'Ahorras '+(enCasa*entrada.precio - socio.precio)+' € frente a pagar suelto'],
+      btn:'Hacerme socio →',
+      msg:'Hola! Quiero hacerme socio ('+socio.titulo.toLowerCase()+', '+socio.precio+' €) del Melilla Ciudad del Deporte Enrique Soler.'});
 
-  var prox = PARTIDOS.filter(function(p){ return !p.resultado && isUs(p.local); })[0];
-  var e = document.getElementById('socBtnEntrada');
-  if(e) e.href = 'https://wa.me/34952699700?text=' + encodeURIComponent(
-    'Hola! Quiero una entrada (' + PRECIO_ENTRADA + ' €) para el partido en casa'
-    + (prox ? ' del ' + prox.fecha + ' contra ' + prox.visitante : '') + '.');
+    if(A.familiar) tarjetas.push({dest:false, gancho:A.familiar.gancho, nom:A.familiar.titulo,
+      precio:A.familiar.precio, periodo:A.familiar.periodo, lista:A.familiar.incluye,
+      btn:'Quiero el familiar →',
+      msg:'Hola! Me interesa el '+A.familiar.titulo.toLowerCase()+' ('+A.familiar.precio+' €) para venir con la familia.'});
+
+    if(A.protector) tarjetas.push({dest:true, gancho:A.protector.gancho, nom:A.protector.titulo,
+      precio:A.protector.precio, periodo:A.protector.periodo, lista:A.protector.incluye,
+      btn:'Ser protector →',
+      msg:'Hola! Quiero el '+A.protector.titulo.toLowerCase()+' ('+A.protector.precio+' €) para apoyar al club.'});
+
+    document.getElementById('apGrid').innerHTML = tarjetas.map(function(t){
+      return '<div class="ap-card'+(t.dest?' dest':'')+'">'
+        + (t.gancho ? '<span class="ap-gancho">'+t.gancho+'</span>' : '')
+        + '<div class="ap-nom">'+t.nom+'</div>'
+        + '<div class="ap-precio">'+t.precio+'<span>€</span></div>'
+        + '<div class="ap-periodo">'+t.periodo+'</div>'
+        + '<ul class="ap-lista">'+t.lista.map(function(x){return '<li>'+x+'</li>';}).join('')+'</ul>'
+        + '<a class="ap-btn'+(t.dest?'':' sec')+'" href="'+wa(t.msg)+'" target="_blank" rel="noopener">'+t.btn+'</a>'
+      + '</div>';
+    }).join('');
+
+    /* ── Fila 0 ── */
+    if(A.fila0 && A.fila0.activa){
+      document.getElementById('apF0Gancho').textContent = A.fila0.gancho;
+      document.getElementById('apF0Tit').textContent = A.fila0.titulo;
+      document.getElementById('apF0Txt').textContent = A.fila0.texto;
+      document.getElementById('apF0Btn').href = wa('Hola! Quiero sumarme a la Fila 0 del Melilla Ciudad del Deporte Enrique Soler. No puedo ir al pabellón pero quiero apoyar al equipo.');
+      document.getElementById('apFila0').hidden = false;
+    }
+
+    document.getElementById('apPie').textContent =
+      'Se paga por Bizum al ' + A.bizum + ' o por transferencia. Escríbenos por WhatsApp y te lo explicamos en un minuto.';
+
+    /* ── Taquilla inversa: ¿hubo partido en casa hace poco? ── */
+    var caja = document.getElementById('apInversa');
+    if(!A.inversa || !A.inversa.activa){ if(caja) caja.hidden = true; return; }
+    var hoy = new Date(); hoy.setHours(0,0,0,0);
+    var ultimo = null;
+    PARTIDOS.forEach(function(p){
+      if(!isUs(p.local)) return;
+      var f = (p.fecha||'').split('/'); if(f.length!==3) return;
+      var d = new Date(+f[2], +f[1]-1, +f[0]);
+      var dias = Math.floor((hoy - d)/86400000);
+      if(dias >= 0 && dias <= (A.inversa.dias_visible||3)) ultimo = p;
+    });
+    // Sin partido reciente se vuelve a ocultar: si solo se hiciera 'return'
+    // el bloque se quedaría visible al repintar.
+    if(!ultimo){ caja.hidden = true; return; }
+    document.getElementById('apInvTit').textContent = A.inversa.titulo;
+    document.getElementById('apInvTxt').textContent = A.inversa.texto;
+    document.getElementById('apInvRef').textContent = A.inversa.referencia;
+    document.getElementById('apInvBtn').href = wa(
+      'Hola! Vengo del partido contra ' + ultimo.visitante + ' del ' + ultimo.fecha
+      + '. Quiero aportar lo que creo que ha valido. ¿Os hago un Bizum al ' + A.bizum + '?');
+    caja.hidden = false;
+  }).catch(function(){ /* si falla, la sección se queda como está */ });
 }
 
 /* ── ZONA DEL AFICIONADO: próximo partido EN CASA ──────────────
@@ -1217,7 +1269,7 @@ Promise.all([
   renderClasificacion();
   renderDatosEstructurados();
   renderFanzone();
-  renderSocio();
+  renderApoyo();
 
   ScrollTrigger.refresh();
   });

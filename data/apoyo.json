@@ -1,0 +1,42 @@
+{
+  "_nota": "Formas de apoyar al club. CAMBIA AQUÍ los importes y textos: la web y la app los leen de este archivo. Los de 'protector' y 'familiar' son una PROPUESTA de partida; ajústalos antes de publicar.",
+  "_pendiente": "Cuando la junta quiera, rellenar 'destino' con costes reales (arbitraje, desplazamiento, juego de camisetas). Mientras esté vacío, la web no muestra esa parte.",
+
+  "bizum": "952 69 97 00",
+  "whatsapp": "34952699700",
+
+  "socio":     { "precio": 20, "titulo": "Abono de socio",     "periodo": "toda la temporada 2026-27" },
+  "entrada":   { "precio": 3,  "titulo": "Entrada de partido", "periodo": "un partido suelto" },
+
+  "protector": {
+    "precio": 50,
+    "titulo": "Abono protector",
+    "periodo": "toda la temporada · aportación voluntaria",
+    "gancho": "Para quien quiere dar un paso más",
+    "incluye": ["Todo lo del abono de socio", "Bufanda del club como agradecimiento", "Tu nombre en la web, si quieres"]
+  },
+  "familiar": {
+    "precio": 35,
+    "titulo": "Abono familiar",
+    "periodo": "toda la temporada · dos adultos y los hijos",
+    "gancho": "Que venga la familia entera",
+    "incluye": ["Entran dos adultos y los hijos menores", "Sale más barato que dos abonos", "Los críos al baloncesto desde pequeños"]
+  },
+
+  "inversa": {
+    "activa": true,
+    "dias_visible": 3,
+    "titulo": "¿Qué te ha parecido el partido?",
+    "texto": "No ponemos precio a lo de hoy. Si has disfrutado y te apetece echar una mano, aporta lo que creas que ha valido.",
+    "referencia": "Para que te hagas una idea: el abono de toda la temporada son 20 €."
+  },
+
+  "fila0": {
+    "activa": true,
+    "titulo": "Fila 0",
+    "texto": "¿No puedes venir al pabellón pero quieres estar? La Fila 0 es para los que apoyan desde donde estén: melillenses fuera, gente que ya no puede subir a la grada, familias de la cantera, ex jugadores.",
+    "gancho": "Estar sin estar"
+  },
+
+  "destino": []
+}
